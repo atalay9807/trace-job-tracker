@@ -1,4 +1,4 @@
-# Gauge — proje talimatları
+# Trace — proje talimatları
 
 ## Proje nedir
 
@@ -87,6 +87,7 @@ koda asla sabit veri gömülmez.
 | `journey.json` | Yaşam döngüsü aşamaları, sayfa yönlendirmeleri, şablon değişkenleri |
 | `engagement.json` | Gerçek rapor gönderim günleri (streak hesabı) |
 | `saved_jobs.json` | Kaydedilip başvurulmayan ilanlar (huninin üstü) |
+| `role_targets.json` | İki rol önerici ajanın mutabakatından çıkan unvan/sektör hedefleri |
 
 **Başvuru kaydının şeması** — zorunlu alanlar:
 
@@ -137,6 +138,7 @@ referans dokümandır. **Üçü birlikte güncellenir.**
 | **`sample` yeteneği** | Yayınlanan sayfada CV analizi | Yalnızca claude.ai'de; Pages sürümünde çalışmaz |
 | **Routine** | Günlük 09:00 tarama | `update_trigger` ile düzenlenir, **silinip yeniden kurulmaz** (geçmiş kaybolur) |
 | **Playwright** | Arayüz doğrulama, ekran görüntüsü | Chromium: `/opt/pw-browsers/chromium-1194/chrome-linux/chrome` |
+| **Indeed MCP** | Bir unvanın ilanı var mı diye bakmak | Resmi arama API'si — kazıma değil. **LinkedIn kazınmaz:** Kullanıcı Sözleşmesi yasaklıyor, fiilen takip ediliyor. LinkedIn'den gelen tek meşru veri kullanıcının kendi gelen kutusudur |
 
 Ortam kısıtı: **egress proxy** yalnızca paket kayıtlarına ve `github.com`'a
 izin veriyor. `github.io`, YouTube ve rastgele siteler açılamaz — doğrulama
@@ -209,12 +211,21 @@ dolgusu 3:1; her iki temada ayrı ayrı. Rampalar açıklık bakımından monoto
 
 - ⬜ **İlan metninin otomatik çekilip beceri çıkarımı** — `match` boyutları ve
   `gap_skills` şu an elle atanıyor. Projenin en zayıf halkası; ajan işi.
+- ⬜ **Geçmiş 68 kaydın match puanları e-postadan doğrulanamaz** — `ilan-cozumleyici`
+  + `eslestirici` ajanları Sipay ilanıyla test edildi (2026-09-03): LinkedIn'in
+  kaydedilen-ilan ve iş-ilanı-uyarısı mailleri hiçbir zaman ilan açıklaması
+  taşımıyor, yalnızca başlık/şirket/lokasyon (bazen tek bir gizli önizleme
+  cümlesi). Ajanlar bu ince girdiyle Sipay'ı 44 puana (🔴 Zayıf) çıkardı; elle
+  atanmış kayıt 90 (🟢 Güçlü). Aradaki fark ajan hatası değil — elle puanlama
+  o sırada tarayıcıda görülen ilan sayfasına dayanıyordu, mailde hiç yoktu.
+  Yani mevcut 68 kaydın çoğu için `match` boyutları geriye dönük doğrulanamaz;
+  yalnızca ilan metni elde tutulan veya not alınan kayıtlar güvenilir.
 - ⬜ Kullanıcı başına çoklu profil desteği
 - ⬜ Kalıcı veritabanı ve oturum yönetimi
 
 ## Proje skill'leri
 
-`.claude/skills/` altında üç skill var. Her oturumda yüklenmiyorlar — Claude
+`.claude/skills/` altında yedi skill var. Her oturumda yüklenmiyorlar — Claude
 işe göre kendisi çekiyor, bu yüzden ayrıntı burada değil onlarda durur.
 
 | Skill | Ne zaman devreye girer |
@@ -222,13 +233,17 @@ işe göre kendisi çekiyor, bu yüzden ayrıntı burada değil onlarda durur.
 | `eslesme-puanlama` | Bir ilanı CV'ye karşı puanlarken, `match` objesine veya `gap_skills`'e dokunulan her işte. Dört boyutun rubrikleri, segmentler, gerekçe yazımı. |
 | `mail-siniflandirma` | Günlük Gmail taramasında, bir mailin hangi kategoriye girdiğini belirlerken. Sorgular, gürültü listesi, sınıflandırma sırası, kayıt güncelleme. |
 | `rapor-formati` | Rapor üretirken, hatırlatma çıkarırken, takip maili taslarken. Aciliyet ağırlıkları, eşikler, e-posta yapısı, pazartesi geri bildirim bloğu. |
+| `yeni-basvuru-ekleme` | `data/applications.json`'a yeni kayıt açarken. `id`/`channel`/`track`/`fit`/`location`/`contact` biçimleri, dedup kuralı. |
+| `egitim-onerisi` | `data/skills_catalog.json`'a yeni kaynak eklerken veya eğitim sayfası/kurs kartı değiştirilirken. Kaynak şeması, öncelik formülü, üç yerde zorunlu simülasyon etiketi. |
+| `cv-analizi` | CV'yi `data/profile.json`'a çevirirken. Kıdem bandı, 1–5 araç seviyeleri, `gaps` yazımı, lokasyon politikası. Eşleşme motorunun tek referansı burada üretiliyor. |
+| `rol-hedefleme` | "Hangi unvanlara başvurmalıyım" akışı: iki rol önerici ajanı bağımsız çalıştırma, dört mutabakat sınıfı, `data/role_targets.json` şeması. |
 
 Skill'lerdeki sayısal değerler koddaki sabitlerle **doğrulanmıştır**. Sabiti
 değiştirirsen skill'i de güncelle, yoksa ikisi ayrışır.
 
 ## Proje ajanları
 
-`.claude/agents/` altında iki ajan var. Alt ajanlar skill'lerden farklı
+`.claude/agents/` altında sekiz ajan var. Alt ajanlar skill'lerden farklı
 çalışır: **ayrı bağlamda** başlarlar, işi bitirip rapor dönerler. Bu yüzden
 her biri tek iş yapar — ana oturumun bağlamını doldurmadan kendi işini
 görsün diye.
@@ -237,15 +252,36 @@ görsün diye.
 |---|---|---|
 | `ilan-cozumleyici` | İlan metnini yapılandırılmış gereksinime çevirir: rol ailesi, kıdem bandı, araçlar, lokasyon, belirsizlikler | Puanlama yapmaz, CV'ye bakmaz |
 | `eslestirici` | Çözümleyicinin çıktısını profille karşılaştırıp `match` objesi, segment ve `gap_skills` üretir | `data/` altına yazmaz — objeyi döndürür, kaydı ana oturum yazar |
+| `mulakat-hazirlik` | Bir başvuru mülakat/değerlendirme aşamasına girdiğinde hazırlık notu üretir: muhtemel sorular, CV'nin zayıf kalacağı noktalar, karşı tarafa sorulacak sorular | Puanlama yapmaz, mülakat sonucu tahmin etmez, `data/` altına yazmaz |
+| `veri-denetleyici` | `data/applications.json`'ı şemaya ve iç tutarlılığa karşı denetler — tanınmayan `stage`, `match` sapması, `links_actions`'ta unutulan `kind`, sızmış üçüncü kişi bilgisi | Hiçbir dosyaya yazmaz/düzeltmez — yalnızca rapor döner; yanlış pozitifi gerçekten ayırt eder, uydurmaz |
+| `kariyer-danismani` | 68 başvurunun tamamı + CV'ye birden bakıp konumlandırma çıkarır: gerçekçi rol/kıdem hedefi, İK ekranında CV'nin nerede elendiği, enerjinin nerede israf olduğu | Tek ilan puanlamaz, mülakat hazırlamaz, kurs önermez; **maaş/piyasa verisi uydurmaz** — elimizde yok |
+| `pazar-arastirmacisi` | Benzer ürünleri ve tasarım desenlerini `WebSearch` ile araştırıp Trace'e çevrilmiş bulgu döndürür; her iddiaya kaynak, tek kaynaklı olana etiket | Tasarımı uygulamaz, dosya değiştirmez; **görmediği arayüz hakkında renk/ölçü iddiası kurmaz** — `WebFetch` egress'te kapalı |
+| `rol-onerici-profil` | Yalnızca CV/`profile.json`'a bakıp "bu profil hangi unvanlara başvurabilir" listesi üretir | `applications.json`'ı **açmaz**; piyasa/ilan verisi kullanmaz, şirket önermez |
+| `rol-onerici-gecmis` | Yalnızca başvuru sonuçları + `insights.py` + Indeed ilan varlığına bakıp aynı listeyi bağımsız üretir | `profile.json`'ı ve CV'yi **açmaz**; n<4 örneklemden sonuç çıkarmaz, şirket önermez |
 
-**İkisi neden ayrı:** bir ilanı hem yorumlayıp hem puanlayan tek ajan, ilanı
-kendi vereceği puana göre okumaya başlıyor. Ayrık tutulunca çözümleyici
+**İlk ikisi neden ayrı:** bir ilanı hem yorumlayıp hem puanlayan tek ajan,
+ilanı kendi vereceği puana göre okumaya başlıyor. Ayrık tutulunca çözümleyici
 tarafsız veri üretiyor, puanlayıcı da o veriyle çalışıyor.
 
-**Neden yalnızca iki tane:** izlenen kursta 20 ajanlı bir sistem gösteriliyor
-ama Gauge'un 20 ayrı uzmanlık gerektiren işi yok. Tarama, sınıflandırma ve
+**Neden az sayıda:** izlenen kursta 20 ajanlı bir sistem gösteriliyor ama
+Trace'in 20 ayrı uzmanlık gerektiren işi yok. Tarama, sınıflandırma ve
 rapor üretimi kurallı iş — `pipeline.py` ve `insights.py` bunları ajansız ve
 daha ucuza yapıyor. Ajan yalnızca yargı gerektiren yerde kullanılır.
+`mulakat-hazirlik` bu yüzden eklendi — "bu role ne sorulur" mekanik bir
+kural değil, kurstaki "toplantı briefingi hazırlayan" ajanın karşılığı.
+`veri-denetleyici` de aynı mantıkla — kurstaki "kendi işini eleştiren, test
+koşturup raporlayan" ajanın karşılığı; hangi sapmanın gerçek hata, hangisinin
+bilinçli `null` olduğunu ayırt etmek yargı ister, kural değildir.
+`kariyer-danismani` ise `insights.py`'nin hesapladığı oranların **ne anlama
+geldiğini** söyler: oranı kod üretir, "tek başvurulu bir track'in %100'ü
+gürültüdür, buna göre karar verme" demek yargıdır.
+
+**İki rol önerici neden çift:** ötekiler gibi işi bölmüyorlar, aynı işi
+**ayrı kanıtla** yapıp birbirini denetliyorlar. Biri CV'ye bakar, öteki
+başvuru sonuçlarına ve ilan varlığına; kanıt tabanları kasıtlı olarak
+kesişmez. Anlaştıkları unvan güçlü hedeftir, ayrıştıkları yer asıl
+bilgidir — ortalaması alınmaz, iki gerekçe yan yana gösterilir
+(`rol-hedefleme` skill'indeki dört mutabakat sınıfı).
 
 ## Referans
 
