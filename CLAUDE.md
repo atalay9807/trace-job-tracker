@@ -296,3 +296,5 @@ bilgidir — ortalaması alınmaz, iki gerekçe yan yana gösterilir
 - `docs/TEKNIK.md` — formüller, bakım notları, tasarım kararları
 - `docs/otomasyon.md` — günlük Routine'in işleyişi
 - `docs/kaynak-claude-code-kursu.md` — ajan/skill mimarisi için izlenen kurs
+- `docs/kurs-araclari.md` — kurstaki araçların sınıflandırması, hangisi bize değiyor
+- `docs/yerel-kurulum.md` — terminal/masaüstüne taşınma notları (taşınma günü okunur)
