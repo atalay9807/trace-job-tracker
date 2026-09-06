@@ -53,7 +53,18 @@ Olumsuz sonuçlarda hangi yetkinliğin tekrar eksik kaldığı çıkarılır, ö
 
 ![Bağlan sayfası](docs/img/07-baglan.png)
 
-**Gmail bağlantısı bu demoda simülasyondur.** Yayınlanan bir sayfa tarayıcıdan doğrudan Gmail'e bağlanamaz; sunucu tarafında OAuth ve Google onaylı bir uygulama gerekir. Depodaki otomasyon bu işi Gmail MCP sunucusu üzerinden yapıyor — arayüz bu ayrımı açıkça belirtiyor.
+### Gmail bağlantısı — neden yayınlanan sayfada kurulmuyor
+
+Uygulamadaki "Gmail'i bağla" düğmesi çalışır ama bağlantı kurulmaz ve sebebi
+ekranda yazar: yayınlanan bir sayfa tarayıcıdan doğrudan Gmail'e bağlanamaz.
+Bunun için sunucu tarafında OAuth akışı ve Google tarafından doğrulanmış bir
+uygulama gerekir. Depodaki otomasyon bu işi Gmail MCP sunucusu üzerinden
+yapıyor. Gerçek entegrasyon dört adım:
+
+1. Google hesabıyla yalnızca **okuma** izni istenir; gönderme veya silme izni alınmaz.
+2. Son 30 gün taranır, iş temalı e-postalar ayrılır; bülten ve ilan bildirimleri gürültü sayılır.
+3. Her e-posta sınıflandırılır: teklif, mülakat daveti, aksiyon gerekli, red, incelemede.
+4. Başvurular CV'ye göre puanlanır ve her sabah 09:00'da özet e-posta gönderilir.
 
 ---
 

@@ -544,7 +544,7 @@
       <h1>Ana Sayfa</h1>
       <p class="sub" id="anaSub"></p>
     </div>
-    <div class="journey" id="journeyBox"></div>
+    <div class="journey" id="nextBox"></div>
     <div class="tiles" id="tiles"></div>
     <section>
       <div class="sec-head">
@@ -568,7 +568,7 @@
   <section class="page" id="p-basvurular">
     <div class="pagehead">
       <h1>Başvurularım</h1>
-      <p class="sub">Her satır tıklanabilir — detayda eşleşme dökümü, eksik yetkinlik ve önerilen kaynak var.</p>
+      <p class="sub" id="appsSub"></p>
     </div>
     <div class="nudge" id="nudgeApps"></div>
     <section style="margin-top:22px">
@@ -615,7 +615,7 @@
   <section class="page" id="p-raporlar">
     <div class="pagehead">
       <h1>Raporlar</h1>
-      <p class="sub">Sekiz rapor: nerede kaybettiğin, hangi eksiğin pahalıya mal olduğu ve ritminin ne durumda olduğu.</p>
+      <p class="sub">Nerede kaybettiğin, hangi eksiğin pahalıya mal olduğu ve ritminin ne durumda olduğu.</p>
     </div>
     <div class="nudge" id="nudgeRep"></div>
 
@@ -718,7 +718,8 @@
       <p class="sub" id="profSub"></p>
     </div>
     <div class="nudge" id="nudgeProf"></div>
-    <div class="rgrid" style="margin-top:22px">
+    <div class="journey" id="journeyBox" style="margin-top:22px"></div>
+    <div class="rgrid" style="margin-top:16px">
       <div class="panel">
         <h3>Beceri seviyeleri</h3>
         <p class="cap">Dolu kısım CV'deki seviye, taralı kısım hedef</p>
@@ -761,7 +762,7 @@
   <section class="page" id="p-baglan">
     <div class="pagehead">
       <h1>Bağlan</h1>
-      <p class="sub">CV'ni yükle, sistem profilini çıkarsın. Gmail bağlantısı bu demoda simülasyondur — altta gerçek entegrasyonun ne gerektirdiği yazıyor.</p>
+      <p class="sub">CV'ni yükle ve gelen kutunu bağla. İkisi de bağlandığında sistem her sabah başvurularını tarar.</p>
     </div>
     <div class="conn">
       <div class="cbox">
@@ -779,23 +780,15 @@
       </div>
 
       <div class="cbox">
-        <span class="cstat demo">● Simülasyon — gerçek bağlantı değil</span>
+        <span class="cstat demo" id="gmStat">● Bağlı değil</span>
         <h3>Gmail bağla</h3>
-        <p class="lead">Gerçek sürümde sistem her sabah gelen kutusunu tarar. Bu demoda bağlantı kurulmaz; aşağıdaki adımlar gerçek entegrasyonun ne yaptığını anlatır.</p>
-        <ol class="steplist">
-          <li><span class="n">01</span><span>Google hesabıyla yalnızca <b>okuma</b> izni istenir; e-posta gönderme veya silme izni alınmaz.</span></li>
-          <li><span class="n">02</span><span>Son 30 gün taranır, iş temalı e-postalar ayrılır; bülten ve ilan bildirimleri gürültü sayılır.</span></li>
-          <li><span class="n">03</span><span>Her e-posta sınıflandırılır: teklif, mülakat daveti, aksiyon gerekli, red, incelemede.</span></li>
-          <li><span class="n">04</span><span>Başvurular CV'ye göre puanlanır ve her sabah 09:00'da özet e-posta gönderilir.</span></li>
-        </ol>
+        <p class="lead">Yalnızca <b>okuma</b> izni istenir — e-posta gönderme veya silme izni alınmaz.
+          Son 30 gün taranır, iş temalı e-postalar ayrılır.</p>
         <button class="act" id="gmailBtn" type="button" style="width:fit-content">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
           Gmail'i bağla
         </button>
-        <p class="lead" style="font-size:12.5px;color:var(--ink-3)">
-          Yayınlanan bu sayfa, tarayıcıdan doğrudan Gmail'e bağlanamaz — bunun için sunucu tarafında OAuth akışı
-          ve Google tarafından doğrulanmış bir uygulama gerekir. Depodaki otomasyon bu işi Gmail MCP sunucusu üzerinden yapıyor.
-        </p>
+        <div class="cerr" id="gmErr"></div>
       </div>
     </div>
   </section>
@@ -880,10 +873,15 @@ addEventListener("hashchange", route);
 /* ---------------- yaşam döngüsü ---------------- */
 const cur = LC.current, nxt = LC.next;
 $("stagePill").innerHTML = `<span class="dot" style="background:var(--brand)"></span>Aşama: <b>${esc(cur.label)}</b>`;
+$("appsSub").textContent =
+  `${D.stats.active} süreç açık · ${D.applications.filter(a=>a.band==="critical").length} tanesi bugün aksiyon istiyor · ` +
+  `${D.applications.filter(a=>a.days_silent>=12&&a.status!=="rejected").length} tanesi 12+ gündür sessiz.`;
 $("anaSub").textContent =
   `${D.meta.owner} · ${D.stats.total} başvuru, ${D.stats.active} aktif süreç · ` +
   `${IN.engagement.reports_sent} günlük rapor, ${IN.engagement.current_streak} günlük streak.`;
 
+/* Aşama şeridi Profil'de, sıradaki adım Ana Sayfa'da. Kullanıcının üründeki
+   ilerlemesini anlatan meta-bant, her açılışta karşısına çıkan şey olmamalı. */
 $("journeyBox").innerHTML = `
   <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
     <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:17px;font-weight:700">Nerede duruyorsun</h2>
@@ -892,7 +890,9 @@ $("journeyBox").innerHTML = `
   <div class="jtrack">${LC.all.map(s => {
     const cls = s.order < cur.order ? "done" : s.order === cur.order ? "now" : "";
     return `<div class="jstep ${cls}"><div class="bar"></div><div class="nm">${esc(s.label)}</div></div>`;
-  }).join("")}</div>
+  }).join("")}</div>`;
+
+$("nextBox").innerHTML = `
   <div class="nextstep">
     <div class="ic">${I.flag}</div>
     <div class="bd">
@@ -1469,8 +1469,9 @@ addEventListener("keydown", e=>{ if(!tw.classList.contains("on")) return;
   if(e.key==="Escape") closeTour();
   if(e.key==="ArrowRight"&&ti<TOUR.length-1){ti++;drawTour();}
   if(e.key==="ArrowLeft"&&ti>0){ti--;drawTour();} });
-let seen=null; try{ seen=localStorage.getItem("kp_tour"); }catch(e){}
-if(!seen) setTimeout(openTour, 500);
+/* Tur kendiliğinden açılmıyor: yeni kullanıcıyı karşılayan şey ürünü anlatan
+   slaytlar değil, ana sayfadaki tek çağrı ("CV'ni yükle"). Turu isteyen
+   üstteki "Nasıl çalışır" düğmesinden açar. */
 
 /* ================= CV YÜKLEME (gerçek — sample yeteneği) ================= */
 const drop=$("drop"), cvFile=$("cvFile"), cvOut=$("cvOut"), cvErr=$("cvErr");
@@ -1544,8 +1545,19 @@ cvFile.addEventListener("change", e=>handleCV(e.target.files[0]));
 ["dragenter","dragover"].forEach(ev=>drop.addEventListener(ev, e=>{e.preventDefault();drop.classList.add("over");}));
 ["dragleave","drop"].forEach(ev=>drop.addEventListener(ev, e=>{e.preventDefault();drop.classList.remove("over");}));
 drop.addEventListener("drop", e=>handleCV(e.dataTransfer.files[0]));
-$("gmailBtn").addEventListener("click", ()=>
-  toast("Simülasyon — bu demoda gerçek Gmail bağlantısı kurulmaz."));
+/* Gerçek ürün davranışı: buton çalışır, bağlantı kurulamaz ve sebebi
+   ekranda dürüstçe yazar. Sahte bir "bağlandı" durumu gösterilmez. */
+$("gmailBtn").addEventListener("click", () => {
+  const b = $("gmailBtn"); b.disabled = true; b.textContent = "Bağlanıyor…";
+  setTimeout(() => {
+    b.disabled = false; b.textContent = "Gmail'i bağla";
+    $("gmStat").textContent = "● Bağlanamadı";
+    const e = $("gmErr");
+    e.textContent = "Bağlantı kurulamadı: bu sürümde sunucu tarafı OAuth akışı yok. "
+      + "Tarayıcıdan doğrudan Gmail'e bağlanılamıyor; depodaki otomasyon bu işi Gmail MCP sunucusu üzerinden yapıyor.";
+    e.classList.add("on");
+  }, 900);
+});
 
 route();
 </script>
