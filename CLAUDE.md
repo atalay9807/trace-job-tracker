@@ -243,7 +243,7 @@ değiştirirsen skill'i de güncelle, yoksa ikisi ayrışır.
 
 ## Proje ajanları
 
-`.claude/agents/` altında sekiz ajan var. Alt ajanlar skill'lerden farklı
+`.claude/agents/` altında dokuz ajan var. Alt ajanlar skill'lerden farklı
 çalışır: **ayrı bağlamda** başlarlar, işi bitirip rapor dönerler. Bu yüzden
 her biri tek iş yapar — ana oturumun bağlamını doldurmadan kendi işini
 görsün diye.
@@ -258,6 +258,7 @@ görsün diye.
 | `pazar-arastirmacisi` | Benzer ürünleri ve tasarım desenlerini `WebSearch` ile araştırıp Trace'e çevrilmiş bulgu döndürür; her iddiaya kaynak, tek kaynaklı olana etiket | Tasarımı uygulamaz, dosya değiştirmez; **görmediği arayüz hakkında renk/ölçü iddiası kurmaz** — `WebFetch` egress'te kapalı |
 | `rol-onerici-profil` | Yalnızca CV/`profile.json`'a bakıp "bu profil hangi unvanlara başvurabilir" listesi üretir | `applications.json`'ı **açmaz**; piyasa/ilan verisi kullanmaz, şirket önermez |
 | `rol-onerici-gecmis` | Yalnızca başvuru sonuçları + `insights.py` + Indeed ilan varlığına bakıp aynı listeyi bağımsız üretir | `profile.json`'ı ve CV'yi **açmaz**; n<4 örneklemden sonuç çıkarmaz, şirket önermez |
+| `buyume-stratejisti` | **Ürünün** büyümesine bakar: kitle, aktivasyon/retention döngüsü, kanal, PLG olabilirlik, ülke ölçeklemesi, birim ekonomi. Her rakamı ÖLÇÜM/KIYAS/VARSAYIM diye etiketler | Gelir, maliyet, pazar büyüklüğü **uydurmaz** — elimizde yok; kurucunun kendi kullanımını kullanıcı davranışı diye sunmaz (n=1); kullanıcının kariyerine karışmaz |
 
 **İlk ikisi neden ayrı:** bir ilanı hem yorumlayıp hem puanlayan tek ajan,
 ilanı kendi vereceği puana göre okumaya başlıyor. Ayrık tutulunca çözümleyici
@@ -275,6 +276,13 @@ bilinçli `null` olduğunu ayırt etmek yargı ister, kural değildir.
 `kariyer-danismani` ise `insights.py`'nin hesapladığı oranların **ne anlama
 geldiğini** söyler: oranı kod üretir, "tek başvurulu bir track'in %100'ü
 gürültüdür, buna göre karar verme" demek yargıdır.
+
+**`buyume-stratejisti` neden ayrı:** ürünü bir işletme gibi ele alan tek
+yer burası. Elimizde ikinci kullanıcı, gelir ve maliyet verisi olmadığı
+için asıl işi sayı üretmek değil, **varsayımları adlandırmak** ve en
+riskli olanı test edecek en ucuz deneyi söylemek. Ayrıca bu ürünün
+yapısal gerçeğiyle yüzleşir: kullanıcı başarıya ulaşınca churn ediyor,
+yani retention ürün kalitesiyle değil dış bir olayla sınırlı.
 
 **İki rol önerici neden çift:** ötekiler gibi işi bölmüyorlar, aynı işi
 **ayrı kanıtla** yapıp birbirini denetliyorlar. Biri CV'ye bakar, öteki
