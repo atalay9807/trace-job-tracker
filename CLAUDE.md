@@ -297,4 +297,5 @@ bilgidir — ortalaması alınmaz, iki gerekçe yan yana gösterilir
 - `docs/otomasyon.md` — günlük Routine'in işleyişi
 - `docs/kaynak-claude-code-kursu.md` — ajan/skill mimarisi için izlenen kurs
 - `docs/kurs-araclari.md` — kurstaki araçların sınıflandırması, hangisi bize değiyor
+- `docs/kaynak-token-maliyeti.md` — model maliyeti videosu + bizim token stratejimiz
 - `docs/yerel-kurulum.md` — terminal/masaüstüne taşınma notları (taşınma günü okunur)
