@@ -203,6 +203,24 @@ dolgusu 3:1; her iki temada ayrı ayrı. Rampalar açıklık bakımından monoto
 
 ## Depo
 
+**İki depo var ve karıştırılmaz:**
+
+| Depo | Görünürlük | İçerik |
+|---|---|---|
+| `atalay9807/trace-job-tracker` | **açık** | Kod, ajanlar, skill'ler, CLAUDE.md, site — ve `data/` altında **anonim demo veri** (Kerem Aydın) |
+| `atalay9807/trace-data` | **özel** | `data/applications.json`, `data/profile.json`, `data/last_scan.json` — **gerçek** veri (Atalay Denizer) |
+
+Açık depo CV'ye konan `github.com/atalay9807` linkinden görünüyor; portföy
+işini o görüyor. **Gerçek veri bu depoya asla girmez** — ne kayıt, ne profil,
+ne ekran görüntüsü. Bir gerçek şirket adı, gerçek başvuru tarihi veya CV'den
+türetilmiş gerçek profil buraya commit edilirse iş arama süreci kamuya açılır
+ve geri alınamaz.
+
+Günlük Routine iki depoyu da klonlar: açıktan kural ve kod, özelden veri.
+Gerçek veriyi `src/` altındaki koddan geçirmek için `trace-data/data/*`
+geçici olarak açık klonun `data/` klasörüne kopyalanır — **bu kopya commit
+edilmez.**
+
 - Geliştirme dalı: `claude/linkedin-job-tracking-automation-6xiogy`
 - `main`'e `--no-ff` ile merge; `site/**` değişince Pages otomatik dağıtır
 - `site/_artifact.html` türetilmiştir, `.gitignore`'dadır

@@ -290,6 +290,17 @@
   .fchip.v[aria-pressed="true"]{background:var(--violet);border-color:var(--violet)}
   :root[data-theme="dark"] .fchip[aria-pressed="true"]{color:var(--ground)}
   @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .fchip[aria-pressed="true"]{color:var(--ground)}}
+  .fsel{font-family:Archivo,sans-serif;font-size:12.5px;font-weight:500;background:var(--surface);
+        color:var(--ink-2);border:1px solid var(--line);border-radius:4px;padding:5px 22px 5px 9px;
+        margin-left:-1px;cursor:pointer;appearance:none;
+        background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);
+        background-position:calc(100% - 12px) 51%,calc(100% - 8px) 51%;
+        background-size:4px 4px,4px 4px;background-repeat:no-repeat}
+  .fsel:hover{color:var(--ink);border-color:var(--line-strong)}
+  .fsel.on{background-color:var(--brand);border-color:var(--brand);color:#fff}
+  :root[data-theme="dark"] .fsel.on{color:var(--ground)}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .fsel.on{color:var(--ground)}}
+  .fsel:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
   .search{flex:1;min-width:170px;max-width:280px;margin-left:auto;font-family:Archivo,sans-serif;font-size:13px;
           background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:6px 13px}
   .search::placeholder{color:var(--ink-3)}
@@ -588,6 +599,14 @@
           <button class="fchip v" data-s="good" aria-pressed="false" type="button">İyi</button>
           <button class="fchip v" data-s="fair" aria-pressed="false" type="button">Orta</button>
           <button class="fchip v" data-s="weak" aria-pressed="false" type="button">Zayıf</button>
+        </div>
+        <div class="fgroup" id="dateGroup">
+          <span class="glabel">Tarih</span>
+          <select class="fsel" id="dateField" aria-label="Hangi tarihe göre filtrelensin">
+            <option value="applied">Başvuru</option>
+            <option value="last_contact">Son mail</option>
+          </select>
+          <select class="fsel" id="dateRange" aria-label="Tarih aralığı"></select>
         </div>
         <input class="search" id="search" type="search" placeholder="Şirket veya pozisyon ara…" aria-label="Şirket veya pozisyon ara">
       </div>
@@ -976,7 +995,7 @@ $("focusCards").innerHTML = focus.map(a => {
 }).join("");
 
 /* ---------------- başvurular tablosu ---------------- */
-let band = "all", seg = "all", query = "";
+let band = "all", seg = "all", query = "", dateField = "applied", dateRange = "all";
 function gapChips(a, max) {
   const g = a.gap_skills || [];
   if (!g.length) return `<span style="color:var(--ink-3);font-size:12px">—</span>`;
@@ -984,10 +1003,39 @@ function gapChips(a, max) {
   return show.map(s => `<span class="chip chip-gap">${esc((CAT[s]||{}).name || s)}</span>`).join(" ")
        + (g.length > show.length ? ` <span style="font-size:11px;color:var(--ink-3)">+${g.length-show.length}</span>` : "");
 }
+/* Tarih filtresi. Referans gün "bugün" değil son tarama tarihidir: demo veri
+   sabit olduğu için gerçek bugüne göre "son 7 gün" hep boş çıkardı. */
+const BUGUN = (D.meta && D.meta.last_scan)
+  || D.applications.reduce((m,a) => a.applied > m ? a.applied : m, "0000-00-00");
+const AYLAR = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran",
+               "Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
+function gunFarki(a, b) {           // a ve b: YYYY-MM-DD
+  return Math.round((Date.parse(b) - Date.parse(a)) / 86400000);
+}
+function tarihGecer(a) {
+  if (dateRange === "all") return true;
+  const t = a[dateField];
+  if (!t) return false;             // tarih yoksa aralık filtresinde görünmez
+  if (dateRange.startsWith("son")) return gunFarki(t, BUGUN) <= +dateRange.slice(3);
+  return t.slice(0, 7) === dateRange;   // "YYYY-MM"
+}
+function tarihSecenekleriniKur() {
+  const aylar = [...new Set(D.applications.flatMap(a =>
+    [a.applied, a.last_contact].filter(Boolean).map(t => t.slice(0, 7))))].sort().reverse();
+  $("dateRange").innerHTML =
+    `<option value="all">Tümü</option>`
+    + [7, 30, 90].map(n => `<option value="son${n}">Son ${n} gün</option>`).join("")
+    + (aylar.length ? `<optgroup label="Ay">` + aylar.map(ay => {
+        const [y, m] = ay.split("-");
+        return `<option value="${ay}">${AYLAR[+m - 1]} ${y}</option>`;
+      }).join("") + `</optgroup>` : "");
+  $("dateRange").title = "Aralıklar son tarama tarihine göre: " + fmtDate(BUGUN);
+}
 function renderTable() {
   const q = query.trim().toLocaleLowerCase("tr");
   const list = D.applications.filter(a =>
     (band === "all" || a.band === band) && (seg === "all" || a.match_segment_key === seg) &&
+    tarihGecer(a) &&
     (!q || (a.company+" "+a.role+" "+(a.track||"")).toLocaleLowerCase("tr").includes(q)));
   $("tblCount").textContent = `${list.length} / ${D.applications.length} başvuru`;
   $("empty").hidden = list.length > 0;
@@ -1029,6 +1077,15 @@ document.querySelectorAll("#segGroup .fchip").forEach(b => b.addEventListener("c
   renderTable();
 }));
 $("search").addEventListener("input", e => { query = e.target.value; renderTable(); });
+tarihSecenekleriniKur();
+$("dateField").addEventListener("change", e => { dateField = e.target.value; renderTable(); });
+$("dateRange").addEventListener("change", e => {
+  dateRange = e.target.value;
+  // Filtre etkinken kutu markalı renge geçsin — kapalıyken sessiz kalsın
+  $("dateRange").classList.toggle("on", dateRange !== "all");
+  $("dateField").classList.toggle("on", dateRange !== "all");
+  renderTable();
+});
 renderTable();
 
 /* ---------------- detay paneli ---------------- */
