@@ -99,7 +99,7 @@ sende kalsın.
 Her başvuru kaydı `links_actions` dizisi taşır. Üç tür link üretilir:
 
 - **Gerçek aksiyon URL'i** — yalnızca e-postada doğrulanmış bağlantılar
-  (ör. Nebil Project'in TestGorilla test linki). Uydurulmaz.
+  (ör. Kavza Project'in TestGorilla test linki). Uydurulmaz.
 - **Hazır takip maili** — `contact` alanında e-posta varsa, duruma göre
   (mülakat sonrası / süre uzatımı / durum sorusu) konusu ve gövdesi doldurulmuş
   bir `mailto:` bağlantısı.
@@ -110,7 +110,7 @@ Her başvuru kaydı `links_actions` dizisi taşır. Üç tür link üretilir:
 
 Arayüz beş sayfalı tek sayfa uygulaması (`#/ana`, `#/basvurular`, `#/raporlar`,
 `#/egitim`, `#/profil`). Başvuru detayı derin bağlantı alır:
-`#/basvurular/obilet-strategy-analyst`.
+`#/basvurular/yolcum-strategy-analyst`.
 
 Kullanıcı, ölçülebilir kriterlerle altı aşamalı bir hattın üzerinde konumlanır:
 
