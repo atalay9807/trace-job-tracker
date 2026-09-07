@@ -223,7 +223,10 @@ edilmez.**
 
 - Geliştirme dalı: `claude/linkedin-job-tracking-automation-6xiogy`
 - `main`'e `--no-ff` ile merge; `site/**` değişince Pages otomatik dağıtır
-- `site/_artifact.html` türetilmiştir, `.gitignore`'dadır
+- `reports/pano.html` ve `site/_artifact.html` türetilmiştir, `.gitignore`'dadır.
+  Gerçek veriyle üretildiklerinde diskte gerçek veri taşırlar; izlenmemeleri
+  kazara commit'i engelliyor. `site/app.html` izlenir — o yayınlanan sürüm ve
+  daima demo veriyle üretilir
 
 ## Açık maddeler
 
