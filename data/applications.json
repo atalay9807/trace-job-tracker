@@ -8,12 +8,13 @@
     },
     "last_scan": "2026-09-01",
     "source": "Gmail (LinkedIn Easy Apply + ATS onay/red mailleri + doğrudan İK yazışmaları)",
-    "schema_version": 1
+    "schema_version": 1,
+    "_uyari": "DEMO VERİ — şirket adları kurgusaldır. Gerçek sürüm özel trace-data deposundadır. Yapı, tarih, aşama ve puanlar korunmuştur."
   },
   "applications": [
     {
-      "id": "nebil-cfo-office",
-      "company": "Nebil Project",
+      "id": "kavza-cfo-office",
+      "company": "Kavza Project",
       "role": "CFO Office Executive",
       "channel": "direct",
       "applied": "2026-08-20",
@@ -22,7 +23,7 @@
       "status": "action_required",
       "track": "Finance/Strategy",
       "location": "Maslak, İstanbul (ofis, 5 gün)",
-      "contact": "İK Sorumlusu — ik@nebil.example",
+      "contact": "İK Sorumlusu — ik@kavza.example",
       "deadline": "2026-08-31",
       "next_step": "TestGorilla testi + 3 soruya mail yanıtı (maaş / lokasyon / 7 Eyl başlangıç). Yüz yüze mülakatlar 1-2 Eylül, hedef başlangıç 7 Eylül.",
       "links": [
@@ -46,12 +47,12 @@
         },
         {
           "label": "Takip maili yaz",
-          "url": "mailto:ik@nebil.example?subject=CFO%20Office%20Executive%20ba%C5%9Fvurusu%20%E2%80%94%20s%C3%BCre%20uzat%C4%B1m%C4%B1%20talebi&body=Merhaba%2C%0A%0ANebil%20Project%20b%C3%BCnyesindeki%20CFO%20Office%20Executive%20pozisyonu%20i%C3%A7in%20payla%C5%9Ft%C4%B1%C4%9F%C4%B1n%C4%B1z%20de%C4%9Ferlendirme%20ad%C4%B1m%C4%B1n%C4%B1%20belirtilen%20tarihte%20tamamlayamad%C4%B1m.%20S%C3%BCre%C3%A7%20h%C3%A2l%C3%A2%20a%C3%A7%C4%B1ksa%20k%C4%B1sa%20bir%20ek%20s%C3%BCre%20tan%C4%B1man%C4%B1z%20m%C3%BCmk%C3%BCn%20m%C3%BCd%C3%BCr%3F%0A%0A%C4%B0lginiz%20i%C3%A7in%20te%C5%9Fekk%C3%BCrler.%0A%0ASayg%C4%B1lar%C4%B1mla%2C%0AKerem%20Ayd%C4%B1n%0Akerem.aydin%40example.com%20%7C%20%2B90%205XX%20XXX%20XX%20XX",
+          "url": "mailto:ik@kavza.example?subject=CFO%20Office%20Executive%20ba%C5%9Fvurusu%20%E2%80%94%20s%C3%BCre%20uzat%C4%B1m%C4%B1%20talebi&body=Merhaba%2C%0A%0AKavza%20Project%20b%C3%BCnyesindeki%20CFO%20Office%20Executive%20pozisyonu%20i%C3%A7in%20payla%C5%9Ft%C4%B1%C4%9F%C4%B1n%C4%B1z%20de%C4%9Ferlendirme%20ad%C4%B1m%C4%B1n%C4%B1%20belirtilen%20tarihte%20tamamlayamad%C4%B1m.%20S%C3%BCre%C3%A7%20h%C3%A2l%C3%A2%20a%C3%A7%C4%B1ksa%20k%C4%B1sa%20bir%20ek%20s%C3%BCre%20tan%C4%B1man%C4%B1z%20m%C3%BCmk%C3%BCn%20m%C3%BCd%C3%BCr%3F%0A%0A%C4%B0lginiz%20i%C3%A7in%20te%C5%9Fekk%C3%BCrler.%0A%0ASayg%C4%B1lar%C4%B1mla%2C%0AKerem%20Ayd%C4%B1n%0Akerem.aydin%40example.com%20%7C%20%2B90%205XX%20XXX%20XX%20XX",
           "kind": "mailto"
         },
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Nebil%20Project",
+          "url": "https://mail.google.com/mail/u/0/#search/Kavza%20Project",
           "kind": "gmail"
         }
       ],
@@ -60,8 +61,8 @@
       ]
     },
     {
-      "id": "eoai-lab-founding",
-      "company": "EOAI Lab",
+      "id": "nova-ai-lab-founding",
+      "company": "NOVA AI Lab",
       "role": "Kurucu ekip",
       "channel": "direct",
       "applied": "2026-08-28",
@@ -85,7 +86,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/EOAI%20Lab",
+          "url": "https://mail.google.com/mail/u/0/#search/NOVA%20AI%20Lab",
           "kind": "gmail"
         }
       ],
@@ -95,8 +96,8 @@
       ]
     },
     {
-      "id": "yapikredi-peoplise",
-      "company": "Yapı Kredi",
+      "id": "yapibirlik-peoplise",
+      "company": "Yapı Birlik",
       "role": "Belirtilmemiş (peoplise başvurusu)",
       "channel": "ats",
       "applied": "2026-08-21",
@@ -120,7 +121,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Yap%C4%B1%20Kredi",
+          "url": "https://mail.google.com/mail/u/0/#search/Yap%C4%B1%20Birlik",
           "kind": "gmail"
         }
       ],
@@ -129,8 +130,8 @@
       ]
     },
     {
-      "id": "puffy-data-analyst",
-      "company": "Puffy",
+      "id": "cloudly-data-analyst",
+      "company": "Cloudly",
       "role": "Data Analyst (Dubai, on-site)",
       "channel": "linkedin",
       "applied": "2026-08-01",
@@ -139,7 +140,7 @@
       "status": "action_required",
       "track": "Data",
       "location": "Dubai",
-      "contact": "Talent Acquisition — ta@puffy.example",
+      "contact": "Talent Acquisition — ta@cloudly.example",
       "deadline": "2026-08-22",
       "next_step": "Faz-1 yetenek değerlendirmesi (~30 dk, proctored/kameralı; başlayınca 4 saat içinde bitmeli).",
       "fit": 4,
@@ -155,12 +156,12 @@
       "links_actions": [
         {
           "label": "Takip maili yaz",
-          "url": "mailto:ta@puffy.example?subject=Data%20Analyst%20%28Dubai%2C%20on-site%29%20ba%C5%9Fvurusu%20%E2%80%94%20s%C3%BCre%20uzat%C4%B1m%C4%B1%20talebi&body=Merhaba%2C%0A%0APuffy%20b%C3%BCnyesindeki%20Data%20Analyst%20%28Dubai%2C%20on-site%29%20pozisyonu%20i%C3%A7in%20payla%C5%9Ft%C4%B1%C4%9F%C4%B1n%C4%B1z%20de%C4%9Ferlendirme%20ad%C4%B1m%C4%B1n%C4%B1%20belirtilen%20tarihte%20tamamlayamad%C4%B1m.%20S%C3%BCre%C3%A7%20h%C3%A2l%C3%A2%20a%C3%A7%C4%B1ksa%20k%C4%B1sa%20bir%20ek%20s%C3%BCre%20tan%C4%B1man%C4%B1z%20m%C3%BCmk%C3%BCn%20m%C3%BCd%C3%BCr%3F%0A%0A%C4%B0lginiz%20i%C3%A7in%20te%C5%9Fekk%C3%BCrler.%0A%0ASayg%C4%B1lar%C4%B1mla%2C%0AKerem%20Ayd%C4%B1n%0Akerem.aydin%40example.com%20%7C%20%2B90%205XX%20XXX%20XX%20XX",
+          "url": "mailto:ta@cloudly.example?subject=Data%20Analyst%20%28Dubai%2C%20on-site%29%20ba%C5%9Fvurusu%20%E2%80%94%20s%C3%BCre%20uzat%C4%B1m%C4%B1%20talebi&body=Merhaba%2C%0A%0ACloudly%20b%C3%BCnyesindeki%20Data%20Analyst%20%28Dubai%2C%20on-site%29%20pozisyonu%20i%C3%A7in%20payla%C5%9Ft%C4%B1%C4%9F%C4%B1n%C4%B1z%20de%C4%9Ferlendirme%20ad%C4%B1m%C4%B1n%C4%B1%20belirtilen%20tarihte%20tamamlayamad%C4%B1m.%20S%C3%BCre%C3%A7%20h%C3%A2l%C3%A2%20a%C3%A7%C4%B1ksa%20k%C4%B1sa%20bir%20ek%20s%C3%BCre%20tan%C4%B1man%C4%B1z%20m%C3%BCmk%C3%BCn%20m%C3%BCd%C3%BCr%3F%0A%0A%C4%B0lginiz%20i%C3%A7in%20te%C5%9Fekk%C3%BCrler.%0A%0ASayg%C4%B1lar%C4%B1mla%2C%0AKerem%20Ayd%C4%B1n%0Akerem.aydin%40example.com%20%7C%20%2B90%205XX%20XXX%20XX%20XX",
           "kind": "mailto"
         },
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Puffy",
+          "url": "https://mail.google.com/mail/u/0/#search/Cloudly",
           "kind": "gmail"
         }
       ],
@@ -170,8 +171,8 @@
       ]
     },
     {
-      "id": "micro1-data-analyst",
-      "company": "micro1",
+      "id": "nano1-data-analyst",
+      "company": "nano1",
       "role": "Data Analyst (AI training)",
       "channel": "direct",
       "applied": "2026-08-03",
@@ -195,7 +196,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/micro1",
+          "url": "https://mail.google.com/mail/u/0/#search/nano1",
           "kind": "gmail"
         }
       ],
@@ -205,8 +206,8 @@
       ]
     },
     {
-      "id": "eren-perakende-flowq",
-      "company": "Eren Perakende",
+      "id": "ergin-perakende-flowq",
+      "company": "Ergin Perakende",
       "role": "Belirtilmemiş",
       "channel": "ats",
       "applied": "2026-08-05",
@@ -230,7 +231,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Eren%20Perakende",
+          "url": "https://mail.google.com/mail/u/0/#search/Ergin%20Perakende",
           "kind": "gmail"
         }
       ],
@@ -239,8 +240,8 @@
       ]
     },
     {
-      "id": "omtera-join",
-      "company": "Omtera",
+      "id": "datamera-join",
+      "company": "Datamera",
       "role": "Belirtilmemiş",
       "channel": "ats",
       "applied": "2026-08-15",
@@ -264,7 +265,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Omtera",
+          "url": "https://mail.google.com/mail/u/0/#search/Datamera",
           "kind": "gmail"
         }
       ],
@@ -274,8 +275,8 @@
       ]
     },
     {
-      "id": "drbombay-deel",
-      "company": "Dr. Bombay (Snoop Dogg) / Deel",
+      "id": "mrsundae-deel",
+      "company": "Mr. Sundae (ünlü marka) / Deel",
       "role": "International Ice-Cream Taster",
       "channel": "direct",
       "applied": "2026-08-31",
@@ -299,15 +300,15 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Dr.%20Bombay%20%28Snoop%20Dogg%29%20/%20Deel",
+          "url": "https://mail.google.com/mail/u/0/#search/Mr.%20Sundae%20%28%C3%BCnl%C3%BC%20marka%29%20/%20Deel",
           "kind": "gmail"
         }
       ],
       "gap_skills": []
     },
     {
-      "id": "theflex-base360",
-      "company": "The Flex & Base360",
+      "id": "thespan-base180",
+      "company": "The Span & Base180",
       "role": "Growth Marketer / Marketing",
       "channel": "ats",
       "applied": "2026-08-20",
@@ -331,7 +332,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/The%20Flex%20%26%20Base360",
+          "url": "https://mail.google.com/mail/u/0/#search/The%20Span%20%26%20Base180",
           "kind": "gmail"
         }
       ],
@@ -340,8 +341,8 @@
       ]
     },
     {
-      "id": "peks-global-ticari-analist",
-      "company": "Peks Global A.Ş.",
+      "id": "beral-global-ticari-analist",
+      "company": "Beral Global A.Ş.",
       "role": "Ticari Analist",
       "channel": "direct",
       "applied": "2026-08-25",
@@ -350,7 +351,7 @@
       "status": "awaiting_response",
       "track": "Business Analysis",
       "location": "İstanbul",
-      "contact": "İK Müdürü — ik@peksglobal.example",
+      "contact": "İK Müdürü — ik@beralglobal.example",
       "deadline": null,
       "next_step": "28 Ağu 12:00 Teams görüşmesi yapıldı — geri dönüş bekleniyor. 5+ iş günü geçtiyse takip maili at.",
       "fit": 4,
@@ -366,12 +367,12 @@
       "links_actions": [
         {
           "label": "Takip maili yaz",
-          "url": "mailto:ik@peksglobal.example?subject=Ticari%20Analist%20pozisyonu%20%E2%80%94%20g%C3%B6r%C3%BC%C5%9Fme%20sonras%C4%B1%20takip&body=Merhaba%2C%0A%0APeks%20Global%20A.%C5%9E.%20b%C3%BCnyesindeki%20Ticari%20Analist%20pozisyonu%20i%C3%A7in%20ger%C3%A7ekle%C5%9Ftirdi%C4%9Fimiz%20g%C3%B6r%C3%BC%C5%9Fme%20i%C3%A7in%20tekrar%20te%C5%9Fekk%C3%BCr%20ederim.%20S%C3%BCrecin%20bir%20sonraki%20ad%C4%B1m%C4%B1%20hakk%C4%B1nda%20bilgi%20alabilir%20miyim%3F%0A%0A%C4%B0lginiz%20i%C3%A7in%20te%C5%9Fekk%C3%BCrler.%0A%0ASayg%C4%B1lar%C4%B1mla%2C%0AKerem%20Ayd%C4%B1n%0Akerem.aydin%40example.com%20%7C%20%2B90%205XX%20XXX%20XX%20XX",
+          "url": "mailto:ik@beralglobal.example?subject=Ticari%20Analist%20pozisyonu%20%E2%80%94%20g%C3%B6r%C3%BC%C5%9Fme%20sonras%C4%B1%20takip&body=Merhaba%2C%0A%0ABeral%20Global%20A.%C5%9E.%20b%C3%BCnyesindeki%20Ticari%20Analist%20pozisyonu%20i%C3%A7in%20ger%C3%A7ekle%C5%9Ftirdi%C4%9Fimiz%20g%C3%B6r%C3%BC%C5%9Fme%20i%C3%A7in%20tekrar%20te%C5%9Fekk%C3%BCr%20ederim.%20S%C3%BCrecin%20bir%20sonraki%20ad%C4%B1m%C4%B1%20hakk%C4%B1nda%20bilgi%20alabilir%20miyim%3F%0A%0A%C4%B0lginiz%20i%C3%A7in%20te%C5%9Fekk%C3%BCrler.%0A%0ASayg%C4%B1lar%C4%B1mla%2C%0AKerem%20Ayd%C4%B1n%0Akerem.aydin%40example.com%20%7C%20%2B90%205XX%20XXX%20XX%20XX",
           "kind": "mailto"
         },
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Peks%20Global%20A.%C5%9E.",
+          "url": "https://mail.google.com/mail/u/0/#search/Beral%20Global%20A.%C5%9E.",
           "kind": "gmail"
         }
       ],
@@ -380,8 +381,8 @@
       ]
     },
     {
-      "id": "trendyolgo",
-      "company": "TrendyolGo",
+      "id": "pazargo",
+      "company": "PazarGo",
       "role": "Belirtilmemiş",
       "channel": "ats",
       "applied": "2026-08-05",
@@ -405,7 +406,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/TrendyolGo",
+          "url": "https://mail.google.com/mail/u/0/#search/PazarGo",
           "kind": "gmail"
         }
       ],
@@ -414,8 +415,8 @@
       ]
     },
     {
-      "id": "shift-data-ops-fellow",
-      "company": "shift (joinshift.ai)",
+      "id": "drift-data-ops-fellow",
+      "company": "drift (joindrift.ai)",
       "role": "Data Operations Fellow",
       "channel": "direct",
       "applied": "2026-08-26",
@@ -424,7 +425,7 @@
       "status": "awaiting_response",
       "track": "Data",
       "location": "İstanbul",
-      "contact": "program@shift.example",
+      "contact": "program@drift.example",
       "deadline": null,
       "next_step": "Program süreç akışı paylaşıldı — sonraki adım bildirimi bekleniyor.",
       "fit": 4,
@@ -440,12 +441,12 @@
       "links_actions": [
         {
           "label": "Takip maili yaz",
-          "url": "mailto:program@shift.example?subject=Data%20Operations%20Fellow%20ba%C5%9Fvurusu%20%E2%80%94%20durum%20sorusu&body=Merhaba%2C%0A%0Ashift%20%28joinshift.ai%29%20b%C3%BCnyesindeki%20Data%20Operations%20Fellow%20pozisyonuna%20yapt%C4%B1%C4%9F%C4%B1m%20ba%C5%9Fvurunun%20mevcut%20durumu%20hakk%C4%B1nda%20bilgi%20alabilir%20miyim%3F%20S%C3%BCre%C3%A7le%20ilgilenmeye%20devam%20ediyorum.%0A%0A%C4%B0lginiz%20i%C3%A7in%20te%C5%9Fekk%C3%BCrler.%0A%0ASayg%C4%B1lar%C4%B1mla%2C%0AKerem%20Ayd%C4%B1n%0Akerem.aydin%40example.com%20%7C%20%2B90%205XX%20XXX%20XX%20XX",
+          "url": "mailto:program@drift.example?subject=Data%20Operations%20Fellow%20ba%C5%9Fvurusu%20%E2%80%94%20durum%20sorusu&body=Merhaba%2C%0A%0Adrift%20%28joindrift.ai%29%20b%C3%BCnyesindeki%20Data%20Operations%20Fellow%20pozisyonuna%20yapt%C4%B1%C4%9F%C4%B1m%20ba%C5%9Fvurunun%20mevcut%20durumu%20hakk%C4%B1nda%20bilgi%20alabilir%20miyim%3F%20S%C3%BCre%C3%A7le%20ilgilenmeye%20devam%20ediyorum.%0A%0A%C4%B0lginiz%20i%C3%A7in%20te%C5%9Fekk%C3%BCrler.%0A%0ASayg%C4%B1lar%C4%B1mla%2C%0AKerem%20Ayd%C4%B1n%0Akerem.aydin%40example.com%20%7C%20%2B90%205XX%20XXX%20XX%20XX",
           "kind": "mailto"
         },
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/shift%20%28joinshift.ai%29",
+          "url": "https://mail.google.com/mail/u/0/#search/drift%20%28joindrift.ai%29",
           "kind": "gmail"
         }
       ],
@@ -455,8 +456,8 @@
       ]
     },
     {
-      "id": "pfizer-data-ops",
-      "company": "Pfizer",
+      "id": "cortez-data-ops",
+      "company": "Cortez Pharma",
       "role": "Data Operations Specialist (Contractor) 4960477",
       "channel": "ats",
       "applied": "2026-08-03",
@@ -480,7 +481,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Pfizer",
+          "url": "https://mail.google.com/mail/u/0/#search/Cortez Pharma",
           "kind": "gmail"
         }
       ],
@@ -490,8 +491,8 @@
       ]
     },
     {
-      "id": "virtustant-pool",
-      "company": "Virtustant",
+      "id": "virtuassist-pool",
+      "company": "Virtuassist",
       "role": "Yetenek havuzu",
       "channel": "direct",
       "applied": "2026-08-25",
@@ -515,15 +516,15 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Virtustant",
+          "url": "https://mail.google.com/mail/u/0/#search/Virtuassist",
           "kind": "gmail"
         }
       ],
       "gap_skills": []
     },
     {
-      "id": "revolut-product-owner",
-      "company": "Revolut",
+      "id": "novabank-product-owner",
+      "company": "Novabank",
       "role": "Product Owner (Technical)",
       "channel": "ats",
       "applied": "2026-09-01",
@@ -535,7 +536,7 @@
       "deadline": null,
       "next_step": "Başvuru onaylandı — inceleme aşamasında.",
       "fit": 4,
-      "notes": "Revolut'ta ikinci deneme (S&O Manager 25 Ağu'da olumsuz sonuçlandı).",
+      "notes": "Novabank'ta ikinci deneme (S&O Manager 25 Ağu'da olumsuz sonuçlandı).",
       "match": {
         "role_family": 18,
         "seniority": 20,
@@ -547,7 +548,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Revolut",
+          "url": "https://mail.google.com/mail/u/0/#search/Novabank",
           "kind": "gmail"
         }
       ],
@@ -557,9 +558,9 @@
       ]
     },
     {
-      "id": "hyundai-product-senior",
-      "company": "Hyundai Motor Türkiye",
-      "role": "Product Senior Specialist (Pricing & Hyundai Finance)",
+      "id": "sanyo-product-senior",
+      "company": "Sanyo Motor Türkiye",
+      "role": "Product Senior Specialist (Pricing & Sanyo Finance)",
       "channel": "ats",
       "applied": "2026-09-01",
       "last_contact": "2026-09-01",
@@ -582,7 +583,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Hyundai%20Motor%20T%C3%BCrkiye",
+          "url": "https://mail.google.com/mail/u/0/#search/Sanyo%20Motor%20T%C3%BCrkiye",
           "kind": "gmail"
         }
       ],
@@ -591,8 +592,8 @@
       ]
     },
     {
-      "id": "baytek-ba-ai",
-      "company": "Baytek",
+      "id": "kartek-ba-ai",
+      "company": "Kartek",
       "role": "Business Analyst – AI & Product Analytics",
       "channel": "ats",
       "applied": "2026-09-01",
@@ -616,7 +617,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Baytek",
+          "url": "https://mail.google.com/mail/u/0/#search/Kartek",
           "kind": "gmail"
         }
       ],
@@ -626,8 +627,8 @@
       ]
     },
     {
-      "id": "jobgether-supply-chain",
-      "company": "Jobgether",
+      "id": "rolefinder-supply-chain",
+      "company": "Rolefinder",
       "role": "Supply Chain Analyst",
       "channel": "aggregator",
       "applied": "2026-09-01",
@@ -639,7 +640,7 @@
       "deadline": null,
       "next_step": "Eşleşme skoru inceleniyor.",
       "fit": 3,
-      "notes": "Jobgether = agregatör; dönüş oranı düşük.",
+      "notes": "Rolefinder = agregatör; dönüş oranı düşük.",
       "match": {
         "role_family": 26,
         "seniority": 25,
@@ -651,7 +652,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Jobgether",
+          "url": "https://mail.google.com/mail/u/0/#search/Rolefinder",
           "kind": "gmail"
         }
       ],
@@ -661,8 +662,8 @@
       ]
     },
     {
-      "id": "nlr-bi-analyst",
-      "company": "NLR",
+      "id": "nlb-bi-analyst",
+      "company": "NLB",
       "role": "Business Intelligence (BI) Analyst",
       "channel": "ats",
       "applied": "2026-08-25",
@@ -686,7 +687,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/NLR",
+          "url": "https://mail.google.com/mail/u/0/#search/NLB",
           "kind": "gmail"
         }
       ],
@@ -697,8 +698,8 @@
       ]
     },
     {
-      "id": "sanction-scanner-founders",
-      "company": "Sanction Scanner",
+      "id": "complyscan-founders",
+      "company": "ComplyScan",
       "role": "Founder's Associate",
       "channel": "ats",
       "applied": "2026-08-31",
@@ -722,7 +723,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Sanction%20Scanner",
+          "url": "https://mail.google.com/mail/u/0/#search/ComplyScan",
           "kind": "gmail"
         }
       ],
@@ -731,8 +732,8 @@
       ]
     },
     {
-      "id": "midas-lever",
-      "company": "Midas",
+      "id": "denar-lever",
+      "company": "Denar",
       "role": "Belirtilmemiş",
       "channel": "ats",
       "applied": "2026-08-31",
@@ -756,7 +757,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Midas",
+          "url": "https://mail.google.com/mail/u/0/#search/Denar",
           "kind": "gmail"
         }
       ],
@@ -765,8 +766,8 @@
       ]
     },
     {
-      "id": "ceva-logistics-bpe",
-      "company": "CEVA Logistics",
+      "id": "meridyen-lojistik-bpe",
+      "company": "Meridyen Lojistik",
       "role": "Business Process Excellence Professional Turkey",
       "channel": "ats",
       "applied": "2026-08-31",
@@ -790,7 +791,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/CEVA%20Logistics",
+          "url": "https://mail.google.com/mail/u/0/#search/Meridyen%20Lojistik",
           "kind": "gmail"
         }
       ],
@@ -799,8 +800,8 @@
       ]
     },
     {
-      "id": "pernod-ricard-fpa",
-      "company": "Pernod Ricard",
+      "id": "duvall-fpa",
+      "company": "Duvall Spirits",
       "role": "Financial Planning & Analysis Management Trainee",
       "channel": "ats",
       "applied": "2026-08-31",
@@ -824,7 +825,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Pernod%20Ricard",
+          "url": "https://mail.google.com/mail/u/0/#search/Duvall%20Spirits",
           "kind": "gmail"
         }
       ],
@@ -833,8 +834,8 @@
       ]
     },
     {
-      "id": "obilet-strategy-analyst",
-      "company": "Obilet",
+      "id": "yolcum-strategy-analyst",
+      "company": "Yolcum",
       "role": "Strategy Analyst",
       "channel": "linkedin",
       "applied": "2026-08-30",
@@ -846,7 +847,7 @@
       "deadline": null,
       "next_step": "İnceleme aşamasında.",
       "fit": 5,
-      "notes": "Obilet'e ikinci başvuru.",
+      "notes": "Yolcum'e ikinci başvuru.",
       "match": {
         "role_family": 34,
         "seniority": 25,
@@ -858,7 +859,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Obilet",
+          "url": "https://mail.google.com/mail/u/0/#search/Yolcum",
           "kind": "gmail"
         }
       ],
@@ -867,8 +868,8 @@
       ]
     },
     {
-      "id": "obilet-strategic-finance",
-      "company": "Obilet",
+      "id": "yolcum-strategic-finance",
+      "company": "Yolcum",
       "role": "Strategic Finance and Analytics Specialist",
       "channel": "linkedin",
       "applied": "2026-08-19",
@@ -892,7 +893,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Obilet",
+          "url": "https://mail.google.com/mail/u/0/#search/Yolcum",
           "kind": "gmail"
         }
       ],
@@ -902,8 +903,8 @@
       ]
     },
     {
-      "id": "dataroid",
-      "company": "Dataroid",
+      "id": "datapoint",
+      "company": "Datapoint",
       "role": "Belirtilmemiş",
       "channel": "ats",
       "applied": "2026-08-28",
@@ -927,7 +928,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Dataroid",
+          "url": "https://mail.google.com/mail/u/0/#search/Datapoint",
           "kind": "gmail"
         }
       ],
@@ -937,8 +938,8 @@
       ]
     },
     {
-      "id": "socgen-coverage-support",
-      "company": "Societe Generale",
+      "id": "lumiere-coverage-support",
+      "company": "Banque Lumière",
       "role": "Coverage Support Analyst (26000J28)",
       "channel": "ats",
       "applied": "2026-08-27",
@@ -962,7 +963,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Societe%20Generale",
+          "url": "https://mail.google.com/mail/u/0/#search/Banque%20Lumi%C3%A8re",
           "kind": "gmail"
         }
       ],
@@ -971,8 +972,8 @@
       ]
     },
     {
-      "id": "jobgether-ba-vdi",
-      "company": "Jobgether",
+      "id": "rolefinder-ba-vdi",
+      "company": "Rolefinder",
       "role": "Business Analyst – Data Sensitivity & VDI Migration",
       "channel": "aggregator",
       "applied": "2026-08-27",
@@ -996,7 +997,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Jobgether",
+          "url": "https://mail.google.com/mail/u/0/#search/Rolefinder",
           "kind": "gmail"
         }
       ],
@@ -1005,8 +1006,8 @@
       ]
     },
     {
-      "id": "vizio-ai-saas-growth",
-      "company": "VIZIO AI",
+      "id": "vista-ai-saas-growth",
+      "company": "VISTA AI",
       "role": "SaaS Growth Strategist (AI-Native)",
       "channel": "ats",
       "applied": "2026-08-27",
@@ -1030,7 +1031,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/VIZIO%20AI",
+          "url": "https://mail.google.com/mail/u/0/#search/VISTA%20AI",
           "kind": "gmail"
         }
       ],
@@ -1040,8 +1041,8 @@
       ]
     },
     {
-      "id": "vodafone",
-      "company": "Vodafone",
+      "id": "telfora",
+      "company": "Telfora",
       "role": "Belirtilmemiş",
       "channel": "ats",
       "applied": "2026-08-20",
@@ -1065,7 +1066,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Vodafone",
+          "url": "https://mail.google.com/mail/u/0/#search/Telfora",
           "kind": "gmail"
         }
       ],
@@ -1075,8 +1076,8 @@
       ]
     },
     {
-      "id": "goodjobgames-product-specialist",
-      "company": "Good Job Games",
+      "id": "brightplaygames-product-specialist",
+      "company": "Bright Play Games",
       "role": "Product Specialist, Hybrid-Casual",
       "channel": "ats",
       "applied": "2026-08-26",
@@ -1100,7 +1101,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Good%20Job%20Games",
+          "url": "https://mail.google.com/mail/u/0/#search/Bright%20Play%20Games",
           "kind": "gmail"
         }
       ],
@@ -1110,8 +1111,8 @@
       ]
     },
     {
-      "id": "miniclip-data-analyst",
-      "company": "Miniclip",
+      "id": "pixelclip-data-analyst",
+      "company": "Pixelclip",
       "role": "Data Analyst / Data Scientist I",
       "channel": "ats",
       "applied": "2026-08-24",
@@ -1135,7 +1136,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Miniclip",
+          "url": "https://mail.google.com/mail/u/0/#search/Pixelclip",
           "kind": "gmail"
         }
       ],
@@ -1145,8 +1146,8 @@
       ]
     },
     {
-      "id": "ingram-micro-bde-hpe",
-      "company": "Ingram Micro",
+      "id": "aksel-micro-bde-hpe",
+      "company": "Aksel Micro",
       "role": "Business Development Executive - HPE",
       "channel": "ats",
       "applied": "2026-08-20",
@@ -1170,15 +1171,15 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Ingram%20Micro",
+          "url": "https://mail.google.com/mail/u/0/#search/Aksel%20Micro",
           "kind": "gmail"
         }
       ],
       "gap_skills": []
     },
     {
-      "id": "tripcom-bd-manager",
-      "company": "Trip.com Group",
+      "id": "voyago-bd-manager",
+      "company": "Voyago Group",
       "role": "Business Development Manager (Attractions & Tours), Turkey",
       "channel": "ats",
       "applied": "2026-08-20",
@@ -1202,7 +1203,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Trip.com%20Group",
+          "url": "https://mail.google.com/mail/u/0/#search/Voyago%20Group",
           "kind": "gmail"
         }
       ],
@@ -1211,8 +1212,8 @@
       ]
     },
     {
-      "id": "cricut-ecom-ops-lead",
-      "company": "Cricut",
+      "id": "craftly-ecom-ops-lead",
+      "company": "Craftly",
       "role": "Regional E-commerce Operations Lead, META",
       "channel": "linkedin",
       "applied": "2026-08-20",
@@ -1236,7 +1237,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Cricut",
+          "url": "https://mail.google.com/mail/u/0/#search/Craftly",
           "kind": "gmail"
         }
       ],
@@ -1245,8 +1246,8 @@
       ]
     },
     {
-      "id": "firefly-biz-ops",
-      "company": "Firefly",
+      "id": "lightbug-biz-ops",
+      "company": "Lightbug",
       "role": "Business Operations Associate",
       "channel": "ats",
       "applied": "2026-08-20",
@@ -1270,7 +1271,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Firefly",
+          "url": "https://mail.google.com/mail/u/0/#search/Lightbug",
           "kind": "gmail"
         }
       ],
@@ -1279,8 +1280,8 @@
       ]
     },
     {
-      "id": "assistant-app-growth-pm",
-      "company": "Assistant App A.Ş.",
+      "id": "yardimci-app-growth-pm",
+      "company": "Yardımcı App A.Ş.",
       "role": "Growth Product Manager",
       "channel": "ats",
       "applied": "2026-08-20",
@@ -1304,7 +1305,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Assistant%20App%20A.%C5%9E.",
+          "url": "https://mail.google.com/mail/u/0/#search/Yard%C4%B1mc%C4%B1%20App%20A.%C5%9E.",
           "kind": "gmail"
         }
       ],
@@ -1314,8 +1315,8 @@
       ]
     },
     {
-      "id": "flalingo-influencer",
-      "company": "Flalingo",
+      "id": "lingofly-influencer",
+      "company": "Lingofly",
       "role": "Influencer Marketing & Partnership Specialist",
       "channel": "ats",
       "applied": "2026-08-20",
@@ -1339,15 +1340,15 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Flalingo",
+          "url": "https://mail.google.com/mail/u/0/#search/Lingofly",
           "kind": "gmail"
         }
       ],
       "gap_skills": []
     },
     {
-      "id": "amazon-content-acq",
-      "company": "Amazon",
+      "id": "northwind-content-acq",
+      "company": "Northwind Retail",
       "role": "Content Acquisition Manager, Prime Video Turkey (10506884)",
       "channel": "ats",
       "applied": "2026-08-20",
@@ -1357,7 +1358,7 @@
       "track": "Content/BD",
       "location": "İstanbul",
       "deadline": null,
-      "next_step": "12 gündür dönüş yok — amazon.jobs portalından durum kontrol edilebilir.",
+      "next_step": "12 gündür dönüş yok — northwind.jobs portalından durum kontrol edilebilir.",
       "fit": 4,
       "notes": "",
       "match": {
@@ -1371,7 +1372,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Amazon",
+          "url": "https://mail.google.com/mail/u/0/#search/Northwind Retail",
           "kind": "gmail"
         }
       ],
@@ -1381,7 +1382,7 @@
     },
     {
       "id": "indeed-csm",
-      "company": "Colife / Indeed başvuruları",
+      "company": "Coliva / Indeed başvuruları",
       "role": "Customer Success Manager",
       "channel": "indeed",
       "applied": "2026-08-18",
@@ -1393,7 +1394,7 @@
       "deadline": null,
       "next_step": "-",
       "fit": 2,
-      "notes": "30 Ağu: Colife başka adaylarla ilerledi.",
+      "notes": "30 Ağu: Coliva başka adaylarla ilerledi.",
       "match": {
         "role_family": 12,
         "seniority": 20,
@@ -1405,15 +1406,15 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Colife%20/%20Indeed%20ba%C5%9Fvurular%C4%B1",
+          "url": "https://mail.google.com/mail/u/0/#search/Coliva%20/%20Indeed%20ba%C5%9Fvurular%C4%B1",
           "kind": "gmail"
         }
       ],
       "gap_skills": []
     },
     {
-      "id": "jobgether-games-data",
-      "company": "Jobgether",
+      "id": "rolefinder-games-data",
+      "company": "Rolefinder",
       "role": "Senior Games Data Analyst (Europe, Asia)",
       "channel": "aggregator",
       "applied": "2026-08-17",
@@ -1437,7 +1438,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Jobgether",
+          "url": "https://mail.google.com/mail/u/0/#search/Rolefinder",
           "kind": "gmail"
         }
       ],
@@ -1448,8 +1449,8 @@
       ]
     },
     {
-      "id": "jobgether-pm-data-activation",
-      "company": "Jobgether",
+      "id": "rolefinder-pm-data-activation",
+      "company": "Rolefinder",
       "role": "Product Manager, Data Activation",
       "channel": "aggregator",
       "applied": "2026-08-16",
@@ -1473,7 +1474,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Jobgether",
+          "url": "https://mail.google.com/mail/u/0/#search/Rolefinder",
           "kind": "gmail"
         }
       ],
@@ -1483,8 +1484,8 @@
       ]
     },
     {
-      "id": "jobgether-data-analyst",
-      "company": "Jobgether",
+      "id": "rolefinder-data-analyst",
+      "company": "Rolefinder",
       "role": "Data Analyst",
       "channel": "aggregator",
       "applied": "2026-08-10",
@@ -1508,7 +1509,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Jobgether",
+          "url": "https://mail.google.com/mail/u/0/#search/Rolefinder",
           "kind": "gmail"
         }
       ],
@@ -1518,8 +1519,8 @@
       ]
     },
     {
-      "id": "versuni-perfect-store",
-      "company": "Versuni",
+      "id": "domesa-perfect-store",
+      "company": "Domesa",
       "role": "Perfect Store & Trade Shopper Marketing Specialist",
       "channel": "ats",
       "applied": "2026-08-16",
@@ -1543,15 +1544,15 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Versuni",
+          "url": "https://mail.google.com/mail/u/0/#search/Domesa",
           "kind": "gmail"
         }
       ],
       "gap_skills": []
     },
     {
-      "id": "teamblue-ticimax-pm",
-      "company": "Team Blue Ticimax",
+      "id": "maviekip-ticasoft-pm",
+      "company": "Mavi Ekip Ticasoft",
       "role": "Product Manager",
       "channel": "ats",
       "applied": "2026-08-16",
@@ -1560,7 +1561,7 @@
       "status": "stale",
       "track": "Product",
       "location": "İstanbul",
-      "contact": "ik@teamblueticimax.example",
+      "contact": "ik@maviekipticasoft.example",
       "deadline": null,
       "next_step": "16 gündür dönüş yok.",
       "fit": 4,
@@ -1576,12 +1577,12 @@
       "links_actions": [
         {
           "label": "Takip maili yaz",
-          "url": "mailto:ik@teamblueticimax.example?subject=Product%20Manager%20ba%C5%9Fvurusu%20%E2%80%94%20durum%20sorusu&body=Merhaba%2C%0A%0ATeam%20Blue%20Ticimax%20b%C3%BCnyesindeki%20Product%20Manager%20pozisyonuna%20yapt%C4%B1%C4%9F%C4%B1m%20ba%C5%9Fvurunun%20mevcut%20durumu%20hakk%C4%B1nda%20bilgi%20alabilir%20miyim%3F%20S%C3%BCre%C3%A7le%20ilgilenmeye%20devam%20ediyorum.%0A%0A%C4%B0lginiz%20i%C3%A7in%20te%C5%9Fekk%C3%BCrler.%0A%0ASayg%C4%B1lar%C4%B1mla%2C%0AKerem%20Ayd%C4%B1n%0Akerem.aydin%40example.com%20%7C%20%2B90%205XX%20XXX%20XX%20XX",
+          "url": "mailto:ik@maviekipticasoft.example?subject=Product%20Manager%20ba%C5%9Fvurusu%20%E2%80%94%20durum%20sorusu&body=Merhaba%2C%0A%0AMavi%20Ekip%20Ticasoft%20b%C3%BCnyesindeki%20Product%20Manager%20pozisyonuna%20yapt%C4%B1%C4%9F%C4%B1m%20ba%C5%9Fvurunun%20mevcut%20durumu%20hakk%C4%B1nda%20bilgi%20alabilir%20miyim%3F%20S%C3%BCre%C3%A7le%20ilgilenmeye%20devam%20ediyorum.%0A%0A%C4%B0lginiz%20i%C3%A7in%20te%C5%9Fekk%C3%BCrler.%0A%0ASayg%C4%B1lar%C4%B1mla%2C%0AKerem%20Ayd%C4%B1n%0Akerem.aydin%40example.com%20%7C%20%2B90%205XX%20XXX%20XX%20XX",
           "kind": "mailto"
         },
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Team%20Blue%20Ticimax",
+          "url": "https://mail.google.com/mail/u/0/#search/Mavi%20Ekip%20Ticasoft",
           "kind": "gmail"
         }
       ],
@@ -1590,8 +1591,8 @@
       ]
     },
     {
-      "id": "eaton-pricing-ci",
-      "company": "Eaton",
+      "id": "halden-pricing-ci",
+      "company": "Halden Electric",
       "role": "Pricing Continuous Improvement Specialist",
       "channel": "ats",
       "applied": "2026-08-13",
@@ -1615,7 +1616,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Eaton",
+          "url": "https://mail.google.com/mail/u/0/#search/Halden Electric",
           "kind": "gmail"
         }
       ],
@@ -1624,8 +1625,8 @@
       ]
     },
     {
-      "id": "cypher-games-growth",
-      "company": "Cypher Games",
+      "id": "zephyr-games-growth",
+      "company": "Zephyr Games",
       "role": "Growth Manager / Senior Growth Manager",
       "channel": "linkedin",
       "applied": "2026-08-12",
@@ -1649,7 +1650,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Cypher%20Games",
+          "url": "https://mail.google.com/mail/u/0/#search/Zephyr%20Games",
           "kind": "gmail"
         }
       ],
@@ -1659,8 +1660,8 @@
       ]
     },
     {
-      "id": "vml-digital-insight",
-      "company": "VML",
+      "id": "wml-digital-insight",
+      "company": "WML",
       "role": "Digital Insight Analyst",
       "channel": "linkedin",
       "applied": "2026-08-10",
@@ -1684,7 +1685,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/VML",
+          "url": "https://mail.google.com/mail/u/0/#search/WML",
           "kind": "gmail"
         }
       ],
@@ -1694,8 +1695,8 @@
       ]
     },
     {
-      "id": "bosch-cx-analyst",
-      "company": "Bosch",
+      "id": "reinhardt-cx-analyst",
+      "company": "Reinhardt Industries",
       "role": "Customer Experience (CX) Analyst",
       "channel": "ats",
       "applied": "2026-08-07",
@@ -1719,7 +1720,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Bosch",
+          "url": "https://mail.google.com/mail/u/0/#search/Reinhardt Industries",
           "kind": "gmail"
         }
       ],
@@ -1729,8 +1730,8 @@
       ]
     },
     {
-      "id": "metro-analytical-marketing",
-      "company": "METRO / MAKRO",
+      "id": "gross-analytical-marketing",
+      "company": "GROSS / MAKSI",
       "role": "Analytical Marketing Senior Executive (Temporary)",
       "channel": "ats",
       "applied": "2026-08-07",
@@ -1754,7 +1755,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/METRO%20/%20MAKRO",
+          "url": "https://mail.google.com/mail/u/0/#search/GROSS%20/%20MAKSI",
           "kind": "gmail"
         }
       ],
@@ -1764,8 +1765,8 @@
       ]
     },
     {
-      "id": "nielseniq-consumer-insights",
-      "company": "NielsenIQ",
+      "id": "insightq-consumer-insights",
+      "company": "InsightQ",
       "role": "Consumer Insights Lead, Turkiye",
       "channel": "ats",
       "applied": "2026-08-04",
@@ -1789,7 +1790,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/NielsenIQ",
+          "url": "https://mail.google.com/mail/u/0/#search/InsightQ",
           "kind": "gmail"
         }
       ],
@@ -1798,8 +1799,8 @@
       ]
     },
     {
-      "id": "nielseniq-client-solutions",
-      "company": "NielsenIQ",
+      "id": "insightq-client-solutions",
+      "company": "InsightQ",
       "role": "Client Solutions Specialist",
       "channel": "ats",
       "applied": "2026-08-03",
@@ -1823,15 +1824,15 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/NielsenIQ",
+          "url": "https://mail.google.com/mail/u/0/#search/InsightQ",
           "kind": "gmail"
         }
       ],
       "gap_skills": []
     },
     {
-      "id": "cepres-fintech-analyst",
-      "company": "CEPRES",
+      "id": "fincore-fintech-analyst",
+      "company": "Fincore Analytics",
       "role": "FinTech – Junior Data Processing Analyst (Fix Term)",
       "channel": "ats",
       "applied": "2026-08-04",
@@ -1855,7 +1856,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/CEPRES",
+          "url": "https://mail.google.com/mail/u/0/#search/Fincore Analytics",
           "kind": "gmail"
         }
       ],
@@ -1865,8 +1866,8 @@
       ]
     },
     {
-      "id": "sipay-product-data-analyst",
-      "company": "Sipay",
+      "id": "odepay-product-data-analyst",
+      "company": "Odepay",
       "role": "Product Data Analyst",
       "channel": "linkedin",
       "applied": "2026-08-03",
@@ -1890,7 +1891,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Sipay",
+          "url": "https://mail.google.com/mail/u/0/#search/Odepay",
           "kind": "gmail"
         }
       ],
@@ -1900,8 +1901,8 @@
       ]
     },
     {
-      "id": "unilever-demand-planning",
-      "company": "Unilever",
+      "id": "auralever-demand-planning",
+      "company": "Auralever",
       "role": "Demand Planning Specialist",
       "channel": "ats",
       "applied": "2026-08-10",
@@ -1925,7 +1926,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Unilever",
+          "url": "https://mail.google.com/mail/u/0/#search/Auralever",
           "kind": "gmail"
         }
       ],
@@ -1934,8 +1935,8 @@
       ]
     },
     {
-      "id": "unilever-foods-digital",
-      "company": "Unilever",
+      "id": "auralever-foods-digital",
+      "company": "Auralever",
       "role": "Foods Digital Experience Lead",
       "channel": "linkedin",
       "applied": "2026-08-05",
@@ -1959,7 +1960,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Unilever",
+          "url": "https://mail.google.com/mail/u/0/#search/Auralever",
           "kind": "gmail"
         }
       ],
@@ -1969,8 +1970,8 @@
       ]
     },
     {
-      "id": "neonapps-sales-bd",
-      "company": "Neon Apps",
+      "id": "lumenapps-sales-bd",
+      "company": "Lumen Apps",
       "role": "Sales & BD Specialist (RevenueCat Operations)",
       "channel": "ats",
       "applied": "2026-08-20",
@@ -1994,15 +1995,15 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Neon%20Apps",
+          "url": "https://mail.google.com/mail/u/0/#search/Lumen%20Apps",
           "kind": "gmail"
         }
       ],
       "gap_skills": []
     },
     {
-      "id": "elsevier-bd-manager",
-      "company": "Elsevier (RELX)",
+      "id": "meridian-bd-manager",
+      "company": "Meridian Publishing (MRX)",
       "role": "Business Development Manager",
       "channel": "ats",
       "applied": "2026-08-26",
@@ -2026,7 +2027,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Elsevier%20%28RELX%29",
+          "url": "https://mail.google.com/mail/u/0/#search/Meridian%20Publishing%20%28MRX%29",
           "kind": "gmail"
         }
       ],
@@ -2035,8 +2036,8 @@
       ]
     },
     {
-      "id": "revolut-strategy-ops",
-      "company": "Revolut",
+      "id": "novabank-strategy-ops",
+      "company": "Novabank",
       "role": "Strategy & Operations Manager (Hiring Sprint)",
       "channel": "ats",
       "applied": "2026-08-01",
@@ -2045,7 +2046,7 @@
       "status": "rejected",
       "track": "Strategy",
       "location": "Remote/EU",
-      "contact": "İşe alım ekibi — hiring@revolut.example",
+      "contact": "İşe alım ekibi — hiring@novabank.example",
       "deadline": null,
       "next_step": "-",
       "fit": 5,
@@ -2061,12 +2062,12 @@
       "links_actions": [
         {
           "label": "Takip maili yaz",
-          "url": "mailto:hiring@revolut.example?subject=Strategy%20%26%20Operations%20Manager%20%28Hiring%20Sprint%29%20ba%C5%9Fvurusu%20%E2%80%94%20durum%20sorusu&body=Merhaba%2C%0A%0ARevolut%20b%C3%BCnyesindeki%20Strategy%20%26%20Operations%20Manager%20%28Hiring%20Sprint%29%20pozisyonuna%20yapt%C4%B1%C4%9F%C4%B1m%20ba%C5%9Fvurunun%20mevcut%20durumu%20hakk%C4%B1nda%20bilgi%20alabilir%20miyim%3F%20S%C3%BCre%C3%A7le%20ilgilenmeye%20devam%20ediyorum.%0A%0A%C4%B0lginiz%20i%C3%A7in%20te%C5%9Fekk%C3%BCrler.%0A%0ASayg%C4%B1lar%C4%B1mla%2C%0AKerem%20Ayd%C4%B1n%0Akerem.aydin%40example.com%20%7C%20%2B90%205XX%20XXX%20XX%20XX",
+          "url": "mailto:hiring@novabank.example?subject=Strategy%20%26%20Operations%20Manager%20%28Hiring%20Sprint%29%20ba%C5%9Fvurusu%20%E2%80%94%20durum%20sorusu&body=Merhaba%2C%0A%0ANovabank%20b%C3%BCnyesindeki%20Strategy%20%26%20Operations%20Manager%20%28Hiring%20Sprint%29%20pozisyonuna%20yapt%C4%B1%C4%9F%C4%B1m%20ba%C5%9Fvurunun%20mevcut%20durumu%20hakk%C4%B1nda%20bilgi%20alabilir%20miyim%3F%20S%C3%BCre%C3%A7le%20ilgilenmeye%20devam%20ediyorum.%0A%0A%C4%B0lginiz%20i%C3%A7in%20te%C5%9Fekk%C3%BCrler.%0A%0ASayg%C4%B1lar%C4%B1mla%2C%0AKerem%20Ayd%C4%B1n%0Akerem.aydin%40example.com%20%7C%20%2B90%205XX%20XXX%20XX%20XX",
           "kind": "mailto"
         },
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Revolut",
+          "url": "https://mail.google.com/mail/u/0/#search/Novabank",
           "kind": "gmail"
         }
       ],
@@ -2076,8 +2077,8 @@
       ]
     },
     {
-      "id": "hilton-cluster-revenue",
-      "company": "Hilton",
+      "id": "astoria-cluster-revenue",
+      "company": "Astoria Hotels",
       "role": "Cluster Revenue Manager RMCC Türkiye (209637)",
       "channel": "ats",
       "applied": "2026-08-14",
@@ -2101,7 +2102,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Hilton",
+          "url": "https://mail.google.com/mail/u/0/#search/Astoria Hotels",
           "kind": "gmail"
         }
       ],
@@ -2110,8 +2111,8 @@
       ]
     },
     {
-      "id": "jpmorgan-client-data",
-      "company": "JPMorganChase",
+      "id": "whitfield-client-data",
+      "company": "Whitfield Chase",
       "role": "Client Data Specialist (210770109)",
       "channel": "ats",
       "applied": "2026-08-10",
@@ -2135,7 +2136,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/JPMorganChase",
+          "url": "https://mail.google.com/mail/u/0/#search/Whitfield Chase",
           "kind": "gmail"
         }
       ],
@@ -2144,8 +2145,8 @@
       ]
     },
     {
-      "id": "hubx-web-cro",
-      "company": "HubX",
+      "id": "appnest-web-cro",
+      "company": "AppNest",
       "role": "Web CRO Manager",
       "channel": "ats",
       "applied": "2026-08-12",
@@ -2169,7 +2170,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/HubX",
+          "url": "https://mail.google.com/mail/u/0/#search/AppNest",
           "kind": "gmail"
         }
       ],
@@ -2179,8 +2180,8 @@
       ]
     },
     {
-      "id": "sisecam-investment-bd",
-      "company": "Şişecam",
+      "id": "camsan-investment-bd",
+      "company": "Camsan",
       "role": "Investment & Business Development Specialist (29528)",
       "channel": "ats",
       "applied": "2026-08-14",
@@ -2204,7 +2205,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/%C5%9Ei%C5%9Fecam",
+          "url": "https://mail.google.com/mail/u/0/#search/Camsan",
           "kind": "gmail"
         }
       ],
@@ -2213,8 +2214,8 @@
       ]
     },
     {
-      "id": "bunq-reporting-expert",
-      "company": "bunq",
+      "id": "bloq-reporting-expert",
+      "company": "bloq",
       "role": "Reporting Expert",
       "channel": "ats",
       "applied": "2026-08-14",
@@ -2238,7 +2239,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/bunq",
+          "url": "https://mail.google.com/mail/u/0/#search/bloq",
           "kind": "gmail"
         }
       ],
@@ -2248,8 +2249,8 @@
       ]
     },
     {
-      "id": "akbank-dijital-musteri",
-      "company": "Akbank",
+      "id": "marmara-dijital-musteri",
+      "company": "Marmara Bank",
       "role": "Dijitalden Müşteri Kazanımı ve Yönetimi Yöneticisi",
       "channel": "ats",
       "applied": "2026-08-01",
@@ -2273,7 +2274,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Akbank",
+          "url": "https://mail.google.com/mail/u/0/#search/Marmara Bank",
           "kind": "gmail"
         }
       ],
@@ -2283,8 +2284,8 @@
       ]
     },
     {
-      "id": "richemont-commercial-pm",
-      "company": "Richemont",
+      "id": "valmont-commercial-pm",
+      "company": "Valmont Group",
       "role": "Commercial Project Manager",
       "channel": "ats",
       "applied": "2026-08-04",
@@ -2308,7 +2309,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Richemont",
+          "url": "https://mail.google.com/mail/u/0/#search/Valmont Group",
           "kind": "gmail"
         }
       ],
@@ -2318,8 +2319,8 @@
       ]
     },
     {
-      "id": "abbvie-financial-analyst",
-      "company": "AbbVie",
+      "id": "verilon-financial-analyst",
+      "company": "Verilon Pharma",
       "role": "Financial Analyst (R00146938)",
       "channel": "ats",
       "applied": "2026-08-01",
@@ -2343,7 +2344,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/AbbVie",
+          "url": "https://mail.google.com/mail/u/0/#search/Verilon Pharma",
           "kind": "gmail"
         }
       ],
@@ -2352,8 +2353,8 @@
       ]
     },
     {
-      "id": "progress-partners-growth-pm",
-      "company": "Progress Partners",
+      "id": "momentum-partners-growth-pm",
+      "company": "Momentum Partners",
       "role": "Growth Product Manager (Web Funnel & CRO)",
       "channel": "ats",
       "applied": "2026-08-01",
@@ -2377,7 +2378,7 @@
       "links_actions": [
         {
           "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Progress%20Partners",
+          "url": "https://mail.google.com/mail/u/0/#search/Momentum%20Partners",
           "kind": "gmail"
         }
       ],
@@ -2390,8 +2391,8 @@
   "recruiter_outreach": [
     {
       "date": "2026-08-18",
-      "from": "LARUS",
-      "topic": "Explore Career at LARUS",
+      "from": "SIRIUS",
+      "topic": "Explore Career at SIRIUS",
       "channel": "LinkedIn InMail",
       "status": "unanswered"
     },
@@ -2404,29 +2405,29 @@
     },
     {
       "date": "2026-08-17",
-      "from": "Crossing Hurdles",
-      "topic": "Sports Analyst | Turing x AI Labs",
+      "from": "Bridging Talent",
+      "topic": "Sports Analyst | Halton x AI Labs",
       "channel": "E-posta",
       "status": "unanswered"
     },
     {
       "date": "2026-08-18",
-      "from": "Crossing Hurdles",
-      "topic": "Management Consultant | $120/hr | micro1 x AI Labs",
+      "from": "Bridging Talent",
+      "topic": "Management Consultant | $120/hr | nano1 x AI Labs",
       "channel": "E-posta",
       "status": "unanswered"
     },
     {
       "date": "2026-08-22",
-      "from": "Crossing Hurdles",
-      "topic": "Investment Banking Analyst | $100/hr | micro1 x AI Labs",
+      "from": "Bridging Talent",
+      "topic": "Investment Banking Analyst | $100/hr | nano1 x AI Labs",
       "channel": "E-posta",
       "status": "unanswered"
     },
     {
       "date": "2026-08-22",
-      "from": "Crossing Hurdles",
-      "topic": "Management Consultant | $70/hr | micro1 x AI Labs",
+      "from": "Bridging Talent",
+      "topic": "Management Consultant | $70/hr | nano1 x AI Labs",
       "channel": "E-posta",
       "status": "unanswered"
     }
