@@ -22,7 +22,7 @@ ASCII'ye çevrilir (ş→s, ı→i, ğ→g, ü→u, ö→o, ç→c).
 
 - `peks-global-ticari-analist`, `yapikredi-peoplise`
 - Rol ilanda belirsizse (yalnızca "başvurunuz alındı" maili, unvan yok)
-  yalnızca şirket adı yeterli: `trendyolgo`, `omtera-join`
+  yalnızca şirket adı yeterli: `pazargo`, `datamera-join`
 - Aynı şirkete **farklı bir rol** için ikinci kez başvurulduysa id'ye rolü
   ayırt edici ek yap (`sirket-rol2`), şirket adını tekrar kullanma yalın
   haliyle — birinci kayıtla çakışır
@@ -78,7 +78,7 @@ Serbest metin, gördüğün biçimlerden biri:
 - `"İstanbul, Türkiye"` — yalnızca şehir/ülke biliniyorsa
 - `"Maslak, İstanbul (ofis, 5 gün)"` — çalışma düzeni netse parantez içine ekle
 - `"Remote"` — tamamen uzaktan, konum şartı yoksa
-- `"Puffy — Dubai, on-site"` gibi taşınma gerektiren roller için şehir açıkça yazılır (lokasyon cezasının kaynağı burası)
+- `"Cloudly — Dubai, on-site"` gibi taşınma gerektiren roller için şehir açıkça yazılır (lokasyon cezasının kaynağı burası)
 
 ## `contact`
 

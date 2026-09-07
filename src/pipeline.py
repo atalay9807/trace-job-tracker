@@ -19,13 +19,18 @@ import io
 import json
 import sys
 from datetime import date, datetime
+import os
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from match import enrich_with_match, segment_summary, load_profile  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA = ROOT / "data" / "applications.json"
+# Veri klasörü TRACE_DATA ile dışarıdan verilebilir. Gerçek veri özel
+# trace-data deposunda durur; onu bu deponun izlenen data/ klasörüne
+# kopyalamak kazara commit riski yaratıyordu (bkz. CLAUDE.md → Depo).
+VERI = Path(os.environ.get("TRACE_DATA") or (ROOT / "data"))
+DATA = VERI / "applications.json"
 
 STAGE_WEIGHT = {
     "offer": 100,

@@ -132,7 +132,7 @@ yaparken de aynı dili koru: "bu ilan X bekliyordu, CV'de yok" de,
   ilanı prestijli olabilir ama rol ailesi 12'dir. Prestij puanı diye bir boyut yok.
 - **Kıdemi yumuşatmak.** "Manager ama belki alırlar" diye 13'ü 20'ye çekmek,
   verinin gösterdiği en pahalı hatayı gizler.
-- **Sektörü rol ailesiyle karıştırmak.** TrendyolGo'da rol belirsizdir (24) ama
+- **Sektörü rol ailesiyle karıştırmak.** PazarGo'da rol belirsizdir (24) ama
   sektör birebir (15). İkisi ayrı satırdır.
 - **Lokasyon cezasını unutmak.** Uzaktan EU rolleri puanı hak ettiğinden yüksek
   gösterir; 17 başvuruda −8 uygulanmış.

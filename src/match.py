@@ -24,10 +24,15 @@ Segmentler
 """
 
 import json
+import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PROFILE = ROOT / "data" / "profile.json"
+# Veri klasörü TRACE_DATA ile dışarıdan verilebilir. Gerçek veri özel
+# trace-data deposunda durur; onu bu deponun izlenen data/ klasörüne
+# kopyalamak kazara commit riski yaratıyordu (bkz. CLAUDE.md → Depo).
+VERI = Path(os.environ.get("TRACE_DATA") or (ROOT / "data"))
+PROFILE = VERI / "profile.json"
 
 MAX = {"role_family": 35, "seniority": 25, "skills": 25, "domain": 15}
 
@@ -91,7 +96,7 @@ def segment_summary(apps):
     out = {}
     for key, label in [("strong", "🟢 Güçlü"), ("good", "🔵 İyi"),
                        ("fair", "🟡 Orta"), ("weak", "🔴 Zayıf")]:
-        group = [a for a in apps if a.get("match_result", {}).get("segment_key") == key]
+        group = [a for a in apps if (a.get("match_result") or {}).get("segment_key") == key]
         rejected = [a for a in group if a["status"] == "rejected"]
         advanced = [a for a in group if a.get("stage") in
                     ("interviewed", "interview_scheduling", "next_stage", "assessment", "offer")]
@@ -107,25 +112,34 @@ def segment_summary(apps):
 
 
 if __name__ == "__main__":
-    data = json.loads((ROOT / "data" / "applications.json").read_text(encoding="utf-8"))
+    data = json.loads((VERI / "applications.json").read_text(encoding="utf-8"))
     apps = enrich_with_match(data["applications"])
-    apps.sort(key=lambda a: -a["match_result"]["score"])
+    # İlan metni olmayan kayıtlarda match=null; puanlananları ayrı tut,
+    # puanlanmayanı sıfır sayıp listeye karıştırma.
+    puanli = [a for a in apps if a.get("match_result")]
+    puansiz = [a for a in apps if not a.get("match_result")]
+    puanli.sort(key=lambda a: -a["match_result"]["score"])
     prof = load_profile()
 
     print(f"Profil: {prof['name']} — {prof['headline']}")
     print(f"Kıdem: {prof['seniority']['current_title']} · "
           f"{prof['seniority']['years_professional']} yıl\n")
 
-    for key, s in segment_summary(apps).items():
+    for key, s in segment_summary(puanli).items():
         print(f"{s['label']:<12} {s['count']:>2} başvuru · "
               f"ileri aşamaya geçen %{s['advance_rate']:<5} · red %{s['reject_rate']}")
 
     print("\nEn iyi 12 eşleşme:")
-    for a in apps[:12]:
+    for a in puanli[:12]:
         r = a["match_result"]
         print(f"  {r['score']:>3}  {r['segment'][:2]}  {a['company']:<26} {a['role'][:44]}")
 
     print("\nEn zayıf 6 eşleşme:")
-    for a in apps[-6:]:
+    for a in puanli[-6:]:
         r = a["match_result"]
         print(f"  {r['score']:>3}  {r['segment'][:2]}  {a['company']:<26} {a['role'][:44]}")
+
+    if puansiz:
+        print(f"\nPuanlanmadı ({len(puansiz)}) — ilan metni yok, dört boyut hesaplanamıyor:")
+        for a in puansiz:
+            print(f"       —   {a['company']:<26} {a['role'][:44]}")

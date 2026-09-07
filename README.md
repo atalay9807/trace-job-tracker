@@ -100,7 +100,7 @@ Güçlü segmentin ileri aşamaya geçme oranı %18,2.
 </td></tr>
 <tr><td><h3>88</h3></td><td>
 <b>En iyi eşleşme, başvurulmadan süresi doldu.</b> Kaydedilen 16 ilanın 12'sine hiç başvurulmamış.
-Michael Page'in FP&A Analyst ilanı 88 puanla listenin en güçlüsüydü ve 20 Ağustos'ta kapandı.
+Marshall Page'in FP&A Analyst ilanı 88 puanla listenin en güçlüsüydü ve 20 Ağustos'ta kapandı.
 </td></tr>
 <tr><td><h3>10 gün</h3></td><td>
 <b>Şirketlerin medyan yanıt süresi.</b> 42 başvuru ise hiç yanıtlanmadı. Bu iki sayı,

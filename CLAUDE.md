@@ -217,23 +217,94 @@ türetilmiş gerçek profil buraya commit edilirse iş arama süreci kamuya aç�
 ve geri alınamaz.
 
 Günlük Routine iki depoyu da klonlar: açıktan kural ve kod, özelden veri.
-Gerçek veriyi `src/` altındaki koddan geçirmek için `trace-data/data/*`
-geçici olarak açık klonun `data/` klasörüne kopyalanır — **bu kopya commit
-edilmez.**
+Gerçek veriyi koddan geçirmek için **kopyalama yapılmaz** — veri klasörü
+`TRACE_DATA` ortam değişkeniyle dışarıdan verilir:
+
+```bash
+TRACE_DATA=/tmp/trace-data/data python3 src/pipeline.py
+```
+
+Dört script de (`pipeline`, `match`, `insights`, `build_dashboard`) bu
+değişkeni okur; verilmezse deponun kendi `data/` klasörünü kullanır.
+Gerçek veriyi izlenen `data/` klasörüne kopyalamak kazara commit riski
+yaratıyordu — bu yol o riski tamamen kaldırır.
 
 - Geliştirme dalı: `claude/linkedin-job-tracking-automation-6xiogy`
 - `main`'e `--no-ff` ile merge; `site/**` değişince Pages otomatik dağıtır
-- `site/_artifact.html` türetilmiştir, `.gitignore`'dadır
+- `reports/pano.html` ve `site/_artifact.html` türetilmiştir, `.gitignore`'dadır.
+  Gerçek veriyle üretildiklerinde diskte gerçek veri taşırlar; izlenmemeleri
+  kazara commit'i engelliyor. `site/app.html` izlenir — o yayınlanan sürüm ve
+  daima demo veriyle üretilir
+
+## Canlıya alma — ne eksik
+
+2026-09-07'de yedi ajan gerçek veriyle çalıştırıldı. Tam rapor özel depoda
+(`trace-data/raporlar/2026-09-07-ajan-denetimi.md`) çünkü gerçek şirket
+adları taşıyor. Buradaki liste teknik engellerdir; kişisel veri içermez.
+
+**Üçü zorunlu — biri eksikse ürün ikinci kişide hiç çalışmaz:**
+
+1. **Kimlik ve veri izolasyonu.** `build_dashboard.py` tüm veriyi derleme
+   anında HTML'e gömüyor (~195 KB, başvuru başına ~2.170 bayt). Statik
+   dosyada kimlik doğrulama yok: URL'yi bilen her şeyi görür. Dahası
+   kullanıcı "verimi sil" dediğinde silinecek bir yer yok — ölçemediğini
+   söyleyen bir ürün, silemediğini "sildim" diyemez.
+2. **Sunucu tarafı Gmail erişimi.** Bugünkü tarama kurucunun kimliğiyle
+   Claude Code oturumunda çalışıyor; ikinci kullanıcı için bu bir ürün
+   değil, elle verilen hizmettir. `gmail.readonly` **restricted scope** —
+   Google doğrulaması + yıllık CASA denetimi gerektiriyor. Maliyet
+   kaynaklar arasında çelişkili; çelişki çözülmeden plan kurulmaz.
+3. **Yazma yolu ve eşzamanlılık.** Kayıt güncellemesi bir git commit'i.
+   Kırılma ölçekte değil **n=2'de** başlar.
+
+**Ayrıca canlıya çıkmadan kapatılması gerekenler:**
+
+- **Gizlilik metni yok.** `site/` altında sıfır. Rakiplerde standart.
+  KVKK'da VERBİS muafiyeti var ama **aydınlatma yükümlülüğü muafiyete tabi
+  değil**; CV metni model sağlayıcısına gidiyor, bu yurt dışına aktarım.
+  Sunucu kurmadan bugün kapatılabilecek tek madde bu.
+- **Test yok.** `tests/` klasörü yok; 990 satır Python ve 1620 satırlık
+  şablon elle doğrulanıyor. Gerçek veri koddan ilk kez geçirildiğinde
+  `match.py` çöktü — bir test bunu yakalardı.
+- **Üçüncü taraf istekleri.** Sayfa Google Fonts ve cdnjs'e çıkıyor;
+  iş arama verisi hassas veri, ziyaretçi IP'si o servislere gidiyor.
+
+**Yokluğuyla yaşanabilir (sıralı):** otomatik `match` → kurs API'si →
+veritabanı → çoklu profil → streak. Bunlar kaliteyi düşürür, ürünü
+durdurmaz; canlıya alma yolunun önüne konmamalı.
+
+**Ölçülmeden karar verilemeyecek tek sayı:** kullanıcı/gün LLM maliyeti.
+Birim ekonomi modelinin 7 girdisinden 4'ü bilinmiyor, 3'ü dış kıyas, 0'ı
+ölçüm. Yapısal gerçek: maliyet kullanımla değil **varlıkla** ölçekleniyor —
+tarama her sabah çalışıyor, kullanıcı uygulamayı açsa da açmasa da. Uykuda
+kullanıcı burada tam maliyetli; bu freemium'u yapısal olarak zorlaştırır.
+Maliyeti düşürecek yer ürünün içinde: 63/90 başvuru ATS kanalından geliyor
+ve `config/rules.yaml` zaten deterministik — LLM yalnızca kuralın
+kapatamadığı artığa çağrılmalı.
+
+**En riskli varsayım ve en ucuz deney:** `rules.yaml`'daki sınıflandırma
+kuralları kurucuya özel olabilir. Üç iş arayan kendi Gmail'inde
+`backfill_queries` sorgularını çalıştırsın, yalnızca gönderici alan adı +
+konu satırı listesini paylaşsın; `ats_senders`'daki 16 alan adının dışından
+kaç gönderici çıktığını say. 0 TL, 1 gün. n=3 yeterli çünkü aranan bir oran
+değil **varlık**. Aynı bulgu ülke ölçeklemesinin de cevabıdır: bir ülkeye
+açılmak pazarlama değil, `rules.yaml`'ı o ülke için yeniden kurmaktır.
+
+**Rakip kıyası:** Teal, Huntr, Simplify ve Careerflow'un dördü de ilan
+metnini **tarayıcı eklentisiyle** alıyor ve bunu ücretsiz planda veriyor —
+yani bizim en zayıf halkamızı çözmüşler. Buna karşılık üç ölçüm sınırının
+arayüzde etiketlenmesi, aciliyet/eşleşme ayrımı ve bağlanamama durumunun
+dürüst gösterilmesi rakiplerde yok. Bunlar korunur.
 
 ## Açık maddeler
 
 - ⬜ **İlan metninin otomatik çekilip beceri çıkarımı** — `match` boyutları ve
   `gap_skills` şu an elle atanıyor. Projenin en zayıf halkası; ajan işi.
 - ⬜ **Geçmiş 68 kaydın match puanları e-postadan doğrulanamaz** — `ilan-cozumleyici`
-  + `eslestirici` ajanları Sipay ilanıyla test edildi (2026-09-03): LinkedIn'in
+  + `eslestirici` ajanları Odepay ilanıyla test edildi (2026-09-03): LinkedIn'in
   kaydedilen-ilan ve iş-ilanı-uyarısı mailleri hiçbir zaman ilan açıklaması
   taşımıyor, yalnızca başlık/şirket/lokasyon (bazen tek bir gizli önizleme
-  cümlesi). Ajanlar bu ince girdiyle Sipay'ı 44 puana (🔴 Zayıf) çıkardı; elle
+  cümlesi). Ajanlar bu ince girdiyle Odepay'i 44 puana (🔴 Zayıf) çıkardı; elle
   atanmış kayıt 90 (🟢 Güçlü). Aradaki fark ajan hatası değil — elle puanlama
   o sırada tarayıcıda görülen ilan sayfasına dayanıyordu, mailde hiç yoktu.
   Yani mevcut 68 kaydın çoğu için `match` boyutları geriye dönük doğrulanamaz;

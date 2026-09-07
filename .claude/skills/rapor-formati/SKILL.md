@@ -59,7 +59,7 @@ Gövde sırası:
 
 1. **🔴 Bugün kapatılacaklar** — kritik banttaki her iş için şirket, pozisyon,
    *tam olarak ne yapılacağı* ve deadline durumu. Genel laf değil, eylem yaz:
-   "TestGorilla testini bitir ve 3 soruya mail at" — "Nebil sürecini ilerlet" değil.
+   "TestGorilla testini bitir ve 3 soruya mail at" — "Kavza sürecini ilerlet" değil.
 2. **Son 24 saat** — yeni mülakat davetleri, testler, teklifler, redler, yeni
    başvuru onayları. Hiçbiri yoksa bunu açıkça yaz.
 3. **Öncelik tablosu** — kritik ve yüksek banttakiler:
