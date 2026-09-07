@@ -217,9 +217,17 @@ türetilmiş gerçek profil buraya commit edilirse iş arama süreci kamuya aç�
 ve geri alınamaz.
 
 Günlük Routine iki depoyu da klonlar: açıktan kural ve kod, özelden veri.
-Gerçek veriyi `src/` altındaki koddan geçirmek için `trace-data/data/*`
-geçici olarak açık klonun `data/` klasörüne kopyalanır — **bu kopya commit
-edilmez.**
+Gerçek veriyi koddan geçirmek için **kopyalama yapılmaz** — veri klasörü
+`TRACE_DATA` ortam değişkeniyle dışarıdan verilir:
+
+```bash
+TRACE_DATA=/tmp/trace-data/data python3 src/pipeline.py
+```
+
+Dört script de (`pipeline`, `match`, `insights`, `build_dashboard`) bu
+değişkeni okur; verilmezse deponun kendi `data/` klasörünü kullanır.
+Gerçek veriyi izlenen `data/` klasörüne kopyalamak kazara commit riski
+yaratıyordu — bu yol o riski tamamen kaldırır.
 
 - Geliştirme dalı: `claude/linkedin-job-tracking-automation-6xiogy`
 - `main`'e `--no-ff` ile merge; `site/**` değişince Pages otomatik dağıtır

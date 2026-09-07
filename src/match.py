@@ -24,10 +24,15 @@ Segmentler
 """
 
 import json
+import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PROFILE = ROOT / "data" / "profile.json"
+# Veri klasörü TRACE_DATA ile dışarıdan verilebilir. Gerçek veri özel
+# trace-data deposunda durur; onu bu deponun izlenen data/ klasörüne
+# kopyalamak kazara commit riski yaratıyordu (bkz. CLAUDE.md → Depo).
+VERI = Path(os.environ.get("TRACE_DATA") or (ROOT / "data"))
+PROFILE = VERI / "profile.json"
 
 MAX = {"role_family": 35, "seniority": 25, "skills": 25, "domain": 15}
 
@@ -107,7 +112,7 @@ def segment_summary(apps):
 
 
 if __name__ == "__main__":
-    data = json.loads((ROOT / "data" / "applications.json").read_text(encoding="utf-8"))
+    data = json.loads((VERI / "applications.json").read_text(encoding="utf-8"))
     apps = enrich_with_match(data["applications"])
     # İlan metni olmayan kayıtlarda match=null; puanlananları ayrı tut,
     # puanlanmayanı sıfır sayıp listeye karıştırma.

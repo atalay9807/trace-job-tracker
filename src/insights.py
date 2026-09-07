@@ -25,10 +25,15 @@ Arayüzde de bu şekilde etiketlenir.
 import json
 from collections import Counter, defaultdict
 from datetime import date, datetime, timedelta
+import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-D = ROOT / "data"
+# Veri klasörü TRACE_DATA ile dışarıdan verilebilir. Gerçek veri özel
+# trace-data deposunda durur; onu bu deponun izlenen data/ klasörüne
+# kopyalamak kazara commit riski yaratıyordu (bkz. CLAUDE.md → Depo).
+VERI = Path(os.environ.get("TRACE_DATA") or (ROOT / "data"))
+D = VERI
 
 ADVANCED_STAGES = ("interviewed", "interview_scheduling", "next_stage", "assessment", "offer")
 INTERVIEW_STAGES = ("interviewed", "interview_scheduling")

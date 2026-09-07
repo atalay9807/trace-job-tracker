@@ -3,6 +3,7 @@
 import json
 import sys
 from datetime import date
+import os
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -11,6 +12,10 @@ from match import segment_summary, load_profile  # noqa: E402
 import insights  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
+# Veri klasörü TRACE_DATA ile dışarıdan verilebilir. Gerçek veri özel
+# trace-data deposunda durur; onu bu deponun izlenen data/ klasörüne
+# kopyalamak kazara commit riski yaratıyordu (bkz. CLAUDE.md → Depo).
+VERI = Path(os.environ.get("TRACE_DATA") or (ROOT / "data"))
 TEMPLATE = ROOT / "src" / "dashboard.template.html"
 
 
@@ -51,8 +56,8 @@ def main():
         "states": pipeline_states(apps),
         "profile": load_profile(),
         "insights": insights.build_all(today),
-        "catalog": json.loads((ROOT / "data" / "skills_catalog.json").read_text(encoding="utf-8")),
-        "role_targets": json.loads((ROOT / "data" / "role_targets.json").read_text(encoding="utf-8")),
+        "catalog": json.loads((VERI / "skills_catalog.json").read_text(encoding="utf-8")),
+        "role_targets": json.loads((VERI / "role_targets.json").read_text(encoding="utf-8")),
         "segments": segment_summary(apps),
         "applications": [
             dict({k: a.get(k) for k in ("id", "company", "role", "stage", "status", "band", "score",
