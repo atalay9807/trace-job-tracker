@@ -2,9 +2,9 @@
 """
 CV ↔ ilan eşleşme motoru.
 
-`data/profile.json` (CV'den türetilmiş profil) ile her başvurunun
-`match` boyutlarını birleştirip 0-100 arası bir eşleşme skoru ve
-segment üretir.
+Her başvurunun önceden değerlendirilmiş `match` boyutlarını doğrular,
+toplayıp 0–100 eşleşme puanı ve segment üretir. Profil yalnızca CLI özetinde
+okunur; bu modül CV veya ilan metni yorumlamaz.
 
 Boyutlar
 --------
@@ -23,18 +23,7 @@ Segmentler
 🔴 Zayıf    0-44   Düşük getiri, kapatmayı düşün
 """
 
-import json
-import os
-from pathlib import Path
-
-ROOT = Path(__file__).resolve().parent.parent
-# Veri klasörü TRACE_DATA ile dışarıdan verilebilir. Gerçek veri özel
-# trace-data deposunda durur; onu bu deponun izlenen data/ klasörüne
-# kopyalamak kazara commit riski yaratıyordu (bkz. CLAUDE.md → Depo).
-VERI = Path(os.environ.get("TRACE_DATA") or (ROOT / "data"))
-PROFILE = VERI / "profile.json"
-
-MAX = {"role_family": 35, "seniority": 25, "skills": 25, "domain": 15}
+from veri import MAX, ADVANCED_STAGES, oku, match_hatalari, basvurulari_dogrula
 
 SEGMENTS = [
     (78, "strong", "🟢 Güçlü eşleşme",  "Öncelikli kovala — takip maili at, hazırlık yap."),
@@ -48,13 +37,16 @@ DIM_TR = {"role_family": "Rol ailesi", "seniority": "Kıdem",
 
 
 def load_profile():
-    return json.loads(PROFILE.read_text(encoding="utf-8"))
+    return oku("profile.json")
 
 
 def score_match(app):
     """Bir başvurunun eşleşme skorunu ve dökümünü döndürür."""
     m = app.get("match")
-    if not m:
+    errors = match_hatalari(m)
+    if errors:
+        raise ValueError("\n".join(errors))
+    if m is None:
         return None
     raw = sum(m.get(k, 0) for k in MAX)
     total = max(0, min(100, raw + m.get("location_mod", 0)))
@@ -86,9 +78,8 @@ def score_match(app):
 
 
 def enrich_with_match(apps):
-    for app in apps:
-        app["match_result"] = score_match(app)
-    return apps
+    """Kaynak kayıtları değiştirmeden türetilmiş sonuç ekle."""
+    return [dict(app, match_result=score_match(app)) for app in apps]
 
 
 def segment_summary(apps):
@@ -98,8 +89,7 @@ def segment_summary(apps):
                        ("fair", "🟡 Orta"), ("weak", "🔴 Zayıf")]:
         group = [a for a in apps if (a.get("match_result") or {}).get("segment_key") == key]
         rejected = [a for a in group if a["status"] == "rejected"]
-        advanced = [a for a in group if a.get("stage") in
-                    ("interviewed", "interview_scheduling", "next_stage", "assessment", "offer")]
+        advanced = [a for a in group if a.get("stage") in ADVANCED_STAGES]
         out[key] = {
             "label": label,
             "count": len(group),
@@ -112,18 +102,19 @@ def segment_summary(apps):
 
 
 if __name__ == "__main__":
-    data = json.loads((VERI / "applications.json").read_text(encoding="utf-8"))
+    data = basvurulari_dogrula(oku("applications.json"))
     apps = enrich_with_match(data["applications"])
     # İlan metni olmayan kayıtlarda match=null; puanlananları ayrı tut,
     # puanlanmayanı sıfır sayıp listeye karıştırma.
     puanli = [a for a in apps if a.get("match_result")]
     puansiz = [a for a in apps if not a.get("match_result")]
     puanli.sort(key=lambda a: -a["match_result"]["score"])
-    prof = load_profile()
+    prof = load_profile() or {}
 
-    print(f"Profil: {prof['name']} — {prof['headline']}")
-    print(f"Kıdem: {prof['seniority']['current_title']} · "
-          f"{prof['seniority']['years_professional']} yıl\n")
+    print(f"Profil: {prof.get('name', '—')} — {prof.get('headline', 'Profil eklenmedi')}")
+    seniority = prof.get('seniority') or {}
+    print(f"Kıdem: {seniority.get('current_title', '—')} · "
+          f"{seniority.get('years_professional', '—')} yıl\n")
 
     for key, s in segment_summary(puanli).items():
         print(f"{s['label']:<12} {s['count']:>2} başvuru · "

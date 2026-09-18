@@ -45,8 +45,17 @@ ats_senders:
   - mokahr.com
   - jobgether.com
 
-# Durum sınıflandırma — ilk eşleşen kazanır (yukarıdan aşağıya)
+# Durum sınıflandırma — son mesajın yeni metninde red önce değerlendirilir.
+# Alıntılanmış geçmişi dışla; genel/çelişen kelimeler tek başına karar değildir.
+# Bu dosya oturum ajanına referanstır; Python çekirdeği Gmail sınıflandırmaz.
 status_rules:
+  - status: rejected
+    priority_band: archive
+    keywords_en: ["unfortunately", "not moving forward", "other candidates", "not to proceed",
+                  "regret to inform", "won't be moving forward", "decided to move forward with other"]
+    keywords_tr: ["olumsuz", "değerlendirmeye alınmamıştır", "başarılar dileriz",
+                  "birlikte ilerlemeyeceğiz", "uygun bulunmamıştır"]
+
   - status: offer
     priority_band: critical
     keywords_en: ["offer letter", "we are pleased to offer", "job offer", "employment offer"]
@@ -66,13 +75,6 @@ status_rules:
     keywords_tr: ["değerlendirme", "testi tamamla", "başvurunu tamamla", "doğrula",
                   "son tarih", "vaka çalışması", "yanıtla"]
 
-  - status: rejected
-    priority_band: archive
-    keywords_en: ["unfortunately", "not moving forward", "other candidates", "not to proceed",
-                  "regret to inform", "won't be moving forward", "decided to move forward with other"]
-    keywords_tr: ["olumsuz", "değerlendirmeye alınmamıştır", "başarılar dileriz",
-                  "birlikte ilerlemeyeceğiz", "uygun bulunmamıştır"]
-
   - status: under_review
     priority_band: normal
     keywords_en: ["we received your application", "thank you for applying", "under review",
@@ -80,7 +82,8 @@ status_rules:
     keywords_tr: ["başvurunuz alındı", "başvurunuz için teşekkür", "inceleme aşamasında",
                   "başvurun bize ulaştı"]
 
-# Önceliklendirme ağırlıkları (src/pipeline.py bunları kullanır)
+# Önceliklendirme referansı: ağırlıklar src/veri.py, eşikler src/pipeline.py.
+# Python YAML yüklemez; sayısal değişiklikte kod ve bu belge birlikte güncellenir.
 scoring:
   stage_weight:
     offer: 100
@@ -101,7 +104,7 @@ scoring:
     d4_7: 15
     d8_14: 8
   stale_threshold_days: 12   # bu süreden sonra takip maili öner
-  dead_threshold_days: 21    # bu süreden sonra kapanmış say
+  dead_threshold_days: 21    # bu süreden sonra durumu kontrol etmeyi öner
 
 # Hatırlatma kuralları
 reminders:
@@ -116,7 +119,7 @@ reminders:
     message: "Takip maili zamanı (12+ gün sessizlik)."
   - trigger: post_interview_silence
     value: 5
-    message: "Mülakattan 5+ iş günü geçti — nazik takip maili at."
+    message: "Mülakattan 5+ takvim günü geçti — nazik takip maili at."
 
 # Kullanıcıdan geri bildirim istenecek durumlar
 feedback_prompts:

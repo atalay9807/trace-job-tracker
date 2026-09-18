@@ -2,213 +2,152 @@
 
 # Trace
 
-**Gmail'i tarayıp iş başvurularını tek yerde toplayan, her ilanı CV'ye göre puanlayan
-ve eksik yetkinlikleri çıkaran otomasyon.**
+**İş başvurularını önceliklendiren, kayıtlı ilan/CV değerlendirmelerini puanlayan
+ve eksik yetkinlikleri raporlayan AI destekli geliştirme projesi.**
 
-30 günlük gerçek bir iş arama sürecinin verisi üzerine kuruldu — 68 başvuru, 8 rapor, 5 sayfalık arayüz.
+Gerçek bir iş arama ihtiyacından doğdu. Açık depoda 68 kayıtlı demo veri bulunur;
+Kerem Aydın örnek profildir, proje sahibi değildir.
 
-[**Tanıtım sitesi →**](https://atalay9807.github.io/trace-job-tracker/trace.html) · [**Canlı demo →**](https://atalay9807.github.io/trace-job-tracker/app.html) · [Tüm projeler](https://atalay9807.github.io/trace-job-tracker/) · [Teknik doküman](docs/TEKNIK.md)
+[**Tanıtım →**](https://atalay9807.github.io/trace-job-tracker/trace.html) ·
+[**Web demosu →**](https://atalay9807.github.io/trace-job-tracker/app.html) ·
+[Teknik doküman](docs/TEKNIK.md) · [Ortak geliştirme](docs/ORTAK_CALISMA.md)
 
 </div>
 
-![Ana sayfa](docs/img/01-ana.png)
+## Bugün ne çalışıyor?
 
----
-
-## Nasıl çalışır — üç adım
-
-Uygulama ilk açıldığında bu üç adımı anlatır; üstteki **"Nasıl çalışır"** düğmesiyle her an tekrar açılabilir.
-
-<table>
-<tr><td width="33%" valign="top">
-
-![Adım 1](docs/img/tour-1.png)
-
-**1 · CV'ni ekle, Gmail'ini bağla**
-
-CV'den kıdem bandın, araç seviyelerin ve bilinen açıkların çıkarılır. Sistemin her ilanı neye göre puanlayacağı bu profille belirlenir.
-
-</td><td width="33%" valign="top">
-
-![Adım 2](docs/img/tour-2.png)
-
-**2 · Gelen kutusu okunur, süreçler segmentlenir**
-
-İş e-postaları taranıp teklif · davet · red · aksiyon diye sınıflandırılır. Her başvuru CV'ye göre 0–100 puanlanır, deadline ve sessizlik için hatırlatma üretilir.
-
-</td><td width="33%" valign="top">
-
-![Adım 3](docs/img/tour-3.png)
-
-**3 · Ortak eksik bulunur, eğitim önerilir**
-
-Olumsuz sonuçlarda hangi yetkinliğin tekrar eksik kaldığı çıkarılır, öncelik sırasına dizilir ve indirimli kurs önerisine bağlanır.
-
-</td></tr>
-</table>
-
-### CV yükleme gerçekten çalışıyor
-
-`Bağlan` sayfasında PDF, TXT veya Markdown yükleyebilirsin; metin okunup yapay zekayla profil çıkarılır — kıdem, beceri seviyeleri ve tespit edilen açıklar. Sonuç yalnızca ekranda gösterilir, kaydedilmez.
-
-![Bağlan sayfası](docs/img/07-baglan.png)
-
-### Gmail bağlantısı — neden yayınlanan sayfada kurulmuyor
-
-Uygulamadaki "Gmail'i bağla" düğmesi çalışır ama bağlantı kurulmaz ve sebebi
-ekranda yazar: yayınlanan bir sayfa tarayıcıdan doğrudan Gmail'e bağlanamaz.
-Bunun için sunucu tarafında OAuth akışı ve Google tarafından doğrulanmış bir
-uygulama gerekir. Depodaki otomasyon bu işi Gmail MCP sunucusu üzerinden
-yapıyor. Gerçek entegrasyon dört adım:
-
-1. Google hesabıyla yalnızca **okuma** izni istenir; gönderme veya silme izni alınmaz.
-2. Son 30 gün taranır, iş temalı e-postalar ayrılır; bülten ve ilan bildirimleri gürültü sayılır.
-3. Her e-posta sınıflandırılır: teklif, mülakat daveti, aksiyon gerekli, red, incelemede.
-4. Başvurular CV'ye göre puanlanır ve her sabah 09:00'da özet e-posta gönderilir.
-
----
-
-## Ne yapıyor
-
-Bir ayda 68 başvuru yapıldığında hangisinin nerede olduğu, hangi testin süresinin dolduğu
-ve hangi sürecin sessizce öldüğü takip edilemiyor. Bu sistem üç soruyu yanıtlıyor:
-
-| Soru | Nasıl yanıtlıyor |
+| Özellik | Mevcut durum |
 |---|---|
-| **Bugün ne yapmalıyım?** | Deadline'ı geçmiş/yaklaşan işleri, sessizleşen süreçleri ve mülakat sonrası takipleri kural tabanlı çıkarır |
-| **Enerjimi nereye harcamalıyım?** | Her ilanı CV'ye karşı 0–100 puanlar, dört segmente ayırır ve segmentlerin gerçek ilerleme oranını gösterir |
-| **Neyi öğrenmem gerekiyor?** | İlanların beklediği ama CV'de olmayan yetkinlikleri toplar, öncelik sırasına dizer ve eğitim planına çevirir |
+| Başvuru listesi, filtreler, detaylar, iki tema | Demo verisiyle çalışan web arayüzü |
+| Aciliyet, eşleşme, hatırlatma ve raporlar | Python standart kütüphanesiyle çalışır; model çağrısı yapmaz |
+| İlanı yorumlama ve eşleşme boyutlarını çıkarma | Claude Code ajan iş akışı; web demosunda otomatik çalışmaz |
+| Gmail taraması | Ayrıca yetkilendirilmiş geliştirme oturumu/Routine gerekir; repo komutları Gmail taramaz |
+| Kişisel CV analizi | Açık web demosunda kapalı; `sample` desteği sunan Claude ortamında açık onayla kullanılabilir |
+| Gmail'i webden bağlama, kullanıcı hesabı, veri kaydetme | Henüz uygulanmadı |
+| Eğitim kaynakları | Açıkça etiketli simülasyon; gerçek kurs/fiyat verisi değil |
 
-**Aciliyet ve eşleşme ayrı iki eksendir.** Zayıf eşleşmeli bir ilanın deadline'ı da acil olabilir;
-sistem ikisini ayrı kolonlarda gösterir ve kararı kullanıcıya bırakır.
+Web demosu kişisel hesaba bağlanmaz. Başvuru/e-posta aksiyon bağlantıları
+kamuya açık HTML'e dahil edilmez. Yayınlanan veri tarihi ekranda belirtilir.
+CV analizi desteklenen ortamda sonucu yalnızca gösterir; profil kaydını veya
+mevcut eşleşmeleri otomatik değiştirmez. PDF okuyucusu yalnızca destekli ortamda PDF seçildiğinde yüklenir; ilk 6 sayfa ve
+en fazla 14.000 karakter analiz edilir.
 
----
+## Çözdüğü problem
 
-## Veriden çıkan dört bulgu
+Aynı anda çok sayıda başvuru yapıldığında üç karar zorlaşır:
 
-Sistem kurulduğunda ortaya çıkanlar — hepsi taranan Gmail kutusundan gelen gerçek sayılar:
+| Soru | Trace'in yaklaşımı |
+|---|---|
+| Bugün ne yapmalıyım? | Deadline, süreç aşaması ve sessizliğe göre hatırlatma |
+| Enerjimi nereye harcamalıyım? | Kayıtlı değerlendirmeden 0–100 eşleşme ve boyut dökümü |
+| Neyi öğrenmeliyim? | İlan/profil farklarından çıkarılan eksikleri önceliklendirme |
 
-<table>
-<tr><td width="120"><h3>7 / 15</h3></td><td>
-<b>Redlerin çoğunluğu kıdem açığından.</b> SQL en yaygın eksik (34 başvuruda bekleniyor), ama
-olumsuz sonuçlanan 15 sürecin 7'sinde eksik olan <b>ekip yönetimi</b>. Sorun teknik beceri değil,
-Manager/Lead ilanlarına yapılan başvurular — kurs alarak değil hedef bandını değiştirerek çözülür.
-</td></tr>
-<tr><td><h3>%25</h3></td><td>
-<b>Eforun dörtte biri zayıf eşleşmeye gitmiş.</b> 68 başvurunun 17'si orta veya zayıf eşleşme.
-Güçlü segmentin ileri aşamaya geçme oranı %18,2.
-</td></tr>
-<tr><td><h3>88</h3></td><td>
-<b>En iyi eşleşme, başvurulmadan süresi doldu.</b> Kaydedilen 16 ilanın 12'sine hiç başvurulmamış.
-Marshall Page'in FP&A Analyst ilanı 88 puanla listenin en güçlüsüydü ve 20 Ağustos'ta kapandı.
-</td></tr>
-<tr><td><h3>10 gün</h3></td><td>
-<b>Şirketlerin medyan yanıt süresi.</b> 42 başvuru ise hiç yanıtlanmadı. Bu iki sayı,
-"12 gün sessizlikten sonra takip maili at" kuralının eşiğini belirledi.
-</td></tr>
-</table>
+Aciliyet ve eşleşme ayrı eksenlerdir. Bir işin acil olması adaya iyi uyduğu
+anlamına gelmez; ekranda ayrı gösterilir.
 
----
+## AI ile nasıl geliştiriliyor?
 
-## Nasıl çalışıyor
+İlk sürüm Claude Code ile geliştirildi. Claude Code ve Codex aynı kod tabanı,
+veri sözleşmesi ve testlerle çalışır. Dokuz Claude ajanı, ilan çözümleme,
+eşleştirme, mülakat hazırlığı, veri denetimi ve strateji gibi görevleri ayırır.
+Yedi skill görev kurallarını taşır. Ajan tanımı, her çalıştırmada ölçülmüş
+başarı veya web uygulamasına bağlı bir AI servisi anlamına gelmez.
 
-```
-Gmail taraması  →  sınıflandırma  →  puanlama  →  rapor + hatırlatma
-   (her sabah        (teklif/davet/    (aciliyet     (e-posta + pano)
-    09:00 TSİ)        red/inceleme)     + eşleşme)
-```
+- **Ayrı kanıt:** İlan çözümleyici CV'yi okumaz; eşleştirici yapılandırılmış
+  ilanı seçilmiş profille karşılaştırır.
+- **Tek yazıcı:** Ajanlar öneri döndürür; kaydı ana oturum günceller.
+- **Doğrulama:** Sayısal toplam/segment, şema ve sınır durumları kodla denetlenir.
+- **İncelenebilir değişiklik:** Her görev ayrı dalda yürür; test çıktısı ve
+  kalan sınırlamalarla teslim edilir.
 
-**Aciliyet puanı** — bugün neyin kapatılması gerektiği:
+[Claude talimatları](CLAUDE.md) · [Codex talimatları](AGENTS.md) ·
+[Birlikte çalışma sözleşmesi](docs/ORTAK_CALISMA.md)
 
-```
-puan = aşama_ağırlığı + (uyum × 4) + deadline_aciliyeti − sessizlik_cezası
-```
+## Çalıştırma ve test
 
-**Eşleşme puanı** — CV ile ilanın uyumu:
-
-```
-eşleşme = rol_ailesi(35) + kıdem(25) + beceri_örtüşmesi(25) + sektör(15) − lokasyon_cezası
-```
-
-Sonuç dört segmente ayrılır: 🟢 Güçlü (78–100) · 🔵 İyi (62–77) · 🟡 Orta (45–61) · 🔴 Zayıf (0–44).
-
----
-
-## Arayüz
-
-Beş sayfa, hash yönlendirme, çift tema, çerçeve kullanılmadı — tek HTML dosyası.
-
-| | |
-|:--|:--|
-| ![Raporlar](docs/img/02-raporlar.png)<br>**Raporlar** — huni, eksik yetkinlik, trend, yanıt hızı, streak | ![Eğitim](docs/img/03-egitim.png)<br>**Eğitim** — öncelik sıralı eksikler ve kurs önerileri |
-| ![Başvurular](docs/img/04-basvurular.png)<br>**Başvurular** — eşleşme, aşama, deadline, aksiyon linkleri | ![Detay](docs/img/05-detay.png)<br>**Detay** — eşleşme dökümü ve eksikliğe özel kurs kartı |
-
-Kullanıcı ölçülebilir kriterlerle altı aşamalı bir hattın üzerinde konumlanır
-(yeni kullanıcı → CV hazır → başvuru yapıyor → takip ediyor → düzenli kullanıyor → alışkanlık),
-ve her sayfa aşamaya göre farklı bir "sıradaki adım" gösterir.
-
----
-
-## Çalıştırma
-
-Harici bağımlılık yok — yalnızca Python 3.11+ standart kütüphanesi.
+Python 3.11+ yeterlidir; çekirdeğin harici Python bağımlılığı yoktur.
+Bunlar bulut geliştirme ortamında da çalıştırılabilir.
 
 ```bash
-python3 src/pipeline.py                 # bugünün raporu (Markdown)
-python3 src/pipeline.py --format csv    # Sheets'e aktarılabilir tablo
-python3 src/match.py                    # CV eşleşme özeti ve segmentler
-python3 src/insights.py                 # sekiz raporun tamamı
-python3 src/build_dashboard.py          # HTML arayüzü üret → reports/pano.html
+python3 src/veri.py                         # şema ve katalog denetimi
+python3 src/pipeline.py --format markdown   # kayıtlı veriden günlük rapor
+python3 src/pipeline.py --format csv        # tablo çıktısı
+python3 src/match.py                        # eşleşme özeti
+python3 src/insights.py                     # analizler
+python3 src/build_dashboard.py              # kişisel pano → reports/pano.html
+python3 src/build_dashboard.py --site       # yalnızca demo → site/app.html
+python3 -m unittest discover -s tests -v
 ```
 
----
+Arayüz davranış testleri Node 20+ ile, ağ erişimi olmadan jsdom'da çalışır:
 
-## Mimari
-
-```
-data/                          Tek doğruluk kaynağı (JSON)
-├── applications.json          68 başvuru + eşleşme boyutları + eksik yetkinlikler
-├── profile.json               CV'den türetilmiş profil — eşleşmenin referansı
-├── skills_catalog.json        Beceri → kaynak eşlemesi (eğitim önerilerinin tek kaynağı)
-├── journey.json               Yaşam döngüsü aşamaları ve sayfa yönlendirmeleri
-├── engagement.json            Gerçek kullanım kaydı (streak hesabı)
-└── saved_jobs.json            Kaydedilip başvurulmayan ilanlar
-
-src/
-├── match.py                   CV ↔ ilan eşleşme motoru ve segmentasyon
-├── pipeline.py                Önceliklendirme, hatırlatma, rapor (md/text/csv/json)
-├── insights.py                Sekiz rapor ve eğitim planı üreticisi
-├── build_dashboard.py         Şablona veri enjeksiyonu
-└── dashboard.template.html    Arayüz şablonu
-
-site/                          Tanıtım sitesi (GitHub Pages)
-config/rules.yaml              Gmail sorguları, sınıflandırma, puanlama, hatırlatmalar
+```bash
+npm ci --ignore-scripts
+npm test
 ```
 
-Detaylı formüller, bakım notları ve tasarım kararları: **[docs/TEKNIK.md](docs/TEKNIK.md)**
+Bu bağımlılıklar yalnızca geliştirme testleri içindir. Gerçek model/Gmail
+entegrasyonu ve görsel tarayıcı testleri bu kontrollerin kapsamı dışındadır.
+GitHub Actions testleri çalıştırır; ana dalın Pages iş akışı testi geçtikten
+sonra siteyi şablondan üretir. Ana dala birleştirme yayın başlatır.
 
----
+## Veri ve ölçüm sınırları
 
-## Bilinçli sınırlar
+**Demo / özel veri:** Gerçek veriler ayrı özel depoda tutulur. `TRACE_DATA`
+seçilmiş veri klasörünü gösterir. Dış dosya eksikse demo veriye dönülmez.
+Pano yedi JSON dosyasını da bekler; ayrıntı [teknik belgede](docs/TEKNIK.md).
 
-Bu bölüm projenin ne yapmadığını da söylediği için burada duruyor.
+**Red gerekçeleri bilinmiyor.** Demo değerlendirmelerinde 15 red kaydının
+7'sine ekip yönetimi açığı işaretlenmiş. Bu, redlerin bu nedenle verildiğini
+kanıtlamaz; 7/15 çoğunluk da değildir. Eksikler çıkarım olarak sunulur.
 
-**Red gerekçeleri ölçülemiyor.** Taranan 15 red e-postasının hiçbiri sebep belirtmiyor —
-hepsi standart kalıp metin. Eksik yetkinlikler bu yüzden şirketlerin söylediği değil,
-ilan ile CV arasındaki farktan **çıkarılan** tahminlerdir ve arayüzün her yerinde böyle etiketlenir.
+**İlk yanıt süresi ayrı bir ölçümdür.** `last_contact`, son teması gösterir;
+şirketin ilk yanıtını göstermez. Süre yalnızca `first_response` kaydedilmişse
+hesaplanır. Mevcut demo verisinde bu tarih yoktur; medyan gösterilmez.
 
-**Görüntülenen ilan verisi yok.** LinkedIn bunu e-postayla bildirmiyor. Huni "kaydedilen ilan"dan
-başlar ve yalnızca hatırlatma gönderilenleri kapsar; taralı çubukla alt sınır olarak işaretlenir
-ve ondan sonraki dönüşüm oranı hesaplanmaz.
+**Aşamalar anlık durumdur.** Geçmişteki tüm mülakatları veya bir aşamadan
+diğerine geçiş oranını göstermek için olay geçmişi gerekir. Bugünkü rapor
+anlık aşamaları gösterir; ardışık dönüşüm uydurmaz.
 
-**Kurs kayıtları simülasyondur.** Başlık, puan, süre ve fiyat örnek amaçlıdır; bağlantılar gerçek
-sayfa açmaz. Eksik yetkinliklerin kendisi ve öncelik sıralaması gerçek veriden hesaplanır.
+**Görüntülenen ilan verisi yok.** Kaydedilen ilanlar yalnızca eldeki kayıtları
+kapsar; bu sayıdan başvuruya dönüşüm oranı hesaplanmaz.
 
-**Eşleşme boyutları elle atanıyor.** İlan metninin çekilip beceri çıkarımının otomatikleşmesi
-açık madde olarak duruyor.
+**Eşleşmeler değerlendirmeye dayanır.** `match.py` CV metnini kendisi analiz
+etmez; önceden atanmış boyutları doğrulayıp toplar. Kaynak ilan metni olmayan
+geçmiş puanlar doğrulanmış model başarısı sayılmaz. Puanlanmayan kayıt `null` kalır.
 
----
+**Kurslar simülasyondur.** Başlık, süre, puan ve fiyatlar örnektir. Adayın
+başarısı veya bir eğitimin iş bulma etkisi hakkında garanti verilmez.
 
-<div align="center">
-<sub>Kerem Aydın · <a href="https://linkedin.com/in/kerem-aydin-demo">LinkedIn</a> · Veri penceresi: 1 Ağustos – 1 Eylül 2026</sub>
-</div>
+## Dosya düzeni
+
+| Yol | Sorumluluk |
+|---|---|
+| `data/` | Yedi JSON dosyası: başvuru, profil, beceri kataloğu, yaşam döngüsü, kullanım, kaydedilen ilan, rol hedefi |
+| `src/veri.py` | Veri kaynağı, şema denetimi, ortak tarih/durum tanımları |
+| `src/pipeline.py` | Aciliyet, hatırlatma, Markdown/text/CSV/JSON raporu |
+| `src/match.py` | Boyutları toplama ve eşleşme segmentleri |
+| `src/eslesme_kontrol.py` | Ajan önerisini dosyaya yazmadan denetleme |
+| `src/insights.py` | Analizler ve eğitim planı |
+| `src/build_dashboard.py` | Güvenli veri gömme ve demo üretimi |
+| `src/dashboard.template.html` | Altı sayfalı arayüzün kaynağı |
+| `tests/` | Python regresyonları ve DOM davranış testleri |
+| `.claude/` | Claude ajanları ve görev skill'leri |
+| `site/` | Tanıtım ve türetilmiş demo |
+
+## Arayüz görselleri
+
+Aşağıdaki görsel ilk prototipin arşividir; güncel özellik desteği yukarıdaki
+tabloda ve ilgili dalın üretilmiş demosunda açıklanır. Görseller son düzeltme
+paketinde yeniden çekilmedi.
+
+![İlk prototipin ana sayfası](docs/img/01-ana.png)
+
+## Canlı ürüne giden yol
+
+Bu sürüm çok kullanıcılı bir servis değildir. Kullanıcı hesabı/veri izolasyonu,
+kalıcı kayıt ve eşzamanlılık, sunucu tarafı Google yetkilendirmesi, görev kuyruğu,
+gerçek model entegrasyonu ve ölçülmüş maliyetler canlı sürüm için açık işlerdir.
+[Canlıya geçiş planı](docs/CANLIYA_GECIS.md) bunları kabul koşullarıyla ayırır.
+
+**Proje sahibi: Atalay Denizer** · [GitHub](https://github.com/atalay9807)

@@ -2,21 +2,27 @@
 
 ## Günlük Routine
 
-**Trigger:** `trig_01UdkGdW5SJxvPVB2X3ZSgYJ` — "Günlük İş Takip Raporu (09:00)"
-**Cron:** `0 6 * * *` (UTC) = her gün 09:00 Europe/Istanbul
-**Bildirim:** push açık, e-posta kapalı
+Bu belge yetkilendirilmiş Claude oturumu/Routine için tasarlanan akışı anlatır.
+Bu depoyu klonlamak veya Python komutlarını çalıştırmak zamanlanmış görev
+kurmaz, Gmail taramaz, e-posta göndermez. Güncel Routine kimliği ve çalışma
+geçmişi bağlı hizmetten doğrulanır; buradaki eski oturum kimliği kaldırılmıştır.
+
+Planlanan saat: `0 6 * * *` UTC = 09:00 Europe/Istanbul.
+`docs/ORTAK_CALISMA.md` içindeki veri kaynağı ve tek yazıcı kuralları geçerlidir.
 
 Her sabah şu adımları izler:
 
 1. **Tara** — Gmail'de son 24 saatin iş temalı e-postalarını arar
    (`config/rules.yaml` → `scan.daily_query`).
 2. **Sınıflandır** — her e-postayı `status_rules` sırasına göre etiketler:
-   teklif → mülakat daveti → aksiyon gerekli → red → incelemede.
+   red → teklif → mülakat daveti → aksiyon gerekli → incelemede;
+   yalnızca son mesajın yeni metni değerlendirilir, çelişkili işaret incelemeye bırakılır.
    `noise_senders` listesindekiler yalnızca sayılır.
-3. **Güncelle** — `data/applications.json` içindeki ilgili kaydın `stage`,
+3. **Güncelle** — seçilmiş `TRACE_DATA/applications.json` içindeki ilgili kaydın `stage`,
    `status`, `last_contact`, `deadline` ve `next_step` alanlarını tazeler;
    yeni başvuru varsa kayıt ekler.
-4. **Raporla** — `kerem.aydin@example.com` adresine kısa HTML özet gönderir.
+4. **Raporla** — ayrıca gönderim yetkisi varsa doğrulanmış kullanıcı adresine özet gönderir.
+   Demo adresine mail gönderilmez; yalnızca okuma izni gönderim yetkisi değildir.
    Konu: `📋 Günlük İş Takip Raporu — <tarih>`.
 5. **Hatırlat** — deadline'ı yaklaşan/geçen ve sessizleşen süreçler için
    `reminders` kurallarını uygular.
@@ -32,14 +38,14 @@ yönlü bir bildirim akışı değil, karşılıklı bir döngü olmasını sağ
 
 ## Bakım
 
-**Yeni başvuru elle eklemek:** `data/applications.json` içindeki
-`applications` dizisine bir kayıt ekle. Zorunlu alanlar: `id`, `company`,
-`role`, `channel`, `applied`, `last_contact`, `stage`, `status`, `track`,
-`fit`. Opsiyonel: `deadline`, `contact`, `next_step`, `links`, `notes`.
+**Yeni başvuru elle eklemek:** güncel şema `docs/TEKNIK.md` ve
+`src/veri.py` içindedir. Yazdıktan sonra `python3 src/veri.py` ile denetle.
+İlan metni yoksa match null kalır. İlk gerçek yanıt tarihi biliniyorsa
+`first_response` kaydedilir; sonraki mesajlar yalnızca `last_contact` değerini ilerletir.
 
 **Puanlamayı değiştirmek:** `config/rules.yaml` → `scoring` bölümü referans
-dokümandır; gerçek ağırlıklar `src/pipeline.py` başındaki `STAGE_WEIGHT`,
-`FIT_MULTIPLIER`, `STALE_DAYS` sabitlerindedir. İkisini birlikte güncelle.
+dokümandır; gerçek aşama ağırlıkları `src/veri.py`,
+aciliyet eşikleri `src/pipeline.py` içindedir. İkisini birlikte güncelle.
 
 **Routine'i düzenlemek:** prompt'u değiştirmek için `update_trigger` kullan —
 sil ve yeniden oluşturma, çalışma geçmişi kaybolur.

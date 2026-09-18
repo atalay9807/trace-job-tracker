@@ -22,37 +22,22 @@ değil, ilanın rol ailesi ile CV arasındaki farktan ÇIKARILAN bir tahmindir.
 Arayüzde de bu şekilde etiketlenir.
 """
 
-import json
 from collections import Counter, defaultdict
 from datetime import date, datetime, timedelta
-import os
-from pathlib import Path
+from statistics import median
 
-ROOT = Path(__file__).resolve().parent.parent
-# Veri klasörü TRACE_DATA ile dışarıdan verilebilir. Gerçek veri özel
-# trace-data deposunda durur; onu bu deponun izlenen data/ klasörüne
-# kopyalamak kazara commit riski yaratıyordu (bkz. CLAUDE.md → Depo).
-VERI = Path(os.environ.get("TRACE_DATA") or (ROOT / "data"))
-D = VERI
+from veri import (ADVANCED_STAGES, oku, parse_date as _d, kapali, yanit_var,
+                  haftalik_gruplar, basvurulari_dogrula)
 
-ADVANCED_STAGES = ("interviewed", "interview_scheduling", "next_stage", "assessment", "offer")
 INTERVIEW_STAGES = ("interviewed", "interview_scheduling")
-
-
-def _load(name):
-    return json.loads((D / name).read_text(encoding="utf-8"))
-
-
-def _d(s):
-    return datetime.strptime(s, "%Y-%m-%d").date() if s else None
+_load = oku
 
 
 # ---------------------------------------------------------------- huni
 
 def funnel(apps, saved):
     jobs = saved["jobs"]
-    responded = [a for a in apps if _d(a.get("last_contact")) and _d(a["applied"])
-                 and _d(a["last_contact"]) > _d(a["applied"])]
+    responded = [a for a in apps if yanit_var(a)]
     advanced = [a for a in apps if a.get("stage") in ADVANCED_STAGES]
     interviewed = [a for a in apps if a.get("stage") in INTERVIEW_STAGES]
     rejected = [a for a in apps if a["status"] == "rejected"]
@@ -65,28 +50,30 @@ def funnel(apps, saved):
         {"key": "applied", "label": "Başvurulan", "value": total,
          "note": "Kaydedilenlerin dışındaki doğrudan başvurular dahil"},
         {"key": "responded", "label": "Yanıt alınan", "value": len(responded),
-         "note": "Otomatik onay dışında bir dönüş gelenler"},
+         "note": "Yanıt tarihi veya yanıt içeren aşama/sonuç kaydı bulunanlar — alt sınır"},
         {"key": "advanced", "label": "İleri aşamaya geçen", "value": len(advanced),
-         "note": "Test, sonraki aşama veya mülakat"},
-        {"key": "interviewed", "label": "Mülakata giren", "value": len(interviewed),
+         "note": "Güncel aşaması test, sonraki aşama, mülakat veya teklif olanlar"},
+        {"key": "interviewed", "label": "Mülakat aşamasında", "value": len(interviewed),
          "note": "Görüşme yapılan veya planlanan"},
-        {"key": "offer", "label": "Teklif", "value": len(offers), "note": "Henüz yok"},
+        {"key": "offer", "label": "Teklif", "value": len(offers), "note": "Güncel teklif kayıtları"},
     ]
     for i, s in enumerate(steps):
-        s["pct_of_applied"] = round(100 * s["value"] / total, 1) if i >= 1 else None
+        s["pct_of_applied"] = round(100 * s["value"] / total, 1) if i >= 1 and total else None
         # Kaydedilen ilan sayısı yalnızca alt sınır olduğu için ondan sonraki
         # adıma dönüşüm oranı hesaplanmaz — yanıltıcı olurdu.
-        prev = steps[i - 1] if i else None
-        s["conv_from_prev"] = (round(100 * s["value"] / prev["value"], 1)
-                               if prev and prev["value"] and not prev.get("partial") else None)
+        # Aşamalar geçmiş olaylar değil anlık durumdur; ardışık dönüşüm
+        # gibi sunmak teklif/mülakat kayıtlarında yanıltıcı oran üretir.
+        s["conv_from_prev"] = (round(100 * s["value"] / total, 1)
+                               if s["key"] == "responded" and total else None)
 
     return {
         "steps": steps,
         "rejected": len(rejected),
-        "reject_rate": round(100 * len(rejected) / total, 1),
-        "pending": total - len(rejected) - len(offers),
+        "reject_rate": round(100 * len(rejected) / total, 1) if total else 0,
+        "pending": sum(not kapali(a) and a.get("stage") != "offer" for a in apps),
         "caveat": "'Görüntülenen ilan' verisi yok — LinkedIn bunu e-postayla bildirmiyor. "
-                  "Huni, kaydedilen ilan hatırlatmalarından başlıyor.",
+                  "Kaydedilenler alt sınırdır. Aşamalar anlık durumdur; aşamalar arası "
+                  "geçiş ve geçmiş mülakat sayısı olay geçmişi olmadan ölçülemez.",
     }
 
 
@@ -99,13 +86,13 @@ def skill_gaps(apps, catalog):
     by_skill_apps = defaultdict(list)
 
     for a in apps:
-        for s in a.get("gap_skills", []):
+        for s in dict.fromkeys(a.get("gap_skills", [])):
             total_c[s] += 1
             by_skill_apps[s].append({"id": a["id"], "company": a["company"], "role": a["role"],
                                      "status": a["status"], "match_score": a.get("match_score")})
             if a["status"] == "rejected":
                 reject_c[s] += 1
-            else:
+            elif not kapali(a):
                 open_c[s] += 1
 
     rows = []
@@ -128,28 +115,22 @@ def skill_gaps(apps, catalog):
             "applications": sorted(by_skill_apps[skill],
                                    key=lambda x: -(x["match_score"] or 0))[:6],
         })
-    rows.sort(key=lambda r: (-r["priority"], -r["total"]))
+    rows.sort(key=lambda r: (-r["priority"], -r["total"], r["skill"]))
     return {
         "rows": rows,
-        "basis": "ÇIKARIM — taranan 15 red e-postasının hiçbiri gerekçe belirtmiyor. "
-                 "Eksikler, ilanın rol ailesi ile CV arasındaki farktan türetildi.",
+        "basis": "ÇIKARIM — eksikler kayıtlı ilan/profil değerlendirmelerinden gelir; "
+                 "işverenin red gerekçesi veya nedensellik kanıtı değildir.",
     }
 
 
 # ---------------------------------------------------------------- trend
 
 def trend(apps):
-    weeks = defaultdict(lambda: {"applied": 0, "rejected": 0, "advanced": 0})
-    start = date(2026, 8, 1)
-    labels = ["1–7 Ağu", "8–14 Ağu", "15–21 Ağu", "22–28 Ağu", "29 Ağu–1 Eyl"]
-    for a in apps:
-        i = min((_d(a["applied"]) - start).days // 7, 4)
-        weeks[i]["applied"] += 1
-        if a["status"] == "rejected":
-            weeks[i]["rejected"] += 1
-        if a.get("stage") in ADVANCED_STAGES:
-            weeks[i]["advanced"] += 1
-    return [{"label": labels[i], **weeks[i]} for i in range(5)]
+    return [{"label": group["label"], "start": group["start"], "end": group["end"],
+             "applied": len(group["items"]),
+             "rejected": sum(a["status"] == "rejected" for a in group["items"]),
+             "advanced": sum(a.get("stage") in ADVANCED_STAGES for a in group["items"])}
+            for group in haftalik_gruplar(apps)]
 
 
 # ---------------------------------------------------------------- rol / kanal başarısı
@@ -188,23 +169,26 @@ def channel_success(apps):
 
 def response_speed(apps):
     buckets = [("0-3 gün", 0, 3), ("4-7 gün", 4, 7), ("8-14 gün", 8, 14),
-               ("15-21 gün", 15, 21), ("22+ gün", 22, 9999)]
+               ("15-21 gün", 15, 21), ("22+ gün", 22, float("inf"))]
     out = [{"label": b[0], "value": 0} for b in buckets]
     days = []
-    for a in apps:
-        ap, lc = _d(a["applied"]), _d(a.get("last_contact"))
-        if not (ap and lc and lc > ap):
+    for app in apps:
+        applied = _d(app.get("applied"))
+        first = _d(app.get("first_response"))
+        if not applied or not first or first < applied:
             continue
-        n = (lc - ap).days
+        n = (first - applied).days
         days.append(n)
-        for i, (_, lo, hi) in enumerate(buckets):
-            if lo <= n <= hi:
-                out[i]["value"] += 1
+        for index, (_, low, high) in enumerate(buckets):
+            if low <= n <= high:
+                out[index]["value"] += 1
                 break
-    days.sort()
-    median = days[len(days) // 2] if days else None
-    return {"buckets": out, "median_days": median, "responded": len(days),
-            "silent": len(apps) - len(days)}
+    responded = sum(yanit_var(a) for a in apps)
+    return {"buckets": out, "median_days": median(days) if days else None,
+            "measured": len(days), "responded": responded,
+            "silent": len(apps) - responded,
+            "basis": "Yalnızca first_response tarihi bilinen kayıtlar ölçülür; "
+                     "son temas, ilk yanıt tarihi yerine kullanılamaz."}
 
 
 # ---------------------------------------------------------------- kaçırılanlar
@@ -213,54 +197,46 @@ def missed(saved):
     jobs = saved["jobs"]
     not_applied = [j for j in jobs if not j["applied"]]
     expired = [j for j in not_applied if j["expired"]]
-    strong = [j for j in not_applied if j["match_estimate"] >= 75]
+    strong = [j for j in not_applied if j.get("match_estimate") is not None and j["match_estimate"] >= 75]
     return {
         "saved_total": len(jobs),
         "applied": sum(1 for j in jobs if j["applied"]),
         "not_applied": len(not_applied),
         "expired": expired,
-        "strong_missed": sorted(strong, key=lambda j: -j["match_estimate"]),
+        "strong_missed": sorted(strong, key=lambda j: -(j.get("match_estimate") if j.get("match_estimate") is not None else -1)),
         "all_open": sorted([j for j in not_applied if not j["expired"]],
-                           key=lambda j: -j["match_estimate"]),
+                           key=lambda j: -(j.get("match_estimate") if j.get("match_estimate") is not None else -1)),
     }
 
 
 # ---------------------------------------------------------------- kullanım / streak
 
 def engagement(eng, apps, today):
-    days = sorted(_d(x) for x in eng["report_days"])
-    if not days:
-        return {}
-    # güncel streak: bugünden veya dünden geriye kesintisiz
+    raw_days = {_d(x) for x in eng.get("report_days", []) if x}
+    start = _d(eng.get("tracking_started"))
+    if start is None and raw_days:
+        start = min(raw_days)
+    days = sorted(d for d in raw_days if d <= today and (start is None or d >= start))
     cur = 0
     cursor = today if today in days else today - timedelta(days=1)
-    while cursor in days:
+    day_set = set(days)
+    while cursor in day_set:
         cur += 1
         cursor -= timedelta(days=1)
-    # en uzun streak
-    longest = run = 1
-    for i in range(1, len(days)):
-        run = run + 1 if (days[i] - days[i - 1]).days == 1 else 1
+    longest = run = 0
+    for index, day in enumerate(days):
+        run = run + 1 if index and (day - days[index - 1]).days == 1 else 1
         longest = max(longest, run)
-
-    start = _d(eng["tracking_started"])
-    span = (today - start).days + 1
-    last7 = [d for d in days if (today - d).days < 7]
-
-    return {
-        "tracking_started": eng["tracking_started"],
-        "days_tracked": span,
-        "reports_sent": len(days),
-        "coverage": round(100 * len(days) / span, 1),
-        "current_streak": cur,
-        "longest_streak": longest,
-        "missed_days": eng["missed_days"],
-        "reports_last_7d": len(last7),
-        "feedback_replies": eng["feedback_replies"],
-        "calendar": [{"date": (start + timedelta(days=i)).isoformat(),
-                      "active": (start + timedelta(days=i)) in days}
-                     for i in range(span)],
-    }
+    span = max(0, (today - start).days + 1) if start else 0
+    calendar = [{"date": (start + timedelta(days=i)).isoformat(),
+                 "active": (start + timedelta(days=i)) in day_set} for i in range(span)]
+    return {"tracking_started": start.isoformat() if start else None,
+            "days_tracked": span, "reports_sent": len(days),
+            "coverage": round(100 * len(days) / span, 1) if span else 0,
+            "current_streak": cur, "longest_streak": longest,
+            "missed_days": [c["date"] for c in calendar if not c["active"]],
+            "reports_last_7d": sum(0 <= (today - d).days < 7 for d in days),
+            "feedback_replies": eng.get("feedback_replies", 0), "calendar": calendar}
 
 
 def lifecycle_stage(journey, eng_stats, apps, profile_exists):
@@ -325,13 +301,12 @@ def build_all(today=None):
     today = today or date.today()
     apps_raw = _load("applications.json")
     catalog = _load("skills_catalog.json")
+    basvurulari_dogrula(apps_raw, catalog)
     saved = _load("saved_jobs.json")
     eng = _load("engagement.json")
     journey = _load("journey.json")
     profile = _load("profile.json")
 
-    import sys
-    sys.path.insert(0, str(Path(__file__).resolve().parent))
     from match import enrich_with_match
     apps = enrich_with_match(apps_raw["applications"])
     for a in apps:
@@ -377,7 +352,8 @@ if __name__ == "__main__":
           f"streak {e['current_streak']} (en uzun {e['longest_streak']}) · "
           f"geri bildirim {e['feedback_replies']}")
 
-    print(f"\nAŞAMA: {r['lifecycle']['current']['label']} → {r['lifecycle']['next']['label']}")
+    next_stage = r['lifecycle']['next']
+    print(f"\nAŞAMA: {r['lifecycle']['current']['label']} → {next_stage['label'] if next_stage else 'Son aşama'}")
     for b in r["lifecycle"]["blockers"]:
         print(f"  eksik: {b}")
 

@@ -1,9 +1,14 @@
 ---
 name: mail-siniflandirma
-description: Trace'in günlük Gmail taramasını yapar: iş temalı e-postaları bulur, gürültüyü ayıklar, her maili beş durumdan birine sınıflandırır (teklif / mülakat daveti / aksiyon gerekli / red / incelemede) ve data/applications.json'daki kaydı günceller. Günlük tarama çalıştırılırken, "mailleri tara", "yeni başvuru var mı", "gelen kutusuna bak" dendiğinde, bir e-postanın hangi kategoriye girdiği sorulduğunda ve Routine'in prompt'u düzenlenirken bu skill'i kullan. Sorguları ve gürültü listesini ezberden yazma — burada.
+description: "Trace'in günlük Gmail taramasını yapar: iş temalı e-postaları bulur, gürültüyü ayıklar, her maili beş durumdan birine sınıflandırır (teklif / mülakat daveti / aksiyon gerekli / red / incelemede) ve data/applications.json'daki kaydı günceller. Günlük tarama çalıştırılırken, \"mailleri tara\", \"yeni başvuru var mı\", \"gelen kutusuna bak\" dendiğinde, bir e-postanın hangi kategoriye girdiği sorulduğunda ve Routine'in prompt'u düzenlenirken bu skill'i kullan. Sorguları ve gürültü listesini ezberden yazma — burada."
 ---
 
 # Mail sınıflandırma
+
+Veri yolu ve ortak geliştirme kuralları `docs/ORTAK_CALISMA.md` içindedir.
+`data/...` seçilmiş TRACE_DATA klasörünü ifade eder; özel veri eksikse demo
+veriye dönülmez. Diğer ajana aktarılırken mutlak veri yolu açıkça verilir.
+
 
 Trace'in günlük hattının ilk iki adımı. Amaç, gelen kutusundaki gürültüden
 başvuru sürecine dair **durum değişikliklerini** ayıklamak.
@@ -61,11 +66,16 @@ kazanmalı, çünkü süreç kapanmıştır. Bu yüzden yukarıdan aşağı bak�
 
 | Sıra | Durum | Sinyaller |
 |---|---|---|
-| 1 | **teklif** | offer letter, we are pleased to offer, iş teklifi, teklif mektubu |
-| 2 | **mülakat daveti / sonraki aşama** | invite you to, schedule an interview, next stage, moving forward, you've progressed, availability, görüşme daveti, bir sonraki aşama, müsaitlik |
-| 3 | **aksiyon gerekli** | assessment, complete your application, reply to this email, verify your email, test, case study, deadline, expires, değerlendirme, başvurunu tamamla, doğrula, son tarih |
-| 4 | **red** | unfortunately, not moving forward, other candidates, regret to inform, decided to move forward with other, olumsuz, başarılar dileriz, uygun bulunmamıştır |
-| 5 | **incelemede** | we received your application, thank you for applying, under review, başvurunuz alındı, inceleme aşamasında |
+| 1 | **red** | not moving forward, not to proceed, won't be moving forward, uygun bulunmamıştır |
+| 2 | **teklif** | offer letter, we are pleased to offer, iş teklifi, teklif mektubu |
+| 3 | **mülakat daveti / sonraki aşama** | schedule an interview, interview invitation, görüşme daveti |
+| 4 | **aksiyon gerekli** | assessment, complete your application, deadline, testi tamamla |
+| 5 | **incelemede** | we received your application, thank you for applying, başvurunuz alındı |
+
+Sinyalleri son mesajın yeni yazılmış kısmında değerlendir; alıntılanmış eski
+mesajdaki red/teklif yeni durumu değiştirmez. `not moving forward` içindeki
+`moving forward` olumlu davet değildir. Yalnızca `unfortunately`, `test` veya
+`availability` gibi genel kelimelerle karar verme; çelişki varsa incelemeye bırak.
 
 Hiçbirine uymuyorsa sınıflandırma yapma — kullanıcıya sor. Zorlama bir
 etiket, yanlış bir `stage` değerine ve yanlış hatırlatmaya yol açar.
@@ -83,10 +93,15 @@ sınıfa göre şu alanları tazele:
 | red | `stage: closed`, `status: rejected` |
 | incelemede | `stage: under_review`, `status: awaiting_response` |
 
-Her durumda `last_contact` maildeki tarihe çekilir.
+Her durumda `last_contact` son mesaj tarihine çekilir. Otomatik onay dışındaki
+ilk gerçek dönüşün tarihi biliniyorsa `first_response` alanına yaz; sonraki
+mesajlarda bu ilk tarihi değiştirme. Eski kayıtta bilinmiyorsa null kalır.
+Yanıt kanıtı varsa `response_received: true`, yalnızca otomatik onay varsa false
+kullanılabilir; ileri aşama veya red ile false birlikte kullanılamaz.
 
-**Yeni kayıt açarken** `match` boyutlarını ve `gap_skills`'i de doldurmak
-gerekir — bunun için `eslesme-puanlama` skill'ine geç.
+**Yeni kayıt açarken** ilan metni varsa `eslesme-puanlama` skill'ine geç.
+Yalnızca başlık/şirket varsa `match: null`, `gap_skills: []` bırak; puan uydurma.
+Yazdıktan sonra `python3 src/veri.py` ile denetle.
 
 ## Tarih ve deadline çıkarımı
 

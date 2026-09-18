@@ -1,5 +1,9 @@
 # Trace — proje talimatları
 
+Önce `docs/ORTAK_CALISMA.md` dosyasını oku. Claude Code ve Codex için veri,
+dal, doğrulama ve teslim kuralları orada ortaktır; `AGENTS.md` Codex girişidir.
+Aşağıdaki tarihli denetim notları geçmiş bağlamdır, güncel doğrulama sonucu değildir.
+
 ## Proje nedir
 
 İş başvurusu takip ve CV eşleştirme sistemi. Gmail'i tarar, başvuruları tek
@@ -22,8 +26,8 @@ iş arayan biri. Teknik değil — arayüz açıklama gerektirmemeli. Sorduğu �
 
 ## Çalışma tarzı
 
-- **Önce plan, sonra kod.** Birden fazla dosyaya dokunacak işlerde önce ne
-  yapılacağını söyle, onay al. Tek satırlık düzeltmede plan yapma.
+- **Önce plan, sonra kod.** Birden fazla dosyaya dokunacak işlerde önce kapsamı
+  söyle. Kullanıcının zaten yetkilendirdiği düzeltme için yeniden onay isteme. Tek satırlık düzeltmede plan yapma.
 - **Küçük adımlar.** Bir turda bir konu bitir; yarım bırakılmış üç iş yerine
   bitmiş bir iş yeğdir.
 - **Kısa yaz.** Yapılan işi anlat, süreci anlatma. Seçenek listesi dökme,
@@ -124,8 +128,8 @@ eşleşme  = rol_ailesi(35) + kıdem(25) + beceri_örtüşmesi(25) + sektör(15)
 
 Eşleşme segmentleri: 🟢 Güçlü 78–100 · 🔵 İyi 62–77 · 🟡 Orta 45–61 · 🔴 Zayıf 0–44
 
-Rubrikler, eşikler ve hatırlatma kuralları **skill'lerde** (aşağıda). Gerçek
-sabitler `src/pipeline.py` ve `src/match.py` başındadır; `config/rules.yaml`
+Rubrikler, eşikler ve hatırlatma kuralları **skill'lerde** (aşağıda). Aşama/boyut
+sabitleri `src/veri.py`, aciliyet eşikleri `src/pipeline.py`, segmentler `src/match.py` içindedir; `config/rules.yaml`
 referans dokümandır. **Üçü birlikte güncellenir.**
 
 ## Kullanılabilir araçlar
@@ -183,8 +187,9 @@ edilir. **`reports/pano.html`, `site/app.html` ve `site/_artifact.html`
 türetilmiş dosyalardır** — elle düzenlenmez, şablon değiştirilip yeniden
 üretilir.
 
-Arayüz değiştiğinde sırayla: `build_dashboard.py` → `site/app.html`'e kopyala →
-ekran görüntülerini yenile → `site/img`'i eşitle.
+Arayüz değiştiğinde: şablonu düzenle → `python3 src/build_dashboard.py --site` →
+Python ve DOM testlerini çalıştır. Görsel kontrol mümkünse ekran görüntülerini yenile
+ve `site/img` ile eşitle; mümkün değilse eski görüntüleri güncel diye sunma.
 
 ## Tasarım sistemi
 
@@ -212,7 +217,7 @@ dolgusu 3:1; her iki temada ayrı ayrı. Rampalar açıklık bakımından monoto
 
 Açık depo CV'ye konan `github.com/atalay9807` linkinden görünüyor; portföy
 işini o görüyor. **Gerçek veri bu depoya asla girmez** — ne kayıt, ne profil,
-ne ekran görüntüsü. Bir gerçek şirket adı, gerçek başvuru tarihi veya CV'den
+ne ekran görüntüsü. Bir gerçek başvuru kaydı veya CV'den
 türetilmiş gerçek profil buraya commit edilirse iş arama süreci kamuya açılır
 ve geri alınamaz.
 
@@ -227,10 +232,10 @@ TRACE_DATA=/tmp/trace-data/data python3 src/pipeline.py
 Dört script de (`pipeline`, `match`, `insights`, `build_dashboard`) bu
 değişkeni okur; verilmezse deponun kendi `data/` klasörünü kullanır.
 Gerçek veriyi izlenen `data/` klasörüne kopyalamak kazara commit riski
-yaratıyordu — bu yol o riski tamamen kaldırır.
+yaratıyordu — bu yol kopyalama riskini azaltır; çıktı ve commit ayrıca kontrol edilir.
 
 - Geliştirme dalı: `claude/linkedin-job-tracking-automation-6xiogy`
-- `main`'e `--no-ff` ile merge; `site/**` değişince Pages otomatik dağıtır
+- `main`'e `--no-ff` ile merge; kod/veri/şablon değişince Pages testlerden sonra kaynaktan üretip dağıtır
 - `reports/pano.html` ve `site/_artifact.html` türetilmiştir, `.gitignore`'dadır.
   Gerçek veriyle üretildiklerinde diskte gerçek veri taşırlar; izlenmemeleri
   kazara commit'i engelliyor. `site/app.html` izlenir — o yayınlanan sürüm ve
@@ -263,9 +268,9 @@ adları taşıyor. Buradaki liste teknik engellerdir; kişisel veri içermez.
   KVKK'da VERBİS muafiyeti var ama **aydınlatma yükümlülüğü muafiyete tabi
   değil**; CV metni model sağlayıcısına gidiyor, bu yurt dışına aktarım.
   Sunucu kurmadan bugün kapatılabilecek tek madde bu.
-- **Test yok.** `tests/` klasörü yok; 990 satır Python ve 1620 satırlık
-  şablon elle doğrulanıyor. Gerçek veri koddan ilk kez geçirildiğinde
-  `match.py` çöktü — bir test bunu yakalardı.
+- **Test açığı (07.09.2026 notu).** 17.09.2026 düzeltmesinde Python regresyonları,
+  ağsız DOM testleri ve CI eklendi. Gerçek model, Gmail ve görsel tarayıcı testleri
+  bunların kapsamında değildir.
 - **Üçüncü taraf istekleri.** Sayfa Google Fonts ve cdnjs'e çıkıyor;
   iş arama verisi hassas veri, ziyaretçi IP'si o servislere gidiyor.
 
@@ -327,7 +332,7 @@ işe göre kendisi çekiyor, bu yüzden ayrıntı burada değil onlarda durur.
 | `cv-analizi` | CV'yi `data/profile.json`'a çevirirken. Kıdem bandı, 1–5 araç seviyeleri, `gaps` yazımı, lokasyon politikası. Eşleşme motorunun tek referansı burada üretiliyor. |
 | `rol-hedefleme` | "Hangi unvanlara başvurmalıyım" akışı: iki rol önerici ajanı bağımsız çalıştırma, dört mutabakat sınıfı, `data/role_targets.json` şeması. |
 
-Skill'lerdeki sayısal değerler koddaki sabitlerle **doğrulanmıştır**. Sabiti
+Skill'lerdeki sayısal değerler koddaki sabitlerle birlikte korunur; doğrulama sonucu güncel test çıktısından okunur. Sabiti
 değiştirirsen skill'i de güncelle, yoksa ikisi ayrışır.
 
 ## Proje ajanları
@@ -354,9 +359,9 @@ ilanı kendi vereceği puana göre okumaya başlıyor. Ayrık tutulunca çözüm
 tarafsız veri üretiyor, puanlayıcı da o veriyle çalışıyor.
 
 **Neden az sayıda:** izlenen kursta 20 ajanlı bir sistem gösteriliyor ama
-Trace'in 20 ayrı uzmanlık gerektiren işi yok. Tarama, sınıflandırma ve
-rapor üretimi kurallı iş — `pipeline.py` ve `insights.py` bunları ajansız ve
-daha ucuza yapıyor. Ajan yalnızca yargı gerektiren yerde kullanılır.
+Trace'in 20 ayrı uzmanlık gerektiren işi yok. Raporlama ve sayısal analiz kurallı iş — `pipeline.py` ve `insights.py` bunları
+model çağrısı yapmadan üretir. Gmail taraması/sınıflandırması ayrıca yetkili
+oturumda yürür; bu iki Python scripti Gmail taramaz. Ajan yalnızca yargı gerektiren yerde kullanılır.
 `mulakat-hazirlik` bu yüzden eklendi — "bu role ne sorulur" mekanik bir
 kural değil, kurstaki "toplantı briefingi hazırlayan" ajanın karşılığı.
 `veri-denetleyici` de aynı mantıkla — kurstaki "kendi işini eleştiren, test
