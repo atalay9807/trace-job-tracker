@@ -127,4 +127,6 @@ GitHub Actions Python ve DOM kontrollerini çalıştırır. Pages kaynaktan site
 HTML'in yayımlanması önlenir.
 
 Tipografi ve renk değerlerinin kaynağı şablon CSS'idir. Görsel test yapmadan
-kontrast/mobil uyum doğrulanmış sayılmaz; `docs/img` ilk prototipin arşividir.
+kontrast/mobil uyum doğrulanmış sayılmaz. `docs/img` ve `site/img` 2026-09-20'de
+güncel şablondan başsız Chromium ile yeniden üretildi; Google Fonts egress'te kapalı
+olduğu için tipografi yedek yazı tipiyle görünür.
