@@ -14,11 +14,23 @@ Kerem Aydın örnek profildir, proje sahibi değildir.
 
 </div>
 
+## Codex çalışma alanı
+
+**[Güncel çalışma dalı](https://github.com/atalay9807/trace-job-tracker/tree/codex/calisma-alani)** ·
+[Çalışma merkezi — Issue #4](https://github.com/atalay9807/trace-job-tracker/issues/4) ·
+[Tamamlanan işler ve Claude'a devir](CODEX_CALISMA_ALANI.md)
+
+GitHub ana sayfası varsayılan olarak `main` dalını gösterir. Geliştirmeleri görmek
+için yukarıdaki çalışma dalını aç. GitHub Pages de `main` üzerinden yayınlanır;
+geliştirme dalını açmak yayınlanan uygulamayı değiştirmez. Güncel PR ve kontrol
+sonucu çalışma merkezinden izlenir. Bilgisayara kurulum gerekmez.
+
 ## Bugün ne çalışıyor?
 
 | Özellik | Mevcut durum |
 |---|---|
-| Başvuru listesi, filtreler, detaylar, iki tema | Demo verisiyle çalışan web arayüzü |
+| Başvuru listesi, filtreler, sıralama, detaylar, iki tema | Demo verisiyle çalışan web arayüzü |
+| Görünen başvuruları CSV indirme | Etkin filtreler ve ekran sırası korunur; dosya tarayıcıda oluşturulur |
 | Aciliyet, eşleşme, hatırlatma ve raporlar | Python standart kütüphanesiyle çalışır; model çağrısı yapmaz |
 | İlanı yorumlama ve eşleşme boyutlarını çıkarma | Claude Code ajan iş akışı; web demosunda otomatik çalışmaz |
 | Gmail taraması | Ayrıca yetkilendirilmiş geliştirme oturumu/Routine gerekir; repo komutları Gmail taramaz |
@@ -31,6 +43,12 @@ kamuya açık HTML'e dahil edilmez. Yayınlanan veri tarihi ekranda belirtilir.
 CV analizi desteklenen ortamda sonucu yalnızca gösterir; profil kaydını veya
 mevcut eşleşmeleri otomatik değiştirmez. PDF okuyucusu yalnızca destekli ortamda PDF seçildiğinde yüklenir; ilk 6 sayfa ve
 en fazla 14.000 karakter analiz edilir.
+
+Başvurularım ekranında açık/kapanan süreçler, aciliyet, eşleşme ve tarih birlikte
+filtrelenebilir. Puanlanmamış kayıtlar ayrı seçilir; sıfır puanla karıştırılmaz.
+Sıralama aciliyet, eşleşme, başvuru tarihi, deadline veya şirkete göre değişir.
+**Görünenleri CSV indir** yalnızca listedeki sonuçları aktarır. CSV bir yedekleme
+veya içeri aktarma biçimi değildir; kaynak JSON dosyalarını değiştirmez.
 
 ## Çözdüğü problem
 
@@ -132,6 +150,7 @@ başarısı veya bir eğitimin iş bulma etkisi hakkında garanti verilmez.
 | `src/build_dashboard.py` | Güvenli veri gömme ve demo üretimi |
 | `src/dashboard.template.html` | Altı sayfalı arayüzün kaynağı |
 | `tests/` | Python regresyonları ve DOM davranış testleri |
+| `CODEX_CALISMA_ALANI.md` | Codex geliştirme kaydı, kontrol sonuçları ve Claude'a devir |
 | `.claude/` | Claude ajanları ve görev skill'leri |
 | `site/` | Tanıtım ve türetilmiş demo |
 

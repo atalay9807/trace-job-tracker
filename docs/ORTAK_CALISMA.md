@@ -5,6 +5,13 @@ uygulamanın çalışması için iki geliştirme oturumunun aynı anda açık ka
 Python hesaplama çekirdeği ikisinden de bağımsız çalışır. Claude ajan dosyaları
 Codex'te kendiliğinden çalışmaz; aynı görev kuralları gerektiğinde okunabilir.
 
+Codex için görünür giriş noktası [çalışma merkezi](https://github.com/atalay9807/trace-job-tracker/issues/4),
+devir kaydı ise [CODEX_CALISMA_ALANI.md](../CODEX_CALISMA_ALANI.md) dosyasıdır.
+Çalışma dalı `codex/calisma-alani`, kullanıcıya son durumu gösteren gelişim
+dalıdır. Yeni görevler o dalın güncel commit'inden ayrı görev dalına alınır;
+aynı checkout'a iki ajan yazmaz. `main` ve Pages güncel geliştirme görünümü
+yerine geçmez. Bir sonraki görevde uzak dallar yeniden kontrol edilir.
+
 ## İş paylaşımı
 
 Her işe aynı güncel commit üzerinden, ayrı geliştirme dalı ve ayrı checkout/worktree

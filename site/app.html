@@ -222,6 +222,7 @@
   :root[data-theme="dark"] .act.primary{color:var(--ground)}
   @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .act.primary{color:var(--ground)}}
   .act svg{width:12px;height:12px;flex:none}
+  .act:disabled{cursor:not-allowed;opacity:.65}
   .act:focus-visible,.fchip:focus-visible,.search:focus-visible,.tbtn:focus-visible,
   .row-act:focus-visible,.rlink:focus-visible,tr:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
 
@@ -281,7 +282,7 @@
   .dim-val{font-size:10.5px;text-align:right;font-variant-numeric:tabular-nums}
 
   .controls{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:15px}
-  .fgroup{display:flex;flex-wrap:wrap;align-items:center}
+  .fgroup{display:flex;flex-wrap:wrap;align-items:center;row-gap:6px}
   .fgroup>.glabel{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;
                   text-transform:uppercase;color:var(--ink-3);margin-right:9px}
   .fchip{font-family:Archivo,sans-serif;font-size:12.5px;font-weight:500;background:var(--surface);
@@ -308,6 +309,9 @@
   .search{flex:1;min-width:170px;max-width:280px;margin-left:auto;font-family:Archivo,sans-serif;font-size:13px;
           background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:6px 13px}
   .search::placeholder{color:var(--ink-3)}
+  .liste-ozet{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+  .liste-ozet .count{margin-right:auto}
+  .liste-notu{font-size:12px;color:var(--ink-3);margin:0 0 14px}
 
   .tbl-scroll{overflow-x:auto}
   table{width:100%;border-collapse:collapse;font-size:13px;min-width:1010px}
@@ -592,35 +596,61 @@
     <div class="nudge" id="nudgeApps"></div>
     <section style="margin-top:22px">
       <div class="controls">
-        <div class="fgroup" id="bandGroup">
+        <div class="fgroup" id="bandGroup" role="group" aria-label="Aciliyet filtresi">
           <span class="glabel">Aciliyet</span>
           <button class="fchip" data-b="all" aria-pressed="true" type="button">Tümü</button>
           <button class="fchip" data-b="critical" aria-pressed="false" type="button">Kritik</button>
           <button class="fchip" data-b="high" aria-pressed="false" type="button">Yüksek</button>
           <button class="fchip" data-b="normal" aria-pressed="false" type="button">Normal</button>
-          <button class="fchip" data-b="archive" aria-pressed="false" type="button">Olumsuz</button>
+          <button class="fchip" data-b="low" aria-pressed="false" type="button">Düşük</button>
+          <button class="fchip" data-b="archive" aria-pressed="false" type="button">Kapanan</button>
         </div>
-        <div class="fgroup" id="segGroup">
+        <div class="fgroup" id="segGroup" role="group" aria-label="Eşleşme filtresi">
           <span class="glabel">Eşleşme</span>
           <button class="fchip v" data-s="all" aria-pressed="true" type="button">Tümü</button>
           <button class="fchip v" data-s="strong" aria-pressed="false" type="button">Güçlü</button>
           <button class="fchip v" data-s="good" aria-pressed="false" type="button">İyi</button>
           <button class="fchip v" data-s="fair" aria-pressed="false" type="button">Orta</button>
           <button class="fchip v" data-s="weak" aria-pressed="false" type="button">Zayıf</button>
+          <button class="fchip v" data-s="unscored" aria-pressed="false" type="button">Puanlanmadı</button>
+        </div>
+        <div class="fgroup">
+          <label class="glabel" for="processState">Süreç</label>
+          <select class="fsel" id="processState">
+            <option value="all">Tümü</option>
+            <option value="open">Açık süreçler</option>
+            <option value="closed">Kapanan süreçler</option>
+          </select>
         </div>
         <div class="fgroup" id="dateGroup">
           <span class="glabel">Tarih</span>
           <select class="fsel" id="dateField" aria-label="Hangi tarihe göre filtrelensin">
             <option value="applied">Başvuru</option>
-            <option value="last_contact">Son mail</option>
+            <option value="last_contact">Son temas</option>
           </select>
           <select class="fsel" id="dateRange" aria-label="Tarih aralığı"></select>
         </div>
-        <input class="search" id="search" type="search" placeholder="Şirket veya pozisyon ara…" aria-label="Şirket veya pozisyon ara">
+        <input class="search" id="search" type="search" placeholder="Şirket, pozisyon veya alan ara…" aria-label="Şirket, pozisyon veya alan ara">
       </div>
-      <div class="sec-head"><span class="count" id="tblCount"></span></div>
+      <div class="liste-ozet">
+        <span class="count" id="tblCount" role="status" aria-live="polite" aria-atomic="true"></span>
+        <div class="fgroup">
+          <label class="glabel" for="sortOrder">Sıralama</label>
+          <select class="fsel" id="sortOrder">
+            <option value="aciliyet">Aciliyet: yüksekten düşüğe</option>
+            <option value="eslesme-azalan">Eşleşme: yüksekten düşüğe</option>
+            <option value="eslesme-artan">Eşleşme: düşükten yükseğe</option>
+            <option value="basvuru-yeni">Başvuru: en yeni önce</option>
+            <option value="deadline-yakin">Deadline: en yakın önce</option>
+            <option value="sirket">Şirket: A–Z</option>
+          </select>
+        </div>
+        <button class="act" id="resetFilters" type="button">Filtreleri temizle</button>
+        <button class="act" id="exportCsv" type="button">Görünenleri CSV indir</button>
+      </div>
+      <p class="liste-notu" id="listNote"></p>
       <div class="tbl-scroll">
-        <table>
+        <table aria-label="İş başvuruları" aria-describedby="listNote">
           <thead><tr>
             <th class="sev" scope="col"></th>
             <th scope="col">Şirket / Pozisyon</th>
@@ -843,7 +873,7 @@
     </div>
   </div>
 </div>
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 <div class="scrim" id="scrim"></div>
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle" tabindex="-1">
   <div class="dhead">
@@ -1018,6 +1048,19 @@ $("focusCards").innerHTML = focus.map(a => {
 
 /* ---------------- başvurular tablosu ---------------- */
 let band = "all", seg = "all", query = "", dateField = "applied", dateRange = "all";
+let surec = "all", siralama = "aciliyet";
+const SIRALAMA = {
+  "aciliyet": {alan:"score", yon:-1, kapaliSonda:true},
+  "eslesme-azalan": {alan:"match_score", yon:-1},
+  "eslesme-artan": {alan:"match_score", yon:1},
+  "basvuru-yeni": {alan:"applied", yon:-1},
+  "deadline-yakin": {alan:"deadline", yon:1, kapaliSonda:true},
+  "sirket": {alan:"company", yon:1}
+};
+const DURUM_TR = {action_required:"Aksiyon gerekli", in_progress:"Devam ediyor",
+  awaiting_response:"Yanıt bekleniyor", stale:"Sessizleşti", rejected:"Olumsuz"};
+const ACILIYET_TR = {critical:"Kritik", high:"Yüksek", normal:"Normal", low:"Düşük", archive:"Kapanan"};
+const ACILIYET_SIRASI = {critical:0, high:1, normal:2, low:3, archive:4};
 function gapChips(a, max) {
   const g = a.gap_skills || [];
   if (!g.length) return `<span style="color:var(--ink-3);font-size:12px">—</span>`;
@@ -1053,14 +1096,40 @@ function tarihSecenekleriniKur() {
       }).join("") + `</optgroup>` : "");
   $("dateRange").title = "Aralıklar son tarama tarihine göre: " + fmtDate(BUGUN);
 }
-function renderTable() {
+function basvurulariSec() {
   const q = query.trim().toLocaleLowerCase("tr");
   const list = D.applications.filter(a =>
-    (band === "all" || a.band === band) && (seg === "all" || a.match_segment_key === seg) &&
+    (band === "all" || a.band === band) &&
+    (seg === "all" || (seg === "unscored" ? a.match_score == null : a.match_segment_key === seg)) &&
+    (surec === "all" || (surec === "closed" ? a.closed : !a.closed)) &&
     tarihGecer(a) &&
     (!q || (a.company+" "+a.role+" "+(a.track||"")).toLocaleLowerCase("tr").includes(q)));
+  const {alan, yon, kapaliSonda} = SIRALAMA[siralama];
+  // Yalnızca filtrelenmiş kopyayı sırala; bilinmeyen değer her iki yönde de sonda.
+  return list.sort((a, b) => {
+    if (kapaliSonda && !!a.closed !== !!b.closed) return a.closed ? 1 : -1;
+    // Aksiyon bekleyen kayıt puanı düşük olsa da çekirdek onu kritik işaretleyebilir.
+    if (siralama === "aciliyet" && a.band !== b.band) return ACILIYET_SIRASI[a.band] - ACILIYET_SIRASI[b.band];
+    const x = a[alan], y = b[alan];
+    if ((x == null) !== (y == null)) return x == null ? 1 : -1;
+    const fark = x == null ? 0 : typeof x === "number" ? x - y : String(x).localeCompare(String(y), "tr");
+    return yon * fark || a.company.localeCompare(b.company, "tr") || a.id.localeCompare(b.id, "tr");
+  });
+}
+function renderTable() {
+  const list = basvurulariSec();
   $("tblCount").textContent = `${list.length} / ${D.applications.length} başvuru`;
   $("empty").hidden = list.length > 0;
+  $("empty").textContent = D.applications.length
+    ? "Bu filtrelere uyan başvuru yok. Filtreleri temizleyerek yeniden deneyebilirsin."
+    : "Henüz başvuru kaydı yok.";
+  $("exportCsv").disabled = list.length === 0;
+  $("resetFilters").disabled = band === "all" && seg === "all" && !query && dateField === "applied"
+    && dateRange === "all" && surec === "all" && siralama === "aciliyet";
+  $("listNote").textContent = "Tarih aralıkları " + fmtLong(BUGUN) + " tarihine göredir. " +
+    "Bilinmeyen değerler kendi grubunun sonunda kalır. " +
+    (siralama === "aciliyet" || siralama === "deadline-yakin" ? "Kapanan süreçler açık süreçlerden sonra gelir. " : "") +
+    "CSV, görünen sonuçları aynı sırayla indirir.";
   $("tbody").innerHTML = list.map(a => {
     const d = a.days_to_deadline;
     let dl = "—";
@@ -1071,7 +1140,8 @@ function renderTable() {
     const k = a.match_segment_key;
     const mcell = k ? `<div class="mcell"><span class="mnum" style="color:var(${SEG_TX[k]})">${a.match_score}
         <span style="font-size:10px;color:var(--ink-3);font-weight:400">${SEG_SHORT[k]}</span></span>
-        <div class="mbar"><i style="width:${a.match_score}%;background:var(${SEG_VAR[k]})"></i></div></div>` : "—";
+        <div class="mbar"><i style="width:${a.match_score}%;background:var(${SEG_VAR[k]})"></i></div></div>`
+        : `<span style="color:var(--ink-3);font-size:12px">Puanlanmadı</span>`;
     const acts = (a.links_actions||[]).map(l =>
       `<a class="row-act" href="${attr(safeURL(l.url))}" target="_blank" rel="noopener noreferrer" title="${attr(l.label)}"
           aria-label="${attr(l.label)}" onclick="event.stopPropagation()">${ico(l.kind)}</a>`).join("");
@@ -1085,7 +1155,9 @@ function renderTable() {
   $("tbody").querySelectorAll("tr").forEach(tr => {
     const go = () => location.hash = "#/basvurular/" + tr.dataset.id;
     tr.addEventListener("click", go);
-    tr.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+    tr.addEventListener("keydown", e => {
+      if (e.target === tr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); go(); }
+    });
   });
 }
 document.querySelectorAll("#bandGroup .fchip").forEach(b => b.addEventListener("click", () => {
@@ -1099,6 +1171,8 @@ document.querySelectorAll("#segGroup .fchip").forEach(b => b.addEventListener("c
   renderTable();
 }));
 $("search").addEventListener("input", e => { query = e.target.value; renderTable(); });
+$("processState").addEventListener("change", e => { surec = e.target.value; renderTable(); });
+$("sortOrder").addEventListener("change", e => { siralama = e.target.value; renderTable(); });
 tarihSecenekleriniKur();
 $("dateField").addEventListener("change", e => { dateField = e.target.value; renderTable(); });
 $("dateRange").addEventListener("change", e => {
@@ -1107,6 +1181,55 @@ $("dateRange").addEventListener("change", e => {
   $("dateRange").classList.toggle("on", dateRange !== "all");
   $("dateField").classList.toggle("on", dateRange !== "all");
   renderTable();
+});
+$("resetFilters").addEventListener("click", () => {
+  band = seg = surec = dateRange = "all";
+  query = ""; dateField = "applied"; siralama = "aciliyet";
+  $("search").value = "";
+  $("dateField").value = dateField; $("dateRange").value = dateRange;
+  $("processState").value = surec; $("sortOrder").value = siralama;
+  $("dateField").classList.remove("on"); $("dateRange").classList.remove("on");
+  document.querySelectorAll("#bandGroup .fchip, #segGroup .fchip").forEach(b =>
+    b.setAttribute("aria-pressed", String((b.dataset.b || b.dataset.s) === "all")));
+  renderTable();
+});
+
+function csvHucre(value) {
+  let metin = value == null ? "" : String(value);
+  // Tırnaklamak tek başına formül çalışmasını engellemez. Harici metni etkisizleştir.
+  if (typeof value === "string" && (/^[\s\u0000-\u001f]*[=+\-@]/u.test(metin) || /^[\t\r\n]/.test(metin))) {
+    metin = "'" + metin;
+  }
+  return '"' + metin.replace(/"/g, '""') + '"';
+}
+function gorunenCsvOlustur(list = basvurulariSec()) {
+  const satirlar = [["Kimlik", "Şirket", "Pozisyon", "Aşama", "Durum", "Kanal", "Başvuru tarihi",
+    "Son temas", "Deadline", "Aciliyet", "Aciliyet puanı", "Eşleşme puanı", "Eksik yetkinlik", "Sonraki adım"]];
+  list.forEach(a => satirlar.push([a.id, a.company, a.role, STAGE_TR[a.stage] || a.stage,
+    a.closed && a.status !== "rejected" ? "Kapandı" : DURUM_TR[a.status] || a.status,
+    CHANNEL_TR[a.channel] || a.channel, a.applied, a.last_contact, a.deadline,
+    ACILIYET_TR[a.band] || a.band, a.score, a.match_score,
+    (a.gap_skills || []).map(s => (CAT[s] || {}).name || s).join("; "), a.next_step]));
+  // UTF-8 BOM Türkçe karakterlerin Excel'de tanınmasına yardımcı olur.
+  return "\uFEFF" + satirlar.map(s => s.map(csvHucre).join(",")).join("\r\n") + "\r\n";
+}
+$("exportCsv").addEventListener("click", () => {
+  const list = basvurulariSec();
+  if (!list.length) return;
+  let adres, baglanti;
+  try {
+    adres = URL.createObjectURL(new Blob([gorunenCsvOlustur(list)], {type:"text/csv;charset=utf-8"}));
+    baglanti = document.createElement("a");
+    baglanti.href = adres;
+    baglanti.download = `trace-${D.demo ? "demo-" : ""}basvurular-${BUGUN}.csv`;
+    baglanti.hidden = true; document.body.appendChild(baglanti); baglanti.click();
+    toast(`${list.length} başvuru için CSV indiriliyor.`);
+  } catch {
+    toast("CSV indirilemedi. Tarayıcının dosya indirme iznini kontrol edip yeniden dene.");
+  } finally {
+    if (baglanti) baglanti.remove();
+    if (adres) setTimeout(() => URL.revokeObjectURL(adres), 1000);
+  }
 });
 renderTable();
 
