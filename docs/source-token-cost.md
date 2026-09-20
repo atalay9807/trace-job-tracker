@@ -4,6 +4,48 @@
 **Kanal:** Burhan Kocabıyık (`source-claude-code-course.md` ile aynı kanal)
 **Bağlantı:** kullanıcı tarafından paylaşıldı, URL kaydedilmedi
 
+## Summary (English)
+
+**This file is a primary source, not documentation.** It holds the verbatim
+Turkish auto-generated transcript of a video comparing the token costs of
+Claude Code, Codex, and Gemini, kept for the same reason as the course
+transcript: so a later claim about the video can be checked against its actual
+words. It is deliberately not translated.
+
+**None of the numbers in the video are our measurements.** Every figure is the
+speaker's claim and none was verified. The video also dates itself to April
+2026 while discussing Opus 4, Sonnet 3.7, and Gemini 2.5 — the model
+generation is out of date, and so are the prices.
+
+**The final section is ours, not the video's.** `Bizim için çıkarım` ("what
+this means for us") is Trace's own analysis, kept at the end and separated
+from the transcript on purpose.
+
+**What that analysis concluded.** The video's one sound point is "do not use
+the expensive model everywhere" — give routine work to something cheap and
+judgement work to a good model. Trace already solves this with architecture
+rather than model choice: scanning, classification, scoring, and report
+generation live in `pipeline.py`, `match.py`, and `insights.py`, and those
+spend **zero tokens**. The model is involved only where judgement is required.
+The rule written in `CLAUDE.md` — an agent is used only where judgement is
+required — is simultaneously the project's token strategy.
+
+**The one open point.** All nine agents are set to `model: opus`. Two of them
+are close to mechanical work: `ilan-cozumleyici` (turning posting text into
+structured fields) and `veri-denetleyici` (validating against the schema).
+Those could plausibly run on a smaller model. `kariyer-danismani`,
+`buyume-stratejisti`, and the two role advisors are the opposite — shrinking
+the model there would cost output quality.
+
+**Measure before changing anything.** No agent's token usage has been measured
+yet. If a change is made, the measurement comes first: run one agent on the
+same input against two models and compare the output quality.
+
+The section index below is in Turkish, matching the transcript headings.
+
+---
+
+
 > Otomatik üretilmiş Türkçe altyazıdan alınmıştır. Tanıma hataları var:
 > *Cloud Code / cloud kode / clarcod* = **Claude Code**, *Cemini / Cemine /
 > Ceminay* = **Gemini**, *Solet / Sonet* = **Sonnet**, *Opus 4* = Claude Opus 4,

@@ -4,6 +4,42 @@
 **Kanal:** Burhan Kocabıyık  
 **Bağlantı:** https://www.youtube.com/watch?v=Xu2SIKz8B58
 
+## Summary (English)
+
+**This file is a primary source, not documentation.** It holds the verbatim
+Turkish auto-generated transcript of a 3+ hour YouTube course on Claude Code,
+kept so that later claims about "what the course actually said" can be checked
+against the words rather than against memory.
+
+**It is deliberately not translated.** The transcript is machine speech
+recognition and already contains recognition errors (product names are spelled
+phonetically). Translating it would stack a second layer of error on top of
+the first, and a paraphrased source stops being a source.
+
+**Why it is in the repository.** Trace's agent and skill architecture was
+built while following this course, so the repository keeps the reference it
+was built against. `docs/course-tooling.md` is the English classification of
+every tool the course demonstrated, and what each one's equivalent is here.
+
+**What Trace took from it:** the Gmail connector as the system's input, the
+Routine as the scheduler, and the agent/skill split.
+
+**What Trace rejected, and why:** n8n (our orchestration is the Routine plus
+`pipeline.py`; rule-driven work does not need a visual flow layer), Apify (the
+only external data we want is LinkedIn posting text, which cannot legally be
+scraped), the entire sales stack (Trace is not a sales tool), and the
+20-agent setup (Trace has nine, because an agent is used only where judgement
+is required).
+
+**Treat every figure in it as an unverified claim.** The revenue and client
+numbers are the speaker's own statements. None of them was measured by this
+project.
+
+The section index below is in Turkish, matching the transcript headings.
+
+---
+
+
 > Otomatik üretilmiş Türkçe altyazıdan alınmıştır. Tanıma hataları var:
 > *Cloud Code / cloud kodu* = **Claude Code**, *N8'in* = **n8n**,
 > *Oppus / Sonyet* = **Opus / Sonnet**, *Excal Drave* = **Excalidraw**,

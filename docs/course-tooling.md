@@ -1,84 +1,86 @@
-# Kurstaki araçların sınıflandırması
+# Classifying the tools shown in the course
 
-Kaynak: `docs/source-claude-code-course.md` (izlenen YouTube kursunun
-dökümü). Kullanıcı "videoda gösterilen uygulamaları tara ve sınıflandır"
-dedi — bu belge onun cevabı.
+Source: `docs/source-claude-code-course.md` (a transcript of the YouTube
+course that was watched). The owner asked for "a sweep and classification of
+the applications shown in the video" — this document is the answer.
 
-**Sayım uyarısı:** döküm otomatik konuşma-metin çevirisi, adlar fonetik
-yazılmış: `Epify`→Apify, `Kanva`→Canva, `Supase`→Supabase, `Anti Gravity`→
-Antigravity, `N8`→n8n. Aşağıdaki geçiş sayıları bu varyantların toplamı;
-**önem sırası değil, yalnızca kursta ne kadar konuşulduğu.**
-
----
-
-## Rolüne göre
-
-### 1. Otomasyon / orkestrasyon
-
-| Araç | Geçiş | Kursta ne için | Trace'te karşılığı |
-|---|---|---|---|
-| **n8n** | ~80 | Kursun ikinci ekseni. Hazır 9500 otomasyon şablonu, görsel akış kurucu. Claude Code'a connector olarak da bağlanıyor | **Yok ve gerek yok.** Kursun kendisi bile "N8N istemiyorum, Claude için kuralım" diyerek bir örneği n8n'siz kuruyor. Bizim orkestrasyonumuz Routine + `pipeline.py`; kurallı iş için n8n bir katman fazlası |
-| **Routine** (Claude) | — | Kursta "routine, n8n otomasyonu gibi çalışıyor" diye tanıtılıyor | **Kullanılıyor** — günlük 09:00 taraması |
-
-### 2. Veri toplama
-
-| Araç | Geçiş | Kursta ne için | Trace'te karşılığı |
-|---|---|---|---|
-| **Apify** | ~48 | MCP connector olarak bağlanıyor; Instagram verisi çekmek ve müşteri bulma sisteminde kaynak olarak kullanılıyor | **Kullanılmıyor — kullanılamaz.** İhtiyacımız olan tek dış veri LinkedIn ilan metni ve orası kazınamaz (Kullanıcı Sözleşmesi). Apify'ı LinkedIn'e doğrultmak aracın değil bizim sorunumuz olur |
-| **Indeed MCP** | — | Kursta yok | **Kullanılıyor** — resmî arama API'si, `rol-onerici-gecmis` ajanının ilan varlığı kontrolü |
-
-### 3. Geliştirme ortamı
-
-| Araç | Geçiş | Kursta ne için | Trace'te karşılığı |
-|---|---|---|---|
-| **Claude Code** | — | Kursun ana ekseni | **Bu proje zaten bu** |
-| **Antigravity** | ~16 | İndirilebilir alternatif IDE olarak gösteriliyor | **Gerek yok.** Ajan/skill mimarimiz depoda duruyor, IDE'ye bağlı değil. Taşınmada da fark etmez (`docs/local-setup.md`) |
-
-### 4. Bağlayıcılar (MCP connector)
-
-| Araç | Geçiş | Trace'te karşılığı |
-|---|---|---|
-| **Gmail** | ~34 | **Kullanılıyor — projenin tek girdisi.** Kurstaki tek örtüşen kritik araç |
-| **Google Drive** | 3 | **Kullanılıyor** — CV okuma |
-| **GitHub** | 2 | **Kullanılıyor** — depo, Actions, Pages |
-| **Slack** | 5 | Gerek yok. Tek kullanıcılı bir araç; bildirim kanalı e-posta |
-| **Telegram** | 1 | Gerek yok — aynı sebep |
-| **Figma / Canva** | 1 / 1 | Gerek yok. Arayüz tek HTML dosyası, tasarım sistemi `docs/technical-contract.md`'de yazılı |
-| **Supabase** | 1 | **Açık maddeye bağlı.** CLAUDE.md'deki "kalıcı veritabanı ve oturum yönetimi" maddesi gerçekleşirse ilk bakılacak yer burası — bugün veri katmanı `data/*.json` |
-| **Shopify** | 6 | Alakasız — e-ticaret |
-| **Stripe** | 5 | **Bugün alakasız, ürünleşirse gerekir.** Kursta iki işi görüyor: ödeme altyapısı ve gelir kanıtı ("kazançlar birebir Stripe'tan kontrol edilmiş"). İkincisi bizim için de not: gelir iddiası ancak ödeme sisteminden doğrulanabilir |
-
-### 5. Satış yığını (kursun kendi işi)
-
-Apollo, Clay, Lemlist, Gong, HubSpot, **Instantly** (yüksek hacimli mail
-gönderimi için; "30-40 mail gönderdiğinizde problem yok" deniyor).
-
-**Tamamı alakasız.** Bunlar kurs sahibinin ajans işine ait; Trace bir satış
-aracı değil. Instantly'nin toplu gönderim mantığı bizim tek kullanıcılı
-takip mailimizin tersi.
-
-### 6. Diğer
-
-| Araç | Geçiş | Not |
-|---|---|---|
-| **Excalidraw** | 6 | Kurs sahibinin "en çok kullandığım yetenek" dediği diyagram skill'i. Bizde karşılığı yok; `docs/technical-contract.md` şu an metin. Mimari şema gerekirse tek adaylardan biri |
-| **Nano Banana / Veo 3** | — | Görsel-video üretimi. Alakasız |
+**A warning about the counts:** the transcript is machine-generated speech
+recognition and names are spelled phonetically: `Epify`→Apify, `Kanva`→Canva,
+`Supase`→Supabase, `Anti Gravity`→Antigravity, `N8`→n8n. The mention counts
+below are the totals of those variants. They are **not a ranking of
+importance** — only of how much the course talked about each one.
 
 ---
 
-## Özet
+## By role
 
-**Kurstan bize gerçekten değen üç şey var:** Gmail bağlayıcısı (zaten var),
-Routine mantığı (zaten var) ve ajan/skill mimarisi (zaten kurulu). Geri
-kalanı ya kurs sahibinin kendi ajans işine ait (satış yığını, Shopify,
-Apify) ya da bizim mimarimizde karşılığı olan bir katmanın alternatifi
-(n8n, Antigravity).
+### 1. Automation and orchestration
 
-**Sonradan gerekebilecek iki isim:** Supabase (kalıcı veritabanı açık
-maddesi) ve Stripe (ürünleşme). İkisi de bugün gerekmiyor; şimdi
-eklenirse çözülmemiş bir problemin cevabı olarak durur.
+| Tool | Mentions | What it is for in the course | Equivalent in Trace |
+|---|---|---|---|
+| **n8n** | ~80 | The course's second axis. 9,500 ready-made automation templates, a visual flow builder. Also connects to Claude Code as a connector | **Absent, and not needed.** The course itself builds one of its examples without n8n, saying "I don't want n8n, let's set this up for Claude". Our orchestration is the Routine plus `pipeline.py`; for rule-driven work n8n is one layer too many |
+| **Routine** (Claude) | — | Introduced in the course as "a routine works like an n8n automation" | **In use** — the daily 09:00 scan |
 
-**Kurstaki araç sayısı ile sistemin gücü aynı şey değil.** Kurs 20 ajanlı
-bir kurulum gösteriyor, biz dokuzda kaldık — sebebi CLAUDE.md'de yazılı:
-kurallı iş kod ile ajansız ve daha ucuza yapılıyor, ajan yalnızca yargı
-gerektiren yerde kullanılıyor. Aynı ölçü araçlar için de geçerli.
+### 2. Data collection
+
+| Tool | Mentions | What it is for in the course | Equivalent in Trace |
+|---|---|---|---|
+| **Apify** | ~48 | Connected as an MCP connector; used to pull Instagram data and as a source in the lead-generation system | **Not used — cannot be used.** The only external data we need is LinkedIn posting text, and that cannot be scraped (User Agreement). Pointing Apify at LinkedIn would make it our problem, not the tool's |
+| **Indeed MCP** | — | Not in the course | **In use** — the official search API, backing the posting-existence check in the `rol-onerici-gecmis` agent |
+
+### 3. Development environment
+
+| Tool | Mentions | What it is for in the course | Equivalent in Trace |
+|---|---|---|---|
+| **Claude Code** | — | The main axis of the course | **This project already is that** |
+| **Antigravity** | ~16 | Shown as a downloadable alternative IDE | **Not needed.** Our agent and skill architecture lives in the repository, not in an IDE. It makes no difference to the move either (`docs/local-setup.md`) |
+
+### 4. Connectors (MCP)
+
+| Tool | Mentions | Equivalent in Trace |
+|---|---|---|
+| **Gmail** | ~34 | **In use — the project's only input.** The one critical tool that overlaps with the course |
+| **Google Drive** | 3 | **In use** — reading the CV |
+| **GitHub** | 2 | **In use** — repository, Actions, Pages |
+| **Slack** | 5 | Not needed. This is a single-user tool; the notification channel is email |
+| **Telegram** | 1 | Not needed — same reason |
+| **Figma / Canva** | 1 / 1 | Not needed. The interface is a single HTML file and the design system is written down in `docs/technical-contract.md` |
+| **Supabase** | 1 | **Tied to an open item.** If the "persistent database and session management" item in `CLAUDE.md` happens, this is the first place to look — today the data layer is `data/*.json` |
+| **Shopify** | 6 | Irrelevant — e-commerce |
+| **Stripe** | 5 | **Irrelevant today, required if this becomes a product.** It does two jobs in the course: payment infrastructure and proof of revenue ("earnings were checked one-to-one against Stripe"). The second is a note for us too: a revenue claim can only be verified from the payment system |
+
+### 5. The sales stack (the course author's own business)
+
+Apollo, Clay, Lemlist, Gong, HubSpot, and **Instantly** (for high-volume mail
+sending; "there's no problem when you send 30–40 mails").
+
+**All irrelevant.** These belong to the course author's agency business; Trace
+is not a sales tool. Instantly's bulk-sending logic is the opposite of our
+single-user follow-up mail.
+
+### 6. Other
+
+| Tool | Mentions | Note |
+|---|---|---|
+| **Excalidraw** | 6 | The diagramming skill the course author calls "the skill I use most". We have no equivalent; `docs/technical-contract.md` is currently text. If an architecture diagram is ever needed, this is one of the candidates |
+| **Nano Banana / Veo 3** | — | Image and video generation. Irrelevant |
+
+---
+
+## Summary
+
+**Three things from the course actually touch us:** the Gmail connector
+(already here), the Routine idea (already here), and the agent/skill
+architecture (already built). The rest either belongs to the author's own
+agency business (the sales stack, Shopify, Apify) or is an alternative to a
+layer we already have (n8n, Antigravity).
+
+**Two names that may matter later:** Supabase (the persistent database open
+item) and Stripe (productization). Neither is needed today; adding either now
+would sit there as the answer to a problem nobody has solved yet.
+
+**The number of tools in a course and the power of a system are not the same
+thing.** The course demonstrates a 20-agent setup; we stopped at nine, and the
+reason is written in `CLAUDE.md`: rule-driven work is done in code, without
+agents and more cheaply, and an agent is used only where judgement is
+required. The same measure applies to tools.
