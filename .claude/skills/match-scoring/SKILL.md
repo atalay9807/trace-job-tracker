@@ -1,6 +1,6 @@
 ---
-name: eslesme-puanlama
-description: Bir iş ilanını Trace'in CV profiline karşı dört boyutta puanlar (rol ailesi 35 + kıdem 25 + beceri örtüşmesi 25 + sektör 15 − lokasyon cezası) ve dört segmentten birine yerleştirir. Yeni bir başvuru eklenirken, mevcut bir başvurunun match alanı doldurulurken veya güncellenirken, "bu ilan bana uyar mı", "kaç puan verir", "hangi segmentte" türünden sorularda, ilan metni değerlendirilirken ve gap_skills atanırken bu skill'i kullan. Puanları elle uydurma — rubrik burada. data/applications.json içindeki match objesine dokunulan her işte gerekli.
+name: match-scoring
+description: "Scores a job posting against Trace's CV profile across four dimensions (role family 35 + seniority 25 + skill overlap 25 + sector 15 - location penalty) and places it in one of four segments. Use it when adding a new application, when an existing application's match field is filled in or updated, for questions like 'would this posting suit me', 'what would it score', 'which segment', when posting text is being evaluated, and when assigning gap_skills. Never invent the scores — the rubric is here. Required for any work that touches the match object in data/applications.json."
 ---
 
 # Eşleşme puanlama

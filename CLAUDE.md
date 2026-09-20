@@ -75,7 +75,7 @@ Bağlı iki kural:
 
 Günlük Routine her sabah 09:00'da (TSİ): **tara → sınıflandır → veriyi güncelle
 → puanla → hatırlat → raporla.** Pazartesileri rapora geri bildirim soruları
-eklenir. Her adımın ayrıntısı `mail-siniflandirma` ve `rapor-formati`
+eklenir. Her adımın ayrıntısı `mail-classification` ve `report-format`
 skill'lerinde.
 
 ## Veri katmanı
@@ -167,7 +167,7 @@ Kritik gelişme yoksa bunu açıkça yaz, **sessiz kalma.**
 **Commit mesajı** — Türkçe, ilk satır ≤72 karakter, gövde *ne yapıldığını değil
 neden yapıldığını* anlatır. Model adı ve oturum kimliği gövdeye yazılmaz.
 
-Rapor gövdesinin tam yapısı ve takip maili şablonları `rapor-formati`
+Rapor gövdesinin tam yapısı ve takip maili şablonları `report-format`
 skill'indedir.
 
 ## Kod
@@ -305,8 +305,8 @@ dürüst gösterilmesi rakiplerde yok. Bunlar korunur.
 
 - ⬜ **İlan metninin otomatik çekilip beceri çıkarımı** — `match` boyutları ve
   `gap_skills` şu an elle atanıyor. Projenin en zayıf halkası; ajan işi.
-- ⬜ **Geçmiş 68 kaydın match puanları e-postadan doğrulanamaz** — `ilan-cozumleyici`
-  + `eslestirici` ajanları Odepay ilanıyla test edildi (2026-09-03): LinkedIn'in
+- ⬜ **Geçmiş 68 kaydın match puanları e-postadan doğrulanamaz** — `posting-analyzer`
+  + `matcher` ajanları Odepay ilanıyla test edildi (2026-09-03): LinkedIn'in
   kaydedilen-ilan ve iş-ilanı-uyarısı mailleri hiçbir zaman ilan açıklaması
   taşımıyor, yalnızca başlık/şirket/lokasyon (bazen tek bir gizli önizleme
   cümlesi). Ajanlar bu ince girdiyle Odepay'i 44 puana (🔴 Zayıf) çıkardı; elle
@@ -324,13 +324,13 @@ işe göre kendisi çekiyor, bu yüzden ayrıntı burada değil onlarda durur.
 
 | Skill | Ne zaman devreye girer |
 |---|---|
-| `eslesme-puanlama` | Bir ilanı CV'ye karşı puanlarken, `match` objesine veya `gap_skills`'e dokunulan her işte. Dört boyutun rubrikleri, segmentler, gerekçe yazımı. |
-| `mail-siniflandirma` | Günlük Gmail taramasında, bir mailin hangi kategoriye girdiğini belirlerken. Sorgular, gürültü listesi, sınıflandırma sırası, kayıt güncelleme. |
-| `rapor-formati` | Rapor üretirken, hatırlatma çıkarırken, takip maili taslarken. Aciliyet ağırlıkları, eşikler, e-posta yapısı, pazartesi geri bildirim bloğu. |
-| `yeni-basvuru-ekleme` | `data/applications.json`'a yeni kayıt açarken. `id`/`channel`/`track`/`fit`/`location`/`contact` biçimleri, dedup kuralı. |
-| `egitim-onerisi` | `data/skills_catalog.json`'a yeni kaynak eklerken veya eğitim sayfası/kurs kartı değiştirilirken. Kaynak şeması, öncelik formülü, üç yerde zorunlu simülasyon etiketi. |
-| `cv-analizi` | CV'yi `data/profile.json`'a çevirirken. Kıdem bandı, 1–5 araç seviyeleri, `gaps` yazımı, lokasyon politikası. Eşleşme motorunun tek referansı burada üretiliyor. |
-| `rol-hedefleme` | "Hangi unvanlara başvurmalıyım" akışı: iki rol önerici ajanı bağımsız çalıştırma, dört mutabakat sınıfı, `data/role_targets.json` şeması. |
+| `match-scoring` | Bir ilanı CV'ye karşı puanlarken, `match` objesine veya `gap_skills`'e dokunulan her işte. Dört boyutun rubrikleri, segmentler, gerekçe yazımı. |
+| `mail-classification` | Günlük Gmail taramasında, bir mailin hangi kategoriye girdiğini belirlerken. Sorgular, gürültü listesi, sınıflandırma sırası, kayıt güncelleme. |
+| `report-format` | Rapor üretirken, hatırlatma çıkarırken, takip maili taslarken. Aciliyet ağırlıkları, eşikler, e-posta yapısı, pazartesi geri bildirim bloğu. |
+| `add-application` | `data/applications.json`'a yeni kayıt açarken. `id`/`channel`/`track`/`fit`/`location`/`contact` biçimleri, dedup kuralı. |
+| `training-recommendation` | `data/skills_catalog.json`'a yeni kaynak eklerken veya eğitim sayfası/kurs kartı değiştirilirken. Kaynak şeması, öncelik formülü, üç yerde zorunlu simülasyon etiketi. |
+| `cv-analysis` | CV'yi `data/profile.json`'a çevirirken. Kıdem bandı, 1–5 araç seviyeleri, `gaps` yazımı, lokasyon politikası. Eşleşme motorunun tek referansı burada üretiliyor. |
+| `role-targeting` | "Hangi unvanlara başvurmalıyım" akışı: iki rol önerici ajanı bağımsız çalıştırma, dört mutabakat sınıfı, `data/role_targets.json` şeması. |
 
 Skill'lerdeki sayısal değerler koddaki sabitlerle birlikte korunur; doğrulama sonucu güncel test çıktısından okunur. Sabiti
 değiştirirsen skill'i de güncelle, yoksa ikisi ayrışır.
@@ -344,15 +344,15 @@ görsün diye.
 
 | Ajan | İşi | Yapmadığı |
 |---|---|---|
-| `ilan-cozumleyici` | İlan metnini yapılandırılmış gereksinime çevirir: rol ailesi, kıdem bandı, araçlar, lokasyon, belirsizlikler | Puanlama yapmaz, CV'ye bakmaz |
-| `eslestirici` | Çözümleyicinin çıktısını profille karşılaştırıp `match` objesi, segment ve `gap_skills` üretir | `data/` altına yazmaz — objeyi döndürür, kaydı ana oturum yazar |
-| `mulakat-hazirlik` | Bir başvuru mülakat/değerlendirme aşamasına girdiğinde hazırlık notu üretir: muhtemel sorular, CV'nin zayıf kalacağı noktalar, karşı tarafa sorulacak sorular | Puanlama yapmaz, mülakat sonucu tahmin etmez, `data/` altına yazmaz |
-| `veri-denetleyici` | `data/applications.json`'ı şemaya ve iç tutarlılığa karşı denetler — tanınmayan `stage`, `match` sapması, `links_actions`'ta unutulan `kind`, sızmış üçüncü kişi bilgisi | Hiçbir dosyaya yazmaz/düzeltmez — yalnızca rapor döner; yanlış pozitifi gerçekten ayırt eder, uydurmaz |
-| `kariyer-danismani` | 68 başvurunun tamamı + CV'ye birden bakıp konumlandırma çıkarır: gerçekçi rol/kıdem hedefi, İK ekranında CV'nin nerede elendiği, enerjinin nerede israf olduğu | Tek ilan puanlamaz, mülakat hazırlamaz, kurs önermez; **maaş/piyasa verisi uydurmaz** — elimizde yok |
-| `pazar-arastirmacisi` | Benzer ürünleri ve tasarım desenlerini `WebSearch` ile araştırıp Trace'e çevrilmiş bulgu döndürür; her iddiaya kaynak, tek kaynaklı olana etiket | Tasarımı uygulamaz, dosya değiştirmez; **görmediği arayüz hakkında renk/ölçü iddiası kurmaz** — `WebFetch` egress'te kapalı |
-| `rol-onerici-profil` | Yalnızca CV/`profile.json`'a bakıp "bu profil hangi unvanlara başvurabilir" listesi üretir | `applications.json`'ı **açmaz**; piyasa/ilan verisi kullanmaz, şirket önermez |
-| `rol-onerici-gecmis` | Yalnızca başvuru sonuçları + `insights.py` + Indeed ilan varlığına bakıp aynı listeyi bağımsız üretir | `profile.json`'ı ve CV'yi **açmaz**; n<4 örneklemden sonuç çıkarmaz, şirket önermez |
-| `buyume-stratejisti` | **Ürünün** büyümesine bakar: kitle, aktivasyon/retention döngüsü, kanal, PLG olabilirlik, ülke ölçeklemesi, birim ekonomi. Her rakamı ÖLÇÜM/KIYAS/VARSAYIM diye etiketler | Gelir, maliyet, pazar büyüklüğü **uydurmaz** — elimizde yok; kurucunun kendi kullanımını kullanıcı davranışı diye sunmaz (n=1); kullanıcının kariyerine karışmaz |
+| `posting-analyzer` | İlan metnini yapılandırılmış gereksinime çevirir: rol ailesi, kıdem bandı, araçlar, lokasyon, belirsizlikler | Puanlama yapmaz, CV'ye bakmaz |
+| `matcher` | Çözümleyicinin çıktısını profille karşılaştırıp `match` objesi, segment ve `gap_skills` üretir | `data/` altına yazmaz — objeyi döndürür, kaydı ana oturum yazar |
+| `interview-prep` | Bir başvuru mülakat/değerlendirme aşamasına girdiğinde hazırlık notu üretir: muhtemel sorular, CV'nin zayıf kalacağı noktalar, karşı tarafa sorulacak sorular | Puanlama yapmaz, mülakat sonucu tahmin etmez, `data/` altına yazmaz |
+| `data-auditor` | `data/applications.json`'ı şemaya ve iç tutarlılığa karşı denetler — tanınmayan `stage`, `match` sapması, `links_actions`'ta unutulan `kind`, sızmış üçüncü kişi bilgisi | Hiçbir dosyaya yazmaz/düzeltmez — yalnızca rapor döner; yanlış pozitifi gerçekten ayırt eder, uydurmaz |
+| `career-advisor` | 68 başvurunun tamamı + CV'ye birden bakıp konumlandırma çıkarır: gerçekçi rol/kıdem hedefi, İK ekranında CV'nin nerede elendiği, enerjinin nerede israf olduğu | Tek ilan puanlamaz, mülakat hazırlamaz, kurs önermez; **maaş/piyasa verisi uydurmaz** — elimizde yok |
+| `market-researcher` | Benzer ürünleri ve tasarım desenlerini `WebSearch` ile araştırıp Trace'e çevrilmiş bulgu döndürür; her iddiaya kaynak, tek kaynaklı olana etiket | Tasarımı uygulamaz, dosya değiştirmez; **görmediği arayüz hakkında renk/ölçü iddiası kurmaz** — `WebFetch` egress'te kapalı |
+| `role-advisor-profile` | Yalnızca CV/`profile.json`'a bakıp "bu profil hangi unvanlara başvurabilir" listesi üretir | `applications.json`'ı **açmaz**; piyasa/ilan verisi kullanmaz, şirket önermez |
+| `role-advisor-history` | Yalnızca başvuru sonuçları + `insights.py` + Indeed ilan varlığına bakıp aynı listeyi bağımsız üretir | `profile.json`'ı ve CV'yi **açmaz**; n<4 örneklemden sonuç çıkarmaz, şirket önermez |
+| `growth-strategist` | **Ürünün** büyümesine bakar: kitle, aktivasyon/retention döngüsü, kanal, PLG olabilirlik, ülke ölçeklemesi, birim ekonomi. Her rakamı ÖLÇÜM/KIYAS/VARSAYIM diye etiketler | Gelir, maliyet, pazar büyüklüğü **uydurmaz** — elimizde yok; kurucunun kendi kullanımını kullanıcı davranışı diye sunmaz (n=1); kullanıcının kariyerine karışmaz |
 
 **İlk ikisi neden ayrı:** bir ilanı hem yorumlayıp hem puanlayan tek ajan,
 ilanı kendi vereceği puana göre okumaya başlıyor. Ayrık tutulunca çözümleyici
@@ -362,16 +362,16 @@ tarafsız veri üretiyor, puanlayıcı da o veriyle çalışıyor.
 Trace'in 20 ayrı uzmanlık gerektiren işi yok. Raporlama ve sayısal analiz kurallı iş — `pipeline.py` ve `insights.py` bunları
 model çağrısı yapmadan üretir. Gmail taraması/sınıflandırması ayrıca yetkili
 oturumda yürür; bu iki Python scripti Gmail taramaz. Ajan yalnızca yargı gerektiren yerde kullanılır.
-`mulakat-hazirlik` bu yüzden eklendi — "bu role ne sorulur" mekanik bir
+`interview-prep` bu yüzden eklendi — "bu role ne sorulur" mekanik bir
 kural değil, kurstaki "toplantı briefingi hazırlayan" ajanın karşılığı.
-`veri-denetleyici` de aynı mantıkla — kurstaki "kendi işini eleştiren, test
+`data-auditor` de aynı mantıkla — kurstaki "kendi işini eleştiren, test
 koşturup raporlayan" ajanın karşılığı; hangi sapmanın gerçek hata, hangisinin
 bilinçli `null` olduğunu ayırt etmek yargı ister, kural değildir.
-`kariyer-danismani` ise `insights.py`'nin hesapladığı oranların **ne anlama
+`career-advisor` ise `insights.py`'nin hesapladığı oranların **ne anlama
 geldiğini** söyler: oranı kod üretir, "tek başvurulu bir track'in %100'ü
 gürültüdür, buna göre karar verme" demek yargıdır.
 
-**`buyume-stratejisti` neden ayrı:** ürünü bir işletme gibi ele alan tek
+**`growth-strategist` neden ayrı:** ürünü bir işletme gibi ele alan tek
 yer burası. Elimizde ikinci kullanıcı, gelir ve maliyet verisi olmadığı
 için asıl işi sayı üretmek değil, **varsayımları adlandırmak** ve en
 riskli olanı test edecek en ucuz deneyi söylemek. Ayrıca bu ürünün
@@ -383,7 +383,7 @@ yani retention ürün kalitesiyle değil dış bir olayla sınırlı.
 başvuru sonuçlarına ve ilan varlığına; kanıt tabanları kasıtlı olarak
 kesişmez. Anlaştıkları unvan güçlü hedeftir, ayrıştıkları yer asıl
 bilgidir — ortalaması alınmaz, iki gerekçe yan yana gösterilir
-(`rol-hedefleme` skill'indeki dört mutabakat sınıfı).
+(`role-targeting` skill'indeki dört mutabakat sınıfı).
 
 ## Referans
 

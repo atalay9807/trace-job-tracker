@@ -1,6 +1,6 @@
 ---
-name: mail-siniflandirma
-description: "Trace'in günlük Gmail taramasını yapar: iş temalı e-postaları bulur, gürültüyü ayıklar, her maili beş durumdan birine sınıflandırır (teklif / mülakat daveti / aksiyon gerekli / red / incelemede) ve data/applications.json'daki kaydı günceller. Günlük tarama çalıştırılırken, \"mailleri tara\", \"yeni başvuru var mı\", \"gelen kutusuna bak\" dendiğinde, bir e-postanın hangi kategoriye girdiği sorulduğunda ve Routine'in prompt'u düzenlenirken bu skill'i kullan. Sorguları ve gürültü listesini ezberden yazma — burada."
+name: mail-classification
+description: "Runs Trace's daily Gmail scan: finds job-related email, strips out the noise, classifies each message into one of five states (offer / interview invitation / action required / rejection / under review) and updates the matching record in data/applications.json. Use it when running the daily scan, when the user says 'scan the mail', 'any new applications', 'check the inbox', when asked which category an email falls into, and when editing the Routine's prompt. Do not write the queries or the noise list from memory — they are here."
 ---
 
 # Mail sınıflandırma
@@ -99,7 +99,7 @@ mesajlarda bu ilk tarihi değiştirme. Eski kayıtta bilinmiyorsa null kalır.
 Yanıt kanıtı varsa `response_received: true`, yalnızca otomatik onay varsa false
 kullanılabilir; ileri aşama veya red ile false birlikte kullanılamaz.
 
-**Yeni kayıt açarken** ilan metni varsa `eslesme-puanlama` skill'ine geç.
+**Yeni kayıt açarken** ilan metni varsa `match-scoring` skill'ine geç.
 Yalnızca başlık/şirket varsa `match: null`, `gap_skills: []` bırak; puan uydurma.
 Yazdıktan sonra `python3 src/veri.py` ile denetle.
 

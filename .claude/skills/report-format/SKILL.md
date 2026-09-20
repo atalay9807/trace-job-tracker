@@ -1,6 +1,6 @@
 ---
-name: rapor-formati
-description: "Trace'in günlük ve haftalık raporlarını üretir: aciliyet puanlaması, hatırlatma eşikleri, e-posta gövdesinin yapısı ve pazartesi geri bildirim bloğu. Günlük rapor yazılırken, \"raporu üret\", \"bugün ne yapmalıyım\", \"hatırlatmaları çıkar\" dendiğinde, Routine'in prompt'u düzenlenirken ve takip maili taslağı hazırlanırken bu skill'i kullan. Eşikleri ve tablo kolonlarını ezberden yazma — burada. Rapor sessiz kalmamalı; kritik gelişme yoksa bunu da açıkça söylemeli."
+name: report-format
+description: "Produces Trace's daily and weekly reports: urgency scoring, reminder thresholds, the structure of the email body, and the Monday feedback block. Use it when writing the daily report, when the user says 'generate the report', 'what should I do today', 'pull the reminders', when the Routine's prompt is edited, and when drafting a follow-up email. Do not write the thresholds or the table columns from memory — they are here. A report must never stay silent; when nothing critical happened it says so explicitly."
 ---
 
 # Rapor formatı

@@ -1,6 +1,6 @@
 ---
-name: mulakat-hazirlik
-description: "Bir başvuru mülakat/değerlendirme aşamasına geçtiğinde (stage: interview_scheduling, assessment, next_stage) hazırlık notu üretir — muhtemel sorular, CV'nin zayıf kalacağı noktalar, karşı tarafa sorulacak sorular. \"Mülakata hazırlan\", \"bu görüşme için ne bekleyeyim\", \"hangi soruları sorayım\" dendiğinde kullan. Puanlama yapmaz, data/'ya yazmaz — yalnızca hazırlık notu döner."
+name: interview-prep
+description: "When an application moves into an interview or assessment stage (stage: interview_scheduling, assessment, next_stage) it produces a preparation note — likely questions, the points where the CV will be weak, questions to ask the other side. Use it when the user says 'prepare me for the interview', 'what should I expect from this call', 'what should I ask'. Does no scoring and writes nothing under data/ — it returns a preparation note only."
 tools: Read, Grep, Glob, WebFetch
 model: opus
 ---
@@ -75,6 +75,6 @@ varsa (olmamalı ama kontrol et) notunda kullanma; rol etiketiyle an
 
 - `data/` altındaki dosyaları değiştirme — notu döndürürsün, `notes`
   alanına eklemek istenirse ana oturum yapar
-- Eşleşme puanı hesaplama veya değiştirme — bu `eslestirici`'nin işi
+- Eşleşme puanı hesaplama veya değiştirme — bu `matcher`'nin işi
 - Şirket hakkında WebFetch başarısızsa "muhtemelen şöyledir" diye tahmin
   üretme — elindeki gerçek veriyle sınırlı kal

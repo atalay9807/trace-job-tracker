@@ -1,6 +1,6 @@
 ---
-name: cv-analizi
-description: Bir CV'yi data/profile.json şemasına çevirirken izlenecek çıkarım kuralları — kıdem bandı nasıl belirlenir, araç seviyeleri 1-5 nasıl atanır, güçlü alan/sektör/açık listeleri nasıl doldurulur, lokasyon politikası nasıl kurulur. Yeni CV yüklendiğinde, profile.json güncellenirken, "CV'mi analiz et" dendiğinde ve Bağlan sayfasındaki CV yükleme akışı değiştirilirken bu skill'i kullan. Seviyeleri ve bantları göz kararı atama — rubrik burada; profile.json eşleşme motorunun tek referansı, keyfi bir değer bütün puanları kaydırır.
+name: cv-analysis
+description: "Inference rules for turning a CV into the data/profile.json schema — how the seniority band is decided, how 1-5 tool levels are assigned, how the strengths, sectors and gaps lists are filled in, how the location policy is set. Use it when a new CV is uploaded, when profile.json is updated, when the user says 'analyze my CV', and when the CV upload flow on the Connect page changes. Never assign levels or bands by eye — the rubric is here; profile.json is the match engine's only reference, and one arbitrary value shifts every score."
 ---
 
 # CV analizi
@@ -79,7 +79,7 @@ Her açık **tek cümle** ve iki parça taşır: ne eksik + nerede sorun
 dezavantaj"*
 Kötü: *"Python bilmiyor"* — nerede sorun olacağını söylemiyor.
 
-Açıklar `eslesme-puanlama`'daki beceri boyutunu ve `gap_skills`
+Açıklar `match-scoring`'daki beceri boyutunu ve `gap_skills`
 atamasını doğrudan besler; eksik yazılan bir açık orada da eksik kalır.
 
 ## Sektör listeleri
@@ -88,12 +88,12 @@ atamasını doğrudan besler; eksik yazılan bir açık orada da eksik kalır.
 - **`industries_transferable`** — çalışmadığı ama iş modeli benzer
   olduğu için deneyimin taşındığı sektörler; gerekçesi olmalı
 - **`domains_strong`** — sektör değil **iş alanı** (growth analitiği,
-  FP&A, ticari strateji). İkisini karıştırma; `eslesme-puanlama`'da
+  FP&A, ticari strateji). İkisini karıştırma; `match-scoring`'da
   rol ailesi ile sektör ayrı boyutlar.
 
 ## Lokasyon politikası
 
-`location_policy` değerleri `eslesme-puanlama`'daki lokasyon cezalarıyla
+`location_policy` değerleri `match-scoring`'daki lokasyon cezalarıyla
 **aynı olmak zorunda**; ikisi ayrışırsa puanlar tutarsızlaşır. Değeri
 burada değiştiriyorsan skill'i de güncelle.
 

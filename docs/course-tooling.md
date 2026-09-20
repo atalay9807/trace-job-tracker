@@ -26,7 +26,7 @@ importance** — only of how much the course talked about each one.
 | Tool | Mentions | What it is for in the course | Equivalent in Trace |
 |---|---|---|---|
 | **Apify** | ~48 | Connected as an MCP connector; used to pull Instagram data and as a source in the lead-generation system | **Not used — cannot be used.** The only external data we need is LinkedIn posting text, and that cannot be scraped (User Agreement). Pointing Apify at LinkedIn would make it our problem, not the tool's |
-| **Indeed MCP** | — | Not in the course | **In use** — the official search API, backing the posting-existence check in the `rol-onerici-gecmis` agent |
+| **Indeed MCP** | — | Not in the course | **In use** — the official search API, backing the posting-existence check in the `role-advisor-history` agent |
 
 ### 3. Development environment
 

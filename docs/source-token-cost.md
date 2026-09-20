@@ -31,10 +31,10 @@ The rule written in `CLAUDE.md` — an agent is used only where judgement is
 required — is simultaneously the project's token strategy.
 
 **The one open point.** All nine agents are set to `model: opus`. Two of them
-are close to mechanical work: `ilan-cozumleyici` (turning posting text into
-structured fields) and `veri-denetleyici` (validating against the schema).
-Those could plausibly run on a smaller model. `kariyer-danismani`,
-`buyume-stratejisti`, and the two role advisors are the opposite — shrinking
+are close to mechanical work: `posting-analyzer` (turning posting text into
+structured fields) and `data-auditor` (validating against the schema).
+Those could plausibly run on a smaller model. `career-advisor`,
+`growth-strategist`, and the two role advisors are the opposite — shrinking
 the model there would cost output quality.
 
 **Measure before changing anything.** No agent's token usage has been measured
@@ -217,10 +217,10 @@ yerde kullanılır" kuralı, aynı zamanda projenin token stratejisi.
 
 **Gözden geçirilecek tek somut nokta:** dokuz ajanın hepsi `model: opus`.
 Videodaki karışım fikri burada karşılık bulabilir — ama körlemesine değil.
-`ilan-cozumleyici` (ilan metnini yapılandırılmış alanlara çevirir) ve
-`veri-denetleyici` (şemaya karşı denetler) kurala yakın, mekanik işler;
+`posting-analyzer` (ilan metnini yapılandırılmış alanlara çevirir) ve
+`data-auditor` (şemaya karşı denetler) kurala yakın, mekanik işler;
 bunlar daha küçük bir modelde de çalışabilir. Buna karşılık
-`kariyer-danismani`, `buyume-stratejisti` ve iki rol önericisi tam da
+`career-advisor`, `growth-strategist` ve iki rol önericisi tam da
 yargı işi — orada model küçültmek çıktının değerini düşürür.
 
 **Ölçmeden değiştirme.** Şu an hiçbir ajanın token kullanımını ölçmüş

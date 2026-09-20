@@ -16,7 +16,7 @@ when the move actually happens.
 
 | Constraint | Today | Locally |
 |---|---|---|
-| **Egress lock** | Package registries and `github.com` only. `WebFetch` is closed — `huntr.co` and `builtin.com` were tried and returned `EGRESS_BLOCKED` | Open. A competitor's interface can actually be opened and looked at, which closes the biggest gap in the `pazar-arastirmacisi` agent |
+| **Egress lock** | Package registries and `github.com` only. `WebFetch` is closed — `huntr.co` and `builtin.com` were tried and returned `EGRESS_BLOCKED` | Open. A competitor's interface can actually be opened and looked at, which closes the biggest gap in the `market-researcher` agent |
 | **Ephemeral container** | The disk disappears when the session ends; anything uncommitted is lost | The disk persists. Screenshots, intermediate output, and scratch files stay |
 | **The published page cannot be verified** | `github.io` cannot be opened; the Pages output can only be verified by asking the owner | It opens in your own browser, and Playwright can test the real published address |
 | **No server-side OAuth** | The Connect page cannot establish a real Gmail connection and shows an error state | Moving locally does not solve this either — OAuth needs a hosted backend. The move does **not** fix it; it is separate work |

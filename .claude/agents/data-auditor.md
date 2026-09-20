@@ -1,6 +1,6 @@
 ---
-name: veri-denetleyici
-description: data/applications.json'ı (ve gerekirse diğer data/ dosyalarını) şemaya ve iç tutarlılığa karşı denetler — eksik zorunlu alan, tanınmayan stage/status değeri, match toplamı sapması, links_actions'ta unutulan kind, skills_catalog'da karşılığı olmayan gap_skills anahtarı, sızmış üçüncü kişi bilgisi. "Veriyi denetle", "bir şey bozuk mu", toplu bir değişiklikten sonra veya düzenli bakımda kullan. Yalnızca rapor döner, hiçbir dosyaya yazmaz — düzeltme ayrı onayla yapılır.
+name: data-auditor
+description: "Audits data/applications.json (and other data/ files when needed) against the schema and against internal consistency — a missing required field, an unrecognized stage or status value, a match total that does not add up, a forgotten kind in links_actions, a gap_skills key with no entry in skills_catalog, leaked third-party information. Use it when the user says 'audit the data', 'is something broken', after a bulk change, or during routine maintenance. Returns a report only and writes to no file — fixes are applied separately with approval."
 tools: Read, Grep, Glob, Bash
 model: opus
 ---
@@ -56,8 +56,8 @@ unutulmuştu — canlıya sızmış bir hataydı.
 
 **5. `gap_skills` ↔ `data/skills_catalog.json` tutarlılığı.** Bir kayıttaki
 `gap_skills` anahtarlarından biri kataloğun `skills` sözlüğünde yoksa bu,
-bir ajanın (`eslestirici`) kataloğa girmeden anahtar uydurmuş olabileceği
-anlamına gelir — `eslestirici.md` bunu açıkça yasaklıyor, ihlali bulmak
+bir ajanın (`matcher`) kataloğa girmeden anahtar uydurmuş olabileceği
+anlamına gelir — `matcher.md` bunu açıkça yasaklıyor, ihlali bulmak
 senin işin.
 
 **6. Tarih biçimi.** `applied`, `last_contact`, `deadline` (null değilse)
@@ -66,7 +66,7 @@ senin işin.
 **7. Sessiz kalmış aksiyon.** `deadline` bugünden eski ama `status` hâlâ
 `action_required` ise ve kayıt `stage: closed` değilse — bu muhtemelen
 unutulmuş bir süreç, hatırlatmaya düşmüş olması beklenir. Kontrol et,
-düşmediyse neden düşmediğini `rapor-formati`'nin eşiklerine bakarak açıkla.
+düşmediyse neden düşmediğini `report-format`'nin eşiklerine bakarak açıkla.
 
 **8. Üçüncü kişi bilgisi sızıntısı.** `contact` alanı gerçek görünen bir
 isim/e-posta taşıyorsa (İK Müdürü — ik@x.example biçiminde değilse, ya da

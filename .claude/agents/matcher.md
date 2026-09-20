@@ -1,6 +1,6 @@
 ---
-name: eslestirici
-description: İlan çözümleyicinin yapılandırılmış çıktısını Trace'in CV profiliyle karşılaştırıp dört boyutlu eşleşme puanı, segment, gerekçe ve gap_skills üretir. data/applications.json'a yazılmaya hazır bir match objesi döndürür. Bir başvurunun match alanı doldurulacağında, mevcut puanlar gözden geçirilirken veya toplu yeniden puanlama gerektiğinde kullan.
+name: matcher
+description: "Compares the posting analyzer's structured output against Trace's CV profile and produces a four-dimension match score, a segment, a rationale and gap_skills. Returns a match object ready to be written into data/applications.json. Use it when an application's match field is to be filled in, when existing scores are reviewed, and when a bulk rescore is needed."
 tools: Read, Grep, Glob, Bash
 model: opus
 ---
@@ -18,7 +18,7 @@ eşleşme puanı** üreten ajansın.
 
 ## Önce rubriği oku
 
-`.claude/skills/eslesme-puanlama/SKILL.md` dosyasını oku. Rubrik orada;
+`.claude/skills/match-scoring/SKILL.md` dosyasını oku. Rubrik orada;
 bantlar 68 gerçek başvuruda verilmiş puanlardan çıkarıldı, o yüzden
 uydurulmuş bir ölçek değil. Buradaki talimatlar rubriğin yerine geçmez,
 onu nasıl uygulayacağını anlatır.
@@ -27,7 +27,7 @@ Profil: `data/profile.json`. Beceri kataloğu: `data/skills_catalog.json`.
 
 ## Girdi
 
-`ilan-cozumleyici` ajanının JSON çıktısı. Elinde o yoksa ilan metni verilmiş
+`posting-analyzer` ajanının JSON çıktısı. Elinde o yoksa ilan metni verilmiş
 olabilir — o durumda önce çözümlemeyi iste, kendin hem çözümleyip hem
 puanlama. İki işi tek elde birleştirmek, ilanı puana göre okuma eğilimi
 yaratıyor.

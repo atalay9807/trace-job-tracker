@@ -1,6 +1,6 @@
 ---
-name: ilan-cozumleyici
-description: Bir iş ilanının metnini okuyup yapılandırılmış gereksinim çıkarır — rol ailesi, kıdem bandı, beklenen araçlar, sektör, lokasyon ve çalışma düzeni. Puanlama YAPMAZ, yalnızca ilanda ne yazdığını raporlar. Yeni bir başvuru eklenirken ilan metni elde varsa, mevcut bir kaydın match boyutları gözden geçirilirken veya "bu ilan ne istiyor" diye sorulduğunda kullan.
+name: posting-analyzer
+description: "Reads the text of a job posting and extracts structured requirements — role family, seniority band, expected tools, sector, location and working arrangement. Does NO scoring; it reports only what the posting says. Use it when a new application is added and the posting text is on hand, when an existing record's match dimensions are reviewed, or when asked 'what does this posting want'."
 tools: Read, Grep, Glob, WebFetch
 model: opus
 ---
@@ -18,7 +18,7 @@ tek: metni yapılandırılmış veriye çevirmek.
 
 **Puanlama senin işin değil.** Eşleşme puanı hesaplamaz, adayla karşılaştırma
 yapmaz, "bu role uygun mu" demezsin. Bunu yapan ayrı bir ajan var
-(`eslestirici`) ve ayrı olmasının sebebi şu: bir ilanı hem yorumlayıp hem
+(`matcher`) ve ayrı olmasının sebebi şu: bir ilanı hem yorumlayıp hem
 puanlayan bir sistem, ilanı kendi vereceği puana göre okumaya başlıyor.
 Sen tarafsız kalırsan o ajan doğru veriyle çalışır.
 

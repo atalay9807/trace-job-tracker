@@ -1,6 +1,6 @@
 ---
-name: egitim-onerisi
-description: data/skills_catalog.json'a yeni bir beceri/kaynak eklerken veya Eğitim sayfası ile red-anındaki kurs kartının içeriğini değiştirirken izlenecek kurallar — kaynak şeması, çizik-fiyat/indirim alanları, öncelik sıralaması (src/insights.py'deki skill_gaps formülü) ve üç yerde zorunlu simülasyon etiketi. "gap_skills"e yeni bir anahtar eklerken, eğitim sayfasını veya kurs kartını değiştirirken, ya da journey.json'daki {top_gap_name}/{top_gap_count} kalıplarına dokunurken bu skill'i kullan. Simülasyon etiketini kaldırma veya "gerçek kurs" gibi göster — CLAUDE.md'nin kaldırılmaz üç sınırından biri burada.
+name: training-recommendation
+description: "Rules for adding a new skill or resource to data/skills_catalog.json, and for changing the Training page or the course card shown at the moment of a rejection — resource schema, strikethrough price and discount fields, priority ordering (the skill_gaps formula in src/insights.py), and the simulation label that is mandatory in three places. Use it when adding a new key to gap_skills, when changing the training page or the course card, or when touching the {top_gap_name} / {top_gap_count} patterns in journey.json. Never remove the simulation label or present the courses as real — this is one of the three limits CLAUDE.md says cannot be removed."
 ---
 
 # Eğitim önerisi
@@ -32,8 +32,8 @@ tasarım tercihi değildir.
 
 ## Yeni bir skills_catalog girişi ekleme
 
-Bir `gap_skills` anahtarı kataloğa henüz girmemişse (`eslestirici` veya
-`ilan-cozumleyici` bunu fark edip `notlar`'a yazar, kendi eklemez — bu
+Bir `gap_skills` anahtarı kataloğa henüz girmemişse (`matcher` veya
+`posting-analyzer` bunu fark edip `notlar`'a yazar, kendi eklemez — bu
 skill devreye girip senin eklemen için var):
 
 ```json

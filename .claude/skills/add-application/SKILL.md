@@ -1,12 +1,12 @@
 ---
-name: yeni-basvuru-ekleme
-description: data/applications.json'a yeni bir başvuru kaydı açarken izlenecek kurallar — id biçimi, channel/track/fit alanlarının nasıl belirlendiği, aynı şirkete tekrar başvuruda dedup, location/contact biçimi. Mail taraması yeni bir başvuru bulduğunda, ilan-cozumleyici+eslestirici çıktısı kayda dönüştürülürken veya kullanıcı "bu başvuruyu ekle" dediğinde kullan. Şema alanlarını uydurma veya CLAUDE.md'deki özetten hatırlamaya çalışma — biçim burada, 68 gerçek kayıttan çıkarıldı.
+name: add-application
+description: "Rules for opening a new application record in data/applications.json — id format, how channel/track/fit are decided, deduplication when applying to the same company again, location and contact formats. Use it when a mail scan finds a new application, when posting-analyzer + matcher output is turned into a record, or when the user says 'add this application'. Do not invent schema fields or try to recall them from the CLAUDE.md summary — the format lives here, derived from 68 real records."
 ---
 
 # Yeni başvuru ekleme
 
-`mail-siniflandirma` bir maili "buna karşılık gelen kayıt yok" diye
-işaretlediğinde, ya da `ilan-cozumleyici` + `eslestirici` ikilisinin
+`mail-classification` bir maili "buna karşılık gelen kayıt yok" diye
+işaretlediğinde, ya da `posting-analyzer` + `matcher` ikilisinin
 ürettiği veri `data/applications.json`'a inecekken bu skill devreye girer.
 Amaç, 68 kaydın tutarlı olduğu biçimi bozmadan 69'uncuyu eklemek.
 
@@ -67,7 +67,7 @@ aynı şey değil — `fit` önceliklendirme formülünde (`docs/technical-contr
 - 🟡 Orta (45–61) → `fit` 2–3
 - 🔴 Zayıf (0–44) → `fit` 1–2
 
-Ama son karar burada değil — `eslestirici` puanı hesapladıktan sonra fit'i
+Ama son karar burada değil — `matcher` puanı hesapladıktan sonra fit'i
 elle ver, mekanik yuvarlama yapma. Aynı segmentte iki ilan farklı `fit`
 alabilir (biri deadline'ı geçmiş ve artık önemsiz, diğeri hâlâ canlı).
 
@@ -94,13 +94,13 @@ Gerçek isim/e-posta asla girmez. `.example` alan adı zorunlu.
 
 ## `match` ve `gap_skills`
 
-Bu alanları burada doldurma — `eslesme-puanlama` skill'ine (veya
-`eslestirici` ajanına) geç. Bu skill yalnızca kaydın **iskeletini** kurar;
+Bu alanları burada doldurma — `match-scoring` skill'ine (veya
+`matcher` ajanına) geç. Bu skill yalnızca kaydın **iskeletini** kurar;
 puanlama ayrı bir disiplin.
 
 ## `links_actions`
 
-URL kuralı `mail-siniflandirma` skill'inde — tekrar yazılmıyor. Özet: yalnızca
+URL kuralı `mail-classification` skill'inde — tekrar yazılmıyor. Özet: yalnızca
 mailde doğrulanmış link gerçek URL olur, yoksa Gmail arama derin bağlantısı.
 
 ## Kayıttan sonra doğrula

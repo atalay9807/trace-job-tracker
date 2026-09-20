@@ -1,6 +1,6 @@
 ---
-name: rol-hedefleme
-description: Hangi unvanlara ve sektörlere başvurulacağını belirleyen çift ajan akışını yürütür — rol-onerici-profil ve rol-onerici-gecmis ajanlarını bağımsız çalıştırır, çıktılarını karşılaştırır, dört mutabakat sınıfına ayırır ve data/role_targets.json'a yazar. "Hangi işlere başvurabilirim", "CV'me göre ne aramalıyım", "rol hedeflerini güncelle" dendiğinde ve Profil sayfasındaki rol önerileri bölümü değiştirilirken kullan. İki ajanı tek çıktıya indirgeme — ayrıştıkları yer asıl bilgi.
+name: role-targeting
+description: "Runs the twin-agent flow that decides which titles and sectors to apply for — runs the role-advisor-profile and role-advisor-history agents independently, compares their output, sorts it into four agreement classes, and writes data/role_targets.json. Use it when the user says 'which jobs can I apply for', 'what should I search for given my CV', 'update the role targets', and when the role suggestions section of the Profile page changes. Never collapse the two agents into a single output — where they disagree is the real information."
 ---
 
 # Rol hedefleme
@@ -15,9 +15,9 @@ Tek ajan CV'ye bakıp "bunları yapabilirsin" der ve iyimser çıkar; ya da
 yalnızca geçmişe bakıp "burada başarısız oldun" der ve daraltır. İkisi
 ayrı kanıta baktığı için **anlaşmazlıkları bilgi taşır:**
 
-- `rol-onerici-profil` → yalnızca `data/profile.json` + CV. Yukarı doğru:
+- `role-advisor-profile` → yalnızca `data/profile.json` + CV. Yukarı doğru:
   *bu profil ne yapabilir?*
-- `rol-onerici-gecmis` → yalnızca `data/applications.json` + `insights.py`
+- `role-advisor-history` → yalnızca `data/applications.json` + `insights.py`
   + Indeed ilan varlığı. Aşağı doğru: *sahada ne oldu, ne var?*
 
 Kanıt tabanları **kesişmez** ve bu kasıtlı. Bir ajana ötekinin verisini
@@ -95,7 +95,7 @@ gelen tek meşru veri, kullanıcının kendi gelen kutusundaki maillerdir.
 **Maaş ve piyasa büyüklüğü verisi yok.** İlan sayısı talep göstergesi
 değildir; "bu alan büyüyor" cümlesi kurulmaz.
 
-**`kariyer-danismani` ile karıştırma.** O ajan konumlandırma stratejisi
+**`career-advisor` ile karıştırma.** O ajan konumlandırma stratejisi
 ve İK ekranı kritiği üretir (nerede eleniyorsun, enerji nerede israf).
 Bu akış somut bir **arama listesi** üretir. Biri "neden", öteki "ne
 arayacaksın".
