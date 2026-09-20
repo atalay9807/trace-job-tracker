@@ -1,9 +1,14 @@
 ---
 name: rapor-formati
-description: Trace'in günlük ve haftalık raporlarını üretir: aciliyet puanlaması, hatırlatma eşikleri, e-posta gövdesinin yapısı ve pazartesi geri bildirim bloğu. Günlük rapor yazılırken, "raporu üret", "bugün ne yapmalıyım", "hatırlatmaları çıkar" dendiğinde, Routine'in prompt'u düzenlenirken ve takip maili taslağı hazırlanırken bu skill'i kullan. Eşikleri ve tablo kolonlarını ezberden yazma — burada. Rapor sessiz kalmamalı; kritik gelişme yoksa bunu da açıkça söylemeli.
+description: "Trace'in günlük ve haftalık raporlarını üretir: aciliyet puanlaması, hatırlatma eşikleri, e-posta gövdesinin yapısı ve pazartesi geri bildirim bloğu. Günlük rapor yazılırken, \"raporu üret\", \"bugün ne yapmalıyım\", \"hatırlatmaları çıkar\" dendiğinde, Routine'in prompt'u düzenlenirken ve takip maili taslağı hazırlanırken bu skill'i kullan. Eşikleri ve tablo kolonlarını ezberden yazma — burada. Rapor sessiz kalmamalı; kritik gelişme yoksa bunu da açıkça söylemeli."
 ---
 
 # Rapor formatı
+
+Veri yolu ve ortak geliştirme kuralları `docs/ORTAK_CALISMA.md` içindedir.
+`data/...` seçilmiş TRACE_DATA klasörünü ifade eder; özel veri eksikse demo
+veriye dönülmez. Diğer ajana aktarılırken mutlak veri yolu açıkça verilir.
+
 
 Trace'in çıktı katmanı. İki şeyi ayrı tutar: **aciliyet** ("bugün ne
 yapmalıyım") ve **eşleşme** ("enerjimi nereye harcamalıyım"). Rapor ikisini
@@ -12,7 +17,7 @@ ayrı kolonda gösterir ve kararı kullanıcıya bırakır — birleştirilmiş 
 olabilir ve bunu kullanıcı bilmek ister.
 
 Üretim `python3 src/pipeline.py` ile yapılır. Formülleri ve eşikleri elle
-hesaplama — sabitler `src/pipeline.py` başındadır.
+hesaplama — aşama ağırlıkları `src/veri.py`, aciliyet eşikleri `src/pipeline.py` içindedir.
 
 ---
 
@@ -44,10 +49,12 @@ Bantlar: 🔴 Kritik (≥100 ya da `action_required` + deadline ≤3 gün) ·
 | Deadline 3-7 gün | "📅 Deadline N gün sonra." |
 | Mülakattan 5+ gün, dönüş yok | "✉️ Mülakattan N gün geçti — nazik takip maili at." |
 | 12+ gün sessizlik | "✉️ N gündür sessiz — takip maili zamanı." |
-| 21+ gün sessizlik | "💤 N gündür sessiz — kapanmış say, listeden düşür." |
+| 21+ gün sessizlik | "💤 N gündür sessiz — kapanmış olabilir; durumunu kontrol et." |
 
-Bu eşikler keyfi değil: taranan veride şirketlerin **medyan yanıt süresi 10
-gün**. 12 gün, "artık normal süreyi aştı" demek için makul ilk sinyal.
+12 ve 21 gün ürün kurallarıdır; ilk yanıt süresinin ölçümünden türetildiği
+iddia edilmez. Geçmişte 10 gün diye sunulan sayı son temas tarihinden
+hesaplanıyordu. İlk yanıt ölçümü için `first_response` gerekir. Kapanmış veya
+reddedilmiş başvurular hatırlatma üretmez; sessizlik kaydı otomatik kapatmaz.
 
 ---
 
@@ -70,7 +77,7 @@ Gövde sırası:
 
 ### Sessiz kalma
 
-Kritik gelişme yoksa rapor **yine gönderilir** ve şu ikisini yapar: durumu
+Tarama yapılmış ve gönderim yetkisi varsa kritik gelişme yokken rapor **yine gönderilir** ve şu ikisini yapar: durumu
 açıkça söyler ("Son 24 saatte yeni mülakat daveti, test, teklif veya red
 gelmedi.") ve açık kalan aksiyonları tekrar hatırlatır. Boş rapor, kullanıcının
 sisteme güvenini bir günde bitirir.
@@ -139,3 +146,7 @@ Rapor üç şeyi **asla** kesin gibi sunmaz:
 - **Kurs verisi** — simülasyon olarak etiketlidir.
 
 Bu etiketler raporu zayıf göstermiyor, güvenilir kılıyor. Kaldırılmaz.
+
+Python komutları Gmail taramaz ve e-posta göndermez. Yalnızca kayıtlı veriden
+rapor üretildiğinde “son 24 saatte yeni mail gelmedi” denmez; bu ancak gerçek
+tarama sonucu bilinebilir. Gönderim ayrıca yetkili oturumun işidir.

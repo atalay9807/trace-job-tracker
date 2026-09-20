@@ -1,0 +1,8 @@
+{
+  "name": "trace-kontroller",
+  "private": true,
+  "description": "Trace arayüzü için ağsız DOM testleri; uygulamanın Python çalışması için gerekli değil.",
+  "scripts": {"test": "node --test tests/arayuz.test.cjs"},
+  "devDependencies": {"jsdom": "26.1.0"},
+  "engines": {"node": ">=20"}
+}

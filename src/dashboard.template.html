@@ -1,7 +1,11 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Trace</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
   /* ============================================================
@@ -525,6 +529,9 @@
   .price .free{color:var(--good);font-weight:600}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
+</head>
+<body>
+<noscript>Trace panosunu görüntülemek için JavaScript açık olmalı.</noscript>
 
 
 
@@ -548,6 +555,7 @@
 </header>
 
 <div class="wrap">
+  <p class="basis" id="demoNote" hidden></p>
 
   <!-- ============ ANA SAYFA ============ -->
   <section class="page" id="p-ana">
@@ -757,7 +765,7 @@
         <span class="hint" id="rtMeta"></span>
       </div>
       <div class="rtnote">İki ajan aynı soruyu <b>ayrı kanıtla</b> yanıtlıyor: biri yalnızca CV'ne,
-        öteki yalnızca 68 başvurunun sonucuna ve ilan varlığına bakıyor. Anlaştıkları unvan güçlü
+        öteki yalnızca kayıtlı başvuru sonuçlarına ve ilan varlığına bakıyor. Anlaştıkları unvan güçlü
         hedeftir; <b>ayrıştıkları yer asıl bilgidir</b> — ortalaması alınmaz, iki gerekçe yan yana durur.</div>
       <div id="roleTargets"></div>
     </section>
@@ -781,33 +789,34 @@
   <section class="page" id="p-baglan">
     <div class="pagehead">
       <h1>Bağlan</h1>
-      <p class="sub">CV'ni yükle ve gelen kutunu bağla. İkisi de bağlandığında sistem her sabah başvurularını tarar.</p>
+      <p class="sub">Bu sürüm örnek verileri gösterir. Gmail bağlantısı ve otomatik tarama bu web sayfasında etkin değildir.</p>
     </div>
     <div class="conn">
       <div class="cbox">
-        <span class="cstat live" id="cvStat">● Canlı — yapay zeka ile analiz</span>
+        <span class="cstat live" id="cvStat">● Ortam desteği kontrol ediliyor</span>
         <h3>CV yükle</h3>
-        <p class="lead">PDF, TXT veya Markdown. Dosya tarayıcından çıkmaz; metni okunup analiz için gönderilir, saklanmaz.</p>
+        <p class="lead">PDF, TXT veya Markdown (PDF: ilk 6 sayfa; analiz: ilk 14.000 karakter). Analiz desteklendiğinde, onayınla CV metni model sağlayıcısına gönderilir. Trace sonucu yalnızca ekranda tutar; sağlayıcının veri politikası ayrıca geçerlidir.</p>
+        <p class="cap" id="cvHint"></p>
+        <label id="cvConsentLabel"><input type="checkbox" id="cvConsent"> CV metnimin analiz için model sağlayıcısına gönderilmesini kabul ediyorum.</label>
         <div class="drop" id="drop" role="button" tabindex="0" aria-label="CV dosyası seç">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5-5 5 5"/><path d="M12 5v12"/></svg>
           <div class="t">Dosyayı sürükle ya da seçmek için tıkla</div>
           <div class="h">.pdf · .txt · .md — en fazla 2 MB</div>
         </div>
         <input type="file" id="cvFile" accept=".pdf,.txt,.md,text/plain" hidden>
-        <div class="cerr" id="cvErr"></div>
+        <div class="cerr" id="cvErr" role="alert"></div>
         <div class="cvout" id="cvOut"></div>
       </div>
 
       <div class="cbox">
         <span class="cstat demo" id="gmStat">● Bağlı değil</span>
         <h3>Gmail bağla</h3>
-        <p class="lead">Yalnızca <b>okuma</b> izni istenir — e-posta gönderme veya silme izni alınmaz.
-          Son 30 gün taranır, iş temalı e-postalar ayrılır.</p>
+        <p class="lead">Bu demoda Google hesabına erişilmez. Gerçek tarama, ayrıca yetkilendirilmiş geliştirme oturumunda çalışır; web üzerinden kullanıcı bağlantısı henüz eklenmedi.</p>
         <button class="act" id="gmailBtn" type="button" style="width:fit-content">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-          Gmail'i bağla
+          Bağlantı hakkında
         </button>
-        <div class="cerr" id="gmErr"></div>
+        <div class="cerr" id="gmErr" role="status"></div>
       </div>
     </div>
   </section>
@@ -869,11 +878,24 @@ const SEG_SHORT= { strong:"Güçlü", good:"İyi", fair:"Orta", weak:"Zayıf" };
 const TONE = { critical:"critical", good:"good", warning:"warning", archive:"archive" };
 const AY = ["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara"];
 const fmtDate = s => { if(!s) return "—"; const [y,m,d]=s.split("-"); return `${+d} ${AY[+m-1]}`; };
-const fmtLong = s => { const [y,m,d]=s.split("-"); return `${+d} ${AY[+m-1]} ${y}`; };
+const fmtLong = s => { if(!s) return "—"; const [y,m,d]=s.split("-"); return `${+d} ${AY[+m-1]} ${y}`; };
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const attr = s => String(s ?? "").replace(/"/g,"&quot;").replace(/</g,"&lt;");
+const attr = esc;
+function safeURL(value) {
+  if(typeof value !== "string" || /[\u0000-\u001f]/.test(value)) return "#";
+  try {
+    const u = new URL(value);
+    return ["https:", "mailto:"].includes(u.protocol) && !u.username && !u.password ? value : "#";
+  } catch { return "#"; }
+}
 const $ = id => document.getElementById(id);
-const byId = {}; D.applications.forEach(a => byId[a.id] = a);
+const byId = Object.create(null); D.applications.forEach(a => byId[a.id] = a);
+
+if (D.demo) {
+  $("demoNote").hidden = false;
+  $("demoNote").textContent = "DEMO · Kerem Aydın örnek profildir. Tarihler " + fmtLong(D.generated) +
+    " itibarıyladır. Bu sayfa hesabına bağlanmaz; başvuru ve e-posta bağlantıları kapalıdır.";
+}
 
 /* ---------------- yönlendirme ---------------- */
 const PAGES = ["ana","basvurular","raporlar","egitim","profil","baglan"];
@@ -894,7 +916,7 @@ const cur = LC.current, nxt = LC.next;
 $("stagePill").innerHTML = `<span class="dot" style="background:var(--brand)"></span>Aşama: <b>${esc(cur.label)}</b>`;
 $("appsSub").textContent =
   `${D.stats.active} süreç açık · ${D.applications.filter(a=>a.band==="critical").length} tanesi bugün aksiyon istiyor · ` +
-  `${D.applications.filter(a=>a.days_silent>=12&&a.status!=="rejected").length} tanesi 12+ gündür sessiz.`;
+  `${D.applications.filter(a=>a.days_silent>=12&&!a.closed).length} tanesi 12+ gündür sessiz.`;
 $("anaSub").textContent =
   `${D.meta.owner} · ${D.stats.total} başvuru, ${D.stats.active} aktif süreç · ` +
   `${IN.engagement.reports_sent} günlük rapor, ${IN.engagement.current_streak} günlük streak.`;
@@ -940,25 +962,25 @@ nudge($("nudgeEdu"), "egitim");      nudge($("nudgeProf"), "profil");
 
 /* ---------------- ana sayfa ---------------- */
 const actionApps = D.applications.filter(a => a.band === "critical");
-const strongOpen = D.applications.filter(a => a.status !== "rejected" && a.match_segment_key === "strong");
+const strongOpen = D.applications.filter(a => !a.closed && a.match_segment_key === "strong");
 const weakSpend  = D.applications.filter(a => ["fair","weak"].includes(a.match_segment_key));
 $("nbApps").textContent = actionApps.length;
 $("nbEdu").textContent = IN.learning_plan.length;
 [
-  { k:"Toplam başvuru", v:D.stats.total, n:"son 30 gün" },
+  { k:"Toplam başvuru", v:D.stats.total, n:"kayıtlı veri penceresi" },
   { k:"Bugün aksiyon", v:actionApps.length, n:"deadline yakın/geçmiş", cls:"hot" },
   { k:"Güçlü eşleşme", v:strongOpen.length, n:"açık ve CV'ye uygun", cls:"mat" },
   { k:"Mülakat aşaması", v:D.stats.interviews, n:`%${D.stats.interview_rate} dönüşüm` },
   { k:"Sessizleşen", v:D.stats.stale, n:"12+ gün yanıtsız" },
-  { k:"Boşa giden", v:weakSpend.length, n:"orta/zayıf eşleşme" },
+  { k:"Orta/zayıf eşleşme", v:weakSpend.length, n:"orta/zayıf eşleşme" },
 ].forEach(t => $("tiles").insertAdjacentHTML("beforeend",
   `<div class="tile ${t.cls||""}"><div class="k">${t.k}</div><div class="v">${t.v}</div><div class="n">${t.n}</div></div>`));
 
 function actionsHTML(a, primaryFirst) {
-  const links = a.links_actions || [];
+  const links = (a.links_actions || []).filter(l => safeURL(l.url) !== "#");
   if (!links.length) return "";
   return `<div class="acts">` + links.map((l,i) =>
-    `<a class="act${primaryFirst && i===0 ? " primary" : ""}" href="${attr(l.url)}" target="_blank" rel="noopener">
+    `<a class="act${primaryFirst && i===0 ? " primary" : ""}" href="${attr(safeURL(l.url))}" target="_blank" rel="noopener noreferrer">
        ${ico(l.kind)}${esc(l.label)}</a>`).join("") + `</div>`;
 }
 
@@ -980,7 +1002,7 @@ $("actionCards").innerHTML = actionApps.map(a => {
     <p>${esc(a.next_step)}</p>${rems}${actionsHTML(a, true)}</article>`;
 }).join("");
 
-const focus = D.applications.filter(a => a.status !== "rejected" && ["strong","good"].includes(a.match_segment_key))
+const focus = D.applications.filter(a => !a.closed && ["strong","good"].includes(a.match_segment_key))
   .sort((a,b) => b.match_score - a.match_score).slice(0, 6);
 $("focusCount").textContent = `en güçlü ${focus.length}`;
 $("focusCards").innerHTML = focus.map(a => {
@@ -1006,7 +1028,7 @@ function gapChips(a, max) {
 /* Tarih filtresi. Referans gün "bugün" değil son tarama tarihidir: demo veri
    sabit olduğu için gerçek bugüne göre "son 7 gün" hep boş çıkardı. */
 const BUGUN = (D.meta && D.meta.last_scan)
-  || D.applications.reduce((m,a) => a.applied > m ? a.applied : m, "0000-00-00");
+  || D.generated;
 const AYLAR = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran",
                "Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
 function gunFarki(a, b) {           // a ve b: YYYY-MM-DD
@@ -1016,7 +1038,7 @@ function tarihGecer(a) {
   if (dateRange === "all") return true;
   const t = a[dateField];
   if (!t) return false;             // tarih yoksa aralık filtresinde görünmez
-  if (dateRange.startsWith("son")) return gunFarki(t, BUGUN) <= +dateRange.slice(3);
+  if (dateRange.startsWith("son")) { const age = gunFarki(t, BUGUN); return age >= 0 && age < +dateRange.slice(3); }
   return t.slice(0, 7) === dateRange;   // "YYYY-MM"
 }
 function tarihSecenekleriniKur() {
@@ -1051,7 +1073,7 @@ function renderTable() {
         <span style="font-size:10px;color:var(--ink-3);font-weight:400">${SEG_SHORT[k]}</span></span>
         <div class="mbar"><i style="width:${a.match_score}%;background:var(${SEG_VAR[k]})"></i></div></div>` : "—";
     const acts = (a.links_actions||[]).map(l =>
-      `<a class="row-act" href="${attr(l.url)}" target="_blank" rel="noopener" title="${attr(l.label)}"
+      `<a class="row-act" href="${attr(safeURL(l.url))}" target="_blank" rel="noopener noreferrer" title="${attr(l.label)}"
           aria-label="${attr(l.label)}" onclick="event.stopPropagation()">${ico(l.kind)}</a>`).join("");
     return `<tr class="clickable" data-id="${esc(a.id)}" tabindex="0">
       <td class="sev sev-${a.band}"></td>
@@ -1089,12 +1111,12 @@ $("dateRange").addEventListener("change", e => {
 renderTable();
 
 /* ---------------- detay paneli ---------------- */
-const stars = n => "★".repeat(Math.round(n)) + "☆".repeat(5 - Math.round(n));
+const stars = n => { const count = Math.max(0, Math.min(5, Math.round(Number(n) || 0))); return "★".repeat(count) + "☆".repeat(5 - count); };
 const nfmt = n => n >= 1000 ? (n/1000).toFixed(n >= 10000 ? 0 : 1).replace(".",",") + "b" : String(n);
 function resourceList(skill, limit) {
   const m = CAT[skill]; if (!m) return "";
-  return `<div class="rlist">` + m.resources.slice(0, limit || 3).map(r =>
-    `<a class="rlink" href="${attr(r.url)}" data-sim="1" role="button">
+  return `<div class="rlist">` + (m.resources || []).slice(0, limit || 3).map(r =>
+    `<a class="rlink" href="${attr(safeURL(r.url))}" data-sim="1" role="button">
        <span class="ri">${I.book}</span>
        <span class="rb"><span class="rt">${esc(r.title)}</span>
          <span class="rp">
@@ -1125,6 +1147,19 @@ document.addEventListener("click", e => {
   e.preventDefault();
   toast("Simülasyon verisi — bu kurs bağlantısı gerçek değil.");
 });
+function trapFocus(event, container) {
+  if(event.key !== "Tab") return;
+  const items = [...container.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), [tabindex="0"]')]
+    .filter(el => el.getClientRects().length && getComputedStyle(el).visibility !== "hidden");
+  if(!items.length) { event.preventDefault(); container.focus(); return; }
+  const first = items[0], last = items[items.length-1];
+  if(event.shiftKey && (document.activeElement === first || !items.includes(document.activeElement))) {
+    event.preventDefault(); last.focus();
+  } else if(!event.shiftKey && (document.activeElement === last || !items.includes(document.activeElement))) {
+    event.preventDefault(); first.focus();
+  }
+}
+$("drawer").addEventListener("keydown", e => trapFocus(e, $("drawer")));
 let lastFocus = null;
 function openDrawer(id) {
   const a = byId[id]; if (!a) return;
@@ -1150,11 +1185,11 @@ function openDrawer(id) {
     <div class="dsec">
       <h4>Eşleşme</h4>
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px">
-        <div class="mscore" style="font-size:34px">${a.match_score}<small>/ 100</small></div>
-        <span class="chip ${SEG_CHIP[k]}" style="font-size:12px">${esc(SEG_SHORT[k])} eşleşme</span>
+        <div class="mscore" style="font-size:34px">${a.match_score ?? "—"}<small>/ 100</small></div>
+        <span class="chip ${SEG_CHIP[k] || "chip-archive"}" style="font-size:12px">${k ? esc(SEG_SHORT[k]) + " eşleşme" : "Puanlanmadı"}</span>
       </div>
       <div class="dims">${dims}</div>
-      <p style="font-size:13.5px;color:var(--ink-2);margin:11px 0 0">${esc(a.match_rationale)}</p>
+      <p style="font-size:13.5px;color:var(--ink-2);margin:11px 0 0">${esc(a.match_rationale || "İlan değerlendirmesi yok; bilinmeyen puan sıfır sayılmaz.")}</p>
     </div>
     <div class="dsec"><h4>Süreç</h4><dl class="kv">
       <dt>Aşama</dt><dd>${esc(STAGE_TR[a.stage]||a.stage)}</dd>
@@ -1185,19 +1220,19 @@ $("scrim").addEventListener("click", () => closeDrawer(true));
 addEventListener("keydown", e => { if (e.key === "Escape" && $("drawer").classList.contains("on")) closeDrawer(true); });
 
 /* ---------------- raporlar ---------------- */
-const F = IN.funnel, fmax = Math.max(...F.steps.map(s => s.value));
+const F = IN.funnel, fmax = Math.max(1, ...F.steps.map(s => s.value));
 $("funnelBox").innerHTML = F.steps.map(s => {
   // Taralı (alt sınır) çubukta sayı desenin üstünde okunmuyor — etiketi dışarı al.
   const w = Math.round(100 * s.value / fmax), thin = w < 18 || s.partial;
   return `<div class="frow">
     <div class="fl">${esc(s.label)}<small>${esc(s.note)}</small></div>
     <div class="fbar ${s.partial?"partial":""} ${thin?"thin":""}">
-      <i style="width:${Math.max(w,2)}%"></i><span>${s.value}</span></div>
+      <i style="width:${s.value ? Math.max(w,2) : 0}%"></i><span>${s.value}</span></div>
     <div class="fconv">${s.conv_from_prev != null ? "%"+s.conv_from_prev : "—"}</div></div>`;
 }).join("");
 $("funnelCaveat").innerHTML = `<b>Dikkat:</b> ${esc(F.caveat)} Taralı çubuk, sayının alt sınır olduğunu gösterir.`;
 
-const GAPS = IN.skill_gaps.rows, gmax = Math.max(...GAPS.map(g => g.total));
+const GAPS = IN.skill_gaps.rows, gmax = Math.max(1, ...GAPS.map(g => g.total));
 $("gapCount").textContent = `${GAPS.length} yetkinlik`;
 $("gapBars").innerHTML = GAPS.map(g =>
   `<div class="hbar-row" title="${esc(g.name)}: ${g.total} başvuru">
@@ -1207,7 +1242,7 @@ $("gapBars").innerHTML = GAPS.map(g =>
      <div class="hbar-sub">${g.rejected} olumsuz sonuçlanan başvuruda · ${g.open} açık süreçte</div></div>`).join("");
 $("gapBasis").innerHTML = `<b>Bu veri nereden geliyor:</b> ${esc(IN.skill_gaps.basis)}`;
 
-const T = IN.trend, tmax = Math.max(...T.map(t => t.applied));
+const T = IN.trend, tmax = Math.max(1, ...T.map(t => t.applied));
 $("trendBars").innerHTML = T.map(t =>
   `<div class="vbar" title="${esc(t.label)}: ${t.applied} başvuru, ${t.advanced} ileri aşama">
      <div class="num">${t.applied}</div>
@@ -1215,7 +1250,9 @@ $("trendBars").innerHTML = T.map(t =>
      <div class="lbl">${esc(t.label)}<br><span style="color:var(--good)">${t.advanced} ilerledi</span></div></div>`).join("");
 
 const SP = IN.response_speed, spmax = Math.max(...SP.buckets.map(b => b.value), 1);
-$("speedCap").textContent = `${SP.responded} başvuruya dönüş geldi, medyan ${SP.median_days} gün · ${SP.silent} başvuru hiç yanıtlanmadı`;
+$("speedCap").textContent = SP.measured
+  ? `${SP.measured} kayıtta ilk yanıt süresi ölçüldü; medyan ${SP.median_days} gün. ${SP.basis}`
+  : `İlk yanıt tarihi kaydedilmediği için süre ölçülemiyor. ${SP.responded} başvuruda yanıt kanıtı var. ${SP.basis}`;
 $("speedBars").innerHTML = SP.buckets.map(b =>
   `<div class="hbar-row"><div class="hbar-lbl"><span class="dot" style="background:var(--brand)"></span>${esc(b.label)}</div>
      <div class="hbar-val">${b.value}</div>
@@ -1226,7 +1263,7 @@ $("trackBody").innerHTML = IN.track_success.map(t =>
      <td class="num" style="color:${t.advance_rate>0?"var(--good)":"var(--ink-3)"}">%${t.advance_rate}</td>
      <td class="num">%${t.reject_rate}</td><td class="num">${t.avg_match ?? "—"}</td></tr>`).join("");
 
-const CH = IN.channel_success, chmax = Math.max(...CH.map(c => c.count));
+const CH = IN.channel_success, chmax = Math.max(1, ...CH.map(c => c.count));
 $("chanBars").innerHTML = CH.map(c =>
   `<div class="hbar-row" title="${esc(CHANNEL_TR[c.name]||c.name)}"><div class="hbar-lbl">
      <span class="dot" style="background:var(--brand)"></span>${esc(CHANNEL_TR[c.name]||c.name)}</div>
@@ -1235,7 +1272,7 @@ $("chanBars").innerHTML = CH.map(c =>
      <div class="hbar-sub">ileri aşama %${c.advance_rate} · red %${c.reject_rate}</div></div>`).join("");
 
 const E = IN.engagement;
-$("streakCap").textContent = `${fmtLong(E.tracking_started)} tarihinden bu yana ${E.days_tracked} gün`;
+$("streakCap").textContent = `${E.tracking_started ? fmtLong(E.tracking_started) + " tarihinden bu yana " + E.days_tracked + " gün" : "Henüz takip kaydı yok"}`;
 $("streakRow").innerHTML = `
   <div><span class="n hot">${E.current_streak}</span><span class="l">güncel streak</span></div>
   <div><span class="n">${E.longest_streak}</span><span class="l">en uzun</span></div>
@@ -1244,23 +1281,22 @@ $("streakRow").innerHTML = `
   <div><span class="n ${E.feedback_replies?"":"warn"}">${E.feedback_replies}</span><span class="l">geri bildirim</span></div>`;
 $("calBox").innerHTML = E.calendar.map(c =>
   `<i class="${c.active?"on":""}" title="${fmtLong(c.date)} — ${c.active?"rapor gönderildi":"rapor yok"}"></i>`).join("");
-$("streakNote").innerHTML = E.feedback_replies === 0
-  ? `<b>Alışkanlığa giden tek eksik:</b> ${E.reports_sent} rapor gönderildi ama hiçbirine yanıt yazılmadı. Döngü tek yönlü kaldığı için sistem senin tercihlerini öğrenemiyor. Bir rapora cevap yazmak, "${esc(nxt ? nxt.label : "Alışkanlık")}" aşamasının iki şartından birini karşılar.`
-  : `Streak ${E.current_streak} gün. 7 güne ulaşınca haftalık trend anlamlı hale gelir.`;
+$("streakNote").textContent = "Rapor gönderimi kullanım kaydı olarak gösterilir; uygulamanın açıldığını kanıtlamaz. " +
+  "Alışkanlık aşaması için 7 günlük streak ve en az bir geri bildirim gerekir.";
 
 const M = IN.missed;
 $("missedCount").textContent = `${M.not_applied} / ${M.saved_total}`;
-$("missedBody").innerHTML = [...M.strong_missed, ...M.all_open.filter(j => j.match_estimate < 75), ...M.expired.filter(j => j.match_estimate < 75)]
+$("missedBody").innerHTML = [...M.strong_missed, ...M.all_open.filter(j => (j.match_estimate == null || j.match_estimate < 75)), ...M.expired.filter(j => (j.match_estimate == null || j.match_estimate < 75))]
   .filter((j,i,arr) => arr.findIndex(x => x.company===j.company && x.role===j.role) === i)
   .map(j => `<tr><td class="co">${esc(j.company)}</td><td class="ro">${esc(j.role)}</td>
-     <td class="num" style="color:var(--violet);font-weight:600">${j.match_estimate}</td>
-     <td>${j.expired ? `<span class="chip chip-critical">süresi doldu</span>` : `<span class="chip chip-warning">hâlâ açık</span>`}</td>
+     <td class="num" style="color:var(--violet);font-weight:600">${j.match_estimate ?? "—"}</td>
+     <td>${j.expired ? `<span class="chip chip-critical">süresi doldu</span>` : `<span class="chip chip-warning">kapanış kaydı yok</span>`}</td>
      <td class="step">${esc(j.note)}</td></tr>`).join("");
 
 $("fbLead").textContent = LC.blockers.length
   ? "Bu dört yanıt hem eşleşme puanlarını yeniden ayarlar hem de seni Alışkanlık aşamasına taşıyan iki şarttan birini karşılar."
   : "Bu dört yanıt bir sonraki taramanın önceliklerini ve eşleşme puanlarını yeniden ayarlar.";
-const pct = Math.round(100 * weakSpend.length / D.stats.total);
+const pct = D.stats.total ? Math.round(100 * weakSpend.length / D.stats.total) : 0;
 $("matchnote").innerHTML =
   `<strong>Eşleşme verisi ne söylüyor:</strong> başvuruların ${weakSpend.length}'i (%${pct}) orta veya zayıf eşleşmeye gitmiş. ` +
   `Güçlü eşleşmelerin ileri aşamaya geçme oranı %${D.segments.strong.advance_rate}, zayıflarınki %${D.segments.weak.advance_rate}.`;
@@ -1269,11 +1305,11 @@ $("matchnote").innerHTML =
 const LP = IN.learning_plan;
 $("eduSub").textContent =
   `${LP.length} eksik yetkinlik, etkilediği başvuru sayısına ve redlerde görülme sıklığına göre sıralandı. ` +
-  `En üstteki tek başına ${LP[0].affects_total} başvuruyu etkiliyor.`;
+  (LP.length ? `İlk sıradaki eksik ${LP[0].affects_total} başvuruyu etkiliyor.` : "Henüz eğitim önerisi üretecek değerlendirme yok.");
 $("simBanner").innerHTML = `${I.flag}<span><b>SİMÜLASYON VERİSİ.</b> Aşağıdaki kurs kayıtları örnek amaçlıdır — ` +
   `başlıklar, puanlar, kayıt sayıları, süreler ve fiyatlar uydurmadır ve bağlantılar gerçek bir sayfaya gitmez. ` +
-  `Eksik yetkinliklerin kendisi ve öncelik sıralaması ise gerçek başvuru verisinden hesaplanmıştır. ` +
-  `Canlı sürümde bu blok bir kurs sağlayıcı API'sinden doldurulur.</span>`;
+  `Eksik yetkinlikler ve öncelik sıralaması, bu panodaki kayıtlı değerlendirmelerden hesaplanır. ` +
+  `Gerçek kurs bağlantıları henüz eklenmedi.</span>`;
 $("eduBasis").innerHTML = `<b>Öncelik nasıl hesaplandı:</b> ${esc(IN.skill_gaps.basis)} ` +
   `Öncelik = (redlerde görülme × 3) + (açık süreçlerde görülme × 1) + (seviye farkı × 2).`;
 $("eduList").innerHTML = LP.map(g => {
@@ -1304,8 +1340,14 @@ $("eduList").innerHTML = LP.map(g => {
 }).join("");
 
 /* ---------------- profil ---------------- */
-const P = D.profile;
-$("profSub").textContent = `${esc(P.headline)} · CV sürümü: ${esc(P.cv_version)} · eşleşme puanlarının tamamı bu profile göre hesaplanıyor.`;
+const P = { headline:"Profil eklenmedi", cv_version:"—", skills:{}, gaps:[], experience:[],
+  domains_strong:[], industries_strong:[], industries_transferable:[], ...(D.profile || {}) };
+P.seniority = {years_professional:"—", current_title:"—", ...(P.seniority || {})};
+for(const key of ["gaps", "experience", "domains_strong", "industries_strong", "industries_transferable"]) {
+  if(!Array.isArray(P[key])) P[key] = [];
+}
+if(!P.skills || typeof P.skills !== "object") P.skills = {};
+$("profSub").textContent = `${P.headline} · CV sürümü: ${P.cv_version} · eşleşmeler kayıtlı ilan/profil değerlendirmelerine dayanır.`;
 const skillNames = Object.keys(P.skills);
 $("skillBars").innerHTML = skillNames.map(n => {
   const v = P.skills[n];
@@ -1315,7 +1357,7 @@ $("skillBars").innerHTML = skillNames.map(n => {
     <div class="sk-t"><div class="sk-f" style="width:${v*20}%"></div>
       ${target>v?`<div class="sk-g" style="left:${v*20}%;width:${(target-v)*20}%"></div>`:""}</div>
     <span class="sk-v">${v}/5</span></div>`;
-}).join("") + Object.entries(CAT).filter(([k,c]) => c.cv_level === 0).map(([k,c]) =>
+}).join("") + Object.entries(CAT).filter(([k,c]) => D.profile && c.cv_level === 0).map(([k,c]) =>
   `<div class="sk"><span style="color:var(--ink-3)">${esc(c.name)}</span>
     <div class="sk-t"><div class="sk-g" style="left:0;width:${c.target_level*20}%"></div></div>
     <span class="sk-v" style="color:var(--warning)">yok</span></div>`).join("");
@@ -1337,7 +1379,7 @@ const RT_ETIKET = {
   const list = RT.hedefler || [];
   $("rtCount").textContent = list.length ? `${list.length} unvan` : "üretilmedi";
   $("rtMeta").textContent  = RT.meta && RT.meta.uretim_tarihi
-      ? `${RT.meta.uretim_tarihi} · ${esc(RT.meta.profil_surumu || "")}` : "";
+      ? `${RT.meta.uretim_tarihi} · ${RT.meta.profil_surumu || ""}` : "";
   if (!list.length) {
     box.innerHTML = `<div class="rt-empty">Rol hedefleri henüz üretilmedi —
       iki ajan çalıştırıldığında burası dolar. Uydurma hedef gösterilmez.</div>`;
@@ -1363,20 +1405,20 @@ const RT_ETIKET = {
       ${t.engel ? `<div class="rt-engel">Engel: ${esc(t.engel)}</div>` : ""}
       <div class="rt-foot">${sekt}
         ${t.ilan_var_mi ? `<span class="chip chip-archive">${esc(t.ilan_var_mi)}</span>` : ""}
-        ${t.arama_sorgusu ? `<a class="act" target="_blank" rel="noopener"
+        ${t.arama_sorgusu ? `<a class="act" target="_blank" rel="noopener noreferrer"
            href="https://tr.indeed.com/jobs?q=${encodeURIComponent(t.arama_sorgusu)}&l=%C4%B0stanbul">Indeed'de ara</a>` : ""}
       </div></article>`;
   }).join("");
 })();
-$("expCap").textContent = `${P.seniority.years_professional} yıl profesyonel deneyim · ${esc(P.seniority.current_title)}`;
+$("expCap").textContent = `${P.seniority.years_professional} yıl profesyonel deneyim · ${P.seniority.current_title}`;
 $("expList").innerHTML = P.experience.map(e =>
   `<div style="padding:11px 0;border-bottom:1px solid var(--line)">
      <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
        <b style="font-family:'Plus Jakarta Sans',sans-serif;font-size:14px">${esc(e.title)}</b>
        <span class="mono" style="font-size:11.5px;color:var(--ink-3)">${esc(e.from)} → ${esc(e.to || "devam")}</span></div>
      <div style="font-size:12.5px;color:var(--ink-2);margin-top:2px">${esc(e.company)}</div>
-     ${e.highlights.length ? `<ul style="margin:7px 0 0;padding-left:17px;font-size:12.5px;color:var(--ink-2)">`
-        + e.highlights.map(h=>`<li>${esc(h)}</li>`).join("") + `</ul>` : ""}
+     ${(e.highlights || []).length ? `<ul style="margin:7px 0 0;padding-left:17px;font-size:12.5px;color:var(--ink-2)">`
+        + (e.highlights || []).map(h=>`<li>${esc(h)}</li>`).join("") + `</ul>` : ""}
    </div>`).join("");
 $("domList").innerHTML =
   `<div class="res-t" style="margin-bottom:8px">Güçlü alanlar</div>
@@ -1494,8 +1536,8 @@ const ART3 = `<svg viewBox="0 0 660 200" role="img" aria-label="Redlerden eksik 
 </svg>`;
 
 const TOUR = [
-  { art:ART1, t:"CV'ni ekle, Gmail'ini bağla",
-    d:"CV'den kıdem bandın, araç seviyelerin ve bilinen açıkların çıkarılır. Gmail yalnızca okuma izniyle bağlanır — sistemin her ilanı neye göre puanlayacağı bu profille belirlenir." },
+  { art:ART1, t:"Planlanan akış: CV ve Gmail",
+    d:"Bu demoda örnek profil kullanılır; kişisel bağlantılar kapalıdır. Planlanan üründe CV'den kıdem bandın, araç seviyelerin ve bilinen açıkların çıkarılır. Gmail yalnızca okuma izniyle bağlanır — sistemin her ilanı neye göre puanlayacağı bu profille belirlenir." },
   { art:ART2, t:"Gelen kutusu okunur, süreçler segmentlenir",
     d:"Günlük ve geçmiş iş e-postaları taranır, teklif · mülakat daveti · red · aksiyon gerekli diye sınıflandırılır. Her başvuru CV'ne göre 0–100 puanlanır; deadline'ı yaklaşan ve sessizleşen süreçler için hatırlatma üretilir." },
   { art:ART3, t:"Redlerdeki ortak eksik bulunur, eğitim önerilir",
@@ -1515,8 +1557,10 @@ function drawTour(){
   $("tourPrev").style.visibility = ti ? "visible" : "hidden";
   $("tourNext").textContent = ti === TOUR.length-1 ? "Başla" : "İleri";
 }
-function openTour(){ ti=0; drawTour(); tw.classList.add("on"); }
-function closeTour(){ tw.classList.remove("on"); try{localStorage.setItem("kp_tour","1")}catch(e){} }
+let tourFocus = null;
+function openTour(){ closeDrawer(false); tourFocus = document.activeElement; ti=0; drawTour(); tw.classList.add("on"); $("tourSkip").focus(); }
+tw.addEventListener("keydown", e => trapFocus(e, tw));
+function closeTour(){ tw.classList.remove("on"); if(tourFocus) tourFocus.focus(); try{localStorage.setItem("kp_tour","1")}catch(e){} }
 $("tourBtn").addEventListener("click", openTour);
 $("tourSkip").addEventListener("click", closeTour);
 $("tourPrev").addEventListener("click", ()=>{ if(ti>0){ti--;drawTour();} });
@@ -1530,13 +1574,32 @@ addEventListener("keydown", e=>{ if(!tw.classList.contains("on")) return;
    slaytlar değil, ana sayfadaki tek çağrı ("CV'ni yükle"). Turu isteyen
    üstteki "Nasıl çalışır" düğmesinden açar. */
 
-/* ================= CV YÜKLEME (gerçek — sample yeteneği) ================= */
+/* ================= CV ANALİZİ — ortam desteği ve açık onay ================= */
 const drop=$("drop"), cvFile=$("cvFile"), cvOut=$("cvOut"), cvErr=$("cvErr");
+const cvDestegi = !D.demo && typeof window.claude?.use === "function";
+$("cvStat").textContent = cvDestegi ? "● Analiz desteği mevcut" : "● Bu sürümde kullanılamıyor";
+$("cvStat").className = "cstat " + (cvDestegi ? "live" : "demo");
+$("cvHint").textContent = cvDestegi ? "Analizden önce aşağıdaki veri paylaşımına onay ver." :
+  "Bu web demosu kişisel CV analizi yapmaz. Örnek profili Profil sayfasından inceleyebilirsin.";
+$("cvConsentLabel").hidden = !cvDestegi;
+cvFile.disabled = !cvDestegi;
+drop.setAttribute("aria-disabled", String(!cvDestegi));
+drop.tabIndex = cvDestegi ? 0 : -1;
+let cvBusy = false;
 function cvError(m){ cvErr.textContent=m; cvErr.classList.add("on"); }
 function cvClear(){ cvErr.classList.remove("on"); }
 
 async function readFileText(f){
   if(f.type==="application/pdf" || /\.pdf$/i.test(f.name)){
+    if(!window.pdfjsLib) {
+      await new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
+        script.onload = resolve;
+        script.onerror = () => { script.remove(); reject(new Error("PDF okuyucu yüklenemedi. TXT olarak deneyebilirsin.")); };
+        document.head.appendChild(script);
+      });
+    }
     if(window.pdfjsLib) window.pdfjsLib.GlobalWorkerOptions.workerSrc =
       "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
     if(!window.pdfjsLib) throw new Error("PDF okuyucu yüklenemedi. Metni .txt olarak yükleyebilirsin.");
@@ -1553,11 +1616,18 @@ async function readFileText(f){
 }
 
 async function handleCV(f){
+  if(cvBusy) return;
   cvClear(); cvOut.classList.remove("on");
   if(!f) return;
+  if(!cvDestegi) return cvError("Bu sürümde CV analizi kullanılamıyor.");
+  if(!$("cvConsent").checked) return cvError("Analiz için CV metninin gönderilmesine onay vermelisin.");
+  if(!/\.(pdf|txt|md)$/i.test(f.name)) return cvError("PDF, TXT veya Markdown dosyası seç.");
   if(f.size > 2*1024*1024) return cvError("Dosya 2 MB'den büyük.");
-  const sample = await claude.use("sample");
-  if(!sample) return cvError("Yapay zeka analizi bu görünümde kullanılamıyor. CV yükleme yalnızca yayınlanmış sayfada, izin verildiğinde çalışır.");
+  cvBusy = true;
+  cvFile.disabled = true;
+  try {
+  const sample = await window.claude.use("sample");
+  if(!sample || typeof sample.json !== "function") return cvError("Analiz izni verilmedi veya bu ortamda kullanılamıyor.");
   cvOut.classList.add("on");
   cvOut.innerHTML = `<h4>Analiz</h4><p style="font-size:13px;color:var(--ink-2);margin:0"><span class="spin"></span>CV okunuyor…</p>`;
   let text;
@@ -1575,6 +1645,11 @@ Tüm metinler Türkçe olsun.
 
 CV:
 ${text.slice(0,14000)}`, { modelTier:"default" });
+    if(!r || typeof r !== "object" || Array.isArray(r)) throw new Error("Geçersiz profil yanıtı.");
+    for(const key of ["beceriler", "guclu_alanlar", "sektorler", "aciklar"]) {
+      if(r[key] != null && !Array.isArray(r[key])) throw new Error("Profil yanıtı beklenen biçimde değil.");
+    }
+    if((r.beceriler || []).some(b => !b || typeof b !== "object")) throw new Error("Geçersiz beceri yanıtı.");
     const sk=(r.beceriler||[]).slice(0,8).map(b=>
       `<div class="sk" style="grid-template-columns:130px 1fr 38px"><span>${esc(b.ad)}</span>
         <div class="sk-t"><div class="sk-f" style="width:${Math.max(0,Math.min(5,+b.seviye||0))*20}%"></div></div>
@@ -1595,26 +1670,29 @@ ${text.slice(0,14000)}`, { modelTier:"default" });
       : e && e.code==="rate_limited" ? "Çok fazla istek — biraz sonra tekrar dene."
       : "Analiz tamamlanamadı: " + ((e&&e.message)||"bilinmeyen hata"));
   }
+  } catch(e) {
+    cvOut.classList.remove("on");
+    cvError("Analiz başlatılamadı; ortam desteğini ve iznini kontrol et.");
+  } finally {
+    cvBusy = false;
+    cvFile.disabled = !cvDestegi;
+    cvFile.value = "";
+  }
 }
-drop.addEventListener("click", ()=>cvFile.click());
-drop.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){e.preventDefault();cvFile.click();} });
+drop.addEventListener("click", ()=>{ if(cvDestegi && !cvBusy) cvFile.click(); });
+drop.addEventListener("keydown", e=>{ if(cvDestegi && !cvBusy && (e.key==="Enter"||e.key===" ")){e.preventDefault();cvFile.click();} });
 cvFile.addEventListener("change", e=>handleCV(e.target.files[0]));
 ["dragenter","dragover"].forEach(ev=>drop.addEventListener(ev, e=>{e.preventDefault();drop.classList.add("over");}));
 ["dragleave","drop"].forEach(ev=>drop.addEventListener(ev, e=>{e.preventDefault();drop.classList.remove("over");}));
 drop.addEventListener("drop", e=>handleCV(e.dataTransfer.files[0]));
-/* Gerçek ürün davranışı: buton çalışır, bağlantı kurulamaz ve sebebi
-   ekranda dürüstçe yazar. Sahte bir "bağlandı" durumu gösterilmez. */
 $("gmailBtn").addEventListener("click", () => {
-  const b = $("gmailBtn"); b.disabled = true; b.textContent = "Bağlanıyor…";
-  setTimeout(() => {
-    b.disabled = false; b.textContent = "Gmail'i bağla";
-    $("gmStat").textContent = "● Bağlanamadı";
-    const e = $("gmErr");
-    e.textContent = "Bağlantı kurulamadı: bu sürümde sunucu tarafı OAuth akışı yok. "
-      + "Tarayıcıdan doğrudan Gmail'e bağlanılamıyor; depodaki otomasyon bu işi Gmail MCP sunucusu üzerinden yapıyor.";
-    e.classList.add("on");
-  }, 900);
+  $("gmErr").textContent = "Bu sürümde Gmail bağlantısı kurulmaz ve hesabına erişim istenmez. " +
+    "Web üzerinden otomatik takip için kullanıcı hesabı ve Google yetkilendirmesi henüz eklenmedi.";
+  $("gmErr").classList.add("on");
 });
 
 route();
 </script>
+
+</body>
+</html>

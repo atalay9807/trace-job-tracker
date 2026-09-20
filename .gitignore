@@ -2,3 +2,7 @@ __pycache__/
 *.pyc
 site/_artifact.html
 reports/pano.html
+node_modules/
+.env
+.env.*
+!.env.example

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Trace — İş başvurusu takip ve CV eşleştirme sistemi</title>
-<meta name="description" content="Gmail'i tarayıp iş başvurularını tek yerde toplayan, her ilanı CV'ye göre puanlayan ve eksik yetkinlikleri çıkaran otomasyon. 68 gerçek başvuru üzerinde kuruldu.">
+<meta name="description" content="Gmail'i tarayıp iş başvurularını tek yerde toplayan, her ilanı CV'ye göre puanlayan ve eksik yetkinlikleri çıkaran otomasyon. Gerçek bir ihtiyaçtan doğan, 68 kayıtlı örnek veriyle sunulan demo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -225,6 +225,7 @@
 </style>
 </head>
 <body>
+<p style="padding:12px 24px;margin:0;text-align:center;font-size:13px">Demo sürümü · Kişisel hesap bağlantısı kapalıdır. Ekran görüntüleri ilk prototipin arşividir.</p>
 
 <header>
   <div class="wrap">
@@ -288,7 +289,7 @@
     <p class="lead" style="margin-top:16px">
       Bir ayda 68 başvuru yapıldığında hangisinin nerede olduğu, hangi testin süresinin dolduğu ve
       hangi sürecin sessizce öldüğü takip edilemiyor. Aşağıdakiler tahmin değil — taranan Gmail
-      kutusundan çıkan gerçek sayılar.
+      kayıtlarından türetilen demo sayıları; şirket ve profil adları örnektir.
     </p>
     <div class="probgrid">
       <div class="probcell"><div class="n mono bad">0</div><div class="t">teklif — 68 başvurunun sonunda</div></div>
@@ -413,17 +414,17 @@
 <section id="bulgular">
   <div class="wrap">
     <div class="eyebrow">Veriden çıkanlar</div>
-    <h2 style="font-size:clamp(26px,3.6vw,34px);margin:18px 0 0;max-width:24ch">30 günlük gerçek bir aramada ortaya çıkan dört şey</h2>
+    <h2 style="font-size:clamp(26px,3.6vw,34px);margin:18px 0 0;max-width:24ch">İlk veri penceresinden dört gözlem</h2>
     <div class="find">
       <div class="fitem">
         <div class="fnum mono bad">7 / 15</div>
-        <div><h4>Redlerin çoğunluğu kıdem açığından</h4>
-          <p>SQL en yaygın eksik (34 başvuruda bekleniyor) ama olumsuz sonuçlanan 15 sürecin 7'sinde eksik olan <b>ekip yönetimi</b>. Yani sorun teknik beceri değil, Manager/Lead ilanlarına yapılan başvurular. Bu, kurs alarak değil hedef bandını değiştirerek çözülür.</p></div>
+        <div><h4>Bazı red kayıtlarında kıdem açığı işaretlenmiş</h4>
+          <p>15 red kaydının 7'sinde ekip yönetimi açığı işaretlenmiş. Bu, ilan/profil değerlendirmesinden bir <b>çıkarımdır</b>; şirketlerin bu nedenle reddettiği bilinmiyor. 7/15 çoğunluk değildir.</p></div>
       </div>
       <div class="fitem">
         <div class="fnum mono warn">%25</div>
         <div><h4>Eforun dörtte biri zayıf eşleşmeye gitmiş</h4>
-          <p>68 başvurunun 17'si orta veya zayıf eşleşme. Güçlü segmentin ileri aşamaya geçme oranı %18,2; zayıf segmentin ilerlemesi ise istatistiksel gürültü. Aynı efor güçlü segmente kaydırılsa mülakat sayısı artar.</p></div>
+          <p>68 başvurunun 17'si orta veya zayıf eşleşme. Güçlü segmentin %18,2'si güncel kayıtta ileri aşamada. Küçük örneklem ve elle atanmış puanlar nedeniyle bu, gelecekteki mülakat sayısının tahmini değildir.</p></div>
       </div>
       <div class="fitem">
         <div class="fnum mono bad">88</div>
@@ -431,9 +432,9 @@
           <p>Kaydedilen 16 ilanın 12'sine hiç başvurulmamış. Bunlardan Marshall Page'in FP&amp;A Analyst ilanı 88 eşleşme puanıyla listenin en güçlüsüydü ve 20 Ağustos'ta kapandı. Takip edilmeyen şey kaybediliyor.</p></div>
       </div>
       <div class="fitem">
-        <div class="fnum mono">10 gün</div>
-        <div><h4>Şirketlerin medyan yanıt süresi</h4>
-          <p>Yanıt veren şirketlerde medyan 10 gün. 42 başvuru ise hiç yanıtlanmadı. Bu iki sayı birlikte, 12 gün sessizlikten sonra takip maili atma kuralının eşiğini belirledi.</p></div>
+        <div class="fnum mono">—</div>
+        <div><h4>İlk yanıt süresi henüz ölçülemiyor</h4>
+          <p>Eski hesap son temas tarihini kullanıyordu. İlk yanıt tarihi ayrı kaydedilmediği için medyan gösterilmez. 12 günlük takip eşiği bir ürün kuralıdır.</p></div>
       </div>
     </div>
   </div>
@@ -485,7 +486,7 @@
       <ul>
         <li><span class="mk">01</span><span><b>Red gerekçeleri ölçülemiyor.</b> Taranan 15 red e-postasının hiçbiri sebep belirtmiyor. Eksik yetkinlikler bu yüzden şirketlerin söylediği değil, ilan ile CV arasındaki farktan <b>çıkarılan</b> tahminlerdir ve arayüzün her yerinde böyle etiketlenir.</span></li>
         <li><span class="mk">02</span><span><b>Görüntülenen ilan verisi yok.</b> LinkedIn bunu e-postayla bildirmiyor. Huni "kaydedilen ilan"dan başlar, o da yalnızca hatırlatma gönderilenleri kapsar — taralı çubukla alt sınır olarak işaretlenir ve ondan sonraki dönüşüm oranı hesaplanmaz.</span></li>
-        <li><span class="mk">03</span><span><b>Kurs kayıtları simülasyondur.</b> Başlık, puan, süre ve fiyat örnek amaçlıdır; bağlantılar gerçek sayfa açmaz. Eksik yetkinliklerin kendisi ve öncelik sıralaması gerçek veriden hesaplanır.</span></li>
+        <li><span class="mk">03</span><span><b>Kurs kayıtları simülasyondur.</b> Başlık, puan, süre ve fiyat örnek amaçlıdır; bağlantılar gerçek sayfa açmaz. Eksik yetkinlikler ve sıralama, kayıtlı demo değerlendirmelerinden hesaplanır.</span></li>
         <li><span class="mk">04</span><span><b>Eşleşme boyutları elle atanıyor.</b> İlan metninin çekilip beceri çıkarımının otomatikleşmesi açık madde olarak duruyor.</span></li>
       </ul>
     </div>
@@ -497,7 +498,7 @@
   <div class="wrap">
     <div class="close">
       <h2>Uygulamayı canlı deneyin</h2>
-      <p>68 gerçek başvurunun tamamı, sekiz rapor ve eğitim planı yüklü halde açılır. Kurulum gerekmez.</p>
+      <p>68 demo başvurusu, raporlar ve örnek eğitim planı yüklü açılır. Kişisel CV/Gmail bağlantısı bu sürümde kapalıdır. Kurulum gerekmez.</p>
       <div class="cta">
         <a class="btn pri" href="app.html">Uygulamayı aç</a>
         <a class="btn" href="https://github.com/atalay9807/trace-job-tracker" target="_blank" rel="noopener">GitHub'da incele</a>
@@ -509,7 +510,7 @@
 <footer>
   <div class="wrap">
     <div>Trace — iş başvurusu takip ve CV eşleştirme sistemi<br>
-      Kerem Aydın · <a href="https://linkedin.com/in/kerem-aydin-demo" target="_blank" rel="noopener">LinkedIn</a> ·
+      Atalay Denizer · <a href="https://github.com/atalay9807" target="_blank" rel="noopener noreferrer">GitHub</a> ·
       <a href="https://github.com/atalay9807/trace-job-tracker" target="_blank" rel="noopener">GitHub</a></div>
     <div style="text-align:right">Veri penceresi: 1 Ağustos – 1 Eylül 2026<br>Kurs kayıtları simülasyondur</div>
   </div>

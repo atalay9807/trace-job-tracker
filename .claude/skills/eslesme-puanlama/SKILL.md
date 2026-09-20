@@ -5,6 +5,11 @@ description: Bir iş ilanını Trace'in CV profiline karşı dört boyutta puanl
 
 # Eşleşme puanlama
 
+Veri yolu ve ortak geliştirme kuralları `docs/ORTAK_CALISMA.md` içindedir.
+`data/...` seçilmiş TRACE_DATA klasörünü ifade eder; özel veri eksikse demo
+veriye dönülmez. Diğer ajana aktarılırken mutlak veri yolu açıkça verilir.
+
+
 Trace'in iki ekseninden biri: **eşleşme**, "enerjimi nereye harcamalıyım"
 sorusunu yanıtlar. Aciliyet ekseniyle karıştırılmaz — zayıf eşleşmeli bir
 ilanın deadline'ı da acil olabilir.
@@ -12,7 +17,7 @@ ilanın deadline'ı da acil olabilir.
 Referans profil `data/profile.json` içindedir. Puanlarken oradan oku; bu
 dosyadaki özet değişebilir, `profile.json` doğruluk kaynağıdır.
 
-**Profilin özeti:** 2 yıl profesyonel deneyim, Growth Strategy Specialist.
+**Demo profilin özeti (başka adaylara genellenmez):** 2 yıl profesyonel deneyim, Growth Strategy Specialist.
 Güçlü: growth analitiği (lifecycle, churn, CRM, kohort), FP&A (bütçe, forecast,
 P&L), ticari strateji (fiyatlandırma, esneklik). Araçlar: Excel 5/5, Tableau 5/5,
 Sheets+Apps Script 4/5, SQL 3/5, Power BI 3/5, Mixpanel 3/5. Sektör: q-commerce,
@@ -45,13 +50,13 @@ Rolün, profilin çekirdek iş ailelerine yakınlığı. En belirleyici boyut bu
 ### Kıdem — 0-25
 
 İlanın kıdem bandı ile 2 yıllık Specialist seviyesinin uyumu. Bu boyut,
-verinin gösterdiği en pahalı hatayı yakalıyor: **15 redden 7'sinde eksik olan
-şey ekip yönetimiydi**, yani sorun beceri değil kıdem bandıydı.
+demo değerlendirmelerdeki kıdem açığını gösterir. **15 red kaydının 7'sinde
+ekip yönetimi açığı işaretlenmişti**; bunun red nedeni olduğu bilinmiyor.
 
 | Puan | Band |
 |---|---|
 | 25 | Analyst, Specialist, Associate, Junior, Intern — profilin bandı |
-| 23 | Management Trainee / Graduate program (bandın bir tık altı ama marka değeri var) |
+| 23 | Management Trainee / Graduate program (demo profilin bandının bir altı) |
 | 20–22 | Senior Specialist, Senior Analyst, Executive (hafif esneme) |
 | 15–18 | Product Manager, Product Owner (ürün sahipliği deneyimi yok) |
 | 13 | Manager (ekip yönetimi deneyimi yok — esneme) |
@@ -101,8 +106,10 @@ eşleşme = rol_ailesi + kıdem + beceri + sektör + lokasyon_cezası
 🟡 **Orta 45–61** — kısmi uyum, zaman kalırsa
 🔴 **Zayıf 0–44** — düşük getiri, kapatmayı değerlendir
 
-**Aritmetiği elle yapma.** Dört boyutu `data/applications.json` içindeki `match`
-objesine yaz, sonra `python3 src/match.py` çalıştır. Segment eşikleri ve
+**Aritmetiği kaynak veriyi değiştirmeden doğrula.** Ajanın JSON önerisini
+`python3 src/eslesme_kontrol.py < /tmp/eslesme-onerisi.json` ile kontrol et;
+yalnızca seçilmiş ana yazıcı kayda uygular. İlan metni yetersizse `match: null`
+kalır; bilinmeyeni düşük uyum olarak puanlama. Segment eşikleri ve
 toplama `src/match.py` içindedir; burada tekrar tanımlanmaz ki ikisi ayrışmasın.
 
 ## Gerekçe yazımı

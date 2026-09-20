@@ -18,32 +18,13 @@ import csv
 import io
 import json
 import sys
-from datetime import date, datetime
-import os
+from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from match import enrich_with_match, segment_summary, load_profile  # noqa: E402
-
-ROOT = Path(__file__).resolve().parent.parent
-# Veri klasörü TRACE_DATA ile dışarıdan verilebilir. Gerçek veri özel
-# trace-data deposunda durur; onu bu deponun izlenen data/ klasörüne
-# kopyalamak kazara commit riski yaratıyordu (bkz. CLAUDE.md → Depo).
-VERI = Path(os.environ.get("TRACE_DATA") or (ROOT / "data"))
-DATA = VERI / "applications.json"
-
-STAGE_WEIGHT = {
-    "offer": 100,
-    "interview_scheduling": 88,
-    "assessment": 85,
-    "next_stage": 82,
-    "interviewed": 78,
-    "application_incomplete": 70,
-    "in_process": 60,
-    "under_review": 35,
-    "talent_pool": 20,
-    "closed": 0,
-}
+from match import enrich_with_match, segment_summary  # noqa: E402
+from veri import (STAGE_WEIGHT, oku, parse_date, kapali, yanit_var,
+                  basvurulari_dogrula)  # noqa: E402
 
 FIT_MULTIPLIER = 4
 STALE_DAYS = 12
@@ -56,10 +37,6 @@ BAND_LABEL = {
     "low": "⚪ DÜŞÜK",
     "archive": "⚫ KAPANDI",
 }
-
-
-def parse_date(value):
-    return datetime.strptime(value, "%Y-%m-%d").date() if value else None
 
 
 def days_between(later, earlier):
@@ -84,11 +61,11 @@ def deadline_bonus(days_left):
 
 
 def score(app, today):
-    """0-140 arası öncelik puanı."""
-    if app["status"] == "rejected":
+    """0–160 arası öncelik puanı; bilinmeyen uyum ek puan getirmez."""
+    if kapali(app):
         return 0
-    total = STAGE_WEIGHT.get(app.get("stage"), 30)
-    total += app.get("fit", 3) * FIT_MULTIPLIER
+    total = STAGE_WEIGHT[app["stage"]]
+    total += (app.get("fit") or 0) * FIT_MULTIPLIER
 
     dl = parse_date(app.get("deadline"))
     total += deadline_bonus(days_between(dl, today))
@@ -96,15 +73,15 @@ def score(app, today):
     # Uzun sessizlik puanı düşürür (süreç muhtemelen ölmüş)
     silence = days_between(today, parse_date(app.get("last_contact")))
     if silence is not None:
-        if silence > DEAD_DAYS:
+        if silence >= DEAD_DAYS:
             total -= 20
-        elif silence > STALE_DAYS:
+        elif silence >= STALE_DAYS:
             total -= 8
     return max(total, 0)
 
 
 def band(app, today, points):
-    if app["status"] == "rejected":
+    if kapali(app):
         return "archive"
     dl = parse_date(app.get("deadline"))
     left = days_between(dl, today)
@@ -121,6 +98,8 @@ def band(app, today, points):
 
 def reminders_for(app, today):
     """Bu başvuru için bugün üretilecek hatırlatmalar."""
+    if kapali(app):
+        return []
     out = []
     dl = parse_date(app.get("deadline"))
     left = days_between(dl, today)
@@ -139,22 +118,25 @@ def reminders_for(app, today):
         if app.get("stage") == "interviewed" and silence >= 5:
             out.append(f"✉️ Mülakattan {silence} gün geçti — nazik takip maili at.")
         elif silence >= DEAD_DAYS:
-            out.append(f"💤 {silence} gündür sessiz — kapanmış say, listeden düşür.")
+            out.append(f"💤 {silence} gündür sessiz — kapanmış olabilir; durumunu kontrol et.")
         elif silence >= STALE_DAYS:
             out.append(f"✉️ {silence} gündür sessiz — takip maili zamanı.")
     return out
 
 
 def enrich(data, today):
-    enrich_with_match(data["applications"])
+    basvurulari_dogrula(data)
+    enriched = enrich_with_match(data["applications"])
     apps = []
-    for app in data["applications"]:
+    for app in enriched:
         item = dict(app)
         item["score"] = score(app, today)
         item["band"] = band(app, today, item["score"])
         item["reminders"] = reminders_for(app, today)
         item["days_silent"] = days_between(today, parse_date(app.get("last_contact")))
         item["days_to_deadline"] = days_between(parse_date(app.get("deadline")), today)
+        item["closed"] = kapali(app)
+        item["response_received"] = yanit_var(app)
         mr = app.get("match_result") or {}
         item["match_score"] = mr.get("score")
         item["match_segment"] = mr.get("segment")
@@ -169,7 +151,7 @@ def enrich(data, today):
 def focus_list(apps):
     """Aktif ve eşleşmesi güçlü olanlar — enerjinin gitmesi gereken yer."""
     return [a for a in apps
-            if a["status"] != "rejected" and a.get("match_segment_key") in ("strong", "good")]
+            if not kapali(a) and a.get("match_segment_key") in ("strong", "good")]
 
 
 def wasted_effort(apps):
@@ -178,7 +160,7 @@ def wasted_effort(apps):
 
 
 def funnel(apps):
-    active = [a for a in apps if a["status"] != "rejected"]
+    active = [a for a in apps if not kapali(a)]
     rejected = [a for a in apps if a["status"] == "rejected"]
     interviews = [a for a in active if a.get("stage") in
                   ("interviewed", "interview_scheduling", "next_stage", "assessment")]
@@ -190,8 +172,8 @@ def funnel(apps):
         "rejected": len(rejected),
         "interviews": len(interviews),
         "stale": len(stale),
-        "response_rate": round(100 * len([a for a in apps if (a["days_silent"] or 99) < 99
-                                          and a["status"] != "awaiting_response"]) / total, 1) if total else 0,
+        "responded": sum(yanit_var(a) for a in apps),
+        "response_rate": round(100 * sum(yanit_var(a) for a in apps) / total, 1) if total else 0,
         "interview_rate": round(100 * len(interviews) / total, 1) if total else 0,
         "rejection_rate": round(100 * len(rejected) / total, 1) if total else 0,
     }
@@ -205,6 +187,7 @@ def render_markdown(apps, stats, data, today, weekly=False):
     L.append("")
     L.append(f"**Tarama penceresi:** {data['meta']['scan_window']['from']} → {data['meta']['scan_window']['to']}  ")
     L.append(f"**Hesap:** {data['meta']['email']}")
+    L.append("**Not:** Bu çıktı kayıtlı veriden üretilir; yeni Gmail taraması yapmaz.")
     L.append("")
     L.append("## Özet")
     L.append("")
@@ -227,6 +210,8 @@ def render_markdown(apps, stats, data, today, weekly=False):
         for a, r in todo[:15]:
             L.append(f"- **{a['company']} — {a['role']}**: {r}")
         L.append("")
+    else:
+        L.extend(["Bugün için kayıtlı veriden üretilen hatırlatma yok.", ""])
 
     # Eşleşme segmentasyonu
     segs = segment_summary(apps)
@@ -277,7 +262,7 @@ def render_markdown(apps, stats, data, today, weekly=False):
                      f"{a['score']} | {ms} | {nxt} |")
         L.append("")
 
-    rejected = [a for a in apps if a["status"] == "rejected"]
+    rejected = [a for a in apps if kapali(a)]
     if rejected:
         L.append(f"## {BAND_LABEL['archive']} ({len(rejected)})")
         L.append("")
@@ -285,7 +270,8 @@ def render_markdown(apps, stats, data, today, weekly=False):
         L.append("|---|---|---|---|---:|")
         for a in rejected:
             d = days_between(parse_date(a["last_contact"]), parse_date(a["applied"]))
-            L.append(f"| {a['company']} | {a['role']} | {a['applied']} | {a['last_contact']} | {d}g |")
+            duration = f"{d}g" if d is not None else "—"
+            L.append(f"| {a['company']} | {a['role']} | {a['applied'] or '—'} | {a['last_contact'] or '—'} | {duration} |")
         L.append("")
 
     if data.get("recruiter_outreach"):
@@ -312,7 +298,8 @@ def render_markdown(apps, stats, data, today, weekly=False):
 
 def render_text(apps, stats, today):
     """E-posta gövdesine uygun kısa düz metin."""
-    L = [f"İş Takip Raporu — {today.strftime('%d.%m.%Y')}", ""]
+    L = [f"İş Takip Raporu — {today.strftime('%d.%m.%Y')}",
+         "Kayıtlı veriden üretildi; yeni Gmail taraması yapılmadı.", ""]
     crit = [a for a in apps if a["band"] == "critical"]
     if crit:
         L.append("KRİTİK / BUGÜN AKSİYON:")
@@ -321,6 +308,8 @@ def render_text(apps, stats, today):
             for r in a["reminders"]:
                 L.append(f"    {r}")
         L.append("")
+    else:
+        L.extend(["Kayıtlı veride bugün için kritik aksiyon yok.", ""])
     high = [a for a in apps if a["band"] == "high"]
     if high:
         L.append("AKTİF SÜREÇLER:")
@@ -345,12 +334,14 @@ def render_csv(apps):
                 "pozisyon", "asama", "durum", "kanal", "basvuru", "son_temas", "sessiz_gun",
                 "deadline", "en_zayif_boyut", "eslesme_gerekcesi", "sonraki_adim"])
     for a in apps:
-        w.writerow([BAND_LABEL[a["band"]], a["score"], a.get("match_score", ""),
+        values = [BAND_LABEL[a["band"]], a["score"], a.get("match_score", ""),
                     a.get("match_segment", ""), a["company"], a["role"], a["stage"],
                     a["status"], a.get("channel", ""), a.get("applied", ""),
                     a.get("last_contact", ""), a["days_silent"] if a["days_silent"] is not None else "",
                     a.get("deadline") or "", a.get("match_weakest", ""),
-                    a.get("match_rationale", ""), a.get("next_step", "")])
+                    a.get("match_rationale", ""), a.get("next_step", "")]
+        # Harici metnin Excel/Sheets'te formül olarak çalışmasını engelle.
+        w.writerow(["'" + v if isinstance(v, str) and v.lstrip().startswith(("=", "+", "-", "@")) else v for v in values])
     return buf.getvalue()
 
 
@@ -363,7 +354,7 @@ def main():
     args = p.parse_args()
 
     today = parse_date(args.today) if args.today else date.today()
-    data = json.loads(DATA.read_text(encoding="utf-8"))
+    data = oku("applications.json")
     apps = enrich(data, today)
     stats = funnel(apps)
 
