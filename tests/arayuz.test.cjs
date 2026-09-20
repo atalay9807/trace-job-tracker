@@ -52,14 +52,19 @@ function rota(window, name) {
 const cv = {name:'ornek.txt', size:200, text:async () => 'Örnek adayın deneyim ve yetkinlik metni. '.repeat(5)};
 
 test('Demo altı sayfada açılır; desteklenmeyen CV seçimi kapalıdır', t => {
-  const {dom, window, document, errors} = sayfa(); t.after(() => dom.window.close());
+  // Beklenen satır sayısı veriden okunur, sabit kodlanmaz: demo veri gerçek
+  // veriden yeniden üretiliyor ve kayıt sayısı her üretimde değişiyor.
+  let beklenen = 0;
+  const {dom, window, document, errors} = sayfa(d => { beklenen = d.applications.length; });
+  t.after(() => dom.window.close());
   for(const page of ['ana','basvurular','raporlar','egitim','profil','baglan']) {
     rota(window,page);
     assert.equal(document.querySelector('.page.on').id, 'p-'+page);
   }
   assert.equal(document.getElementById('cvFile').disabled, true);
   assert.equal(document.getElementById('demoNote').hidden, false);
-  assert.equal(document.querySelectorAll('#tbody tr').length,68);
+  assert.ok(beklenen > 0, 'demo veri boş olmamalı');
+  assert.equal(document.querySelectorAll('#tbody tr').length, beklenen);
   assert.deepEqual(errors,[]);
 });
 
