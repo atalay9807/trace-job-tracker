@@ -1,136 +1,124 @@
 {
   "meta": {
     "owner": "Kerem Aydın",
-    "email": "kerem.aydin@example.com",
-    "scan_window": {
-      "from": "2026-08-01",
-      "to": "2026-09-01"
-    },
-    "last_scan": "2026-09-01",
-    "source": "Gmail (LinkedIn Easy Apply + ATS onay/red mailleri + doğrudan İK yazışmaları)",
+    "email": "kerem.aydin@ornek.example",
     "schema_version": 1,
-    "_uyari": "DEMO VERİ — şirket adları kurgusaldır. Gerçek sürüm özel trace-data deposundadır. Yapı, tarih, aşama ve puanlar korunmuştur."
+    "scan_window": {
+      "from": "2026-06-04",
+      "to": "2026-09-19"
+    },
+    "last_scan": "2026-09-19",
+    "anonim": true,
+    "_uyari": "DEMO VERİ — şirket adları kurgusaldır. Gerçek sürüm özel depodadır. Yapı, tarih, aşama ve puanlar korunmuştur."
   },
   "applications": [
     {
-      "id": "kavza-cfo-office",
-      "company": "Kavza Project",
-      "role": "CFO Office Executive",
-      "channel": "direct",
-      "applied": "2026-08-20",
-      "last_contact": "2026-08-25",
-      "stage": "assessment",
-      "status": "action_required",
-      "track": "Finance/Strategy",
-      "location": "Maslak, İstanbul (ofis, 5 gün)",
-      "contact": "İK Sorumlusu — ik@kavza.example",
-      "deadline": "2026-08-31",
-      "next_step": "TestGorilla testi + 3 soruya mail yanıtı (maaş / lokasyon / 7 Eyl başlangıç). Yüz yüze mülakatlar 1-2 Eylül, hedef başlangıç 7 Eylül.",
-      "links": [
-        "https://app.testgorilla.com/s/4gsyw8tr"
-      ],
-      "fit": 5,
-      "notes": "Sürecin en ileri aşamadaki adayı. Deadline 31 Ağu'da doldu — tamamlanmadıysa acil kapatılmalı.",
+      "id": "verilon-pharma-financial-analyst-rdf3f43",
+      "company": "Verilon Pharma",
+      "role": "Financial Analyst (RDF3F43)",
+      "channel": "ats",
+      "applied": "2026-08-01",
+      "last_contact": "2026-08-05",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Finance",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "-",
+      "fit": 4,
+      "notes": "",
       "match": {
         "role_family": 33,
-        "seniority": 20,
-        "skills": 23,
-        "domain": 11,
+        "seniority": 25,
+        "skills": 22,
+        "domain": 7,
         "location_mod": 0,
-        "rationale": "CFO ofisi = FP&A + yönetim raporlaması; bütçe/forecast deneyimi birebir. Executive unvanı hafif esneme."
+        "rationale": "Financial Analyst = FP&A deneyiminin doğrudan karşılığı; ilaç sektörü yeni."
       },
       "links_actions": [
         {
-          "label": "TestGorilla testini aç",
-          "url": "https://app.testgorilla.com/s/4gsyw8tr",
-          "kind": "ext"
-        },
-        {
-          "label": "Takip maili yaz",
-          "url": "mailto:ik@kavza.example?subject=CFO%20Office%20Executive%20ba%C5%9Fvurusu%20%E2%80%94%20s%C3%BCre%20uzat%C4%B1m%C4%B1%20talebi&body=Merhaba%2C%0A%0AKavza%20Project%20b%C3%BCnyesindeki%20CFO%20Office%20Executive%20pozisyonu%20i%C3%A7in%20payla%C5%9Ft%C4%B1%C4%9F%C4%B1n%C4%B1z%20de%C4%9Ferlendirme%20ad%C4%B1m%C4%B1n%C4%B1%20belirtilen%20tarihte%20tamamlayamad%C4%B1m.%20S%C3%BCre%C3%A7%20h%C3%A2l%C3%A2%20a%C3%A7%C4%B1ksa%20k%C4%B1sa%20bir%20ek%20s%C3%BCre%20tan%C4%B1man%C4%B1z%20m%C3%BCmk%C3%BCn%20m%C3%BCd%C3%BCr%3F%0A%0A%C4%B0lginiz%20i%C3%A7in%20te%C5%9Fekk%C3%BCrler.%0A%0ASayg%C4%B1lar%C4%B1mla%2C%0AKerem%20Ayd%C4%B1n%0Akerem.aydin%40example.com%20%7C%20%2B90%205XX%20XXX%20XX%20XX",
-          "kind": "mailto"
-        },
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Kavza%20Project",
-          "kind": "gmail"
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AVerilon%20Pharma"
         }
       ],
       "gap_skills": [
         "financial_modeling"
-      ]
-    },
-    {
-      "id": "nova-ai-lab-founding",
-      "company": "NOVA AI Lab",
-      "role": "Kurucu ekip",
-      "channel": "direct",
-      "applied": "2026-08-28",
-      "last_contact": "2026-08-29",
-      "stage": "interview_scheduling",
-      "status": "action_required",
-      "track": "AI/Startup",
-      "location": "Remote",
-      "deadline": "2026-09-04",
-      "next_step": "Online mülakat için müsaitlik bildirimi — pencere 4 Eylül'de kapanıyor.",
-      "fit": 4,
-      "notes": "Müsaitlik iletilmezse süreç otomatik düşer.",
-      "match": {
-        "role_family": 24,
-        "seniority": 22,
-        "skills": 16,
-        "domain": 8,
-        "location_mod": 0,
-        "rationale": "Kurucu ekipte analitik sahiplenme mümkün ama AI startup teknik derinlik bekleyebilir."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/NOVA%20AI%20Lab",
-          "kind": "gmail"
-        }
       ],
-      "gap_skills": [
-        "python",
-        "sql"
-      ]
+      "first_response": "2026-08-05"
     },
     {
-      "id": "yapibirlik-peoplise",
-      "company": "Yapı Birlik",
-      "role": "Belirtilmemiş (peoplise başvurusu)",
+      "id": "marmara-bank-dijitalden-musteri-kazanimi",
+      "company": "Marmara Bank",
+      "role": "Dijitalden Müşteri Kazanımı ve Yönetimi Yöneticisi",
       "channel": "ats",
-      "applied": "2026-08-21",
-      "last_contact": "2026-09-01",
-      "stage": "application_incomplete",
-      "status": "action_required",
-      "track": "Banking",
+      "applied": "2026-08-01",
+      "last_contact": "2026-08-14",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Banking/Growth",
       "location": "İstanbul",
       "deadline": null,
-      "next_step": "E-posta doğrulama linkine tıkla + CV bilgilerini doldur (spam kutusunu kontrol et).",
+      "next_step": "-",
       "fit": 4,
-      "notes": "21 Ağu'da da aynı doğrulama maili gelmiş; adım hâlâ tamamlanmamış görünüyor.",
+      "notes": "",
       "match": {
-        "role_family": 18,
-        "seniority": 22,
-        "skills": 18,
+        "role_family": 32,
+        "seniority": 13,
+        "skills": 22,
         "domain": 11,
         "location_mod": 0,
-        "rationale": "Rol belirsiz; bankacılıkta FP&A/CRM analitiği açılırsa uyum yükselir."
+        "rationale": "Dijitalden müşteri kazanımı = growth işinin birebir karşılığı; 'Yönetici' kıdemi esneme."
       },
       "links_actions": [
         {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Yap%C4%B1%20Birlik",
-          "kind": "gmail"
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AMarmara%20Bank"
         }
       ],
       "gap_skills": [
-        "sql"
+        "people_leadership",
+        "experimentation"
       ]
     },
     {
-      "id": "cloudly-data-analyst",
+      "id": "momentum-partners-growth-product-manager",
+      "company": "Momentum Partners",
+      "role": "Growth Product Manager (Web Funnel & CRO)",
+      "channel": "ats",
+      "applied": "2026-08-01",
+      "last_contact": "2026-08-05",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Growth/Product",
+      "location": "Remote",
+      "deadline": null,
+      "next_step": "-",
+      "fit": 4,
+      "notes": "Ashby.",
+      "match": {
+        "role_family": 29,
+        "seniority": 15,
+        "skills": 19,
+        "domain": 8,
+        "location_mod": -8,
+        "rationale": "Growth PM + CRO; analitik uygun, ürün yönetimi kıdemi ve uzaktan izin engel."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AMomentum%20Partners"
+        }
+      ],
+      "gap_skills": [
+        "product_management",
+        "experimentation"
+      ]
+    },
+    {
+      "id": "cloudly-data-analyst-dubai",
       "company": "Cloudly",
       "role": "Data Analyst (Dubai, on-site)",
       "channel": "linkedin",
@@ -140,7 +128,7 @@
       "status": "action_required",
       "track": "Data",
       "location": "Dubai",
-      "contact": "Talent Acquisition — ta@cloudly.example",
+      "contact": "Talent Acquisition — ta@puffy.example",
       "deadline": "2026-08-22",
       "next_step": "Faz-1 yetenek değerlendirmesi (~30 dk, proctored/kameralı; başlayınca 4 saat içinde bitmeli).",
       "fit": 4,
@@ -155,14 +143,9 @@
       },
       "links_actions": [
         {
-          "label": "Takip maili yaz",
-          "url": "mailto:ta@cloudly.example?subject=Data%20Analyst%20%28Dubai%2C%20on-site%29%20ba%C5%9Fvurusu%20%E2%80%94%20s%C3%BCre%20uzat%C4%B1m%C4%B1%20talebi&body=Merhaba%2C%0A%0ACloudly%20b%C3%BCnyesindeki%20Data%20Analyst%20%28Dubai%2C%20on-site%29%20pozisyonu%20i%C3%A7in%20payla%C5%9Ft%C4%B1%C4%9F%C4%B1n%C4%B1z%20de%C4%9Ferlendirme%20ad%C4%B1m%C4%B1n%C4%B1%20belirtilen%20tarihte%20tamamlayamad%C4%B1m.%20S%C3%BCre%C3%A7%20h%C3%A2l%C3%A2%20a%C3%A7%C4%B1ksa%20k%C4%B1sa%20bir%20ek%20s%C3%BCre%20tan%C4%B1man%C4%B1z%20m%C3%BCmk%C3%BCn%20m%C3%BCd%C3%BCr%3F%0A%0A%C4%B0lginiz%20i%C3%A7in%20te%C5%9Fekk%C3%BCrler.%0A%0ASayg%C4%B1lar%C4%B1mla%2C%0AKerem%20Ayd%C4%B1n%0Akerem.aydin%40example.com%20%7C%20%2B90%205XX%20XXX%20XX%20XX",
-          "kind": "mailto"
-        },
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Cloudly",
-          "kind": "gmail"
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ACloudly"
         }
       ],
       "gap_skills": [
@@ -171,7 +154,145 @@
       ]
     },
     {
-      "id": "nano1-data-analyst",
+      "id": "novabank-strategy-operations-manager",
+      "company": "Novabank",
+      "role": "Strategy & Operations Manager (Hiring Sprint)",
+      "channel": "ats",
+      "applied": "2026-08-01",
+      "last_contact": "2026-08-25",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Strategy",
+      "location": "Remote/EU",
+      "contact": "İşe alım ekibi — hiring@revolut.example",
+      "deadline": null,
+      "next_step": "-",
+      "fit": 5,
+      "notes": "6 Ağu screen call yapıldı, 7 Ağu olumlu geri bildirim, 25 Ağu olumsuz sonuç. Bu ayın en ileri giden ikinci süreci.",
+      "match": {
+        "role_family": 33,
+        "seniority": 13,
+        "skills": 21,
+        "domain": 12,
+        "location_mod": -8,
+        "rationale": "Strateji & operasyon içeriği birebir — ama 'Manager' kıdemi ve EU çalışma izni engel oldu."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ANovabank"
+        }
+      ],
+      "gap_skills": [
+        "people_leadership",
+        "sql"
+      ]
+    },
+    {
+      "id": "insightq-client-solutions-specialist",
+      "company": "InsightQ",
+      "role": "Client Solutions Specialist",
+      "channel": "ats",
+      "applied": "2026-08-03",
+      "last_contact": "2026-08-03",
+      "stage": "under_review",
+      "status": "stale",
+      "track": "Client Services",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "29 gündür dönüş yok — kapanmış say.",
+      "fit": 3,
+      "notes": "",
+      "match": {
+        "role_family": 18,
+        "seniority": 25,
+        "skills": 15,
+        "domain": 10,
+        "location_mod": 0,
+        "rationale": "Müşteri çözümleri daha çok danışmanlık/ilişki; analitik ikincil."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AInsightQ"
+        }
+      ],
+      "gap_skills": []
+    },
+    {
+      "id": "cortez-pharma-data-operations-specialist",
+      "company": "Cortez Pharma",
+      "role": "Data Operations Specialist (Contractor) R00FF99",
+      "channel": "ats",
+      "applied": "2026-08-03",
+      "last_contact": "2026-08-21",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Data",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "Değerlendirme sürüyor — karar bekleniyor.",
+      "fit": 4,
+      "notes": "3 kez 'öne çıkan aday' hatırlatması geldi (3, 5, 7 Ağu), 21 Ağu'da hâlâ inceleme.",
+      "match": {
+        "role_family": 26,
+        "seniority": 25,
+        "skills": 19,
+        "domain": 7,
+        "location_mod": 0,
+        "rationale": "Veri operasyonları uygun; ilaç sektörü yeni ama analitik iş temelde aynı."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ACortez%20Pharma"
+        }
+      ],
+      "gap_skills": [
+        "sql",
+        "powerbi"
+      ]
+    },
+    {
+      "id": "odepay-product-data-analyst",
+      "company": "Odepay",
+      "role": "Product Data Analyst",
+      "channel": "linkedin",
+      "applied": "2026-08-03",
+      "last_contact": "2026-08-03",
+      "stage": "under_review",
+      "status": "stale",
+      "track": "Data/Fintech",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "29 gündür dönüş yok — kapanmış say.",
+      "fit": 5,
+      "notes": "",
+      "match": {
+        "role_family": 32,
+        "seniority": 25,
+        "skills": 21,
+        "domain": 12,
+        "location_mod": 0,
+        "rationale": "Ürün veri analisti + fintech; funnel/kohort deneyimi doğrudan aranıyor."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AOdepay"
+        }
+      ],
+      "gap_skills": [
+        "sql",
+        "product_analytics"
+      ]
+    },
+    {
+      "id": "nano1-data-analyst-ai",
       "company": "nano1",
       "role": "Data Analyst (AI training)",
       "channel": "direct",
@@ -195,9 +316,9 @@
       },
       "links_actions": [
         {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/nano1",
-          "kind": "gmail"
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3Anano1"
         }
       ],
       "gap_skills": [
@@ -206,7 +327,111 @@
       ]
     },
     {
-      "id": "ergin-perakende-flowq",
+      "id": "fincore-analytics-fintech-junior-data",
+      "company": "Fincore Analytics",
+      "role": "FinTech – Junior Data Processing Analyst (Fix Term)",
+      "channel": "ats",
+      "applied": "2026-08-04",
+      "last_contact": "2026-08-04",
+      "stage": "under_review",
+      "status": "stale",
+      "track": "Data/Fintech",
+      "location": "Remote/EU",
+      "deadline": null,
+      "next_step": "28 gündür dönüş yok — kapanmış say.",
+      "fit": 3,
+      "notes": "",
+      "match": {
+        "role_family": 26,
+        "seniority": 25,
+        "skills": 18,
+        "domain": 11,
+        "location_mod": -8,
+        "rationale": "Junior veri işleme analisti; fintech yakın ama rol CV'nin bir tık altında."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AFincore%20Analytics"
+        }
+      ],
+      "gap_skills": [
+        "sql",
+        "python"
+      ]
+    },
+    {
+      "id": "insightq-consumer-insights-lead",
+      "company": "InsightQ",
+      "role": "Consumer Insights Lead, Turkiye",
+      "channel": "ats",
+      "applied": "2026-08-04",
+      "last_contact": "2026-08-04",
+      "stage": "under_review",
+      "status": "stale",
+      "track": "Insights",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "28 gündür dönüş yok — kapanmış say.",
+      "fit": 4,
+      "notes": "",
+      "match": {
+        "role_family": 24,
+        "seniority": 8,
+        "skills": 17,
+        "domain": 10,
+        "location_mod": 0,
+        "rationale": "'Lead' unvanı kıdem olarak çok üstte; içgörü metodolojisi de yeni alan."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AInsightQ"
+        }
+      ],
+      "gap_skills": [
+        "people_leadership"
+      ]
+    },
+    {
+      "id": "valmont-group-commercial-project-manager",
+      "company": "Valmont Group",
+      "role": "Commercial Project Manager",
+      "channel": "ats",
+      "applied": "2026-08-04",
+      "last_contact": "2026-08-13",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Project Management",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "-",
+      "fit": 3,
+      "notes": "",
+      "match": {
+        "role_family": 22,
+        "seniority": 13,
+        "skills": 16,
+        "domain": 7,
+        "location_mod": 0,
+        "rationale": "Ticari proje yönetimi; lüks perakende ve Manager kıdemi uzak."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AValmont%20Group"
+        }
+      ],
+      "gap_skills": [
+        "people_leadership",
+        "product_management"
+      ]
+    },
+    {
+      "id": "ergin-perakende-belirtilmemis",
       "company": "Ergin Perakende",
       "role": "Belirtilmemiş",
       "channel": "ats",
@@ -230,9 +455,9 @@
       },
       "links_actions": [
         {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Ergin%20Perakende",
-          "kind": "gmail"
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AErgin%20Perakende"
         }
       ],
       "gap_skills": [
@@ -240,148 +465,7 @@
       ]
     },
     {
-      "id": "datamera-join",
-      "company": "Datamera",
-      "role": "Belirtilmemiş",
-      "channel": "ats",
-      "applied": "2026-08-15",
-      "last_contact": "2026-08-15",
-      "stage": "application_incomplete",
-      "status": "action_required",
-      "track": "Data",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "join.com üzerinden giriş yapıp başvuruyu tamamla (link 60 dk geçerliydi — yeniden tetikle).",
-      "fit": 3,
-      "notes": "Başvuru hiç tamamlanmadı.",
-      "match": {
-        "role_family": 24,
-        "seniority": 22,
-        "skills": 19,
-        "domain": 9,
-        "location_mod": 0,
-        "rationale": "Veri danışmanlığı; rol belirsiz ama analitik odaklı olması muhtemel."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Datamera",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "sql",
-        "python"
-      ]
-    },
-    {
-      "id": "mrsundae-deel",
-      "company": "Mr. Sundae (ünlü marka) / Deel",
-      "role": "International Ice-Cream Taster",
-      "channel": "direct",
-      "applied": "2026-08-31",
-      "last_contact": "2026-08-31",
-      "stage": "next_stage",
-      "status": "action_required",
-      "track": "Novelty",
-      "location": "Remote",
-      "deadline": "2026-09-17",
-      "next_step": "60-90 sn tanıtım videosu gönder.",
-      "fit": 1,
-      "notes": "Düşük öncelik / eğlence amaçlı.",
-      "match": {
-        "role_family": 2,
-        "seniority": 25,
-        "skills": 3,
-        "domain": 2,
-        "location_mod": 0,
-        "rationale": "Profille hiçbir kesişim yok — eğlence amaçlı başvuru."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Mr.%20Sundae%20%28%C3%BCnl%C3%BC%20marka%29%20/%20Deel",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": []
-    },
-    {
-      "id": "thespan-base180",
-      "company": "The Span & Base180",
-      "role": "Growth Marketer / Marketing",
-      "channel": "ats",
-      "applied": "2026-08-20",
-      "last_contact": "2026-08-20",
-      "stage": "next_stage",
-      "status": "in_progress",
-      "track": "Growth",
-      "location": "Remote",
-      "deadline": null,
-      "next_step": "Bir sonraki aşama görevi (adayların ~%10'u geçti).",
-      "fit": 4,
-      "notes": "Ashby üzerinden ilerliyor.",
-      "match": {
-        "role_family": 30,
-        "seniority": 25,
-        "skills": 20,
-        "domain": 10,
-        "location_mod": -8,
-        "rationale": "Growth marketing birebir; kampanya/CRO tarafı güçlü, uzaktan EU çalışma izni belirsiz."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/The%20Span%20%26%20Base180",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "experimentation"
-      ]
-    },
-    {
-      "id": "beral-global-ticari-analist",
-      "company": "Beral Global A.Ş.",
-      "role": "Ticari Analist",
-      "channel": "direct",
-      "applied": "2026-08-25",
-      "last_contact": "2026-08-28",
-      "stage": "interviewed",
-      "status": "awaiting_response",
-      "track": "Business Analysis",
-      "location": "İstanbul",
-      "contact": "İK Müdürü — ik@beralglobal.example",
-      "deadline": null,
-      "next_step": "28 Ağu 12:00 Teams görüşmesi yapıldı — geri dönüş bekleniyor. 5+ iş günü geçtiyse takip maili at.",
-      "fit": 4,
-      "notes": "Aktif mülakat süreci.",
-      "match": {
-        "role_family": 34,
-        "seniority": 25,
-        "skills": 23,
-        "domain": 9,
-        "location_mod": 0,
-        "rationale": "Ticari analist = ticari strateji + P&L + fiyatlandırma deneyiminin tam karşılığı."
-      },
-      "links_actions": [
-        {
-          "label": "Takip maili yaz",
-          "url": "mailto:ik@beralglobal.example?subject=Ticari%20Analist%20pozisyonu%20%E2%80%94%20g%C3%B6r%C3%BC%C5%9Fme%20sonras%C4%B1%20takip&body=Merhaba%2C%0A%0ABeral%20Global%20A.%C5%9E.%20b%C3%BCnyesindeki%20Ticari%20Analist%20pozisyonu%20i%C3%A7in%20ger%C3%A7ekle%C5%9Ftirdi%C4%9Fimiz%20g%C3%B6r%C3%BC%C5%9Fme%20i%C3%A7in%20tekrar%20te%C5%9Fekk%C3%BCr%20ederim.%20S%C3%BCrecin%20bir%20sonraki%20ad%C4%B1m%C4%B1%20hakk%C4%B1nda%20bilgi%20alabilir%20miyim%3F%0A%0A%C4%B0lginiz%20i%C3%A7in%20te%C5%9Fekk%C3%BCrler.%0A%0ASayg%C4%B1lar%C4%B1mla%2C%0AKerem%20Ayd%C4%B1n%0Akerem.aydin%40example.com%20%7C%20%2B90%205XX%20XXX%20XX%20XX",
-          "kind": "mailto"
-        },
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Beral%20Global%20A.%C5%9E.",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "sql"
-      ]
-    },
-    {
-      "id": "pazargo",
+      "id": "pazargo-belirtilmemis",
       "company": "PazarGo",
       "role": "Belirtilmemiş",
       "channel": "ats",
@@ -405,9 +489,9 @@
       },
       "links_actions": [
         {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/PazarGo",
-          "kind": "gmail"
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3APazarGo"
         }
       ],
       "gap_skills": [
@@ -415,1071 +499,141 @@
       ]
     },
     {
-      "id": "drift-data-ops-fellow",
-      "company": "drift (joindrift.ai)",
-      "role": "Data Operations Fellow",
-      "channel": "direct",
-      "applied": "2026-08-26",
-      "last_contact": "2026-08-26",
-      "stage": "in_process",
-      "status": "awaiting_response",
-      "track": "Data",
-      "location": "İstanbul",
-      "contact": "program@drift.example",
-      "deadline": null,
-      "next_step": "Program süreç akışı paylaşıldı — sonraki adım bildirimi bekleniyor.",
-      "fit": 4,
-      "notes": "Klasik staj değil, fellowship programı.",
-      "match": {
-        "role_family": 26,
-        "seniority": 20,
-        "skills": 20,
-        "domain": 8,
-        "location_mod": 0,
-        "rationale": "Data ops analitiği uygun ama fellowship 2 yıllık deneyimin bir tık altında."
-      },
-      "links_actions": [
-        {
-          "label": "Takip maili yaz",
-          "url": "mailto:program@drift.example?subject=Data%20Operations%20Fellow%20ba%C5%9Fvurusu%20%E2%80%94%20durum%20sorusu&body=Merhaba%2C%0A%0Adrift%20%28joindrift.ai%29%20b%C3%BCnyesindeki%20Data%20Operations%20Fellow%20pozisyonuna%20yapt%C4%B1%C4%9F%C4%B1m%20ba%C5%9Fvurunun%20mevcut%20durumu%20hakk%C4%B1nda%20bilgi%20alabilir%20miyim%3F%20S%C3%BCre%C3%A7le%20ilgilenmeye%20devam%20ediyorum.%0A%0A%C4%B0lginiz%20i%C3%A7in%20te%C5%9Fekk%C3%BCrler.%0A%0ASayg%C4%B1lar%C4%B1mla%2C%0AKerem%20Ayd%C4%B1n%0Akerem.aydin%40example.com%20%7C%20%2B90%205XX%20XXX%20XX%20XX",
-          "kind": "mailto"
-        },
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/drift%20%28joindrift.ai%29",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "sql",
-        "python"
-      ]
-    },
-    {
-      "id": "cortez-data-ops",
-      "company": "Cortez Pharma",
-      "role": "Data Operations Specialist (Contractor) 4960477",
-      "channel": "ats",
-      "applied": "2026-08-03",
-      "last_contact": "2026-08-21",
-      "stage": "under_review",
-      "status": "awaiting_response",
-      "track": "Data",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "Değerlendirme sürüyor — karar bekleniyor.",
-      "fit": 4,
-      "notes": "3 kez 'öne çıkan aday' hatırlatması geldi (3, 5, 7 Ağu), 21 Ağu'da hâlâ inceleme.",
-      "match": {
-        "role_family": 26,
-        "seniority": 25,
-        "skills": 19,
-        "domain": 7,
-        "location_mod": 0,
-        "rationale": "Veri operasyonları uygun; ilaç sektörü yeni ama analitik iş temelde aynı."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Cortez Pharma",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "sql",
-        "powerbi"
-      ]
-    },
-    {
-      "id": "virtuassist-pool",
-      "company": "Virtuassist",
-      "role": "Yetenek havuzu",
-      "channel": "direct",
-      "applied": "2026-08-25",
-      "last_contact": "2026-08-30",
-      "stage": "talent_pool",
-      "status": "awaiting_response",
-      "track": "Remote",
-      "location": "Remote",
-      "deadline": null,
-      "next_step": "Opsiyonel: kısa tanıtım videosu eklemek eşleşme şansını artırıyor.",
-      "fit": 2,
-      "notes": "Test tamamlandı, havuzda.",
-      "match": {
-        "role_family": 12,
-        "seniority": 22,
-        "skills": 14,
-        "domain": 5,
-        "location_mod": -8,
-        "rationale": "Belirli bir rol yok, genel yetenek havuzu — dönüşüm olasılığı düşük."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Virtuassist",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": []
-    },
-    {
-      "id": "novabank-product-owner",
-      "company": "Novabank",
-      "role": "Product Owner (Technical)",
-      "channel": "ats",
-      "applied": "2026-09-01",
-      "last_contact": "2026-09-01",
-      "stage": "under_review",
-      "status": "awaiting_response",
-      "track": "Product",
-      "location": "Remote/EU",
-      "deadline": null,
-      "next_step": "Başvuru onaylandı — inceleme aşamasında.",
-      "fit": 4,
-      "notes": "Novabank'ta ikinci deneme (S&O Manager 25 Ağu'da olumsuz sonuçlandı).",
-      "match": {
-        "role_family": 18,
-        "seniority": 20,
-        "skills": 14,
-        "domain": 12,
-        "location_mod": -8,
-        "rationale": "'Technical' Product Owner mühendislik altyapısı istiyor; fintech yakın ama teknik açık var."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Novabank",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "product_management",
-        "sql"
-      ]
-    },
-    {
-      "id": "sanyo-product-senior",
-      "company": "Sanyo Motor Türkiye",
-      "role": "Product Senior Specialist (Pricing & Sanyo Finance)",
-      "channel": "ats",
-      "applied": "2026-09-01",
-      "last_contact": "2026-09-01",
-      "stage": "under_review",
-      "status": "awaiting_response",
-      "track": "Finance/Pricing",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "İnceleme aşamasında.",
-      "fit": 4,
-      "notes": "SuccessFactors.",
-      "match": {
-        "role_family": 33,
-        "seniority": 20,
-        "skills": 22,
-        "domain": 9,
-        "location_mod": 0,
-        "rationale": "Pricing + finans birleşimi CV'nin merkezinde; Senior Specialist hafif esneme."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Sanyo%20Motor%20T%C3%BCrkiye",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "financial_modeling"
-      ]
-    },
-    {
-      "id": "kartek-ba-ai",
-      "company": "Kartek",
-      "role": "Business Analyst – AI & Product Analytics",
-      "channel": "ats",
-      "applied": "2026-09-01",
-      "last_contact": "2026-09-01",
-      "stage": "under_review",
-      "status": "awaiting_response",
-      "track": "Business Analysis",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "CV işverene iletildi.",
-      "fit": 4,
-      "notes": "resreader.com üzerinden.",
-      "match": {
-        "role_family": 33,
-        "seniority": 25,
-        "skills": 20,
-        "domain": 9,
-        "location_mod": 0,
-        "rationale": "Business Analyst + ürün analitiği birebir; AI kısmı öğrenilebilir."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Kartek",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "sql",
-        "product_analytics"
-      ]
-    },
-    {
-      "id": "rolefinder-supply-chain",
-      "company": "Rolefinder",
-      "role": "Supply Chain Analyst",
-      "channel": "aggregator",
-      "applied": "2026-09-01",
-      "last_contact": "2026-09-01",
-      "stage": "under_review",
-      "status": "awaiting_response",
-      "track": "Operations",
-      "location": "Remote",
-      "deadline": null,
-      "next_step": "Eşleşme skoru inceleniyor.",
-      "fit": 3,
-      "notes": "Rolefinder = agregatör; dönüş oranı düşük.",
-      "match": {
-        "role_family": 26,
-        "seniority": 25,
-        "skills": 19,
-        "domain": 10,
-        "location_mod": -8,
-        "rationale": "Tedarik zinciri analitiği FP&A/forecast ile örtüşüyor; agregatör kanalı zayıf."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Rolefinder",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "supply_chain",
-        "sql"
-      ]
-    },
-    {
-      "id": "nlb-bi-analyst",
-      "company": "NLB",
-      "role": "Business Intelligence (BI) Analyst",
-      "channel": "ats",
-      "applied": "2026-08-25",
-      "last_contact": "2026-09-01",
-      "stage": "under_review",
-      "status": "awaiting_response",
-      "track": "Data",
-      "location": "Remote",
-      "deadline": null,
-      "next_step": "Workday bildirimi geldi — Workday Inbox'ı kontrol et.",
-      "fit": 4,
-      "notes": "1 Eyl Workday digest'inde bildirim var, içeriği okunmalı.",
-      "match": {
-        "role_family": 31,
-        "seniority": 25,
-        "skills": 20,
-        "domain": 7,
-        "location_mod": -8,
-        "rationale": "BI Analyst = Tableau/Power BI güçlü yanı; SQL 3/5 sınırda."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/NLB",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "sql",
-        "powerbi",
-        "dbt_analytics_eng"
-      ]
-    },
-    {
-      "id": "complyscan-founders",
-      "company": "ComplyScan",
-      "role": "Founder's Associate",
-      "channel": "ats",
-      "applied": "2026-08-31",
-      "last_contact": "2026-08-31",
-      "stage": "under_review",
-      "status": "awaiting_response",
-      "track": "Strategy",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "Nitelikler inceleniyor.",
-      "fit": 5,
-      "notes": "Founder's Associate rolü profile çok uygun.",
-      "match": {
-        "role_family": 33,
-        "seniority": 25,
-        "skills": 22,
-        "domain": 12,
-        "location_mod": 0,
-        "rationale": "Founder's Associate = çapraz fonksiyonlu analitik/strateji; regtech fintech yakın."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/ComplyScan",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "sql"
-      ]
-    },
-    {
-      "id": "denar-lever",
-      "company": "Denar",
-      "role": "Belirtilmemiş",
-      "channel": "ats",
-      "applied": "2026-08-31",
-      "last_contact": "2026-08-31",
-      "stage": "under_review",
-      "status": "awaiting_response",
-      "track": "Fintech",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "İnceleme aşamasında.",
-      "fit": 4,
-      "notes": "Lever.",
-      "match": {
-        "role_family": 22,
-        "seniority": 22,
-        "skills": 20,
-        "domain": 12,
-        "location_mod": 0,
-        "rationale": "Fintech/yatırım platformu sektörü uygun; rol belirsiz."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Denar",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "sql"
-      ]
-    },
-    {
-      "id": "meridyen-lojistik-bpe",
-      "company": "Meridyen Lojistik",
-      "role": "Business Process Excellence Professional Turkey",
-      "channel": "ats",
-      "applied": "2026-08-31",
-      "last_contact": "2026-08-31",
-      "stage": "under_review",
-      "status": "awaiting_response",
-      "track": "Operations",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "İnceleme aşamasında.",
-      "fit": 4,
-      "notes": "",
-      "match": {
-        "role_family": 27,
-        "seniority": 22,
-        "skills": 19,
-        "domain": 8,
-        "location_mod": 0,
-        "rationale": "Süreç mükemmelliği analitik/proje işi; lojistik sektörü orta yakınlık."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Meridyen%20Lojistik",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "supply_chain"
-      ]
-    },
-    {
-      "id": "duvall-fpa",
-      "company": "Duvall Spirits",
-      "role": "Financial Planning & Analysis Management Trainee",
-      "channel": "ats",
-      "applied": "2026-08-31",
-      "last_contact": "2026-08-31",
-      "stage": "under_review",
-      "status": "awaiting_response",
-      "track": "Finance",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "İnceleme aşamasında.",
-      "fit": 4,
-      "notes": "Workday.",
-      "match": {
-        "role_family": 34,
-        "seniority": 23,
-        "skills": 23,
-        "domain": 9,
-        "location_mod": 0,
-        "rationale": "FP&A birebir; Management Trainee 2 yıllık deneyimin biraz altında ama marka değeri yüksek."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Duvall%20Spirits",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "financial_modeling"
-      ]
-    },
-    {
-      "id": "yolcum-strategy-analyst",
-      "company": "Yolcum",
-      "role": "Strategy Analyst",
+      "id": "auralever-foods-digital-experience",
+      "company": "Auralever",
+      "role": "Foods Digital Experience Lead",
       "channel": "linkedin",
-      "applied": "2026-08-30",
-      "last_contact": "2026-08-30",
-      "stage": "under_review",
-      "status": "awaiting_response",
-      "track": "Strategy",
+      "applied": "2026-08-05",
+      "last_contact": "2026-08-31",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Digital",
       "location": "İstanbul",
       "deadline": null,
-      "next_step": "İnceleme aşamasında.",
-      "fit": 5,
-      "notes": "Yolcum'e ikinci başvuru.",
-      "match": {
-        "role_family": 34,
-        "seniority": 25,
-        "skills": 22,
-        "domain": 13,
-        "location_mod": 0,
-        "rationale": "Strategy Analyst + online seyahat marketplace — rol ve sektör birlikte çok güçlü."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Yolcum",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "sql"
-      ]
-    },
-    {
-      "id": "yolcum-strategic-finance",
-      "company": "Yolcum",
-      "role": "Strategic Finance and Analytics Specialist",
-      "channel": "linkedin",
-      "applied": "2026-08-19",
-      "last_contact": "2026-08-19",
-      "stage": "under_review",
-      "status": "stale",
-      "track": "Finance",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "13 gündür dönüş yok — takip maili düşünülebilir.",
-      "fit": 5,
-      "notes": "",
-      "match": {
-        "role_family": 35,
-        "seniority": 25,
-        "skills": 23,
-        "domain": 13,
-        "location_mod": 0,
-        "rationale": "Strategic Finance + Analytics = FP&A ve growth analitiğinin tam kesişimi. Listedeki en iyi eşleşme."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Yolcum",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "sql",
-        "financial_modeling"
-      ]
-    },
-    {
-      "id": "datapoint",
-      "company": "Datapoint",
-      "role": "Belirtilmemiş",
-      "channel": "ats",
-      "applied": "2026-08-28",
-      "last_contact": "2026-08-28",
-      "stage": "under_review",
-      "status": "awaiting_response",
-      "track": "Data",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "İnceleme aşamasında.",
-      "fit": 5,
-      "notes": "Lever.",
-      "match": {
-        "role_family": 29,
-        "seniority": 22,
-        "skills": 20,
-        "domain": 11,
-        "location_mod": 0,
-        "rationale": "Dijital analitik ürünü; Mixpanel/kohort deneyimi doğrudan konuşuluyor."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Datapoint",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "sql",
-        "product_analytics"
-      ]
-    },
-    {
-      "id": "lumiere-coverage-support",
-      "company": "Banque Lumière",
-      "role": "Coverage Support Analyst (26000J28)",
-      "channel": "ats",
-      "applied": "2026-08-27",
-      "last_contact": "2026-08-27",
-      "stage": "under_review",
-      "status": "awaiting_response",
-      "track": "Banking",
-      "location": "Remote/EU",
-      "deadline": null,
-      "next_step": "İnceleme aşamasında.",
-      "fit": 4,
-      "notes": "",
-      "match": {
-        "role_family": 26,
-        "seniority": 25,
-        "skills": 18,
-        "domain": 11,
-        "location_mod": -8,
-        "rationale": "Bankacılık analiz desteği; finans temeli uygun, uzaktan EU izni belirsiz."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Banque%20Lumi%C3%A8re",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "financial_modeling"
-      ]
-    },
-    {
-      "id": "rolefinder-ba-vdi",
-      "company": "Rolefinder",
-      "role": "Business Analyst – Data Sensitivity & VDI Migration",
-      "channel": "aggregator",
-      "applied": "2026-08-27",
-      "last_contact": "2026-08-27",
-      "stage": "under_review",
-      "status": "awaiting_response",
-      "track": "Business Analysis",
-      "location": "Remote",
-      "deadline": null,
-      "next_step": "İnceleme aşamasında.",
-      "fit": 3,
-      "notes": "",
-      "match": {
-        "role_family": 20,
-        "seniority": 25,
-        "skills": 12,
-        "domain": 5,
-        "location_mod": -8,
-        "rationale": "BT altyapı/VDI migrasyonu — ticari analitikle kesişimi yok."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Rolefinder",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "sql"
-      ]
-    },
-    {
-      "id": "vista-ai-saas-growth",
-      "company": "VISTA AI",
-      "role": "SaaS Growth Strategist (AI-Native)",
-      "channel": "ats",
-      "applied": "2026-08-27",
-      "last_contact": "2026-08-27",
-      "stage": "under_review",
-      "status": "awaiting_response",
-      "track": "Growth",
-      "location": "İstanbul/Remote",
-      "deadline": null,
-      "next_step": "İnceleme aşamasında.",
-      "fit": 4,
-      "notes": "hrpanda.",
-      "match": {
-        "role_family": 31,
-        "seniority": 22,
-        "skills": 19,
-        "domain": 9,
-        "location_mod": 0,
-        "rationale": "SaaS growth stratejisi; funnel/retention deneyimi doğrudan geçerli."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/VISTA%20AI",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "experimentation",
-        "product_analytics"
-      ]
-    },
-    {
-      "id": "telfora",
-      "company": "Telfora",
-      "role": "Belirtilmemiş",
-      "channel": "ats",
-      "applied": "2026-08-20",
-      "last_contact": "2026-08-26",
-      "stage": "under_review",
-      "status": "awaiting_response",
-      "track": "Telco",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "İşe alım ekibi inceliyor.",
-      "fit": 4,
-      "notes": "20 ve 26 Ağu'da iki takip maili.",
-      "match": {
-        "role_family": 20,
-        "seniority": 22,
-        "skills": 18,
-        "domain": 9,
-        "location_mod": 0,
-        "rationale": "Rol belirsiz; telco'da CRM/growth analitiği açılırsa uyum yükselir."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Telfora",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "sql",
-        "powerbi"
-      ]
-    },
-    {
-      "id": "brightplaygames-product-specialist",
-      "company": "Bright Play Games",
-      "role": "Product Specialist, Hybrid-Casual",
-      "channel": "ats",
-      "applied": "2026-08-26",
-      "last_contact": "2026-08-26",
-      "stage": "under_review",
-      "status": "awaiting_response",
-      "track": "Product/Gaming",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "İnceleme aşamasında.",
-      "fit": 4,
-      "notes": "",
-      "match": {
-        "role_family": 24,
-        "seniority": 25,
-        "skills": 18,
-        "domain": 9,
-        "location_mod": 0,
-        "rationale": "Oyun ürün analitiği; kohort/retention bilgisi transfer olur, oyun metrikleri yeni."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Bright%20Play%20Games",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "product_analytics",
-        "sql"
-      ]
-    },
-    {
-      "id": "pixelclip-data-analyst",
-      "company": "Pixelclip",
-      "role": "Data Analyst / Data Scientist I",
-      "channel": "ats",
-      "applied": "2026-08-24",
-      "last_contact": "2026-08-24",
-      "stage": "under_review",
-      "status": "stale",
-      "track": "Data/Gaming",
-      "location": "Remote/EU",
-      "deadline": null,
-      "next_step": "8 gündür dönüş yok.",
-      "fit": 4,
-      "notes": "",
-      "match": {
-        "role_family": 30,
-        "seniority": 25,
-        "skills": 17,
-        "domain": 9,
-        "location_mod": -8,
-        "rationale": "Data Analyst uygun ama oyun analitiğinde SQL/Python beklentisi CV'nin üstünde."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Pixelclip",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "sql",
-        "python"
-      ]
-    },
-    {
-      "id": "aksel-micro-bde-hpe",
-      "company": "Aksel Micro",
-      "role": "Business Development Executive - HPE",
-      "channel": "ats",
-      "applied": "2026-08-20",
-      "last_contact": "2026-08-20",
-      "stage": "under_review",
-      "status": "stale",
-      "track": "Sales/BD",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "12 gündür dönüş yok.",
-      "fit": 3,
-      "notes": "Workday.",
-      "match": {
-        "role_family": 14,
-        "seniority": 25,
-        "skills": 12,
-        "domain": 7,
-        "location_mod": 0,
-        "rationale": "Saf satış/iş geliştirme — analitik profille zayıf kesişim."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Aksel%20Micro",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": []
-    },
-    {
-      "id": "voyago-bd-manager",
-      "company": "Voyago Group",
-      "role": "Business Development Manager (Attractions & Tours), Turkey",
-      "channel": "ats",
-      "applied": "2026-08-20",
-      "last_contact": "2026-08-20",
-      "stage": "under_review",
-      "status": "stale",
-      "track": "Sales/BD",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "12 gündür dönüş yok.",
-      "fit": 4,
-      "notes": "",
-      "match": {
-        "role_family": 14,
-        "seniority": 13,
-        "skills": 12,
-        "domain": 11,
-        "location_mod": 0,
-        "rationale": "Satış odaklı Manager rolü; hem rol ailesi hem kıdem uyumsuz."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Voyago%20Group",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "people_leadership"
-      ]
-    },
-    {
-      "id": "craftly-ecom-ops-lead",
-      "company": "Craftly",
-      "role": "Regional E-commerce Operations Lead, META",
-      "channel": "linkedin",
-      "applied": "2026-08-20",
-      "last_contact": "2026-08-20",
-      "stage": "under_review",
-      "status": "stale",
-      "track": "E-commerce",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "12 gündür dönüş yok.",
+      "next_step": "-",
       "fit": 4,
       "notes": "",
       "match": {
         "role_family": 22,
         "seniority": 8,
         "skills": 16,
-        "domain": 12,
-        "location_mod": 0,
-        "rationale": "E-ticaret operasyonu yakın ama 'Regional Lead' kıdem olarak çok üstte."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Craftly",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "people_leadership"
-      ]
-    },
-    {
-      "id": "lightbug-biz-ops",
-      "company": "Lightbug",
-      "role": "Business Operations Associate",
-      "channel": "ats",
-      "applied": "2026-08-20",
-      "last_contact": "2026-08-20",
-      "stage": "under_review",
-      "status": "stale",
-      "track": "Operations",
-      "location": "Remote",
-      "deadline": null,
-      "next_step": "12 gündür dönüş yok.",
-      "fit": 4,
-      "notes": "Lever.",
-      "match": {
-        "role_family": 30,
-        "seniority": 25,
-        "skills": 21,
-        "domain": 8,
-        "location_mod": -8,
-        "rationale": "Business Operations = analitik + süreç; profile çok uygun."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Lightbug",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "sql"
-      ]
-    },
-    {
-      "id": "yardimci-app-growth-pm",
-      "company": "Yardımcı App A.Ş.",
-      "role": "Growth Product Manager",
-      "channel": "ats",
-      "applied": "2026-08-20",
-      "last_contact": "2026-08-20",
-      "stage": "under_review",
-      "status": "stale",
-      "track": "Product/Growth",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "12 gündür dönüş yok.",
-      "fit": 4,
-      "notes": "hrpanda.",
-      "match": {
-        "role_family": 28,
-        "seniority": 15,
-        "skills": 18,
         "domain": 10,
         "location_mod": 0,
-        "rationale": "Growth PM analitik tarafı uygun; PM kıdemi ve ürün sahipliği deneyimi eksik."
+        "rationale": "'Lead' kıdemi çok üstte; dijital deneyim tasarımı da farklı bir alan."
       },
       "links_actions": [
         {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Yard%C4%B1mc%C4%B1%20App%20A.%C5%9E.",
-          "kind": "gmail"
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AAuralever"
         }
       ],
       "gap_skills": [
-        "product_management",
-        "experimentation"
+        "people_leadership",
+        "product_management"
       ]
     },
     {
-      "id": "lingofly-influencer",
-      "company": "Lingofly",
-      "role": "Influencer Marketing & Partnership Specialist",
+      "id": "reinhardt-industries-customer-experience-cx",
+      "company": "Reinhardt Industries",
+      "role": "Customer Experience (CX) Analyst",
       "channel": "ats",
-      "applied": "2026-08-20",
-      "last_contact": "2026-08-20",
+      "applied": "2026-08-07",
+      "last_contact": "2026-08-07",
       "stage": "under_review",
       "status": "stale",
-      "track": "Marketing",
+      "track": "Business Analysis",
       "location": "İstanbul",
       "deadline": null,
-      "next_step": "12 gündür dönüş yok.",
-      "fit": 3,
-      "notes": "hrpanda.",
+      "next_step": "25 gündür dönüş yok — kapanmış say.",
+      "fit": 4,
+      "notes": "SmartRecruiters.",
       "match": {
-        "role_family": 12,
+        "role_family": 29,
         "seniority": 25,
-        "skills": 10,
+        "skills": 20,
         "domain": 8,
         "location_mod": 0,
-        "rationale": "Influencer/partnership içerik-ilişki işi; analitik profille örtüşmüyor."
+        "rationale": "Müşteri deneyimi analitiği; segmentasyon ve funnel bilgisi transfer olur."
       },
       "links_actions": [
         {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Lingofly",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": []
-    },
-    {
-      "id": "northwind-content-acq",
-      "company": "Northwind Retail",
-      "role": "Content Acquisition Manager, Prime Video Turkey (10506884)",
-      "channel": "ats",
-      "applied": "2026-08-20",
-      "last_contact": "2026-08-20",
-      "stage": "under_review",
-      "status": "stale",
-      "track": "Content/BD",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "12 gündür dönüş yok — northwind.jobs portalından durum kontrol edilebilir.",
-      "fit": 4,
-      "notes": "",
-      "match": {
-        "role_family": 12,
-        "seniority": 13,
-        "skills": 10,
-        "domain": 7,
-        "location_mod": 0,
-        "rationale": "İçerik lisanslama ve müzakere işi; ne rol ne kıdem uyuyor."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Northwind Retail",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "people_leadership"
-      ]
-    },
-    {
-      "id": "indeed-csm",
-      "company": "Coliva / Indeed başvuruları",
-      "role": "Customer Success Manager",
-      "channel": "indeed",
-      "applied": "2026-08-18",
-      "last_contact": "2026-08-30",
-      "stage": "closed",
-      "status": "rejected",
-      "track": "Customer Success",
-      "location": "Remote",
-      "deadline": null,
-      "next_step": "-",
-      "fit": 2,
-      "notes": "30 Ağu: Coliva başka adaylarla ilerledi.",
-      "match": {
-        "role_family": 12,
-        "seniority": 20,
-        "skills": 11,
-        "domain": 6,
-        "location_mod": -8,
-        "rationale": "Müşteri başarısı ilişki yönetimi; analitik derinlik aranmıyor."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Coliva%20/%20Indeed%20ba%C5%9Fvurular%C4%B1",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": []
-    },
-    {
-      "id": "rolefinder-games-data",
-      "company": "Rolefinder",
-      "role": "Senior Games Data Analyst (Europe, Asia)",
-      "channel": "aggregator",
-      "applied": "2026-08-17",
-      "last_contact": "2026-08-17",
-      "stage": "under_review",
-      "status": "stale",
-      "track": "Data/Gaming",
-      "location": "Remote",
-      "deadline": null,
-      "next_step": "15 gündür dönüş yok.",
-      "fit": 3,
-      "notes": "",
-      "match": {
-        "role_family": 30,
-        "seniority": 20,
-        "skills": 17,
-        "domain": 9,
-        "location_mod": -8,
-        "rationale": "Senior Games Data Analyst — rol uygun, 'Senior' ve oyun domaini esneme."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Rolefinder",
-          "kind": "gmail"
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AReinhardt%20Industries"
         }
       ],
       "gap_skills": [
         "sql",
-        "python",
-        "product_analytics"
+        "powerbi"
       ]
     },
     {
-      "id": "rolefinder-pm-data-activation",
-      "company": "Rolefinder",
-      "role": "Product Manager, Data Activation",
-      "channel": "aggregator",
-      "applied": "2026-08-16",
-      "last_contact": "2026-08-16",
+      "id": "gross-maksi-analytical-marketing-senior",
+      "company": "GROSS / MAKSI",
+      "role": "Analytical Marketing Senior Executive (Temporary)",
+      "channel": "ats",
+      "applied": "2026-08-07",
+      "last_contact": "2026-08-07",
       "stage": "under_review",
       "status": "stale",
-      "track": "Product/Data",
-      "location": "Remote",
+      "track": "Marketing/Data",
+      "location": "İstanbul",
       "deadline": null,
-      "next_step": "16 gündür dönüş yok.",
-      "fit": 3,
+      "next_step": "25 gündür dönüş yok — kapanmış say.",
+      "fit": 4,
       "notes": "",
       "match": {
-        "role_family": 26,
-        "seniority": 18,
-        "skills": 17,
-        "domain": 8,
-        "location_mod": -8,
-        "rationale": "Veri aktivasyonu PM'i; analitik yakın ama ürün yönetimi kıdemi eksik."
+        "role_family": 31,
+        "seniority": 20,
+        "skills": 21,
+        "domain": 11,
+        "location_mod": 0,
+        "rationale": "Analitik pazarlama + perakende; CRM/kampanya ölçümleme birebir."
       },
       "links_actions": [
         {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Rolefinder",
-          "kind": "gmail"
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AGROSS%20%2F%20MAKSI"
         }
       ],
       "gap_skills": [
-        "product_management",
+        "sql",
+        "powerbi"
+      ]
+    },
+    {
+      "id": "whitfield-chase-client-data-specialist",
+      "company": "Whitfield Chase",
+      "role": "Client Data Specialist (RA66CDE)",
+      "channel": "ats",
+      "applied": "2026-08-10",
+      "last_contact": "2026-08-21",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Data/Banking",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "-",
+      "fit": 4,
+      "notes": "",
+      "match": {
+        "role_family": 24,
+        "seniority": 25,
+        "skills": 16,
+        "domain": 11,
+        "location_mod": 0,
+        "rationale": "Müşteri veri uzmanlığı operasyonel; bankacılık yakın, analitik derinlik sınırlı."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AWhitfield%20Chase"
+        }
+      ],
+      "gap_skills": [
         "sql"
       ]
     },
@@ -1508,9 +662,9 @@
       },
       "links_actions": [
         {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Rolefinder",
-          "kind": "gmail"
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ARolefinder"
         }
       ],
       "gap_skills": [
@@ -1519,389 +673,7 @@
       ]
     },
     {
-      "id": "domesa-perfect-store",
-      "company": "Domesa",
-      "role": "Perfect Store & Trade Shopper Marketing Specialist",
-      "channel": "ats",
-      "applied": "2026-08-16",
-      "last_contact": "2026-08-16",
-      "stage": "under_review",
-      "status": "stale",
-      "track": "Marketing",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "16 gündür dönüş yok.",
-      "fit": 3,
-      "notes": "",
-      "match": {
-        "role_family": 20,
-        "seniority": 25,
-        "skills": 16,
-        "domain": 9,
-        "location_mod": 0,
-        "rationale": "Trade marketing saha odaklı; analitik kısmı sınırlı."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Domesa",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": []
-    },
-    {
-      "id": "maviekip-ticasoft-pm",
-      "company": "Mavi Ekip Ticasoft",
-      "role": "Product Manager",
-      "channel": "ats",
-      "applied": "2026-08-16",
-      "last_contact": "2026-08-16",
-      "stage": "under_review",
-      "status": "stale",
-      "track": "Product",
-      "location": "İstanbul",
-      "contact": "ik@maviekipticasoft.example",
-      "deadline": null,
-      "next_step": "16 gündür dönüş yok.",
-      "fit": 4,
-      "notes": "",
-      "match": {
-        "role_family": 24,
-        "seniority": 20,
-        "skills": 18,
-        "domain": 11,
-        "location_mod": 0,
-        "rationale": "E-ticaret SaaS ürün yönetimi; sektör yakın, PM deneyimi yok."
-      },
-      "links_actions": [
-        {
-          "label": "Takip maili yaz",
-          "url": "mailto:ik@maviekipticasoft.example?subject=Product%20Manager%20ba%C5%9Fvurusu%20%E2%80%94%20durum%20sorusu&body=Merhaba%2C%0A%0AMavi%20Ekip%20Ticasoft%20b%C3%BCnyesindeki%20Product%20Manager%20pozisyonuna%20yapt%C4%B1%C4%9F%C4%B1m%20ba%C5%9Fvurunun%20mevcut%20durumu%20hakk%C4%B1nda%20bilgi%20alabilir%20miyim%3F%20S%C3%BCre%C3%A7le%20ilgilenmeye%20devam%20ediyorum.%0A%0A%C4%B0lginiz%20i%C3%A7in%20te%C5%9Fekk%C3%BCrler.%0A%0ASayg%C4%B1lar%C4%B1mla%2C%0AKerem%20Ayd%C4%B1n%0Akerem.aydin%40example.com%20%7C%20%2B90%205XX%20XXX%20XX%20XX",
-          "kind": "mailto"
-        },
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Mavi%20Ekip%20Ticasoft",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "product_management"
-      ]
-    },
-    {
-      "id": "halden-pricing-ci",
-      "company": "Halden Electric",
-      "role": "Pricing Continuous Improvement Specialist",
-      "channel": "ats",
-      "applied": "2026-08-13",
-      "last_contact": "2026-08-13",
-      "stage": "under_review",
-      "status": "stale",
-      "track": "Pricing",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "19 gündür dönüş yok.",
-      "fit": 4,
-      "notes": "",
-      "match": {
-        "role_family": 32,
-        "seniority": 25,
-        "skills": 21,
-        "domain": 7,
-        "location_mod": 0,
-        "rationale": "Fiyatlandırma + sürekli iyileştirme = ticari strateji ve esneklik analizi deneyimi birebir."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Halden Electric",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "powerbi"
-      ]
-    },
-    {
-      "id": "zephyr-games-growth",
-      "company": "Zephyr Games",
-      "role": "Growth Manager / Senior Growth Manager",
-      "channel": "linkedin",
-      "applied": "2026-08-12",
-      "last_contact": "2026-08-12",
-      "stage": "under_review",
-      "status": "stale",
-      "track": "Growth/Gaming",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "20 gündür dönüş yok.",
-      "fit": 4,
-      "notes": "Lever.",
-      "match": {
-        "role_family": 31,
-        "seniority": 13,
-        "skills": 20,
-        "domain": 9,
-        "location_mod": 0,
-        "rationale": "Growth işi birebir ama 'Manager/Senior Manager' kıdemi 2 yılın üstünde."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Zephyr%20Games",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "people_leadership",
-        "experimentation"
-      ]
-    },
-    {
-      "id": "wml-digital-insight",
-      "company": "WML",
-      "role": "Digital Insight Analyst",
-      "channel": "linkedin",
-      "applied": "2026-08-10",
-      "last_contact": "2026-08-10",
-      "stage": "under_review",
-      "status": "stale",
-      "track": "Data/Marketing",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "22 gündür dönüş yok — kapanmış say.",
-      "fit": 4,
-      "notes": "",
-      "match": {
-        "role_family": 29,
-        "seniority": 25,
-        "skills": 19,
-        "domain": 8,
-        "location_mod": 0,
-        "rationale": "Dijital içgörü analisti; Tableau/kampanya ölçümleme deneyimi doğrudan geçerli."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/WML",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "sql",
-        "product_analytics"
-      ]
-    },
-    {
-      "id": "reinhardt-cx-analyst",
-      "company": "Reinhardt Industries",
-      "role": "Customer Experience (CX) Analyst",
-      "channel": "ats",
-      "applied": "2026-08-07",
-      "last_contact": "2026-08-07",
-      "stage": "under_review",
-      "status": "stale",
-      "track": "Business Analysis",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "25 gündür dönüş yok — kapanmış say.",
-      "fit": 4,
-      "notes": "SmartRecruiters.",
-      "match": {
-        "role_family": 29,
-        "seniority": 25,
-        "skills": 20,
-        "domain": 8,
-        "location_mod": 0,
-        "rationale": "Müşteri deneyimi analitiği; segmentasyon ve funnel bilgisi transfer olur."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Reinhardt Industries",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "sql",
-        "powerbi"
-      ]
-    },
-    {
-      "id": "gross-analytical-marketing",
-      "company": "GROSS / MAKSI",
-      "role": "Analytical Marketing Senior Executive (Temporary)",
-      "channel": "ats",
-      "applied": "2026-08-07",
-      "last_contact": "2026-08-07",
-      "stage": "under_review",
-      "status": "stale",
-      "track": "Marketing/Data",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "25 gündür dönüş yok — kapanmış say.",
-      "fit": 4,
-      "notes": "",
-      "match": {
-        "role_family": 31,
-        "seniority": 20,
-        "skills": 21,
-        "domain": 11,
-        "location_mod": 0,
-        "rationale": "Analitik pazarlama + perakende; CRM/kampanya ölçümleme birebir."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/GROSS%20/%20MAKSI",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "sql",
-        "powerbi"
-      ]
-    },
-    {
-      "id": "insightq-consumer-insights",
-      "company": "InsightQ",
-      "role": "Consumer Insights Lead, Turkiye",
-      "channel": "ats",
-      "applied": "2026-08-04",
-      "last_contact": "2026-08-04",
-      "stage": "under_review",
-      "status": "stale",
-      "track": "Insights",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "28 gündür dönüş yok — kapanmış say.",
-      "fit": 4,
-      "notes": "",
-      "match": {
-        "role_family": 24,
-        "seniority": 8,
-        "skills": 17,
-        "domain": 10,
-        "location_mod": 0,
-        "rationale": "'Lead' unvanı kıdem olarak çok üstte; içgörü metodolojisi de yeni alan."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/InsightQ",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "people_leadership"
-      ]
-    },
-    {
-      "id": "insightq-client-solutions",
-      "company": "InsightQ",
-      "role": "Client Solutions Specialist",
-      "channel": "ats",
-      "applied": "2026-08-03",
-      "last_contact": "2026-08-03",
-      "stage": "under_review",
-      "status": "stale",
-      "track": "Client Services",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "29 gündür dönüş yok — kapanmış say.",
-      "fit": 3,
-      "notes": "",
-      "match": {
-        "role_family": 18,
-        "seniority": 25,
-        "skills": 15,
-        "domain": 10,
-        "location_mod": 0,
-        "rationale": "Müşteri çözümleri daha çok danışmanlık/ilişki; analitik ikincil."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/InsightQ",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": []
-    },
-    {
-      "id": "fincore-fintech-analyst",
-      "company": "Fincore Analytics",
-      "role": "FinTech – Junior Data Processing Analyst (Fix Term)",
-      "channel": "ats",
-      "applied": "2026-08-04",
-      "last_contact": "2026-08-04",
-      "stage": "under_review",
-      "status": "stale",
-      "track": "Data/Fintech",
-      "location": "Remote/EU",
-      "deadline": null,
-      "next_step": "28 gündür dönüş yok — kapanmış say.",
-      "fit": 3,
-      "notes": "",
-      "match": {
-        "role_family": 26,
-        "seniority": 25,
-        "skills": 18,
-        "domain": 11,
-        "location_mod": -8,
-        "rationale": "Junior veri işleme analisti; fintech yakın ama rol CV'nin bir tık altında."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Fincore Analytics",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "sql",
-        "python"
-      ]
-    },
-    {
-      "id": "odepay-product-data-analyst",
-      "company": "Odepay",
-      "role": "Product Data Analyst",
-      "channel": "linkedin",
-      "applied": "2026-08-03",
-      "last_contact": "2026-08-03",
-      "stage": "under_review",
-      "status": "stale",
-      "track": "Data/Fintech",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "29 gündür dönüş yok — kapanmış say.",
-      "fit": 5,
-      "notes": "",
-      "match": {
-        "role_family": 32,
-        "seniority": 25,
-        "skills": 21,
-        "domain": 12,
-        "location_mod": 0,
-        "rationale": "Ürün veri analisti + fintech; funnel/kohort deneyimi doğrudan aranıyor."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Odepay",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "sql",
-        "product_analytics"
-      ]
-    },
-    {
-      "id": "auralever-demand-planning",
+      "id": "auralever-demand-planning-specialist",
       "company": "Auralever",
       "role": "Demand Planning Specialist",
       "channel": "ats",
@@ -1925,9 +697,9 @@
       },
       "links_actions": [
         {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Auralever",
-          "kind": "gmail"
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AAuralever"
         }
       ],
       "gap_skills": [
@@ -1935,217 +707,77 @@
       ]
     },
     {
-      "id": "auralever-foods-digital",
-      "company": "Auralever",
-      "role": "Foods Digital Experience Lead",
+      "id": "wml-digital-insight-analyst",
+      "company": "WML",
+      "role": "Digital Insight Analyst",
       "channel": "linkedin",
-      "applied": "2026-08-05",
-      "last_contact": "2026-08-31",
-      "stage": "closed",
-      "status": "rejected",
-      "track": "Digital",
+      "applied": "2026-08-10",
+      "last_contact": "2026-08-10",
+      "stage": "under_review",
+      "status": "stale",
+      "track": "Data/Marketing",
       "location": "İstanbul",
       "deadline": null,
-      "next_step": "-",
+      "next_step": "22 gündür dönüş yok — kapanmış say.",
       "fit": 4,
       "notes": "",
       "match": {
-        "role_family": 22,
-        "seniority": 8,
-        "skills": 16,
-        "domain": 10,
+        "role_family": 29,
+        "seniority": 25,
+        "skills": 19,
+        "domain": 8,
         "location_mod": 0,
-        "rationale": "'Lead' kıdemi çok üstte; dijital deneyim tasarımı da farklı bir alan."
+        "rationale": "Dijital içgörü analisti; Tableau/kampanya ölçümleme deneyimi doğrudan geçerli."
       },
       "links_actions": [
         {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Auralever",
-          "kind": "gmail"
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AWML"
         }
       ],
       "gap_skills": [
-        "people_leadership",
-        "product_management"
+        "sql",
+        "product_analytics"
       ]
     },
     {
-      "id": "lumenapps-sales-bd",
-      "company": "Lumen Apps",
-      "role": "Sales & BD Specialist (RevenueCat Operations)",
-      "channel": "ats",
-      "applied": "2026-08-20",
-      "last_contact": "2026-08-31",
-      "stage": "closed",
-      "status": "rejected",
-      "track": "Sales/BD",
+      "id": "zephyr-games-growth-manager-senior",
+      "company": "Zephyr Games",
+      "role": "Growth Manager / Senior Growth Manager",
+      "channel": "linkedin",
+      "applied": "2026-08-12",
+      "last_contact": "2026-08-12",
+      "stage": "under_review",
+      "status": "stale",
+      "track": "Growth/Gaming",
       "location": "İstanbul",
       "deadline": null,
-      "next_step": "-",
+      "next_step": "20 gündür dönüş yok.",
       "fit": 4,
-      "notes": "Her adaya dönüş yapan şirket — 11 günde sonuç.",
+      "notes": "Lever.",
       "match": {
-        "role_family": 14,
-        "seniority": 25,
-        "skills": 12,
+        "role_family": 31,
+        "seniority": 13,
+        "skills": 20,
         "domain": 9,
         "location_mod": 0,
-        "rationale": "Satış/BD odaklı; RevenueCat operasyonu teknik, analitik kesişim zayıf."
+        "rationale": "Growth işi birebir ama 'Manager/Senior Manager' kıdemi 2 yılın üstünde."
       },
       "links_actions": [
         {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Lumen%20Apps",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": []
-    },
-    {
-      "id": "meridian-bd-manager",
-      "company": "Meridian Publishing (MRX)",
-      "role": "Business Development Manager",
-      "channel": "ats",
-      "applied": "2026-08-26",
-      "last_contact": "2026-08-26",
-      "stage": "closed",
-      "status": "rejected",
-      "track": "Sales/BD",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "-",
-      "fit": 4,
-      "notes": "Aynı gün başvuru + red (1 saat arayla).",
-      "match": {
-        "role_family": 14,
-        "seniority": 13,
-        "skills": 11,
-        "domain": 6,
-        "location_mod": 0,
-        "rationale": "Akademik yayıncılıkta satış müdürlüğü; rol ve kıdem birlikte uyumsuz."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Meridian%20Publishing%20%28MRX%29",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "people_leadership"
-      ]
-    },
-    {
-      "id": "novabank-strategy-ops",
-      "company": "Novabank",
-      "role": "Strategy & Operations Manager (Hiring Sprint)",
-      "channel": "ats",
-      "applied": "2026-08-01",
-      "last_contact": "2026-08-25",
-      "stage": "closed",
-      "status": "rejected",
-      "track": "Strategy",
-      "location": "Remote/EU",
-      "contact": "İşe alım ekibi — hiring@novabank.example",
-      "deadline": null,
-      "next_step": "-",
-      "fit": 5,
-      "notes": "6 Ağu screen call yapıldı, 7 Ağu olumlu geri bildirim, 25 Ağu olumsuz sonuç. Bu ayın en ileri giden ikinci süreci.",
-      "match": {
-        "role_family": 33,
-        "seniority": 13,
-        "skills": 21,
-        "domain": 12,
-        "location_mod": -8,
-        "rationale": "Strateji & operasyon içeriği birebir — ama 'Manager' kıdemi ve EU çalışma izni engel oldu."
-      },
-      "links_actions": [
-        {
-          "label": "Takip maili yaz",
-          "url": "mailto:hiring@novabank.example?subject=Strategy%20%26%20Operations%20Manager%20%28Hiring%20Sprint%29%20ba%C5%9Fvurusu%20%E2%80%94%20durum%20sorusu&body=Merhaba%2C%0A%0ANovabank%20b%C3%BCnyesindeki%20Strategy%20%26%20Operations%20Manager%20%28Hiring%20Sprint%29%20pozisyonuna%20yapt%C4%B1%C4%9F%C4%B1m%20ba%C5%9Fvurunun%20mevcut%20durumu%20hakk%C4%B1nda%20bilgi%20alabilir%20miyim%3F%20S%C3%BCre%C3%A7le%20ilgilenmeye%20devam%20ediyorum.%0A%0A%C4%B0lginiz%20i%C3%A7in%20te%C5%9Fekk%C3%BCrler.%0A%0ASayg%C4%B1lar%C4%B1mla%2C%0AKerem%20Ayd%C4%B1n%0Akerem.aydin%40example.com%20%7C%20%2B90%205XX%20XXX%20XX%20XX",
-          "kind": "mailto"
-        },
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Novabank",
-          "kind": "gmail"
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AZephyr%20Games"
         }
       ],
       "gap_skills": [
         "people_leadership",
-        "sql"
+        "experimentation"
       ]
     },
     {
-      "id": "astoria-cluster-revenue",
-      "company": "Astoria Hotels",
-      "role": "Cluster Revenue Manager RMCC Türkiye (209637)",
-      "channel": "ats",
-      "applied": "2026-08-14",
-      "last_contact": "2026-08-24",
-      "stage": "closed",
-      "status": "rejected",
-      "track": "Revenue Management",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "-",
-      "fit": 4,
-      "notes": "",
-      "match": {
-        "role_family": 26,
-        "seniority": 13,
-        "skills": 18,
-        "domain": 6,
-        "location_mod": 0,
-        "rationale": "Revenue management fiyatlandırma analitiğine yakın; otelcilik ve Manager kıdemi uzak."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Astoria Hotels",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "people_leadership"
-      ]
-    },
-    {
-      "id": "whitfield-client-data",
-      "company": "Whitfield Chase",
-      "role": "Client Data Specialist (210770109)",
-      "channel": "ats",
-      "applied": "2026-08-10",
-      "last_contact": "2026-08-21",
-      "stage": "closed",
-      "status": "rejected",
-      "track": "Data/Banking",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "-",
-      "fit": 4,
-      "notes": "",
-      "match": {
-        "role_family": 24,
-        "seniority": 25,
-        "skills": 16,
-        "domain": 11,
-        "location_mod": 0,
-        "rationale": "Müşteri veri uzmanlığı operasyonel; bankacılık yakın, analitik derinlik sınırlı."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Whitfield Chase",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "sql"
-      ]
-    },
-    {
-      "id": "appnest-web-cro",
+      "id": "appnest-web-cro-manager",
       "company": "AppNest",
       "role": "Web CRO Manager",
       "channel": "ats",
@@ -2169,9 +801,9 @@
       },
       "links_actions": [
         {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/AppNest",
-          "kind": "gmail"
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AAppNest"
         }
       ],
       "gap_skills": [
@@ -2180,9 +812,114 @@
       ]
     },
     {
-      "id": "camsan-investment-bd",
+      "id": "halden-electric-pricing-continuous-improvement",
+      "company": "Halden Electric",
+      "role": "Pricing Continuous Improvement Specialist",
+      "channel": "ats",
+      "applied": "2026-08-13",
+      "last_contact": "2026-08-13",
+      "stage": "under_review",
+      "status": "stale",
+      "track": "Pricing",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "19 gündür dönüş yok.",
+      "fit": 4,
+      "notes": "",
+      "match": {
+        "role_family": 32,
+        "seniority": 25,
+        "skills": 21,
+        "domain": 7,
+        "location_mod": 0,
+        "rationale": "Fiyatlandırma + sürekli iyileştirme = ticari strateji ve esneklik analizi deneyimi birebir."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AHalden%20Electric"
+        }
+      ],
+      "gap_skills": [
+        "powerbi"
+      ]
+    },
+    {
+      "id": "astoria-hotels-cluster-revenue-manager",
+      "company": "Astoria Hotels",
+      "role": "Cluster Revenue Manager RMCC Türkiye (R3BC7FA)",
+      "channel": "ats",
+      "applied": "2026-08-14",
+      "last_contact": "2026-08-24",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Revenue Management",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "-",
+      "fit": 4,
+      "notes": "",
+      "match": {
+        "role_family": 26,
+        "seniority": 13,
+        "skills": 18,
+        "domain": 6,
+        "location_mod": 0,
+        "rationale": "Revenue management fiyatlandırma analitiğine yakın; otelcilik ve Manager kıdemi uzak."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AAstoria%20Hotels"
+        }
+      ],
+      "gap_skills": [
+        "people_leadership"
+      ],
+      "first_response": "2026-08-24"
+    },
+    {
+      "id": "bloq-reporting-expert",
+      "company": "bloq",
+      "role": "Reporting Expert",
+      "channel": "ats",
+      "applied": "2026-08-14",
+      "last_contact": "2026-09-04",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Data/Fintech",
+      "location": "Remote/EU",
+      "deadline": null,
+      "next_step": "Kapandı — aksiyon yok.",
+      "fit": 4,
+      "notes": "Ön eleme sorularından sonra 3 günde red. · Ön eleme sorularından sonra 1 günde red. En hızlı kapanan süreç; ön eleme sorularının içeriği incelenmeye değer.",
+      "match": {
+        "role_family": 31,
+        "seniority": 22,
+        "skills": 21,
+        "domain": 12,
+        "location_mod": -8,
+        "rationale": "Raporlama uzmanlığı = Tableau/Excel gücü; fintech yakın, EU uzaktan engel."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3Abloq"
+        }
+      ],
+      "gap_skills": [
+        "sql",
+        "dbt_analytics_eng"
+      ],
+      "first_response": "2026-09-04"
+    },
+    {
+      "id": "camsan-investment-business-development",
       "company": "Camsan",
-      "role": "Investment & Business Development Specialist (29528)",
+      "role": "Investment & Business Development Specialist (R43DD7A)",
       "channel": "ats",
       "applied": "2026-08-14",
       "last_contact": "2026-08-18",
@@ -2204,9 +941,9 @@
       },
       "links_actions": [
         {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Camsan",
-          "kind": "gmail"
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ACamsan"
         }
       ],
       "gap_skills": [
@@ -2214,222 +951,2506 @@
       ]
     },
     {
-      "id": "bloq-reporting-expert",
-      "company": "bloq",
-      "role": "Reporting Expert",
+      "id": "datamera-belirtilmemis",
+      "company": "Datamera",
+      "role": "Belirtilmemiş",
       "channel": "ats",
-      "applied": "2026-08-14",
-      "last_contact": "2026-08-17",
-      "stage": "closed",
-      "status": "rejected",
-      "track": "Data/Fintech",
-      "location": "Remote/EU",
+      "applied": "2026-08-15",
+      "last_contact": "2026-08-15",
+      "stage": "application_incomplete",
+      "status": "action_required",
+      "track": "Data",
+      "location": "İstanbul",
       "deadline": null,
-      "next_step": "-",
-      "fit": 4,
-      "notes": "Ön eleme sorularından sonra 3 günde red.",
+      "next_step": "join.com üzerinden giriş yapıp başvuruyu tamamla (link 60 dk geçerliydi — yeniden tetikle).",
+      "fit": 3,
+      "notes": "Başvuru hiç tamamlanmadı.",
       "match": {
-        "role_family": 31,
+        "role_family": 24,
         "seniority": 22,
-        "skills": 21,
-        "domain": 12,
-        "location_mod": -8,
-        "rationale": "Raporlama uzmanlığı = Tableau/Excel gücü; fintech yakın, EU uzaktan engel."
+        "skills": 19,
+        "domain": 9,
+        "location_mod": 0,
+        "rationale": "Veri danışmanlığı; rol belirsiz ama analitik odaklı olması muhtemel."
       },
       "links_actions": [
         {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/bloq",
-          "kind": "gmail"
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ADatamera"
         }
       ],
       "gap_skills": [
         "sql",
-        "dbt_analytics_eng"
+        "python"
       ]
     },
     {
-      "id": "marmara-dijital-musteri",
-      "company": "Marmara Bank",
-      "role": "Dijitalden Müşteri Kazanımı ve Yönetimi Yöneticisi",
-      "channel": "ats",
-      "applied": "2026-08-01",
-      "last_contact": "2026-08-14",
-      "stage": "closed",
-      "status": "rejected",
-      "track": "Banking/Growth",
-      "location": "İstanbul",
+      "id": "rolefinder-product-manager-data",
+      "company": "Rolefinder",
+      "role": "Product Manager, Data Activation",
+      "channel": "aggregator",
+      "applied": "2026-08-16",
+      "last_contact": "2026-08-16",
+      "stage": "under_review",
+      "status": "stale",
+      "track": "Product/Data",
+      "location": "Remote",
       "deadline": null,
-      "next_step": "-",
-      "fit": 4,
-      "notes": "",
-      "match": {
-        "role_family": 32,
-        "seniority": 13,
-        "skills": 22,
-        "domain": 11,
-        "location_mod": 0,
-        "rationale": "Dijitalden müşteri kazanımı = growth işinin birebir karşılığı; 'Yönetici' kıdemi esneme."
-      },
-      "links_actions": [
-        {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Marmara Bank",
-          "kind": "gmail"
-        }
-      ],
-      "gap_skills": [
-        "people_leadership",
-        "experimentation"
-      ]
-    },
-    {
-      "id": "valmont-commercial-pm",
-      "company": "Valmont Group",
-      "role": "Commercial Project Manager",
-      "channel": "ats",
-      "applied": "2026-08-04",
-      "last_contact": "2026-08-13",
-      "stage": "closed",
-      "status": "rejected",
-      "track": "Project Management",
-      "location": "İstanbul",
-      "deadline": null,
-      "next_step": "-",
+      "next_step": "16 gündür dönüş yok.",
       "fit": 3,
       "notes": "",
       "match": {
-        "role_family": 22,
-        "seniority": 13,
-        "skills": 16,
-        "domain": 7,
-        "location_mod": 0,
-        "rationale": "Ticari proje yönetimi; lüks perakende ve Manager kıdemi uzak."
+        "role_family": 26,
+        "seniority": 18,
+        "skills": 17,
+        "domain": 8,
+        "location_mod": -8,
+        "rationale": "Veri aktivasyonu PM'i; analitik yakın ama ürün yönetimi kıdemi eksik."
       },
       "links_actions": [
         {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Valmont Group",
-          "kind": "gmail"
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ARolefinder"
         }
       ],
       "gap_skills": [
-        "people_leadership",
+        "product_management",
+        "sql"
+      ]
+    },
+    {
+      "id": "mavi-ekip-ticasoft-product-manager",
+      "company": "Mavi Ekip Ticasoft",
+      "role": "Product Manager",
+      "channel": "ats",
+      "applied": "2026-08-16",
+      "last_contact": "2026-08-16",
+      "stage": "under_review",
+      "status": "stale",
+      "track": "Product",
+      "location": "İstanbul",
+      "contact": "İK — ik@teamblueticimax.example",
+      "deadline": null,
+      "next_step": "16 gündür dönüş yok.",
+      "fit": 4,
+      "notes": "",
+      "match": {
+        "role_family": 24,
+        "seniority": 20,
+        "skills": 18,
+        "domain": 11,
+        "location_mod": 0,
+        "rationale": "E-ticaret SaaS ürün yönetimi; sektör yakın, PM deneyimi yok."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AMavi%20Ekip%20Ticasoft"
+        }
+      ],
+      "gap_skills": [
         "product_management"
       ]
     },
     {
-      "id": "verilon-financial-analyst",
-      "company": "Verilon Pharma",
-      "role": "Financial Analyst (R00146938)",
+      "id": "domesa-perfect-store-trade",
+      "company": "Domesa",
+      "role": "Perfect Store & Trade Shopper Marketing Specialist",
       "channel": "ats",
-      "applied": "2026-08-01",
-      "last_contact": "2026-08-05",
-      "stage": "closed",
-      "status": "rejected",
-      "track": "Finance",
+      "applied": "2026-08-16",
+      "last_contact": "2026-08-16",
+      "stage": "under_review",
+      "status": "stale",
+      "track": "Marketing",
       "location": "İstanbul",
       "deadline": null,
-      "next_step": "-",
-      "fit": 4,
+      "next_step": "16 gündür dönüş yok.",
+      "fit": 3,
       "notes": "",
       "match": {
-        "role_family": 33,
+        "role_family": 20,
         "seniority": 25,
-        "skills": 22,
-        "domain": 7,
+        "skills": 16,
+        "domain": 9,
         "location_mod": 0,
-        "rationale": "Financial Analyst = FP&A deneyiminin doğrudan karşılığı; ilaç sektörü yeni."
+        "rationale": "Trade marketing saha odaklı; analitik kısmı sınırlı."
       },
       "links_actions": [
         {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Verilon Pharma",
-          "kind": "gmail"
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ADomesa"
+        }
+      ],
+      "gap_skills": []
+    },
+    {
+      "id": "rolefinder-senior-games-data",
+      "company": "Rolefinder",
+      "role": "Senior Games Data Analyst (Europe, Asia)",
+      "channel": "aggregator",
+      "applied": "2026-08-17",
+      "last_contact": "2026-08-17",
+      "stage": "under_review",
+      "status": "stale",
+      "track": "Data/Gaming",
+      "location": "Remote",
+      "deadline": null,
+      "next_step": "15 gündür dönüş yok.",
+      "fit": 3,
+      "notes": "",
+      "match": {
+        "role_family": 30,
+        "seniority": 20,
+        "skills": 17,
+        "domain": 9,
+        "location_mod": -8,
+        "rationale": "Senior Games Data Analyst — rol uygun, 'Senior' ve oyun domaini esneme."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ARolefinder"
         }
       ],
       "gap_skills": [
+        "sql",
+        "python",
+        "product_analytics"
+      ]
+    },
+    {
+      "id": "coliva-indeed-basvurulari-customer-success-manager",
+      "company": "Coliva / Indeed başvuruları",
+      "role": "Customer Success Manager",
+      "channel": "indeed",
+      "applied": "2026-08-18",
+      "last_contact": "2026-08-30",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Customer Success",
+      "location": "Remote",
+      "deadline": null,
+      "next_step": "-",
+      "fit": 2,
+      "notes": "30 Ağu: Colife başka adaylarla ilerledi.",
+      "match": {
+        "role_family": 12,
+        "seniority": 20,
+        "skills": 11,
+        "domain": 6,
+        "location_mod": -8,
+        "rationale": "Müşteri başarısı ilişki yönetimi; analitik derinlik aranmıyor."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AColiva%20%2F%20Indeed%20ba%C5%9Fvurular%C4%B1"
+        }
+      ],
+      "gap_skills": []
+    },
+    {
+      "id": "yolcum-strategic-finance-and",
+      "company": "Yolcum",
+      "role": "Strategic Finance and Analytics Specialist",
+      "channel": "linkedin",
+      "applied": "2026-08-19",
+      "last_contact": "2026-08-19",
+      "stage": "under_review",
+      "status": "stale",
+      "track": "Finance",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "13 gündür dönüş yok — takip maili düşünülebilir.",
+      "fit": 5,
+      "notes": "",
+      "match": {
+        "role_family": 35,
+        "seniority": 25,
+        "skills": 23,
+        "domain": 13,
+        "location_mod": 0,
+        "rationale": "Strategic Finance + Analytics = FP&A ve growth analitiğinin tam kesişimi. Listedeki en iyi eşleşme."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AYolcum"
+        }
+      ],
+      "gap_skills": [
+        "sql",
         "financial_modeling"
       ]
     },
     {
-      "id": "momentum-partners-growth-pm",
-      "company": "Momentum Partners",
-      "role": "Growth Product Manager (Web Funnel & CRO)",
+      "id": "northwind-retail-content-acquisition-manager",
+      "company": "Northwind Retail",
+      "role": "Content Acquisition Manager, Prime Video Turkey (R751824)",
       "channel": "ats",
-      "applied": "2026-08-01",
-      "last_contact": "2026-08-05",
+      "applied": "2026-08-20",
+      "last_contact": "2026-09-19",
       "stage": "closed",
       "status": "rejected",
-      "track": "Growth/Product",
-      "location": "Remote",
+      "track": "Content/BD",
+      "location": "İstanbul",
       "deadline": null,
-      "next_step": "-",
+      "next_step": "Süreç kapandı.",
       "fit": 4,
-      "notes": "Ashby.",
+      "notes": "19 Eyl: red (30 gün sonra).",
       "match": {
-        "role_family": 29,
-        "seniority": 15,
-        "skills": 19,
-        "domain": 8,
-        "location_mod": -8,
-        "rationale": "Growth PM + CRO; analitik uygun, ürün yönetimi kıdemi ve uzaktan izin engel."
+        "role_family": 12,
+        "seniority": 13,
+        "skills": 10,
+        "domain": 7,
+        "location_mod": 0,
+        "rationale": "İçerik lisanslama ve müzakere işi; ne rol ne kıdem uyuyor."
       },
       "links_actions": [
         {
-          "label": "İlgili maili aç",
-          "url": "https://mail.google.com/mail/u/0/#search/Momentum%20Partners",
-          "kind": "gmail"
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ANorthwind%20Retail"
+        }
+      ],
+      "gap_skills": [
+        "people_leadership"
+      ],
+      "first_response": "2026-09-19"
+    },
+    {
+      "id": "yardimci-app-a-s-growth-product-manager",
+      "company": "Yardımcı App A.Ş.",
+      "role": "Growth Product Manager",
+      "channel": "ats",
+      "applied": "2026-08-20",
+      "last_contact": "2026-08-20",
+      "stage": "under_review",
+      "status": "stale",
+      "track": "Product/Growth",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "12 gündür dönüş yok.",
+      "fit": 4,
+      "notes": "hrpanda.",
+      "match": {
+        "role_family": 28,
+        "seniority": 15,
+        "skills": 18,
+        "domain": 10,
+        "location_mod": 0,
+        "rationale": "Growth PM analitik tarafı uygun; PM kıdemi ve ürün sahipliği deneyimi eksik."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AYard%C4%B1mc%C4%B1%20App%20A.%C5%9E."
         }
       ],
       "gap_skills": [
         "product_management",
         "experimentation"
       ]
-    }
-  ],
-  "recruiter_outreach": [
-    {
-      "date": "2026-08-18",
-      "from": "SIRIUS",
-      "topic": "Explore Career at SIRIUS",
-      "channel": "LinkedIn InMail",
-      "status": "unanswered"
     },
     {
-      "date": "2026-08-25",
-      "from": "Bilinmeyen",
-      "topic": "Business Development Manager fırsatı",
-      "channel": "LinkedIn InMail",
-      "status": "unanswered"
+      "id": "craftly-regional-e-commerce",
+      "company": "Craftly",
+      "role": "Regional E-commerce Operations Lead, META",
+      "channel": "linkedin",
+      "applied": "2026-08-20",
+      "last_contact": "2026-08-20",
+      "stage": "under_review",
+      "status": "stale",
+      "track": "E-commerce",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "12 gündür dönüş yok.",
+      "fit": 4,
+      "notes": "",
+      "match": {
+        "role_family": 22,
+        "seniority": 8,
+        "skills": 16,
+        "domain": 12,
+        "location_mod": 0,
+        "rationale": "E-ticaret operasyonu yakın ama 'Regional Lead' kıdem olarak çok üstte."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ACraftly"
+        }
+      ],
+      "gap_skills": [
+        "people_leadership"
+      ]
     },
     {
-      "date": "2026-08-17",
-      "from": "Bridging Talent",
-      "topic": "Sports Analyst | Halton x AI Labs",
-      "channel": "E-posta",
-      "status": "unanswered"
+      "id": "lightbug-business-operations-associate",
+      "company": "Lightbug",
+      "role": "Business Operations Associate",
+      "channel": "ats",
+      "applied": "2026-08-20",
+      "last_contact": "2026-08-20",
+      "stage": "under_review",
+      "status": "stale",
+      "track": "Operations",
+      "location": "Remote",
+      "deadline": null,
+      "next_step": "12 gündür dönüş yok.",
+      "fit": 4,
+      "notes": "Lever.",
+      "match": {
+        "role_family": 30,
+        "seniority": 25,
+        "skills": 21,
+        "domain": 8,
+        "location_mod": -8,
+        "rationale": "Business Operations = analitik + süreç; profile çok uygun."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ALightbug"
+        }
+      ],
+      "gap_skills": [
+        "sql"
+      ]
     },
     {
-      "date": "2026-08-18",
-      "from": "Bridging Talent",
-      "topic": "Management Consultant | $120/hr | nano1 x AI Labs",
-      "channel": "E-posta",
-      "status": "unanswered"
+      "id": "lingofly-influencer-marketing-partnership",
+      "company": "Lingofly",
+      "role": "Influencer Marketing & Partnership Specialist",
+      "channel": "ats",
+      "applied": "2026-08-20",
+      "last_contact": "2026-08-20",
+      "stage": "under_review",
+      "status": "stale",
+      "track": "Marketing",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "12 gündür dönüş yok.",
+      "fit": 3,
+      "notes": "hrpanda.",
+      "match": {
+        "role_family": 12,
+        "seniority": 25,
+        "skills": 10,
+        "domain": 8,
+        "location_mod": 0,
+        "rationale": "Influencer/partnership içerik-ilişki işi; analitik profille örtüşmüyor."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ALingofly"
+        }
+      ],
+      "gap_skills": []
     },
     {
-      "date": "2026-08-22",
-      "from": "Bridging Talent",
-      "topic": "Investment Banking Analyst | $100/hr | nano1 x AI Labs",
-      "channel": "E-posta",
-      "status": "unanswered"
+      "id": "aksel-micro-business-development-executive",
+      "company": "Aksel Micro",
+      "role": "Business Development Executive - HPE",
+      "channel": "ats",
+      "applied": "2026-08-20",
+      "last_contact": "2026-08-20",
+      "stage": "under_review",
+      "status": "stale",
+      "track": "Sales/BD",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "12 gündür dönüş yok.",
+      "fit": 3,
+      "notes": "Workday.",
+      "match": {
+        "role_family": 14,
+        "seniority": 25,
+        "skills": 12,
+        "domain": 7,
+        "location_mod": 0,
+        "rationale": "Saf satış/iş geliştirme — analitik profille zayıf kesişim."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AAksel%20Micro"
+        }
+      ],
+      "gap_skills": []
     },
     {
-      "date": "2026-08-22",
-      "from": "Bridging Talent",
-      "topic": "Management Consultant | $70/hr | nano1 x AI Labs",
-      "channel": "E-posta",
-      "status": "unanswered"
+      "id": "kavza-project-cfo-office-executive",
+      "company": "Kavza Project",
+      "role": "CFO Office Executive",
+      "channel": "direct",
+      "applied": "2026-08-20",
+      "last_contact": "2026-08-25",
+      "stage": "assessment",
+      "status": "action_required",
+      "track": "Finance/Strategy",
+      "location": "Maslak, İstanbul (ofis, 5 gün)",
+      "contact": "İK Sorumlusu — ik@nebil.example",
+      "deadline": "2026-08-31",
+      "next_step": "TestGorilla testi + 3 soruya mail yanıtı (maaş / lokasyon / 7 Eyl başlangıç). Yüz yüze mülakatlar 1-2 Eylül, hedef başlangıç 7 Eylül.",
+      "fit": 5,
+      "notes": "Sürecin en ileri aşamadaki adayı. Deadline 31 Ağu'da doldu — tamamlanmadıysa acil kapatılmalı.",
+      "match": {
+        "role_family": 33,
+        "seniority": 20,
+        "skills": 23,
+        "domain": 11,
+        "location_mod": 0,
+        "rationale": "CFO ofisi = FP&A + yönetim raporlaması; bütçe/forecast deneyimi birebir. Executive unvanı hafif esneme."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AKavza%20Project"
+        }
+      ],
+      "gap_skills": [
+        "financial_modeling"
+      ]
+    },
+    {
+      "id": "lumen-apps-sales-bd-specialist",
+      "company": "Lumen Apps",
+      "role": "Sales & BD Specialist (RevenueCat Operations)",
+      "channel": "ats",
+      "applied": "2026-08-20",
+      "last_contact": "2026-08-31",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Sales/BD",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "-",
+      "fit": 4,
+      "notes": "Her adaya dönüş yapan şirket — 11 günde sonuç.",
+      "match": {
+        "role_family": 14,
+        "seniority": 25,
+        "skills": 12,
+        "domain": 9,
+        "location_mod": 0,
+        "rationale": "Satış/BD odaklı; RevenueCat operasyonu teknik, analitik kesişim zayıf."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ALumen%20Apps"
+        }
+      ],
+      "gap_skills": [],
+      "first_response": "2026-08-31"
+    },
+    {
+      "id": "the-span-base180-growth-marketer-marketing",
+      "company": "The Span & Base180",
+      "role": "Growth Marketer / Marketing",
+      "channel": "ats",
+      "applied": "2026-08-20",
+      "last_contact": "2026-08-20",
+      "stage": "next_stage",
+      "status": "in_progress",
+      "track": "Growth",
+      "location": "Remote",
+      "deadline": null,
+      "next_step": "Bir sonraki aşama görevi (adayların ~%10'u geçti).",
+      "fit": 4,
+      "notes": "Ashby üzerinden ilerliyor.",
+      "match": {
+        "role_family": 30,
+        "seniority": 25,
+        "skills": 20,
+        "domain": 10,
+        "location_mod": -8,
+        "rationale": "Growth marketing birebir; kampanya/CRO tarafı güçlü, uzaktan EU çalışma izni belirsiz."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AThe%20Span%20%26%20Base180"
+        }
+      ],
+      "gap_skills": [
+        "experimentation"
+      ]
+    },
+    {
+      "id": "voyago-group-business-development-manager",
+      "company": "Voyago Group",
+      "role": "Business Development Manager (Attractions & Tours), Turkey",
+      "channel": "ats",
+      "applied": "2026-08-20",
+      "last_contact": "2026-08-20",
+      "stage": "under_review",
+      "status": "stale",
+      "track": "Sales/BD",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "12 gündür dönüş yok.",
+      "fit": 4,
+      "notes": "",
+      "match": {
+        "role_family": 14,
+        "seniority": 13,
+        "skills": 12,
+        "domain": 11,
+        "location_mod": 0,
+        "rationale": "Satış odaklı Manager rolü; hem rol ailesi hem kıdem uyumsuz."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AVoyago%20Group"
+        }
+      ],
+      "gap_skills": [
+        "people_leadership"
+      ]
+    },
+    {
+      "id": "telfora-belirtilmemis",
+      "company": "Telfora",
+      "role": "Belirtilmemiş",
+      "channel": "ats",
+      "applied": "2026-08-20",
+      "last_contact": "2026-09-11",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Telco",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "Süreç kapandı.",
+      "fit": 4,
+      "notes": "20 ve 26 Ağu'da iki takip maili. 11 Eyl: red (Wholesale Product Executive).",
+      "match": {
+        "role_family": 20,
+        "seniority": 22,
+        "skills": 18,
+        "domain": 9,
+        "location_mod": 0,
+        "rationale": "Rol belirsiz; telco'da CRM/growth analitiği açılırsa uyum yükselir."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ATelfora"
+        }
+      ],
+      "gap_skills": [
+        "sql",
+        "powerbi"
+      ],
+      "first_response": "2026-09-11"
+    },
+    {
+      "id": "yapi-birlik-belirtilmemis-peoplise-basvurusu",
+      "company": "Yapı Birlik",
+      "role": "Belirtilmemiş (peoplise başvurusu)",
+      "channel": "ats",
+      "applied": "2026-08-21",
+      "last_contact": "2026-09-01",
+      "stage": "application_incomplete",
+      "status": "action_required",
+      "track": "Banking",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "E-posta doğrulama linkine tıkla + CV bilgilerini doldur (spam kutusunu kontrol et).",
+      "fit": 4,
+      "notes": "21 Ağu'da da aynı doğrulama maili gelmiş; adım hâlâ tamamlanmamış görünüyor.",
+      "match": {
+        "role_family": 18,
+        "seniority": 22,
+        "skills": 18,
+        "domain": 11,
+        "location_mod": 0,
+        "rationale": "Rol belirsiz; bankacılıkta FP&A/CRM analitiği açılırsa uyum yükselir."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AYap%C4%B1%20Birlik"
+        }
+      ],
+      "gap_skills": [
+        "sql"
+      ]
+    },
+    {
+      "id": "pixelclip-data-analyst-data",
+      "company": "Pixelclip",
+      "role": "Data Analyst / Data Scientist I",
+      "channel": "ats",
+      "applied": "2026-08-24",
+      "last_contact": "2026-08-24",
+      "stage": "under_review",
+      "status": "stale",
+      "track": "Data/Gaming",
+      "location": "Remote/EU",
+      "deadline": null,
+      "next_step": "8 gündür dönüş yok.",
+      "fit": 4,
+      "notes": "",
+      "match": {
+        "role_family": 30,
+        "seniority": 25,
+        "skills": 17,
+        "domain": 9,
+        "location_mod": -8,
+        "rationale": "Data Analyst uygun ama oyun analitiğinde SQL/Python beklentisi CV'nin üstünde."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3APixelclip"
+        }
+      ],
+      "gap_skills": [
+        "sql",
+        "python"
+      ]
+    },
+    {
+      "id": "nlb-business-intelligence-bi",
+      "company": "NLB",
+      "role": "Business Intelligence (BI) Analyst",
+      "channel": "ats",
+      "applied": "2026-08-25",
+      "last_contact": "2026-09-01",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Data",
+      "location": "Remote",
+      "deadline": null,
+      "next_step": "Workday bildirimi geldi — Workday Inbox'ı kontrol et.",
+      "fit": 4,
+      "notes": "1 Eyl Workday digest'inde bildirim var, içeriği okunmalı.",
+      "match": {
+        "role_family": 31,
+        "seniority": 25,
+        "skills": 20,
+        "domain": 7,
+        "location_mod": -8,
+        "rationale": "BI Analyst = Tableau/Power BI güçlü yanı; SQL 3/5 sınırda."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ANLB"
+        }
+      ],
+      "gap_skills": [
+        "sql",
+        "powerbi",
+        "dbt_analytics_eng"
+      ]
+    },
+    {
+      "id": "beral-global-a-s-ticari-analist",
+      "company": "Beral Global A.Ş.",
+      "role": "Ticari Analist",
+      "channel": "direct",
+      "applied": "2026-08-25",
+      "last_contact": "2026-09-08",
+      "stage": "next_stage",
+      "status": "action_required",
+      "track": "Business Analysis",
+      "location": "İstanbul",
+      "contact": "İK Müdürü — ik@peksglobal.example",
+      "deadline": null,
+      "next_step": "Yüz yüze görüşme daveti geldi (8 Eyl) — tarih teyidi ver.",
+      "fit": 4,
+      "notes": "Aktif mülakat süreci. 8 Eyl: ön görüşme sonrası ofiste yüz yüze görüşmeye davet edildi.",
+      "match": {
+        "role_family": 34,
+        "seniority": 25,
+        "skills": 23,
+        "domain": 9,
+        "location_mod": 0,
+        "rationale": "Ticari analist = ticari strateji + P&L + fiyatlandırma deneyiminin tam karşılığı."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ABeral%20Global%20A.%C5%9E."
+        }
+      ],
+      "gap_skills": [
+        "sql"
+      ]
+    },
+    {
+      "id": "virtuassist-yetenek-havuzu",
+      "company": "Virtuassist",
+      "role": "Yetenek havuzu",
+      "channel": "direct",
+      "applied": "2026-08-25",
+      "last_contact": "2026-08-30",
+      "stage": "talent_pool",
+      "status": "awaiting_response",
+      "track": "Remote",
+      "location": "Remote",
+      "deadline": null,
+      "next_step": "Opsiyonel: kısa tanıtım videosu eklemek eşleşme şansını artırıyor.",
+      "fit": 2,
+      "notes": "Test tamamlandı, havuzda.",
+      "match": {
+        "role_family": 12,
+        "seniority": 22,
+        "skills": 14,
+        "domain": 5,
+        "location_mod": -8,
+        "rationale": "Belirli bir rol yok, genel yetenek havuzu — dönüşüm olasılığı düşük."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AVirtuassist"
+        }
+      ],
+      "gap_skills": []
+    },
+    {
+      "id": "meridian-publishing-mrx-business-development-manager",
+      "company": "Meridian Publishing (MRX)",
+      "role": "Business Development Manager",
+      "channel": "ats",
+      "applied": "2026-08-26",
+      "last_contact": "2026-08-26",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Sales/BD",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "-",
+      "fit": 4,
+      "notes": "Aynı gün başvuru + red (1 saat arayla).",
+      "match": {
+        "role_family": 14,
+        "seniority": 13,
+        "skills": 11,
+        "domain": 6,
+        "location_mod": 0,
+        "rationale": "Akademik yayıncılıkta satış müdürlüğü; rol ve kıdem birlikte uyumsuz."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AMeridian%20Publishing%20%28MRX%29"
+        }
+      ],
+      "gap_skills": [
+        "people_leadership"
+      ]
+    },
+    {
+      "id": "bright-play-games-product-specialist-hybrid",
+      "company": "Bright Play Games",
+      "role": "Product Specialist, Hybrid-Casual",
+      "channel": "ats",
+      "applied": "2026-08-26",
+      "last_contact": "2026-08-26",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Product/Gaming",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "İnceleme aşamasında.",
+      "fit": 4,
+      "notes": "",
+      "match": {
+        "role_family": 24,
+        "seniority": 25,
+        "skills": 18,
+        "domain": 9,
+        "location_mod": 0,
+        "rationale": "Oyun ürün analitiği; kohort/retention bilgisi transfer olur, oyun metrikleri yeni."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ABright%20Play%20Games"
+        }
+      ],
+      "gap_skills": [
+        "product_analytics",
+        "sql"
+      ]
+    },
+    {
+      "id": "drift-joindrift-ai-data-operations-fellow",
+      "company": "drift (joindrift.ai)",
+      "role": "Data Operations Fellow",
+      "channel": "direct",
+      "applied": "2026-08-26",
+      "last_contact": "2026-08-26",
+      "stage": "in_process",
+      "status": "awaiting_response",
+      "track": "Data",
+      "location": "İstanbul",
+      "contact": "Program ekibi — program@shift.example",
+      "deadline": null,
+      "next_step": "Program süreç akışı paylaşıldı — sonraki adım bildirimi bekleniyor.",
+      "fit": 4,
+      "notes": "Klasik staj değil, fellowship programı.",
+      "match": {
+        "role_family": 26,
+        "seniority": 20,
+        "skills": 20,
+        "domain": 8,
+        "location_mod": 0,
+        "rationale": "Data ops analitiği uygun ama fellowship 2 yıllık deneyimin bir tık altında."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3Adrift%20%28joindrift.ai%29"
+        }
+      ],
+      "gap_skills": [
+        "sql",
+        "python"
+      ]
+    },
+    {
+      "id": "rolefinder-business-analyst-data",
+      "company": "Rolefinder",
+      "role": "Business Analyst – Data Sensitivity & VDI Migration",
+      "channel": "aggregator",
+      "applied": "2026-08-27",
+      "last_contact": "2026-08-27",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Business Analysis",
+      "location": "Remote",
+      "deadline": null,
+      "next_step": "İnceleme aşamasında.",
+      "fit": 3,
+      "notes": "",
+      "match": {
+        "role_family": 20,
+        "seniority": 25,
+        "skills": 12,
+        "domain": 5,
+        "location_mod": -8,
+        "rationale": "BT altyapı/VDI migrasyonu — ticari analitikle kesişimi yok."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ARolefinder"
+        }
+      ],
+      "gap_skills": [
+        "sql"
+      ]
+    },
+    {
+      "id": "banque-lumiere-coverage-support-analyst",
+      "company": "Banque Lumière",
+      "role": "Coverage Support Analyst (26000J28)",
+      "channel": "ats",
+      "applied": "2026-08-27",
+      "last_contact": "2026-08-27",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Banking",
+      "location": "Remote/EU",
+      "deadline": null,
+      "next_step": "İnceleme aşamasında.",
+      "fit": 4,
+      "notes": "",
+      "match": {
+        "role_family": 26,
+        "seniority": 25,
+        "skills": 18,
+        "domain": 11,
+        "location_mod": -8,
+        "rationale": "Bankacılık analiz desteği; finans temeli uygun, uzaktan EU izni belirsiz."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ABanque%20Lumi%C3%A8re"
+        }
+      ],
+      "gap_skills": [
+        "financial_modeling"
+      ]
+    },
+    {
+      "id": "vista-ai-saas-growth-strategist",
+      "company": "VISTA AI",
+      "role": "SaaS Growth Strategist (AI-Native)",
+      "channel": "ats",
+      "applied": "2026-08-27",
+      "last_contact": "2026-08-27",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Growth",
+      "location": "İstanbul/Remote",
+      "deadline": null,
+      "next_step": "İnceleme aşamasında.",
+      "fit": 4,
+      "notes": "hrpanda.",
+      "match": {
+        "role_family": 31,
+        "seniority": 22,
+        "skills": 19,
+        "domain": 9,
+        "location_mod": 0,
+        "rationale": "SaaS growth stratejisi; funnel/retention deneyimi doğrudan geçerli."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AVISTA%20AI"
+        }
+      ],
+      "gap_skills": [
+        "experimentation",
+        "product_analytics"
+      ]
+    },
+    {
+      "id": "datapoint-belirtilmemis",
+      "company": "Datapoint",
+      "role": "Belirtilmemiş",
+      "channel": "ats",
+      "applied": "2026-08-28",
+      "last_contact": "2026-08-28",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Data",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "İnceleme aşamasında.",
+      "fit": 5,
+      "notes": "Lever.",
+      "match": {
+        "role_family": 29,
+        "seniority": 22,
+        "skills": 20,
+        "domain": 11,
+        "location_mod": 0,
+        "rationale": "Dijital analitik ürünü; Mixpanel/kohort deneyimi doğrudan konuşuluyor."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ADatapoint"
+        }
+      ],
+      "gap_skills": [
+        "sql",
+        "product_analytics"
+      ]
+    },
+    {
+      "id": "nova-ai-lab-kurucu-ekip",
+      "company": "NOVA AI Lab",
+      "role": "Kurucu ekip",
+      "channel": "direct",
+      "applied": "2026-08-28",
+      "last_contact": "2026-08-29",
+      "stage": "interview_scheduling",
+      "status": "action_required",
+      "track": "AI/Startup",
+      "location": "Remote",
+      "deadline": "2026-09-04",
+      "next_step": "Online mülakat için müsaitlik bildirimi — pencere 4 Eylül'de kapanıyor.",
+      "fit": 4,
+      "notes": "Müsaitlik iletilmezse süreç otomatik düşer.",
+      "match": {
+        "role_family": 24,
+        "seniority": 22,
+        "skills": 16,
+        "domain": 8,
+        "location_mod": 0,
+        "rationale": "Kurucu ekipte analitik sahiplenme mümkün ama AI startup teknik derinlik bekleyebilir."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ANOVA%20AI%20Lab"
+        }
+      ],
+      "gap_skills": [
+        "python",
+        "sql"
+      ]
+    },
+    {
+      "id": "yolcum-strategy-analyst",
+      "company": "Yolcum",
+      "role": "Strategy Analyst",
+      "channel": "linkedin",
+      "applied": "2026-08-30",
+      "last_contact": "2026-08-30",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Strategy",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "İnceleme aşamasında.",
+      "fit": 5,
+      "notes": "Yolcum'e ikinci başvuru.",
+      "match": {
+        "role_family": 34,
+        "seniority": 25,
+        "skills": 22,
+        "domain": 13,
+        "location_mod": 0,
+        "rationale": "Strategy Analyst + online seyahat marketplace — rol ve sektör birlikte çok güçlü."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AYolcum"
+        }
+      ],
+      "gap_skills": [
+        "sql"
+      ]
+    },
+    {
+      "id": "meridyen-lojistik-business-process-excellence",
+      "company": "Meridyen Lojistik",
+      "role": "Business Process Excellence Professional Turkey",
+      "channel": "ats",
+      "applied": "2026-08-31",
+      "last_contact": "2026-08-31",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Operations",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "İnceleme aşamasında.",
+      "fit": 4,
+      "notes": "",
+      "match": {
+        "role_family": 27,
+        "seniority": 22,
+        "skills": 19,
+        "domain": 8,
+        "location_mod": 0,
+        "rationale": "Süreç mükemmelliği analitik/proje işi; lojistik sektörü orta yakınlık."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AMeridyen%20Lojistik"
+        }
+      ],
+      "gap_skills": [
+        "supply_chain"
+      ]
+    },
+    {
+      "id": "mr-sundae-unlu-marka-deel-international-ice-cream",
+      "company": "Mr. Sundae (ünlü marka) / Deel",
+      "role": "International Ice-Cream Taster",
+      "channel": "direct",
+      "applied": "2026-08-31",
+      "last_contact": "2026-08-31",
+      "stage": "next_stage",
+      "status": "action_required",
+      "track": "Novelty",
+      "location": "Remote",
+      "deadline": "2026-09-17",
+      "next_step": "60-90 sn tanıtım videosu gönder.",
+      "fit": 1,
+      "notes": "Düşük öncelik / eğlence amaçlı.",
+      "match": {
+        "role_family": 2,
+        "seniority": 25,
+        "skills": 3,
+        "domain": 2,
+        "location_mod": 0,
+        "rationale": "Profille hiçbir kesişim yok — eğlence amaçlı başvuru."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AMr.%20Sundae%20%28%C3%BCnl%C3%BC%20marka%29%20%2F%20Deel"
+        }
+      ],
+      "gap_skills": []
+    },
+    {
+      "id": "denar-belirtilmemis",
+      "company": "Denar",
+      "role": "Belirtilmemiş",
+      "channel": "ats",
+      "applied": "2026-08-31",
+      "last_contact": "2026-08-31",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Fintech",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "İnceleme aşamasında.",
+      "fit": 4,
+      "notes": "Lever.",
+      "match": {
+        "role_family": 22,
+        "seniority": 22,
+        "skills": 20,
+        "domain": 12,
+        "location_mod": 0,
+        "rationale": "Fintech/yatırım platformu sektörü uygun; rol belirsiz."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ADenar"
+        }
+      ],
+      "gap_skills": [
+        "sql"
+      ]
+    },
+    {
+      "id": "duvall-spirits-financial-planning-analysis",
+      "company": "Duvall Spirits",
+      "role": "Financial Planning & Analysis Management Trainee",
+      "channel": "ats",
+      "applied": "2026-08-31",
+      "last_contact": "2026-09-18",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Finance",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "Süreç kapandı.",
+      "fit": 4,
+      "notes": "Workday. 18 Eyl: red.",
+      "match": {
+        "role_family": 34,
+        "seniority": 23,
+        "skills": 23,
+        "domain": 9,
+        "location_mod": 0,
+        "rationale": "FP&A birebir; Management Trainee 2 yıllık deneyimin biraz altında ama marka değeri yüksek."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ADuvall%20Spirits"
+        }
+      ],
+      "gap_skills": [
+        "financial_modeling"
+      ],
+      "first_response": "2026-09-18"
+    },
+    {
+      "id": "complyscan-founder-s-associate",
+      "company": "ComplyScan",
+      "role": "Founder's Associate",
+      "channel": "ats",
+      "applied": "2026-08-31",
+      "last_contact": "2026-08-31",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Strategy",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "Nitelikler inceleniyor.",
+      "fit": 5,
+      "notes": "Founder's Associate rolü profile çok uygun.",
+      "match": {
+        "role_family": 33,
+        "seniority": 25,
+        "skills": 22,
+        "domain": 12,
+        "location_mod": 0,
+        "rationale": "Founder's Associate = çapraz fonksiyonlu analitik/strateji; regtech fintech yakın."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AComplyScan"
+        }
+      ],
+      "gap_skills": [
+        "sql"
+      ]
+    },
+    {
+      "id": "kartek-business-analyst-ai",
+      "company": "Kartek",
+      "role": "Business Analyst – AI & Product Analytics",
+      "channel": "ats",
+      "applied": "2026-09-01",
+      "last_contact": "2026-09-01",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Business Analysis",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "Yanıt bekleniyor.",
+      "fit": 4,
+      "notes": "resreader.com üzerinden. · resreader üzerinden iletildi.",
+      "match": {
+        "role_family": 33,
+        "seniority": 25,
+        "skills": 20,
+        "domain": 9,
+        "location_mod": 0,
+        "rationale": "Business Analyst + ürün analitiği birebir; AI kısmı öğrenilebilir."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AKartek"
+        }
+      ],
+      "gap_skills": [
+        "sql",
+        "product_analytics"
+      ]
+    },
+    {
+      "id": "sanyo-motor-turkiye-product-senior-specialist",
+      "company": "Sanyo Motor Türkiye",
+      "role": "Product Senior Specialist (Pricing & Hyundai Finance)",
+      "channel": "ats",
+      "applied": "2026-09-01",
+      "last_contact": "2026-09-01",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Finance/Pricing",
+      "location": "İstanbul",
+      "deadline": null,
+      "next_step": "Yanıt bekleniyor.",
+      "fit": 4,
+      "notes": "SuccessFactors. · SuccessFactors onayı. Fiyatlandırma deneyimi doğrudan ilgili.",
+      "match": {
+        "role_family": 33,
+        "seniority": 20,
+        "skills": 22,
+        "domain": 9,
+        "location_mod": 0,
+        "rationale": "Pricing + finans birleşimi CV'nin merkezinde; Senior Specialist hafif esneme."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ASanyo%20Motor%20T%C3%BCrkiye"
+        }
+      ],
+      "gap_skills": [
+        "financial_modeling"
+      ]
+    },
+    {
+      "id": "rolefinder-supply-chain-analyst",
+      "company": "Rolefinder",
+      "role": "Supply Chain Analyst",
+      "channel": "aggregator",
+      "applied": "2026-09-01",
+      "last_contact": "2026-09-01",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Operations",
+      "location": "Remote",
+      "deadline": null,
+      "next_step": "Yanıt bekleniyor.",
+      "fit": 3,
+      "notes": "Rolefinder = agregatör; dönüş oranı düşük. · Rolefinder 'match score' vaat ediyor; kendi puanlaması, bizimkiyle karıştırılmamalı.",
+      "match": {
+        "role_family": 26,
+        "seniority": 25,
+        "skills": 19,
+        "domain": 10,
+        "location_mod": -8,
+        "rationale": "Tedarik zinciri analitiği FP&A/forecast ile örtüşüyor; agregatör kanalı zayıf."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ARolefinder"
+        }
+      ],
+      "gap_skills": [
+        "supply_chain",
+        "sql"
+      ]
+    },
+    {
+      "id": "nril-business-intelligence-bi",
+      "company": "NRIL",
+      "role": "Business Intelligence (BI) Analyst",
+      "channel": "ats",
+      "applied": "2026-09-01",
+      "last_contact": "2026-09-01",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Data",
+      "location": "ABD (Workday)",
+      "contact": null,
+      "deadline": null,
+      "next_step": "Workday bildirimini aç, başvuru durumunu doğrula.",
+      "fit": 2,
+      "notes": "Workday Daily Digest bildirimi geldi; içeriği okunmadı — durum belirsiz.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ANRIL"
+        }
+      ]
+    },
+    {
+      "id": "elit-gida-sales-analyst",
+      "company": "Elit Gıda",
+      "role": "Sales Analyst",
+      "channel": "ats",
+      "applied": "2026-09-01",
+      "last_contact": "2026-09-10",
+      "stage": "in_process",
+      "status": "awaiting_response",
+      "track": "Sales/Data",
+      "location": "İstanbul, Türkiye",
+      "contact": null,
+      "deadline": null,
+      "next_step": "Yanıt bekleniyor. 22 Eylül'e kadar dönüş yoksa takip maili.",
+      "fit": 3,
+      "notes": "01 Eyl e-posta doğrulama, 04 Eyl ön eleme linki, 10 Eyl ön eleme tamamlandı. Tamamlandığı bilgisi kullanıcı beyanı — Peoplise onay maili göndermedi, gelen kutusunda karşılığı yok. İşveren Elit Gıda; mailde yazmıyor, başvuru bağlantısının kiracı yolundan (/eti/) çıkarıldı. ÇIKARIM.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AElit%20G%C4%B1da"
+        }
+      ]
+    },
+    {
+      "id": "novabank-product-owner-technical",
+      "company": "Novabank",
+      "role": "Product Owner (Technical)",
+      "channel": "ats",
+      "applied": "2026-09-01",
+      "last_contact": "2026-09-04",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Product",
+      "location": "Remote/EU",
+      "deadline": null,
+      "next_step": "Kapandı — aksiyon yok.",
+      "fit": 4,
+      "notes": "Novabank'ta ikinci deneme (S&O Manager 25 Ağu'da olumsuz sonuçlandı). · 01 Eyl başvuru onayı, 03 ve 04 Eyl iki ayrı red maili (aynı içerik). Gerekçe belirtilmedi.",
+      "match": {
+        "role_family": 18,
+        "seniority": 20,
+        "skills": 14,
+        "domain": 12,
+        "location_mod": -8,
+        "rationale": "'Technical' Product Owner mühendislik altyapısı istiyor; fintech yakın ama teknik açık var."
+      },
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ANovabank"
+        }
+      ],
+      "gap_skills": [
+        "product_management",
+        "sql"
+      ]
+    },
+    {
+      "id": "ufuk-katilim-pazarlama-analitigi-uzmani",
+      "company": "Ufuk Katılım",
+      "role": "Pazarlama Analitiği Uzmanı",
+      "channel": "direct",
+      "applied": "2026-09-02",
+      "last_contact": "2026-09-07",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Marketing/Data",
+      "location": "İstanbul, Türkiye",
+      "contact": "İK — ik@dunyakatilim.example",
+      "deadline": null,
+      "next_step": "Kapandı — aksiyon yok.",
+      "fit": 4,
+      "notes": "Mülakat daveti gönderilmiş, sonra takvim daveti 'Canceled' olarak güncellenmişti; gerekçe yazmıyordu. 2026-09-07'de kullanıcı kararıyla kapatıldı — teyit istenmedi.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AUfuk%20Kat%C4%B1l%C4%B1m"
+        }
+      ]
+    },
+    {
+      "id": "voltcell-f-a-senior",
+      "company": "Voltcell",
+      "role": "F&A - Senior Specialist",
+      "channel": "ats",
+      "applied": "2026-09-03",
+      "last_contact": "2026-09-04",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Finance",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "next_step": "Kapandı — aksiyon yok.",
+      "fit": 4,
+      "notes": "Red maili geri bildirim anketi linki içeriyor; doldurulursa tek gerçek red gerekçesi kaynağı olabilir.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AVoltcell"
+        }
+      ],
+      "first_response": "2026-09-04"
+    },
+    {
+      "id": "sentinel-glass",
+      "company": "Sentinel Glass",
+      "role": "—",
+      "channel": "ats",
+      "applied": "2026-09-03",
+      "last_contact": "2026-09-03",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "—",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "next_step": "Yanıt bekleniyor.",
+      "fit": 2,
+      "notes": "Koch Industries ATS onayı; mail pozisyon adı taşımıyor.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ASentinel%20Glass"
+        }
+      ]
+    },
+    {
+      "id": "appnest-senior-data-analyst",
+      "company": "AppNest",
+      "role": "Senior Data Analyst - GrowthLab",
+      "channel": "ats",
+      "applied": "2026-09-03",
+      "last_contact": "2026-09-03",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Data/Growth",
+      "location": "İstanbul, Türkiye",
+      "contact": null,
+      "deadline": null,
+      "next_step": "Yanıt bekleniyor.",
+      "fit": 5,
+      "notes": "Growth + data birleşimi profile en yakın ilanlardan biri.",
+      "match": null,
+      "gap_skills": [
+        "sql",
+        "python"
+      ],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AAppNest"
+        }
+      ]
+    },
+    {
+      "id": "delta-bank-ai-consultant-analytics",
+      "company": "Delta Bank",
+      "role": "AI Consultant – Analytics Strategy & Transformation",
+      "channel": "ats",
+      "applied": "2026-09-03",
+      "last_contact": "2026-09-10",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Data/Banking",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "next_step": "Kapandı — aksiyon yok.",
+      "fit": 3,
+      "notes": "İlan kapatıldı (requisition completed); kişisel red değil, pozisyon iptali. 10 Eyl: ikinci ilan (CEO Office & Strategy) da kapandı.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ADelta%20Bank"
+        }
+      ]
+    },
+    {
+      "id": "marcus-page",
+      "company": "Marcus Page",
+      "role": "—",
+      "channel": "aggregator",
+      "applied": "2026-09-03",
+      "last_contact": "2026-09-03",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "—",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "next_step": "Yanıt bekleniyor.",
+      "fit": 2,
+      "notes": "Danışmanlık aracılığıyla; mail pozisyon adı taşımıyor.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AMarcus%20Page"
+        }
+      ]
+    },
+    {
+      "id": "the-span-base180-senior-finance-analyst",
+      "company": "The Span & Base180",
+      "role": "Senior Finance Analyst",
+      "channel": "ats",
+      "applied": "2026-09-03",
+      "last_contact": "2026-09-03",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Finance",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "next_step": "Yanıt bekleniyor.",
+      "fit": 4,
+      "notes": "Ashby onayı. 'Senior' unvanı kıdem olarak esneme.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AThe%20Span%20%26%20Base180"
+        }
+      ]
+    },
+    {
+      "id": "mojo-games-product-manager-paper",
+      "company": "Mojo Games",
+      "role": "Product Manager - Paper.io 2",
+      "channel": "ats",
+      "applied": "2026-09-03",
+      "last_contact": "2026-09-07",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Product/Gaming",
+      "location": "Remote / Paris",
+      "contact": null,
+      "deadline": null,
+      "next_step": "Kapandı — aksiyon yok.",
+      "fit": 3,
+      "notes": "03 Eyl onay, 07 Eyl red. Gerekçe: 'acil ekip ihtiyacına daha yakın profillere odaklanıyoruz' — spesifik değil.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AMojo%20Games"
+        }
+      ]
+    },
+    {
+      "id": "nordpay-business-development-partner",
+      "company": "Nordpay",
+      "role": "Business Development, Partner Success (Amsterdam)",
+      "channel": "ats",
+      "applied": "2026-09-04",
+      "last_contact": "2026-09-04",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Sales/Fintech",
+      "location": "Amsterdam",
+      "contact": null,
+      "deadline": null,
+      "next_step": "Yanıt bekleniyor.",
+      "fit": 2,
+      "notes": "Deel üzerinden. İş geliştirme rolü — analitik profilden uzak, lokasyon taşınma gerektiriyor.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ANordpay"
+        }
+      ]
+    },
+    {
+      "id": "mojo-games-product-beads-out",
+      "company": "Mojo Games",
+      "role": "Product - Beads Out",
+      "channel": "ats",
+      "applied": "2026-09-04",
+      "last_contact": "2026-09-04",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Product/Gaming",
+      "location": "Remote / Paris",
+      "contact": null,
+      "deadline": null,
+      "next_step": "Yanıt bekleniyor.",
+      "fit": 3,
+      "notes": "Aynı şirkete ikinci başvuru; birincisi (Paper.io 2) 07 Eyl'de reddedildi.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AMojo%20Games"
+        }
+      ]
+    },
+    {
+      "id": "subskale-finance-analyst",
+      "company": "Subskale",
+      "role": "Finance Analyst",
+      "channel": "ats",
+      "applied": "2026-09-05",
+      "last_contact": "2026-09-05",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Finance/Fintech",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "next_step": "Yanıt bekleniyor.",
+      "fit": 4,
+      "notes": "Workable onayı.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ASubskale"
+        }
+      ]
+    },
+    {
+      "id": "epica-systems",
+      "company": "EPICA Systems",
+      "role": "—",
+      "channel": "ats",
+      "applied": "2026-09-05",
+      "last_contact": "2026-09-05",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "—",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "next_step": "Kapandı — aksiyon yok.",
+      "fit": 2,
+      "notes": "Mail pozisyon adı taşımıyor; yetenek havuzunda tutulacağı belirtilmiş.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AEPICA%20Systems"
+        }
+      ]
+    },
+    {
+      "id": "swiftvista-revenue-operations-manager",
+      "company": "SwiftVista",
+      "role": "Revenue Operations Manager: Sales Programs, Analysis, and Process",
+      "channel": "ats",
+      "applied": "2026-09-05",
+      "last_contact": "2026-09-05",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "RevOps",
+      "location": "Fransa (yazışma Fransızca)",
+      "contact": null,
+      "deadline": null,
+      "next_step": "Yanıt bekleniyor.",
+      "fit": 2,
+      "notes": "Onay maili Fransızca geldi — dil şartı olabilir. 'Manager' unvanı kıdem açması.",
+      "match": null,
+      "gap_skills": [
+        "people_leadership"
+      ],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ASwiftVista"
+        }
+      ]
+    },
+    {
+      "id": "kensley-co-fellow-business-analyst",
+      "company": "Kensley & Co.",
+      "role": "Fellow Business Analyst",
+      "channel": "direct",
+      "applied": "2026-09-05",
+      "last_contact": "2026-09-05",
+      "stage": "application_incomplete",
+      "status": "action_required",
+      "track": "Consulting",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "next_step": "Taslak başvuruyu tamamla. Kensley & Co. hatırlatma gönderdi; süre sınırı mailde yazmıyor.",
+      "fit": 4,
+      "notes": "Başvuru başlatılmış ama bitirilmemiş. Yarım bırakılmış başvuru, hiç yapılmamış başvurudan kötüdür.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AKensley%20%26%20Co."
+        }
+      ]
+    },
+    {
+      "id": "verdikt-lead-data-analyst",
+      "company": "Verdikt",
+      "role": "Lead Data Analyst (Pricing & Monetization)",
+      "channel": "ats",
+      "applied": "2026-09-05",
+      "last_contact": "2026-09-09",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Data/Pricing",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "next_step": "Süreç kapandı.",
+      "fit": 3,
+      "notes": "'Lead' unvanı — ekip yönetimi deneyimi olmadığı için kıdem açığı var. 9 Eyl: red.",
+      "match": null,
+      "gap_skills": [
+        "sql",
+        "people_leadership"
+      ],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AVerdikt"
+        }
+      ],
+      "first_response": "2026-09-09"
+    },
+    {
+      "id": "feather-assistant",
+      "company": "Feather Assistant",
+      "role": "—",
+      "channel": "linkedin",
+      "applied": "2026-09-05",
+      "last_contact": "2026-09-05",
+      "stage": "application_incomplete",
+      "status": "action_required",
+      "track": "—",
+      "location": "Remote",
+      "contact": null,
+      "deadline": null,
+      "next_step": "LinkedIn yarım kalan başvuruyu tamamla ya da vazgeç.",
+      "fit": 2,
+      "notes": "LinkedIn 'başvurunuzu tamamlamayı unutmayın' hatırlatması. Pozisyon adı mailde yok.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AFeather%20Assistant"
+        }
+      ]
+    },
+    {
+      "id": "voltu",
+      "company": "Voltu",
+      "role": "—",
+      "channel": "ats",
+      "applied": "2026-09-05",
+      "last_contact": "2026-09-15",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "—",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "next_step": "Süreç kapandı.",
+      "fit": 4,
+      "notes": "Greenhouse onayı; mail pozisyon adı taşımıyor. Q-commerce — sektör örtüşmesi güçlü. 15 Eyl: red (BDM — Commerce Platform).",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AVoltu"
+        }
+      ],
+      "first_response": "2026-09-15"
+    },
+    {
+      "id": "tapzone-performance-marketing-specialist",
+      "company": "tapzone",
+      "role": "Performance Marketing Specialist",
+      "channel": "aggregator",
+      "applied": "2026-09-06",
+      "last_contact": "2026-09-06",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Marketing",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "next_step": "Yanıt bekleniyor.",
+      "fit": 3,
+      "notes": "join.com üzerinden; başvuru başarıyla iletildi.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3Atapzone"
+        }
+      ]
+    },
+    {
+      "id": "kayit-senior-product-manager",
+      "company": "—",
+      "role": "Senior Product Manager",
+      "channel": "linkedin",
+      "applied": "2026-09-06",
+      "last_contact": "2026-09-06",
+      "stage": "application_incomplete",
+      "status": "action_required",
+      "track": "Product",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "next_step": "LinkedIn başvuruyu şirkete iletememiş. Şirketi tespit et ve doğrudan başvur ya da kaydı kapat.",
+      "fit": 2,
+      "notes": "'Başvurunuz ile ilgili problem var' maili. Şirket adı mailde yok — bu yüzden company '—'.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3A%E2%80%94"
+        }
+      ]
+    },
+    {
+      "id": "vortigo-product-specialist-new",
+      "company": "Vortigo",
+      "role": "Product Specialist - New Grad",
+      "channel": "ats",
+      "applied": "2026-09-07",
+      "last_contact": "2026-09-07",
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Product",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "next_step": "Yanıt bekleniyor.",
+      "fit": 3,
+      "notes": "Workable onayı. 'New Grad' — kıdem olarak hedef bandın altında.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AVortigo"
+        }
+      ]
+    },
+    {
+      "id": "fontana-foods-revenue-growth-management",
+      "company": "Fontana Foods",
+      "role": "Revenue Growth Management Sr. Analyst",
+      "channel": "direct",
+      "applied": "2026-09-08",
+      "last_contact": "2026-09-18",
+      "first_response": "2026-09-14",
+      "stage": "interview_scheduling",
+      "status": "action_required",
+      "track": "Growth/Finance",
+      "location": "—",
+      "contact": null,
+      "deadline": "2026-09-23",
+      "fit": 4,
+      "next_step": "Mülakat 23 Eyl 12:00 CET (13:00 TSİ) — teyit edildi.",
+      "notes": "İlan metni yok, puanlanmadı. 14 Eyl'de İK'dan mülakat daveti, 18 Eyl'de tarih teyitlendi.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AFontana%20Foods"
+        }
+      ]
+    },
+    {
+      "id": "verinox",
+      "company": "Verinox",
+      "role": "—",
+      "channel": "direct",
+      "applied": "2026-09-17",
+      "last_contact": "2026-09-17",
+      "first_response": "2026-09-17",
+      "stage": "interview_scheduling",
+      "status": "action_required",
+      "track": "—",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "fit": 3,
+      "next_step": "17 Eyl'de 1. mülakat talebi geldi — YANIT VERİLMEDİ.",
+      "notes": "İlan metni yok, puanlanmadı. Rol adı mailde yok. Talebe yanıt gönderildiğine dair kayıt bulunamadı.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AVerinox"
+        }
+      ]
+    },
+    {
+      "id": "perlato-group-app-analytics-senior",
+      "company": "Perlato Group",
+      "role": "App Analytics Senior Specialist",
+      "channel": "ats",
+      "applied": "2026-09-07",
+      "last_contact": "2026-09-12",
+      "first_response": "2026-09-12",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Data/Retail",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "fit": 3,
+      "next_step": "Süreç kapandı.",
+      "notes": "İlan metni yok, puanlanmadı. 12 Eyl: red ('other candidates').",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3APerlato%20Group"
+        }
+      ]
+    },
+    {
+      "id": "fleetwise-product-manager-growth",
+      "company": "Fleetwise",
+      "role": "Product Manager, Growth",
+      "channel": "ats",
+      "applied": "2026-09-10",
+      "last_contact": "2026-09-13",
+      "first_response": "2026-09-13",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Product/Growth",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "fit": 3,
+      "next_step": "Süreç kapandı.",
+      "notes": "İlan metni yok, puanlanmadı. 13 Eyl: red.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AFleetwise"
+        }
+      ]
+    },
+    {
+      "id": "ebazar-senior-commercial-analyst",
+      "company": "eBAZAR",
+      "role": "Senior Commercial Analyst @ Flip",
+      "channel": "direct",
+      "applied": "2026-09-05",
+      "last_contact": "2026-09-14",
+      "first_response": "2026-09-14",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Commercial/Data",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "fit": 3,
+      "next_step": "Süreç kapandı.",
+      "notes": "İlan metni yok, puanlanmadı. 14 Eyl: red.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AeBAZAR"
+        }
+      ]
+    },
+    {
+      "id": "fondera-data-analyst",
+      "company": "Fondera",
+      "role": "Data Analyst",
+      "channel": "direct",
+      "applied": null,
+      "last_contact": "2026-09-15",
+      "first_response": "2026-09-15",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Data/Fintech",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "fit": 3,
+      "next_step": "Süreç kapandı.",
+      "notes": "İlan metni yok, puanlanmadı. 15 Eyl: red. Başvuru onayı maili bulunamadı, applied null.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AFondera"
+        }
+      ]
+    },
+    {
+      "id": "cryptera-senior-compliance-specialist",
+      "company": "Cryptera",
+      "role": "Senior Compliance Specialist",
+      "channel": "ats",
+      "applied": "2026-09-10",
+      "last_contact": "2026-09-17",
+      "first_response": "2026-09-17",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Compliance/Fintech",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "fit": 2,
+      "next_step": "Süreç kapandı.",
+      "notes": "İlan metni yok, puanlanmadı. 17 Eyl: red. Uyum alanı profilin dışında.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ACryptera"
+        }
+      ]
+    },
+    {
+      "id": "pragmateq-policloud-fbp",
+      "company": "Pragmateq",
+      "role": "Policloud - FBP",
+      "channel": "ats",
+      "applied": null,
+      "last_contact": "2026-09-18",
+      "first_response": "2026-09-18",
+      "stage": "closed",
+      "status": "rejected",
+      "track": "Finance",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "fit": 3,
+      "next_step": "Süreç kapandı.",
+      "notes": "İlan metni yok, puanlanmadı. 18 Eyl: red. Başvuru onayı maili bulunamadı.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3APragmateq"
+        }
+      ]
+    },
+    {
+      "id": "medivera-health-manager-growth-and",
+      "company": "Medivera Health",
+      "role": "Manager, Growth and Reporting",
+      "channel": "direct",
+      "applied": "2026-09-10",
+      "last_contact": "2026-09-10",
+      "first_response": null,
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Growth/Data",
+      "location": "Remote",
+      "contact": null,
+      "deadline": null,
+      "fit": 3,
+      "next_step": "Yanıt bekleniyor.",
+      "notes": "İlan metni yok, puanlanmadı. ",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AMedivera%20Health"
+        }
+      ]
+    },
+    {
+      "id": "givinglift-product-manager-in",
+      "company": "GivingLift",
+      "role": "Product Manager, In-Person Giving",
+      "channel": "direct",
+      "applied": "2026-09-10",
+      "last_contact": "2026-09-10",
+      "first_response": null,
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Product",
+      "location": "Remote",
+      "contact": null,
+      "deadline": null,
+      "fit": 3,
+      "next_step": "Yanıt bekleniyor.",
+      "notes": "İlan metni yok, puanlanmadı. ",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AGivingLift"
+        }
+      ]
+    },
+    {
+      "id": "wagnerlift-is-kontrol-uzmani",
+      "company": "Wagnerlift",
+      "role": "İş Kontrol Uzmanı",
+      "channel": "ats",
+      "applied": "2026-09-10",
+      "last_contact": "2026-09-10",
+      "first_response": null,
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Finance",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "fit": 3,
+      "next_step": "Yanıt bekleniyor.",
+      "notes": "İlan metni yok, puanlanmadı. ",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AWagnerlift"
+        }
+      ]
+    },
+    {
+      "id": "bright-play-games-data-monetization-analyst",
+      "company": "Bright Play Games",
+      "role": "Data & Monetization Analyst",
+      "channel": "direct",
+      "applied": "2026-09-10",
+      "last_contact": "2026-09-10",
+      "first_response": null,
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Data/Gaming",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "fit": 4,
+      "next_step": "Yanıt bekleniyor.",
+      "notes": "İlan metni yok, puanlanmadı. Aynı şirkete ikinci rol (Product Specialist kaydı ayrı).",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3ABright%20Play%20Games"
+        }
+      ]
+    },
+    {
+      "id": "kordon-technologies-financial-reporting-bi",
+      "company": "Kordon Technologies",
+      "role": "Financial Reporting & BI Manager",
+      "channel": "ats",
+      "applied": "2026-09-15",
+      "last_contact": "2026-09-15",
+      "first_response": null,
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Finance/Data",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "fit": 4,
+      "next_step": "Yanıt bekleniyor.",
+      "notes": "İlan metni yok, puanlanmadı. ",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AKordon%20Technologies"
+        }
+      ]
+    },
+    {
+      "id": "strandel-medical-product-manager-medical",
+      "company": "Strandel Medical",
+      "role": "Product Manager, Medical Devices - META",
+      "channel": "ats",
+      "applied": "2026-09-15",
+      "last_contact": "2026-09-15",
+      "first_response": null,
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Product",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "fit": 3,
+      "next_step": "Yanıt bekleniyor.",
+      "notes": "İlan metni yok, puanlanmadı. ",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AStrandel%20Medical"
+        }
+      ]
+    },
+    {
+      "id": "anadolunet-senior-growth-bi",
+      "company": "Anadolunet",
+      "role": "Senior Growth (BI) Specialist",
+      "channel": "ats",
+      "applied": "2026-09-15",
+      "last_contact": "2026-09-15",
+      "first_response": null,
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Growth/Data",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "fit": 4,
+      "next_step": "Yanıt bekleniyor.",
+      "notes": "İlan metni yok, puanlanmadı. ",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AAnadolunet"
+        }
+      ]
+    },
+    {
+      "id": "vast-bio-growth-manager-ai",
+      "company": "Vast Bio",
+      "role": "Growth Manager (AI Health-Tech)",
+      "channel": "ats",
+      "applied": "2026-09-18",
+      "last_contact": "2026-09-18",
+      "first_response": null,
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Growth/Health",
+      "location": "Remote",
+      "contact": null,
+      "deadline": null,
+      "fit": 3,
+      "next_step": "Yanıt bekleniyor.",
+      "notes": "İlan metni yok, puanlanmadı. ",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AVast%20Bio"
+        }
+      ]
+    },
+    {
+      "id": "unicard-senior-specialist-product",
+      "company": "Unicard",
+      "role": "Senior Specialist, Product Management",
+      "channel": "ats",
+      "applied": "2026-09-18",
+      "last_contact": "2026-09-18",
+      "first_response": null,
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Product/Fintech",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "fit": 4,
+      "next_step": "Yanıt bekleniyor.",
+      "notes": "İlan metni yok, puanlanmadı. ",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AUnicard"
+        }
+      ]
+    },
+    {
+      "id": "insightq-industry-insights-senior",
+      "company": "InsightQ",
+      "role": "Industry Insights Senior Executive",
+      "channel": "ats",
+      "applied": "2026-09-18",
+      "last_contact": "2026-09-18",
+      "first_response": null,
+      "stage": "under_review",
+      "status": "awaiting_response",
+      "track": "Data/Retail",
+      "location": "—",
+      "contact": null,
+      "deadline": null,
+      "fit": 4,
+      "next_step": "Yanıt bekleniyor.",
+      "notes": "İlan metni yok, puanlanmadı. Aynı şirkete ikinci rol (Client Solutions kaydı ayrı).",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3AInsightQ"
+        }
+      ]
+    },
+    {
+      "id": "bloq-product-owner-onboarding",
+      "company": "bloq",
+      "role": "Product Owner - Onboarding",
+      "channel": "ats",
+      "applied": "2026-06-04",
+      "last_contact": "2026-06-05",
+      "first_response": "2026-06-05",
+      "stage": "assessment",
+      "status": "stale",
+      "track": "Product/Fintech",
+      "location": "Remote",
+      "contact": null,
+      "deadline": null,
+      "fit": 3,
+      "next_step": "Fit assessment geçildi (5 Haz) — sonrasına dair mail yok. Durumu sor ya da kapat.",
+      "notes": "İlan metni yok, puanlanmadı. 5 Haz: fit assessment geçildi, sonraki adıma davet. Sonrasında 3,5 aydır mail yok. Reporting Expert başvurusu ayrı kayıt.",
+      "match": null,
+      "gap_skills": [],
+      "links_actions": [
+        {
+          "label": "Maili aç",
+          "kind": "gmail",
+          "url": "https://mail.google.com/mail/u/0/#search/from%3Abloq"
+        }
+      ]
     }
   ]
 }

@@ -234,6 +234,32 @@ değişkeni okur; verilmezse deponun kendi `data/` klasörünü kullanır.
 Gerçek veriyi izlenen `data/` klasörüne kopyalamak kazara commit riski
 yaratıyordu — bu yol kopyalama riskini azaltır; çıktı ve commit ayrıca kontrol edilir.
 
+### Demo veri gerçek veriden üretilir
+
+`src/anonimlestir.py` iki depo arasındaki **tek köprüdür.** Gerçek veriyi okur,
+şirket adlarını takma adlarla değiştirir, `data/applications.json` ve
+`data/saved_jobs.json` dosyalarını üretir, sonra **yayınlanacak klasörün
+tamamını tarayıp gerçek bir ad kalmadığını doğrular.**
+
+```bash
+TRACE_DATA=/yol/trace-data/data python3 src/anonimlestir.py --yaz
+```
+
+Üç kural:
+
+- **Eşlemesi olmayan şirket görülürse script durur**, dosyaya yazmaz. Bilinmeyen
+  adı geçirmek sessizce sızdırmaktır. Yeni şirkette eşleme tablosuna takma ad
+  eklenir, tekrar çalıştırılır.
+- **Eşleme tablosu özel depodadır** (`anonimlestirme/eslesme.json`) ve oraya
+  kalır — gerçek adla takma adı yan yana tutar, yani yeniden kimliklendirme
+  anahtarıdır. Açık depoda script durur, tablo durmaz.
+- **`profile.json` elle bakılır**, script üretmez. CV özeti serbest metindir;
+  otomatik dönüşümün kaçırdığı bir ayrıntı doğrudan kişiyi ele verir. Doğrulayıcı
+  yine de bu dosyayı tarar — nitekim yayınlanmış sürümde gerçek okul, bölüm ve
+  eski işveren böyle yakalandı.
+
+Takma ad sektörü, bölge tınısını ve ad biçimini korur; demo hâlâ makul okunur.
+
 - Geliştirme dalı: `claude/linkedin-job-tracking-automation-6xiogy`
 - `main`'e `--no-ff` ile merge; kod/veri/şablon değişince Pages testlerden sonra kaynaktan üretip dağıtır
 - `reports/pano.html` ve `site/_artifact.html` türetilmiştir, `.gitignore`'dadır.

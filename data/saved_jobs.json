@@ -6,7 +6,7 @@
   },
   "jobs": [
     {
-      "company": "AppVista",
+      "company": "AppNova",
       "role": "Growth Marketing Manager (User Acquisition) — Mobile Subscription Products",
       "reminded": [
         "2026-08-23",
@@ -15,10 +15,11 @@
       "applied": false,
       "expired": false,
       "match_estimate": 78,
-      "note": "Growth + mobil abonelik; profile çok uygun, iki hatırlatmaya rağmen başvurulmamış."
+      "note": "Growth + mobil abonelik; profile çok uygun, iki hatırlatmaya rağmen başvurulmamış.",
+      "id": "appnova-growth-marketing-manager"
     },
     {
-      "company": "paynet",
+      "company": "izipay",
       "role": "Business Development Specialist",
       "reminded": [
         "2026-08-21",
@@ -27,10 +28,11 @@
       "applied": false,
       "expired": false,
       "match_estimate": 58,
-      "note": "Satış ağırlıklı; analitik profille orta uyum."
+      "note": "Satış ağırlıklı; analitik profille orta uyum.",
+      "id": "izipay-business-development-specialist"
     },
     {
-      "company": "Belora",
+      "company": "L'Azuré",
       "role": "SAPHIR [2026] Revenue Growth Management WINtern",
       "reminded": [
         "2026-08-29"
@@ -38,10 +40,11 @@
       "applied": false,
       "expired": false,
       "match_estimate": 82,
-      "note": "Revenue growth management = fiyatlandırma + ticari analitik; güçlü eşleşme, kaçırılmamalı."
+      "note": "Revenue growth management = fiyatlandırma + ticari analitik; güçlü eşleşme, kaçırılmamalı.",
+      "id": "l-azure-saphir-2026-revenue"
     },
     {
-      "company": "Vistacard",
+      "company": "Unicard",
       "role": "Senior Specialist, Product Management",
       "reminded": [
         "2026-08-22"
@@ -49,7 +52,8 @@
       "applied": false,
       "expired": false,
       "match_estimate": 66,
-      "note": "Ürün yönetimi deneyimi eksik ama fintech ve kıdem uygun."
+      "note": "Ürün yönetimi deneyimi eksik ama fintech ve kıdem uygun.",
+      "id": "unicard-senior-specialist-product"
     },
     {
       "company": "EBRK",
@@ -60,10 +64,11 @@
       "applied": false,
       "expired": false,
       "match_estimate": 76,
-      "note": "Kurumsal sektör analistliği; finansal analiz deneyimi geçerli."
+      "note": "Kurumsal sektör analistliği; finansal analiz deneyimi geçerli.",
+      "id": "ebrk-analyst-corporate-sector"
     },
     {
-      "company": "Rochel",
+      "company": "Rochelle Pharma",
       "role": "Business Insights & Analytics Partner",
       "reminded": [
         "2026-08-12"
@@ -71,10 +76,11 @@
       "applied": false,
       "expired": false,
       "match_estimate": 74,
-      "note": "İş içgörüsü ve analitik; ilaç sektörü yeni."
+      "note": "İş içgörüsü ve analitik; ilaç sektörü yeni.",
+      "id": "rochelle-pharma-business-insights-analytics"
     },
     {
-      "company": "Bav Group Meksika",
+      "company": "Vela Group México",
       "role": "Digital Insight Analyst",
       "reminded": [
         "2026-08-11"
@@ -82,10 +88,11 @@
       "applied": false,
       "expired": false,
       "match_estimate": 62,
-      "note": "Rol uygun ama Meksika lokasyonu engel."
+      "note": "Rol uygun ama Meksika lokasyonu engel.",
+      "id": "vela-group-mexico-digital-insight-analyst"
     },
     {
-      "company": "Enti",
+      "company": "Elit Gıda",
       "role": "Demand Planning Specialist",
       "reminded": [
         "2026-08-08"
@@ -93,10 +100,11 @@
       "applied": false,
       "expired": false,
       "match_estimate": 74,
-      "note": "Talep planlama; forecast deneyimi transfer olur."
+      "note": "Talep planlama; forecast deneyimi transfer olur.",
+      "id": "elit-gida-demand-planning-specialist"
     },
     {
-      "company": "Meridyen Motor Türk",
+      "company": "Sternwagen Türk",
       "role": "Product Data Engineering Specialist",
       "reminded": [
         "2026-08-06"
@@ -104,10 +112,11 @@
       "applied": false,
       "expired": false,
       "match_estimate": 52,
-      "note": "Veri mühendisliği ağırlıklı; SQL/Python açığı burada belirleyici."
+      "note": "Veri mühendisliği ağırlıklı; SQL/Python açığı burada belirleyici.",
+      "id": "sternwagen-turk-product-data-engineering"
     },
     {
-      "company": "Kanvas",
+      "company": "Kandar",
       "role": "Client Manager",
       "reminded": [
         "2026-08-25"
@@ -116,10 +125,11 @@
       "expired": true,
       "expired_on": "2026-08-29",
       "match_estimate": 60,
-      "note": "SÜRESİ DOLDU — müşteri yönetimi, Manager kıdemi esneme idi."
+      "note": "SÜRESİ DOLDU — müşteri yönetimi, Manager kıdemi esneme idi.",
+      "id": "kandar-client-manager"
     },
     {
-      "company": "Orion",
+      "company": "Orchard",
       "role": "Product Marketing Manager, iPad & Mac",
       "reminded": [
         "2026-08-20"
@@ -128,10 +138,11 @@
       "expired": true,
       "expired_on": "2026-08-25",
       "match_estimate": 55,
-      "note": "SÜRESİ DOLDU — ürün pazarlama, kıdem ve alan olarak esneme idi."
+      "note": "SÜRESİ DOLDU — ürün pazarlama, kıdem ve alan olarak esneme idi.",
+      "id": "orchard-product-marketing-manager"
     },
     {
-      "company": "Marshall Page",
+      "company": "Marcus Page",
       "role": "FP&A Analyst",
       "reminded": [
         "2026-08-13"
@@ -140,7 +151,8 @@
       "expired": true,
       "expired_on": "2026-08-20",
       "match_estimate": 88,
-      "note": "SÜRESİ DOLDU — bu listedeki en güçlü eşleşmeydi. FP&A Analyst tam profil karşılığı; kaçırılması en pahalı fırsat."
+      "note": "SÜRESİ DOLDU — bu listedeki en güçlü eşleşmeydi. FP&A Analyst tam profil karşılığı; kaçırılması en pahalı fırsat.",
+      "id": "marcus-page-fp-a-analyst"
     },
     {
       "company": "Zephyr Games",
@@ -153,7 +165,8 @@
       "applied_on": "2026-08-12",
       "expired": false,
       "match_estimate": 73,
-      "note": "Başvuruldu (hatırlatma başvurudan sonra geldi)."
+      "note": "Başvuruldu (hatırlatma başvurudan sonra geldi).",
+      "id": "zephyr-games-growth-manager-senior"
     },
     {
       "company": "Auralever",
@@ -165,7 +178,8 @@
       "applied_on": "2026-08-05",
       "expired": false,
       "match_estimate": 56,
-      "note": "Başvuruldu, 31 Ağustos'ta olumsuz sonuçlandı."
+      "note": "Başvuruldu, 31 Ağustos'ta olumsuz sonuçlandı.",
+      "id": "auralever-foods-digital-experience"
     },
     {
       "company": "Odepay",
@@ -177,7 +191,8 @@
       "applied_on": "2026-08-03",
       "expired": false,
       "match_estimate": 90,
-      "note": "Başvuruldu; hâlâ yanıt bekleniyor."
+      "note": "Başvuruldu; hâlâ yanıt bekleniyor.",
+      "id": "odepay-product-data-analyst"
     },
     {
       "company": "Cloudly",
@@ -189,7 +204,8 @@
       "applied_on": "2026-08-01",
       "expired": false,
       "match_estimate": 80,
-      "note": "Başvuruldu; Faz-1 testi deadline'ı kaçtı."
+      "note": "Başvuruldu; Faz-1 testi deadline'ı kaçtı.",
+      "id": "cloudly-data-analyst-on"
     }
   ]
 }
