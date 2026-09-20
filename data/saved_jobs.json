@@ -2,7 +2,7 @@
   "_note": "LinkedIn'in 'kaydedilen ilana başvurun' ve 'ilanın süresi doluyor' hatırlatma e-postalarından çıkarıldı. ÖNEMLİ: LinkedIn her kaydedilen ilan için hatırlatma göndermiyor — bu liste kaydedilen ilanların ALT SINIRI, tamamı değil. 'Görüntülenen ilan' verisi hiç yok; LinkedIn bunu e-postayla bildirmiyor.",
   "window": {
     "from": "2026-08-01",
-    "to": "2026-09-01"
+    "to": "2026-09-20"
   },
   "jobs": [
     {
@@ -206,6 +206,18 @@
       "match_estimate": 80,
       "note": "Başvuruldu; Faz-1 testi deadline'ı kaçtı.",
       "id": "cloudly-data-analyst-on"
+    },
+    {
+      "company": "Aysan Gaz A.Ş.",
+      "role": "Corporate Finance Analyst",
+      "reminded": [
+        "2026-09-19"
+      ],
+      "applied": false,
+      "expired": false,
+      "match_estimate": null,
+      "note": "LinkedIn kaydedilen ilan hatırlatması. İlan metni yok, puanlanmadı.",
+      "id": "aysan-gaz-a-s-corporate-finance-analyst"
     }
   ]
 }
