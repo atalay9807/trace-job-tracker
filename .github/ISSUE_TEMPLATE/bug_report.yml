@@ -1,0 +1,75 @@
+name: Bug report
+description: Something behaves differently from how it is documented
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before filing: the demo data under `data/` is synthetic and the
+        published dashboard has no authentication by design. Neither is a bug.
+        See `SECURITY.md` for how to report a security problem privately.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened
+      description: What you saw, and what you expected instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: The exact commands or clicks. Include the command output.
+      placeholder: |
+        1. python3 src/build_dashboard.py --site
+        2. Open site/app.html
+        3. Click the "Eğitim" tab
+        4. Observe ...
+      render: shell
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which part
+      options:
+        - Dashboard / interface
+        - Python pipeline (pipeline, match, insights)
+        - Dashboard build (build_dashboard)
+        - Data or schema
+        - Agents / skills
+        - web-live (Next.js application)
+        - CI / workflows
+        - Documentation
+        - Not sure
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Commit
+      description: Output of `git rev-parse --short HEAD`.
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS and Python version (`python3 --version`).
+      placeholder: "macOS 15.2, Python 3.11.9"
+    validations:
+      required: true
+
+  - type: textarea
+    id: checks
+    attributes:
+      label: Verification output
+      description: |
+        If it is reproducible, paste the output of the failing check.
+        "I could not run this" is a fine answer — say so rather than leaving it blank.
+      render: shell
