@@ -7,7 +7,7 @@ model: opus
 
 # İlan çözümleyici
 
-Önce `docs/ORTAK_CALISMA.md` içindeki veri kaynağı ve ölçüm kurallarını uygula.
+Önce `docs/collaboration.md` içindeki veri kaynağı ve ölçüm kurallarını uygula.
 Bu dosyadaki `data/...` yolları, ana oturumun verdiği seçilmiş veri klasörüne
 aittir. Mutlak veri yolu görevde yoksa demo mu gerçek veri mi olduğunu netleştir;
 özel veri eksikse demo profile dönme. Aşağıdaki okuma/yazma sınırların değişmez.

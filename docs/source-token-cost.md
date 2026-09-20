@@ -1,7 +1,7 @@
 # Token maliyeti karşılaştırması — transkript
 
 **Video:** Claude Code / Codex / Gemini token maliyeti karşılaştırması
-**Kanal:** Burhan Kocabıyık (`kaynak-claude-code-kursu.md` ile aynı kanal)
+**Kanal:** Burhan Kocabıyık (`source-claude-code-course.md` ile aynı kanal)
 **Bağlantı:** kullanıcı tarafından paylaşıldı, URL kaydedilmedi
 
 > Otomatik üretilmiş Türkçe altyazıdan alınmıştır. Tanıma hataları var:
@@ -151,7 +151,7 @@ Abonelik tarafında verdiği tek somut rakam: Max 20x = aylık 200 $, ~15 M toke
    Opus 4, Sonnet 3.7 ve Gemini 2.5'ten konuşuyor. Fiyat tablosu o kuşağın.
    Bugünkü fiyatı buradan okuma — Anthropic'in kendi fiyat sayfasına bak.
    (Bu ortamda `WebFetch` kapalı, doğrulayamıyorum; yerele geçince
-   doğrulanabilir — `docs/yerel-kurulum.md`.)
+   doğrulanabilir — `docs/local-setup.md`.)
 2. **"750 kelime = 1000 token" Türkçe için yanlış tarafta.** Bu oran
    İngilizce metin için kaba bir yaklaşım. Türkçe sondan eklemeli ve
    tokenizer'da daha çok parçaya bölünüyor; aynı anlam için daha fazla

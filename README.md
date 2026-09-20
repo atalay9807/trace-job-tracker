@@ -2,152 +2,185 @@
 
 # Trace
 
-**İş başvurularını önceliklendiren, kayıtlı ilan/CV değerlendirmelerini puanlayan
-ve eksik yetkinlikleri raporlayan AI destekli geliştirme projesi.**
+**A job-application tracker that prioritises what to do today, scores stored
+posting and CV assessments, and reports the skills that are missing.**
 
-Gerçek bir iş arama ihtiyacından doğdu. Açık depoda 68 kayıtlı demo veri bulunur;
-Kerem Aydın örnek profildir, proje sahibi değildir.
+Built out of a real job search. The public repository carries 68 demo
+records; Kerem Aydın is a sample profile, not the project owner.
 
-[**Tanıtım →**](https://atalay9807.github.io/trace-job-tracker/trace.html) ·
-[**Web demosu →**](https://atalay9807.github.io/trace-job-tracker/app.html) ·
-[Teknik doküman](docs/TEKNIK.md) · [Ortak geliştirme](docs/ORTAK_CALISMA.md)
+[**Overview →**](https://atalay9807.github.io/trace-job-tracker/trace.html) ·
+[**Live demo →**](https://atalay9807.github.io/trace-job-tracker/app.html) ·
+[Technical contract](docs/technical-contract.md) ·
+[Roadmap](ROADMAP.md) ·
+[Contributing](CONTRIBUTING.md)
+
+[![Checks](https://github.com/atalay9807/trace-job-tracker/actions/workflows/kontrol.yml/badge.svg)](https://github.com/atalay9807/trace-job-tracker/actions/workflows/kontrol.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
+[![No dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg)](#running-and-testing)
 
 </div>
 
-## Bugün ne çalışıyor?
+> The interface speaks Turkish. An English option is planned — see
+> [the roadmap](ROADMAP.md#bilingual-interface).
 
-| Özellik | Mevcut durum |
+## What works today
+
+| Capability | Current state |
 |---|---|
-| Başvuru listesi, filtreler, detaylar, iki tema | Demo verisiyle çalışan web arayüzü |
-| Aciliyet, eşleşme, hatırlatma ve raporlar | Python standart kütüphanesiyle çalışır; model çağrısı yapmaz |
-| İlanı yorumlama ve eşleşme boyutlarını çıkarma | Claude Code ajan iş akışı; web demosunda otomatik çalışmaz |
-| Gmail taraması | Ayrıca yetkilendirilmiş geliştirme oturumu/Routine gerekir; repo komutları Gmail taramaz |
-| Kişisel CV analizi | Açık web demosunda kapalı; `sample` desteği sunan Claude ortamında açık onayla kullanılabilir |
-| Gmail'i webden bağlama, kullanıcı hesabı, veri kaydetme | Henüz uygulanmadı |
-| Eğitim kaynakları | Açıkça etiketli simülasyon; gerçek kurs/fiyat verisi değil |
+| Application list, filters, details, two themes | A web interface running on demo data |
+| Urgency, match, reminders, and reports | Runs on the Python standard library; makes no model call |
+| Interpreting a posting and deriving match dimensions | A Claude Code agent workflow; does not run automatically in the web demo |
+| Gmail scanning | Requires a separately authorized development session or Routine; the repository commands never scan Gmail |
+| Personal CV analysis | Disabled in the public web demo; available with explicit consent in a Claude environment that supports `sample` |
+| Connecting Gmail from the web, user accounts, saved data | Not implemented |
 
-Web demosu kişisel hesaba bağlanmaz. Başvuru/e-posta aksiyon bağlantıları
-kamuya açık HTML'e dahil edilmez. Yayınlanan veri tarihi ekranda belirtilir.
-CV analizi desteklenen ortamda sonucu yalnızca gösterir; profil kaydını veya
-mevcut eşleşmeleri otomatik değiştirmez. PDF okuyucusu yalnızca destekli ortamda PDF seçildiğinde yüklenir; ilk 6 sayfa ve
-en fazla 14.000 karakter analiz edilir.
+The web demo connects to no personal account. Application and email action
+links are not included in the public HTML. The date the data was published is
+shown on screen. Where CV analysis is supported, the result is only displayed:
+it never rewrites the stored profile or existing match scores. The PDF reader
+loads only in a supported environment when a PDF is chosen, and analyses the
+first 6 pages and at most 14,000 characters.
 
-## Çözdüğü problem
+## The problem it solves
 
-Aynı anda çok sayıda başvuru yapıldığında üç karar zorlaşır:
+When many applications are open at once, three decisions get hard:
 
-| Soru | Trace'in yaklaşımı |
+| Question | How Trace answers it |
 |---|---|
-| Bugün ne yapmalıyım? | Deadline, süreç aşaması ve sessizliğe göre hatırlatma |
-| Enerjimi nereye harcamalıyım? | Kayıtlı değerlendirmeden 0–100 eşleşme ve boyut dökümü |
-| Neyi öğrenmeliyim? | İlan/profil farklarından çıkarılan eksikleri önceliklendirme |
+| What should I do today? | Reminders based on deadline, process stage, and silence |
+| Where should I spend my energy? | A 0–100 match score with a per-dimension breakdown, from the stored assessment |
+| What do I need to learn? | Gaps inferred from posting/profile differences, ranked by priority |
 
-Aciliyet ve eşleşme ayrı eksenlerdir. Bir işin acil olması adaya iyi uyduğu
-anlamına gelmez; ekranda ayrı gösterilir.
+Urgency and match are separate axes. A job being urgent does not mean it suits
+the candidate; the interface keeps the two in separate columns and leaves the
+decision to the user.
 
-## AI ile nasıl geliştiriliyor?
+## How it is developed with AI
 
-İlk sürüm Claude Code ile geliştirildi. Claude Code ve Codex aynı kod tabanı,
-veri sözleşmesi ve testlerle çalışır. Dokuz Claude ajanı, ilan çözümleme,
-eşleştirme, mülakat hazırlığı, veri denetimi ve strateji gibi görevleri ayırır.
-Yedi skill görev kurallarını taşır. Ajan tanımı, her çalıştırmada ölçülmüş
-başarı veya web uygulamasına bağlı bir AI servisi anlamına gelmez.
+The first version was built with Claude Code. Claude Code and Codex work
+against the same codebase, data contract, and tests. Nine Claude agents split
+work such as posting analysis, matching, interview preparation, data auditing,
+and strategy. Seven skills carry the task rules. An agent definition does not
+imply measured success on every run, nor an AI service wired into the web
+application.
 
-- **Ayrı kanıt:** İlan çözümleyici CV'yi okumaz; eşleştirici yapılandırılmış
-  ilanı seçilmiş profille karşılaştırır.
-- **Tek yazıcı:** Ajanlar öneri döndürür; kaydı ana oturum günceller.
-- **Doğrulama:** Sayısal toplam/segment, şema ve sınır durumları kodla denetlenir.
-- **İncelenebilir değişiklik:** Her görev ayrı dalda yürür; test çıktısı ve
-  kalan sınırlamalarla teslim edilir.
+- **Separate evidence:** the posting analyser never reads the CV; the matcher
+  compares the structured posting against the selected profile.
+- **One writer:** agents return suggestions; the main session updates the
+  record.
+- **Validation:** totals, segments, schema, and edge cases are checked by
+  code.
+- **Reviewable change:** every task runs on its own branch and is handed over
+  with test output and remaining limitations.
 
-[Claude talimatları](CLAUDE.md) · [Codex talimatları](AGENTS.md) ·
-[Birlikte çalışma sözleşmesi](docs/ORTAK_CALISMA.md)
+[Claude instructions](CLAUDE.md) · [Codex instructions](AGENTS.md) ·
+[Collaboration contract](docs/collaboration.md)
 
-## Çalıştırma ve test
+## Running and testing
 
-Python 3.11+ yeterlidir; çekirdeğin harici Python bağımlılığı yoktur.
-Bunlar bulut geliştirme ortamında da çalıştırılabilir.
+Python 3.11+ is enough; the core has no external Python dependency. These can
+also be run in a cloud development environment.
 
 ```bash
-python3 src/veri.py                         # şema ve katalog denetimi
-python3 src/pipeline.py --format markdown   # kayıtlı veriden günlük rapor
-python3 src/pipeline.py --format csv        # tablo çıktısı
-python3 src/match.py                        # eşleşme özeti
-python3 src/insights.py                     # analizler
-python3 src/build_dashboard.py              # kişisel pano → reports/pano.html
-python3 src/build_dashboard.py --site       # yalnızca demo → site/app.html
+python3 src/veri.py                         # schema and catalog validation
+python3 src/pipeline.py --format markdown   # daily report from stored data
+python3 src/pipeline.py --format csv        # tabular output
+python3 src/match.py                        # match summary
+python3 src/insights.py                     # analyses
+python3 src/build_dashboard.py              # personal dashboard → reports/pano.html
+python3 src/build_dashboard.py --site       # demo only → site/app.html
 python3 -m unittest discover -s tests -v
 ```
 
-Arayüz davranış testleri Node 20+ ile, ağ erişimi olmadan jsdom'da çalışır:
+The interface behaviour tests run under Node 20+ in jsdom, with no network
+access:
 
 ```bash
 npm ci --ignore-scripts
 npm test
 ```
 
-Bu bağımlılıklar yalnızca geliştirme testleri içindir. Gerçek model/Gmail
-entegrasyonu ve görsel tarayıcı testleri bu kontrollerin kapsamı dışındadır.
-GitHub Actions testleri çalıştırır; ana dalın Pages iş akışı testi geçtikten
-sonra siteyi şablondan üretir. Ana dala birleştirme yayın başlatır.
+Those dependencies exist only for the development tests. Real model and Gmail
+integration and visual browser tests are outside the scope of these checks.
+GitHub Actions runs the tests; on the main branch the Pages workflow builds
+the site from the template after the tests pass. Merging to the main branch
+starts a release.
 
-## Veri ve ölçüm sınırları
+## Data and measurement limits
 
-**Demo / özel veri:** Gerçek veriler ayrı özel depoda tutulur. `TRACE_DATA`
-seçilmiş veri klasörünü gösterir. Dış dosya eksikse demo veriye dönülmez.
-Pano yedi JSON dosyasını da bekler; ayrıntı [teknik belgede](docs/TEKNIK.md).
+**Demo versus private data.** Real data lives in a separate private
+repository. `TRACE_DATA` points at the selected data directory. If an external
+file is missing, the code does not fall back to demo data. The dashboard
+expects all seven JSON files; details are in the
+[technical contract](docs/technical-contract.md).
 
-**Red gerekçeleri bilinmiyor.** Demo değerlendirmelerinde 15 red kaydının
-7'sine ekip yönetimi açığı işaretlenmiş. Bu, redlerin bu nedenle verildiğini
-kanıtlamaz; 7/15 çoğunluk da değildir. Eksikler çıkarım olarak sunulur.
+**Rejection reasons are unknown.** In the demo assessments, 7 of 15 rejection
+records are marked with a team-management gap. That does not prove the
+rejections were given for that reason, and 7/15 is not a majority. Gaps are
+presented as inference.
 
-**İlk yanıt süresi ayrı bir ölçümdür.** `last_contact`, son teması gösterir;
-şirketin ilk yanıtını göstermez. Süre yalnızca `first_response` kaydedilmişse
-hesaplanır. Mevcut demo verisinde bu tarih yoktur; medyan gösterilmez.
+**First response time is a separate measurement.** `last_contact` shows the
+most recent contact, not the company's first reply. The duration is computed
+only when `first_response` is recorded. The current demo data does not carry
+that date, so no median is shown.
 
-**Aşamalar anlık durumdur.** Geçmişteki tüm mülakatları veya bir aşamadan
-diğerine geçiş oranını göstermek için olay geçmişi gerekir. Bugünkü rapor
-anlık aşamaları gösterir; ardışık dönüşüm uydurmaz.
+**Stages are a snapshot.** Showing every past interview, or the conversion
+rate from one stage to the next, would require event history. Today's report
+shows current stages and invents no sequential conversion.
 
-**Görüntülenen ilan verisi yok.** Kaydedilen ilanlar yalnızca eldeki kayıtları
-kapsar; bu sayıdan başvuruya dönüşüm oranı hesaplanmaz.
+**There is no impression data.** Saved postings cover only the records on
+hand; no application conversion rate is computed from that number.
 
-**Eşleşmeler değerlendirmeye dayanır.** `match.py` CV metnini kendisi analiz
-etmez; önceden atanmış boyutları doğrulayıp toplar. Kaynak ilan metni olmayan
-geçmiş puanlar doğrulanmış model başarısı sayılmaz. Puanlanmayan kayıt `null` kalır.
+**Match scores come from an assessment.** `match.py` does not analyse the CV
+text itself; it validates and sums previously assigned dimensions. Historical
+scores with no source posting text do not count as verified model success. An
+unscored record stays `null`.
 
-**Kurslar simülasyondur.** Başlık, süre, puan ve fiyatlar örnektir. Adayın
-başarısı veya bir eğitimin iş bulma etkisi hakkında garanti verilmez.
+**Courses are simulated.** Titles, durations, ratings, and prices are
+examples. No guarantee is made about a candidate's success or the effect of
+any training on finding a job.
 
-## Dosya düzeni
+## Repository layout
 
-| Yol | Sorumluluk |
+| Path | Responsibility |
 |---|---|
-| `data/` | Yedi JSON dosyası: başvuru, profil, beceri kataloğu, yaşam döngüsü, kullanım, kaydedilen ilan, rol hedefi |
-| `src/veri.py` | Veri kaynağı, şema denetimi, ortak tarih/durum tanımları |
-| `src/pipeline.py` | Aciliyet, hatırlatma, Markdown/text/CSV/JSON raporu |
-| `src/match.py` | Boyutları toplama ve eşleşme segmentleri |
-| `src/eslesme_kontrol.py` | Ajan önerisini dosyaya yazmadan denetleme |
-| `src/insights.py` | Analizler ve eğitim planı |
-| `src/build_dashboard.py` | Güvenli veri gömme ve demo üretimi |
-| `src/dashboard.template.html` | Altı sayfalı arayüzün kaynağı |
-| `tests/` | Python regresyonları ve DOM davranış testleri |
-| `.claude/` | Claude ajanları ve görev skill'leri |
-| `site/` | Tanıtım ve türetilmiş demo |
+| `data/` | Seven JSON files: applications, profile, skills catalog, journey, engagement, saved postings, role targets |
+| `src/veri.py` | Data source, schema validation, shared date and status definitions |
+| `src/pipeline.py` | Urgency, reminders, Markdown/text/CSV/JSON reports |
+| `src/match.py` | Summing dimensions and assigning match segments |
+| `src/eslesme_kontrol.py` | Validating an agent suggestion without writing it to a file |
+| `src/insights.py` | Analyses and the training plan |
+| `src/build_dashboard.py` | Safe data embedding and demo build |
+| `src/dashboard.template.html` | Source of the six-page interface |
+| `tests/` | Python regressions and DOM behaviour tests |
+| `.claude/` | Claude agents and task skills |
+| `site/` | Overview page and the generated demo |
+| `web-live/` | The Next.js web application, in its own project |
 
-## Arayüz görselleri
+## Interface screenshots
 
-Aşağıdaki görsel ilk prototipin arşividir; güncel özellik desteği yukarıdaki
-tabloda ve ilgili dalın üretilmiş demosunda açıklanır. Görseller son düzeltme
-paketinde yeniden çekilmedi.
+The image below is an archive of the first prototype; current feature support
+is described in the table above and in the generated demo of the relevant
+branch. The screenshots were not retaken in the latest remediation package.
 
-![İlk prototipin ana sayfası](docs/img/01-ana.png)
+![Home page of the first prototype](docs/img/01-ana.png)
 
-## Canlı ürüne giden yol
+## The road to a live product
 
-Bu sürüm çok kullanıcılı bir servis değildir. Kullanıcı hesabı/veri izolasyonu,
-kalıcı kayıt ve eşzamanlılık, sunucu tarafı Google yetkilendirmesi, görev kuyruğu,
-gerçek model entegrasyonu ve ölçülmüş maliyetler canlı sürüm için açık işlerdir.
-[Canlıya geçiş planı](docs/CANLIYA_GECIS.md) bunları kabul koşullarıyla ayırır.
+This version is not a multi-user service. User accounts and data isolation,
+persistent storage and concurrency, server-side Google authorization, a job
+queue, real model integration, and measured costs are all open work for a live
+release. The [production readiness plan](docs/production-readiness.md)
+separates them with their acceptance conditions, and [`ROADMAP.md`](ROADMAP.md)
+states what blocks a launch.
 
-**Proje sahibi: Atalay Denizer** · [GitHub](https://github.com/atalay9807)
+## Contributing
+
+Read [`CONTRIBUTING.md`](CONTRIBUTING.md) before opening a pull request, and
+[`SECURITY.md`](SECURITY.md) before reporting a vulnerability. Participation
+is governed by the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## License
+
+[MIT](LICENSE) © 2026 Atalay Denizer · [GitHub](https://github.com/atalay9807)

@@ -5,7 +5,7 @@ description: Bir iş ilanını Trace'in CV profiline karşı dört boyutta puanl
 
 # Eşleşme puanlama
 
-Veri yolu ve ortak geliştirme kuralları `docs/ORTAK_CALISMA.md` içindedir.
+Veri yolu ve ortak geliştirme kuralları `docs/collaboration.md` içindedir.
 `data/...` seçilmiş TRACE_DATA klasörünü ifade eder; özel veri eksikse demo
 veriye dönülmez. Diğer ajana aktarılırken mutlak veri yolu açıkça verilir.
 

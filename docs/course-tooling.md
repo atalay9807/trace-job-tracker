@@ -1,6 +1,6 @@
 # Kurstaki araçların sınıflandırması
 
-Kaynak: `docs/kaynak-claude-code-kursu.md` (izlenen YouTube kursunun
+Kaynak: `docs/source-claude-code-course.md` (izlenen YouTube kursunun
 dökümü). Kullanıcı "videoda gösterilen uygulamaları tara ve sınıflandır"
 dedi — bu belge onun cevabı.
 
@@ -32,7 +32,7 @@ Antigravity, `N8`→n8n. Aşağıdaki geçiş sayıları bu varyantların toplam
 | Araç | Geçiş | Kursta ne için | Trace'te karşılığı |
 |---|---|---|---|
 | **Claude Code** | — | Kursun ana ekseni | **Bu proje zaten bu** |
-| **Antigravity** | ~16 | İndirilebilir alternatif IDE olarak gösteriliyor | **Gerek yok.** Ajan/skill mimarimiz depoda duruyor, IDE'ye bağlı değil. Taşınmada da fark etmez (`docs/yerel-kurulum.md`) |
+| **Antigravity** | ~16 | İndirilebilir alternatif IDE olarak gösteriliyor | **Gerek yok.** Ajan/skill mimarimiz depoda duruyor, IDE'ye bağlı değil. Taşınmada da fark etmez (`docs/local-setup.md`) |
 
 ### 4. Bağlayıcılar (MCP connector)
 
@@ -43,7 +43,7 @@ Antigravity, `N8`→n8n. Aşağıdaki geçiş sayıları bu varyantların toplam
 | **GitHub** | 2 | **Kullanılıyor** — depo, Actions, Pages |
 | **Slack** | 5 | Gerek yok. Tek kullanıcılı bir araç; bildirim kanalı e-posta |
 | **Telegram** | 1 | Gerek yok — aynı sebep |
-| **Figma / Canva** | 1 / 1 | Gerek yok. Arayüz tek HTML dosyası, tasarım sistemi `docs/TEKNIK.md`'de yazılı |
+| **Figma / Canva** | 1 / 1 | Gerek yok. Arayüz tek HTML dosyası, tasarım sistemi `docs/technical-contract.md`'de yazılı |
 | **Supabase** | 1 | **Açık maddeye bağlı.** CLAUDE.md'deki "kalıcı veritabanı ve oturum yönetimi" maddesi gerçekleşirse ilk bakılacak yer burası — bugün veri katmanı `data/*.json` |
 | **Shopify** | 6 | Alakasız — e-ticaret |
 | **Stripe** | 5 | **Bugün alakasız, ürünleşirse gerekir.** Kursta iki işi görüyor: ödeme altyapısı ve gelir kanıtı ("kazançlar birebir Stripe'tan kontrol edilmiş"). İkincisi bizim için de not: gelir iddiası ancak ödeme sisteminden doğrulanabilir |
@@ -61,7 +61,7 @@ takip mailimizin tersi.
 
 | Araç | Geçiş | Not |
 |---|---|---|
-| **Excalidraw** | 6 | Kurs sahibinin "en çok kullandığım yetenek" dediği diyagram skill'i. Bizde karşılığı yok; `docs/TEKNIK.md` şu an metin. Mimari şema gerekirse tek adaylardan biri |
+| **Excalidraw** | 6 | Kurs sahibinin "en çok kullandığım yetenek" dediği diyagram skill'i. Bizde karşılığı yok; `docs/technical-contract.md` şu an metin. Mimari şema gerekirse tek adaylardan biri |
 | **Nano Banana / Veo 3** | — | Görsel-video üretimi. Alakasız |
 
 ---

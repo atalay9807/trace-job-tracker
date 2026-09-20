@@ -1,6 +1,6 @@
 # Trace — proje talimatları
 
-Önce `docs/ORTAK_CALISMA.md` dosyasını oku. Claude Code ve Codex için veri,
+Önce `docs/collaboration.md` dosyasını oku. Claude Code ve Codex için veri,
 dal, doğrulama ve teslim kuralları orada ortaktır; `AGENTS.md` Codex girişidir.
 Aşağıdaki tarihli denetim notları geçmiş bağlamdır, güncel doğrulama sonucu değildir.
 
@@ -204,7 +204,7 @@ ekran; yapı gölgeyle değil ince çizgiyle kurulur.
 **Renk eklerken kontrast ölçülür, göz kararı yapılmaz.** Metin 4.5:1, grafik
 dolgusu 3:1; her iki temada ayrı ayrı. Rampalar açıklık bakımından monotonik.
 Ölçüm: `dataviz` skill'indeki `validate_palette.js`. Palet değerleri
-`docs/TEKNIK.md`'de.
+`docs/technical-contract.md`'de.
 
 ## Depo
 
@@ -387,9 +387,9 @@ bilgidir — ortalaması alınmaz, iki gerekçe yan yana gösterilir
 
 ## Referans
 
-- `docs/TEKNIK.md` — formüller, bakım notları, tasarım kararları
-- `docs/otomasyon.md` — günlük Routine'in işleyişi
-- `docs/kaynak-claude-code-kursu.md` — ajan/skill mimarisi için izlenen kurs
-- `docs/kurs-araclari.md` — kurstaki araçların sınıflandırması, hangisi bize değiyor
-- `docs/kaynak-token-maliyeti.md` — model maliyeti videosu + bizim token stratejimiz
-- `docs/yerel-kurulum.md` — terminal/masaüstüne taşınma notları (taşınma günü okunur)
+- `docs/technical-contract.md` — formüller, bakım notları, tasarım kararları
+- `docs/automation.md` — günlük Routine'in işleyişi
+- `docs/source-claude-code-course.md` — ajan/skill mimarisi için izlenen kurs
+- `docs/course-tooling.md` — kurstaki araçların sınıflandırması, hangisi bize değiyor
+- `docs/source-token-cost.md` — model maliyeti videosu + bizim token stratejimiz
+- `docs/local-setup.md` — terminal/masaüstüne taşınma notları (taşınma günü okunur)

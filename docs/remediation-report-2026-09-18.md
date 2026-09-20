@@ -59,7 +59,7 @@ artık gösterilmez. Eski sayıların değişmesi bu ölçüm düzeltmesinin son
 
 ## Claude Code / Codex uyumu
 
-`docs/ORTAK_CALISMA.md` ortak sözleşme oldu. AGENTS.md ve CLAUDE.md bu belgeye
+`docs/collaboration.md` ortak sözleşme oldu. AGENTS.md ve CLAUDE.md bu belgeye
 yönlendiriyor. Her görev ayrı dal ve çalışma kopyasında yürütülür; aynı kaynak
 JSON'a iki ajan yazmaz. Bu bir oturum çalışma kuralıdır, veritabanı kilidi değildir.
 
@@ -96,7 +96,7 @@ Google OAuth, model maliyeti ve çok kullanıcılı izolasyon denenmedi.
 
 Statik HTML kişisel veriyi güvenli biçimde çok kullanıcıya sunan bir backend
 sağlamaz. Hesaplar, veritabanı, yazma yolu, Google bağlantısı, model sağlayıcı
-katmanı ve olay geçmişi açık işlerdir. `docs/CANLIYA_GECIS.md` kabul koşullarını
+katmanı ve olay geçmişi açık işlerdir. `docs/production-readiness.md` kabul koşullarını
 tanımlar. “Canlıya hazır” iddiası yapılmaz.
 
 Açık depodaki kaynak demo JSON dosyaları ve eski commit geçmişi değiştirilmedi.

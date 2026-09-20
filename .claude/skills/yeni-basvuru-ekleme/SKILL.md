@@ -59,7 +59,7 @@ gerekçelendirmek için var.
 ## `fit` (1–5)
 
 **Elle atanır, otomatik türetilmez.** `match` segmentiyle fikren örtüşür ama
-aynı şey değil — `fit` önceliklendirme formülünde (`docs/TEKNIK.md`) kullanılır,
+aynı şey değil — `fit` önceliklendirme formülünde (`docs/technical-contract.md`) kullanılır,
 `match` toplamı eşleşme ekseninde ayrı yaşar. Kaba karşılık:
 
 - 🟢 Güçlü (78–100) → `fit` 4–5

@@ -11,7 +11,7 @@ not negotiable.
   does not fit it will be declined no matter how good the code is.
 - Read `CLAUDE.md`. It is the project specification, not just an AI prompt:
   scoring formulas, data schema, and design rules all live there.
-- Read `docs/ORTAK_CALISMA.md` for the shared working rules between
+- Read `docs/collaboration.md` for the shared working rules between
   development sessions.
 
 ## Development setup
