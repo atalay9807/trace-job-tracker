@@ -2,7 +2,8 @@
 
 Bu belge, Claude Code, Codex/ChatGPT ve uzman ajanların aynı depoda nasıl
 çalışacağını tanımlar. Teknik çalışma kuralları için ayrıca
-`docs/ORTAK_CALISMA.md` geçerlidir.
+`docs/ORTAK_CALISMA.md` geçerlidir. Konuşma dinamiklerini etkileyen güncel
+kararların kısa özeti `docs/CALISMA_KARARLARI.md` dosyasında tutulur.
 
 ## Yetki hiyerarşisi
 
@@ -57,6 +58,14 @@ Claude varsayılan Tech Lead ve entegrasyon sahibidir. Codex/ChatGPT bağımsız
 inceleme katmanıdır; kullanıcı uygulamayı ayrıca ona atarsa ayrı dalda kod
 üretebilir. Çatışmada önce davranışın mevcut sözleşmesi ve test kanıtı incelenir;
 tercih farkı tek başına yeniden yazma gerekçesi değildir.
+
+## Sohbetten çalışma alanına devir
+
+Sohbette alınan her karar depoya yazılmaz. Yalnızca sonraki oturumların nasıl
+davranacağını etkileyen kararlar — rol dağılımı, onay biçimi, yetki sınırı,
+ürün yönü ve mimari yön — `docs/CALISMA_KARARLARI.md` dosyasına kısa olarak
+aktarılır. Bu dosya sohbet arşivi değil, çalışma sözleşmesinin kısa değişiklik
+özetidir.
 
 ## İnceleme formatı
 
