@@ -119,6 +119,27 @@ boyut/tür kontrolü, izin hatası yakalama, model yanıtı kontrolü ve tek akt
 koruması vardır. Sonuç ekrandadır; kaydedilmez. Gerçek sağlayıcı entegrasyonu
 DOM testlerinde taklit edilir; gerçek model testi yapılmış sayılmaz.
 
+## Başvuru listesi ve CSV
+
+`basvurulariSec()` tablonun ve tarayıcı CSV çıktısının ortak seçimidir. Aciliyet,
+eşleşme, açık/kapanan süreç, tarih ve Türkçe arama koşulları birlikte uygulanır.
+Seçim yeni bir dizi oluşturur; kaynak `D.applications` sırası değiştirilmez.
+
+Aciliyet sıralaması önce bandı, aynı bant içinde puanı kullanır: çekirdeğin
+aksiyon gereği kritik saydığı bir kayıt yalnızca puanı düşük diye geriye düşmez.
+Eşleşme iki yönde, başvuru en yeni, deadline en yakın, şirket Türkçe alfabetik
+sırayla gösterilir. Aciliyet/deadline sıralamasında açık süreçler önce gelir;
+bilinmeyen değerler kendi grubunun sonunda kalır. Eşitlik şirket ve kimlikle
+çözülür. `null` eşleşme puanı, sıfır puandan ayrı filtrelenir.
+
+Tarayıcı CSV'si UTF-8 BOM, virgül ayırıcı ve CRLF satır sonu kullanır. Hücreler
+tırnaklanır, iç tırnaklar kaçırılır; harici metnin formül başlangıçları tek tırnak
+önekiyle etkisizleştirilir. Sayısal sıfır korunur, bilinmeyen değer boş kalır.
+İletişim, not ve aksiyon URL'leri aktarılmaz; CSV yalnızca özet sütunlarını taşır.
+Dosya tarayıcıda `Blob` ile oluşturulur, indirme sonrası geçici adres temizlenir;
+bu işlem sunucuya veri göndermez. Tarayıcı indirme davranışı DOM testinde taklit
+edilir; gerçek Excel ve gerçek tarayıcı indirmesi ayrıca doğrulanmalıdır.
+
 ## Bakım
 
 `docs/ORTAK_CALISMA.md` kontrol komutlarını ve araçlar arası teslimi tanımlar.

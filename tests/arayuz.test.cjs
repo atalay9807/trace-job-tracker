@@ -187,3 +187,207 @@ test('Modelin şema dışı yanıtı kullanıcıya anlaşılır hata verir', asy
   assert.match(document.getElementById('cvErr').textContent,/beklenen biçimde değil/);
   assert.equal(document.getElementById('cvFile').disabled,false);
 });
+
+function listeOrnegi(data) {
+  const temel = data.applications[0];
+  data.meta.last_scan = '2026-09-20';
+  data.applications = [
+    {id:'isik', company:'Işık', score:35, band:'low', match_score:50, match_segment_key:'fair',
+      applied:'2026-09-10', deadline:'2026-09-22', closed:false},
+    {id:'ileri', company:'İleri', score:80, band:'high', match_score:0, match_segment_key:'weak',
+      applied:'2026-09-14', deadline:'2026-09-20', closed:false},
+    {id:'cinar', company:'Çınar', score:80, band:'high', match_score:null, match_segment_key:null,
+      applied:null, deadline:null, closed:false},
+    {id:'anka', company:'Anka', score:0, band:'archive', match_score:90, match_segment_key:'strong',
+      applied:'2026-09-18', deadline:'2026-09-01', closed:true, stage:'closed'}
+  ].map(a => ({...temel, stage:'under_review', status:'in_progress', role:'Uzman',
+    last_contact:'2026-09-19', links_actions:[], gap_skills:[], ...a}));
+}
+
+function sec(window, document, id, value) {
+  const element = document.getElementById(id);
+  element.value = value;
+  element.dispatchEvent(new window.Event(element.tagName === 'INPUT' ? 'input' : 'change'));
+}
+
+function satirKimlikleri(document) {
+  return [...document.querySelectorAll('#tbody tr')].map(row => row.dataset.id);
+}
+
+test('Altı sıralama çalışır; eksik değerler ve kapalı süreçler doğru yerde kalır', t => {
+  const {dom, window, document, errors} = sayfa(listeOrnegi);
+  t.after(() => dom.window.close());
+  const once = window.eval('JSON.stringify(D.applications)');
+  const beklenen = {
+    aciliyet:['cinar','ileri','isik','anka'],
+    'eslesme-azalan':['anka','isik','ileri','cinar'],
+    'eslesme-artan':['ileri','isik','anka','cinar'],
+    'basvuru-yeni':['anka','ileri','isik','cinar'],
+    'deadline-yakin':['ileri','isik','cinar','anka'],
+    sirket:['anka','cinar','isik','ileri']
+  };
+  for (const [siralama, ids] of Object.entries(beklenen)) {
+    sec(window, document, 'sortOrder', siralama);
+    assert.deepEqual(satirKimlikleri(document), ids, siralama);
+  }
+  assert.equal(window.eval('JSON.stringify(D.applications)'), once);
+  assert.deepEqual(errors, []);
+});
+
+test('Puanlanmamış kayıt ayrı bulunur; sıfır puan bilinmeyen sayılmaz', t => {
+  const {dom, document} = sayfa(listeOrnegi); t.after(() => dom.window.close());
+  document.querySelector('[data-s="unscored"]').click();
+  assert.deepEqual(satirKimlikleri(document), ['cinar']);
+  assert.match(document.getElementById('tbody').textContent, /Puanlanmadı/);
+  document.querySelector('[data-s="weak"]').click();
+  assert.deepEqual(satirKimlikleri(document), ['ileri']);
+  assert.match(document.getElementById('tbody').textContent, /0/);
+});
+
+test('Aksiyon bekleyen kritik kayıt daha yüksek puanlı normal işlerden önce gelir', t => {
+  const {dom, document} = sayfa(d => {
+    listeOrnegi(d);
+    Object.assign(d.applications[0], {band:'critical', score:20, status:'action_required'});
+  }); t.after(() => dom.window.close());
+  assert.deepEqual(satirKimlikleri(document), ['isik','cinar','ileri','anka']);
+});
+
+test('Düşük aciliyet ve kapanan süreç filtreleri eksiksizdir', t => {
+  const {dom, window, document} = sayfa(listeOrnegi); t.after(() => dom.window.close());
+  document.querySelector('[data-b="low"]').click();
+  assert.deepEqual(satirKimlikleri(document), ['isik']);
+  document.querySelector('[data-b="archive"]').click();
+  assert.deepEqual(satirKimlikleri(document), ['anka']);
+  assert.equal(document.querySelector('[data-b="archive"]').textContent, 'Kapanan');
+  document.getElementById('resetFilters').click();
+  sec(window, document, 'processState', 'open');
+  assert.deepEqual(satirKimlikleri(document), ['cinar','ileri','isik']);
+  sec(window, document, 'processState', 'closed');
+  assert.deepEqual(satirKimlikleri(document), ['anka']);
+});
+
+test('Arama, tarih, aciliyet, eşleşme ve süreç filtreleri birlikte uygulanır', t => {
+  const {dom, window, document} = sayfa(listeOrnegi); t.after(() => dom.window.close());
+  document.querySelector('[data-b="high"]').click();
+  document.querySelector('[data-s="weak"]').click();
+  sec(window, document, 'processState', 'open');
+  sec(window, document, 'dateRange', 'son7');
+  sec(window, document, 'search', 'İLERİ');
+  assert.deepEqual(satirKimlikleri(document), ['ileri']);
+  assert.equal(document.getElementById('tblCount').textContent, '1 / 4 başvuru');
+  sec(window, document, 'dateRange', 'son30');
+  sec(window, document, 'search', 'IŞIK');
+  assert.deepEqual(satirKimlikleri(document), []);
+  assert.equal(document.getElementById('empty').hidden, false);
+  assert.equal(document.getElementById('exportCsv').disabled, true);
+});
+
+test('Filtreleri temizleme tüm denetimleri ve varsayılan sıralamayı geri getirir', t => {
+  const {dom, window, document} = sayfa(listeOrnegi); t.after(() => dom.window.close());
+  document.querySelector('[data-b="low"]').click();
+  document.querySelector('[data-s="unscored"]').click();
+  for (const [id,value] of Object.entries({processState:'closed', dateField:'last_contact',
+    dateRange:'son7', search:'aranan', sortOrder:'sirket'})) sec(window, document, id, value);
+  assert.equal(document.getElementById('resetFilters').disabled, false);
+  document.getElementById('resetFilters').click();
+  assert.deepEqual(satirKimlikleri(document), ['cinar','ileri','isik','anka']);
+  for (const [id,value] of Object.entries({processState:'all', dateField:'applied',
+    dateRange:'all', search:'', sortOrder:'aciliyet'})) assert.equal(document.getElementById(id).value, value);
+  assert.equal(document.querySelector('#bandGroup [aria-pressed="true"]').dataset.b, 'all');
+  assert.equal(document.querySelector('#segGroup [aria-pressed="true"]').dataset.s, 'all');
+  assert.equal(document.querySelectorAll('#dateGroup .on').length, 0);
+  assert.equal(document.getElementById('resetFilters').disabled, true);
+  assert.equal(document.getElementById('exportCsv').disabled, false);
+});
+
+test('CSV yalnızca görünen kayıtları ekran sırasıyla içerir; bilinmeyen puan boş kalır', t => {
+  const {dom, window, document} = sayfa(listeOrnegi); t.after(() => dom.window.close());
+  sec(window, document, 'processState', 'open');
+  sec(window, document, 'sortOrder', 'eslesme-artan');
+  const csv = window.gorunenCsvOlustur();
+  assert.equal(csv[0], '\uFEFF');
+  const satirlar = csv.trimEnd().split('\r\n');
+  assert.equal(satirlar.length, 4);
+  assert.deepEqual(satirlar.slice(1).map(row => row.split(',')[0]), ['"ileri"','"isik"','"cinar"']);
+  assert.match(satirlar[1], /,"0",/);
+  assert.equal(satirlar[3].split(',')[11], '""');
+  assert.doesNotMatch(csv, /"anka"/);
+  assert.match(csv, /"Şirket"/);
+});
+
+test('CSV hücreleri virgül, tırnak, satır sonu ve formül başlangıçlarını korumalı aktarır', t => {
+  const {dom, window} = sayfa(listeOrnegi); t.after(() => dom.window.close());
+  assert.equal(window.csvHucre('A, "B"\r\nC'), '"A, ""B""\r\nC"');
+  assert.equal(window.csvHucre(null), '""');
+  assert.equal(window.csvHucre(0), '"0"');
+  assert.equal(window.csvHucre(-2), '"-2"');
+  for (const metin of ['=1+1', '+1+1', '-1+1', '@SUM(1)', ' \t=1+1', '\r=1+1', '\nmetin', '\u0000=1+1']) {
+    assert.ok(window.csvHucre(metin).startsWith('"\''), JSON.stringify(metin));
+  }
+  const csv = window.gorunenCsvOlustur([{id:'ornek', company:'=1+1', role:'A, "B"',
+    notes:'GİZLİ NOT', contact:'gizli@example.com', links_actions:[{url:'https://secret.example'}]}]);
+  assert.match(csv, /"'=1\+1"/);
+  assert.match(csv, /"A, ""B"""/);
+  assert.doesNotMatch(csv, /GİZLİ|gizli@|secret.example/);
+});
+
+test('CSV indirme düğmesi dosya oluşturur, indirme bağlantısını ve adresini temizler', async t => {
+  let dosya, indirme, iptal, gecikmeliTemizlik;
+  const {dom, window, document, errors} = sayfa(listeOrnegi, w => {
+    w.URL.createObjectURL = blob => {dosya = blob; return 'blob:trace-test';};
+    w.URL.revokeObjectURL = adres => {iptal = adres;};
+    w.HTMLAnchorElement.prototype.click = function () {indirme = {ad:this.download, adres:this.href, bagli:this.isConnected};};
+    const zamanlayici = w.setTimeout.bind(w);
+    w.setTimeout = (callback, delay, ...args) => {
+      if (delay === 1000) {gecikmeliTemizlik = callback; return 0;}
+      return zamanlayici(callback, delay, ...args);
+    };
+  }); t.after(() => dom.window.close());
+  sec(window, document, 'search', 'İleri');
+  document.getElementById('exportCsv').click();
+  assert.deepEqual(indirme, {ad:'trace-demo-basvurular-2026-09-20.csv', adres:'blob:trace-test', bagli:true});
+  assert.equal(dosya.type, 'text/csv;charset=utf-8');
+  const metin = await new Promise((resolve, reject) => {
+    const okuyucu = new window.FileReader();
+    okuyucu.onload = () => resolve(okuyucu.result);
+    okuyucu.onerror = reject;
+    okuyucu.readAsText(dosya);
+  });
+  assert.match(metin, /"İleri"/);
+  assert.doesNotMatch(metin, /"Anka"/);
+  assert.equal(document.querySelector('a[download]'), null);
+  assert.match(document.getElementById('toast').textContent, /1 başvuru/);
+  gecikmeliTemizlik();
+  assert.equal(iptal, 'blob:trace-test');
+  assert.deepEqual(errors, []);
+});
+
+test('CSV indirme desteklenmediğinde hata görünür ve tekrar deneme açık kalır', t => {
+  const {dom, document, errors} = sayfa(listeOrnegi); t.after(() => dom.window.close());
+  document.getElementById('exportCsv').click();
+  assert.match(document.getElementById('toast').textContent, /indirilemedi/);
+  assert.equal(document.getElementById('exportCsv').disabled, false);
+  assert.deepEqual(errors, []);
+});
+
+test('Kayıt yoksa boş durum açıklanır ve CSV indirilemez', t => {
+  const {dom, document} = sayfa(bos); t.after(() => dom.window.close());
+  assert.equal(document.getElementById('empty').textContent, 'Henüz başvuru kaydı yok.');
+  assert.equal(document.getElementById('exportCsv').disabled, true);
+  assert.equal(document.getElementById('resetFilters').disabled, true);
+});
+
+test('Satırdaki bağlantı klavye ile açılırken detay yönlendirmesi araya girmez', t => {
+  const {dom, window, document} = sayfa(d => {
+    listeOrnegi(d);
+    d.applications.forEach(a => {a.links_actions=[{url:'https://example.com', label:'İlan', kind:'ext'}];});
+  }); t.after(() => dom.window.close());
+  const satir = document.querySelector('#tbody tr');
+  const baglanti = satir.querySelector('a');
+  const olay = new window.KeyboardEvent('keydown', {key:'Enter', bubbles:true, cancelable:true});
+  baglanti.dispatchEvent(olay);
+  assert.equal(olay.defaultPrevented, false);
+  assert.equal(window.location.hash, '');
+  satir.dispatchEvent(new window.KeyboardEvent('keydown', {key:'Enter', bubbles:true, cancelable:true}));
+  assert.equal(window.location.hash, '#/basvurular/' + satir.dataset.id);
+});

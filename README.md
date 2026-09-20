@@ -37,6 +37,10 @@ ayrı ayrı ölçer ve **ölçemediğini açıkça söyler.**
 Her satırda **aciliyet** ve **eşleşme** ayrı kolonda durur. Zayıf eşleşmeli bir
 ilanın deadline'ı da acil olabilir; karar kullanıcıya bırakılır.
 
+Açık/kapanan süreç, aciliyet, eşleşme ve tarih birlikte filtrelenir. Puanlanmamış
+kayıtlar ayrı seçilir — **sıfır puanla karıştırılmaz.** Sıralama aciliyet,
+eşleşme, başvuru tarihi, deadline veya şirkete göre değişir.
+
 </td>
 <td width="50%" valign="top">
 
@@ -119,7 +123,8 @@ bağlantısı üretilir) ve **üçüncü kişilerin adı depoya girmez** (İK ç
 
 | Özellik | Durum |
 |---|---|
-| Başvuru listesi, filtreler, detay paneli, iki tema | ✅ Demo verisiyle çalışan web arayüzü |
+| Başvuru listesi, filtreler, sıralama, detay paneli, iki tema | ✅ Demo verisiyle çalışan web arayüzü |
+| Görünen başvuruları CSV indirme | ✅ Etkin filtre ve ekran sırası korunur; dosya tarayıcıda oluşturulur |
 | Aciliyet, eşleşme, hatırlatma, sekiz analiz raporu | ✅ Python standart kütüphanesi; model çağrısı yapmaz |
 | İlan yorumlama ve eşleşme boyutu çıkarma | ⚙️ Claude Code ajan akışı; web demosunda otomatik çalışmaz |
 | Gmail taraması | ⚙️ Ayrıca yetkilendirilmiş oturum/Routine gerekir |
@@ -129,6 +134,13 @@ bağlantısı üretilir) ve **üçüncü kişilerin adı depoya girmez** (İK ç
 
 > Web demosu kişisel hesaba bağlanmaz. Başvuru/e-posta aksiyon bağlantıları
 > kamuya açık HTML'e dahil edilmez. Yayınlanan veri tarihi ekranda belirtilir.
+>
+> **CSV bir yedekleme veya içeri aktarma biçimi değildir** — yalnızca ekranda
+> görünen sonuçları aynı sırayla dışarı verir, kaynak JSON dosyalarını değiştirmez.
+
+Codex tarafından incelenen ve geliştirilen sürümün notları
+[`CODEX_CALISMA_ALANI.md`](CODEX_CALISMA_ALANI.md) içinde; güncel çalışma
+[Issue #4](https://github.com/atalay9807/trace-job-tracker/issues/4) üzerinden izlenir.
 
 ---
 
