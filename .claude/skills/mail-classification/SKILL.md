@@ -54,10 +54,26 @@ hello@students.udemy.com            updates@mail.quillbot.com
 mailleri `data/saved_jobs.json`'ı besler — huninin üst kısmı oradan geliyor.
 Bunları atma, ayrı topla.
 
-ATS sağlayıcıları (`myworkday.com`, `hire.lever.co`, `ashbyhq.com`,
-`workablemail.com`, `smartrecruiters.com`, `successfactors.com`, `hrpanda.co`,
-`peoplise.com`, `recruitee-mailbox.com`, `resreader.com`, `jobgether.com`)
-gürültü değildir — başvuru onayı ya da durum değişikliği taşırlar.
+ATS sağlayıcıları (`myworkday.com`, `greenhouse-mail.io`, `hire.lever.co`,
+`ashbyhq.com`, `workablemail.com`, `smartrecruiters.com`, `successfactors.com`,
+`hrpanda.co`, `peoplise.com`, `recruitee.com`, `resreader.com`, `join.com`,
+`kula.ai`, `talentics.app`, `hiroo.co`, `hibob.com`, `rippling.com`,
+`peoplebox.biz`, `flowq.com`, `cloud.oracle.com`) gürültü değildir — başvuru
+onayı ya da durum değişikliği taşırlar. Tam liste `config/rules.yaml` →
+`ats_senders`; eşleşme sonek bazlıdır, `hrpanda.co` kaydı `mail.hrpanda.co`
+göndericisini de kapsar.
+
+**Gönderici üç sınıfa ayrılır, `channel` alanı buradan belirlenir:**
+
+| Sınıf | Nereden anlaşılır | `channel` |
+|---|---|---|
+| ATS sağlayıcısı | `ats_senders` listesinde | `ats` |
+| Pazaryeri / ajans | `aggregator_senders` listesinde (Jobgether, Turing, Proxify, Deel, micro1, Michael Page) | `aggregator` |
+| Şirketin kendisi | Kendi alan adı ya da kariyer alt alan adı — `careers.`, `career.`, `talent.`, `talentacquisition.`, `recruitment.`, `hrsystem.`, `hr.` öneki, veya `<sirket>.jobs` | `direct` |
+
+`careers.prada.com` bir ATS **değildir** — Prada'nın kendi sistemidir, `direct`
+sayılır. Bunu karıştırmak kanal kırılımını bozar; 2026-09 analizinde kanal,
+ileri aşamayı yordayan tek güçlü değişken çıktı.
 
 ## 3. Sınıflandır — ilk eşleşen kazanır
 
@@ -79,6 +95,36 @@ mesajdaki red/teklif yeni durumu değiştirmez. `not moving forward` içindeki
 
 Hiçbirine uymuyorsa sınıflandırma yapma — kullanıcıya sor. Zorlama bir
 etiket, yanlış bir `stage` değerine ve yanlış hatırlatmaya yol açar.
+
+## 3.5 Yinelenen maili ayıkla — sınıflandırmadan sonra, yazmadan önce
+
+**Aynı olay birden çok mail olarak gelir.** 2026-09-20 taramasında Revolut'un
+"Product Owner (Technical)" reddi gelen kutusuna **altı kez** düştü; ING,
+Vodafone ve Peks Global de aynı maili iki kez gönderdi. Ayıklanmazsa red sayısı
+şişer ve dönüş oranı olduğundan yüksek çıkar.
+
+Kanonik kural `config/rules.yaml` → `dedup`. Özeti:
+
+Üçü birden tutuyorsa **tek olaydır**, yeni bir durum değişikliği değildir:
+
+1. Aynı şirket
+2. **Aynı rol**
+3. Aynı sınıf (ikisi de red, ikisi de davet…)
+
+Olayın tarihi **ilk** gelen maildir; `last_contact` yine de **en son** mesaj
+tarihine çekilir. `stage` ikinci mailde tekrar değiştirilmez.
+
+**Rol farklıysa ayrı süreçtir — birleştirme.** Somut örnek: bunq'a Haziran'da
+"Product Owner - Onboarding", Ağustos'ta "Reporting Expert" için başvuruldu.
+Bunlar iki ayrı kayıttır. Şirkete göre eşleştirip tek kayda çökertmek,
+Haziran'daki ilerlemeyi Ağustos'taki reddin üstüne yazar ve `first_response`
+alanını başvuru tarihinden önceye kaydırır — `python3 src/veri.py` bunu hata
+olarak yakalar.
+
+**Şirket adıyla eşleştirirken:** `company` değeri `"—"` olan kayıtlar vardır
+(şirket adı mailde geçmiyorsa). Bunlar normalize edilince boş dizeye döner ve
+naif bir "içeriyor mu" kontrolünde **her aramayla eşleşir**. Eşleştirme tam
+eşitlik istemeli; emin olunamayan olay elle incelemeye bırakılmalı.
 
 ## 4. Kaydı güncelle
 

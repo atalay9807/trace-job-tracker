@@ -27,13 +27,18 @@ noise_senders:
   - hello@students.udemy.com
   - updates@mail.quillbot.com
 
-# ATS sağlayıcıları — başvuru onayı olarak yorumlanır
+# ATS sağlayıcıları — başvuru onayı olarak yorumlanır.
+# Burası YALNIZCA üçüncü taraf ATS/işe alım platformlarıdır. Şirketin kendi
+# alan adı buraya girmez (o `direct`), iş ilanı pazaryeri de girmez
+# (o `aggregator_senders`). Eşleşme sonek bazlıdır: `hrpanda.co` kaydı
+# `mail.hrpanda.co` göndericisini de kapsar.
 ats_senders:
   - myworkday.com
   - successfactors.com
   - hire.lever.co
   - ashbyhq.com
   - smartrecruiters.com
+  - recruitee.com
   - recruitee-inbox.com
   - recruitee-mailbox.com
   - workablemail.com
@@ -44,6 +49,43 @@ ats_senders:
   - resreader.com
   - mokahr.com
   - jobgether.com
+  # 2026-09-20 altı aylık geri taramada bulunan, listede olmayanlar
+  - greenhouse-mail.io       # en yüksek hacimli eksik — tek başına 9 mail
+  - join.com
+  - kula.ai
+  - talentics.app
+  - hiroo.co
+  - hibob.com
+  - rippling.com
+  - peoplebox.biz
+  - flowq.com                # yetenek/beceri testi daveti gönderir
+  - cloud.oracle.com         # Oracle Recruiting (workflow.mail.*.cloud.oracle.com)
+
+# İş ilanı pazaryeri / yetenek havuzu — ATS değil, şirket de değil.
+# Ayrı tutulur çünkü ölçülen dönüş davranışları farklı.
+aggregator_senders:
+  - jobgether.com
+  - turing.com
+  - proxify.io
+  - virtustant.com
+  - deel.com
+  - micro1.ai
+  - michaelpage.com.tr       # işe alım ajansı
+  - indeed.com
+
+# Şirketin kendi kariyer alt alan adı — `direct` sayılır, ATS değil.
+# Liste tutulmaz, kalıpla tanınır: careers.<sirket>, career.<sirket>,
+# talent.<sirket>, talentacquisition.<sirket>, recruitment.<sirket>,
+# hrsystem.<sirket>, hr.<sirket>, recruiting.<sirket>, <sirket>.jobs
+company_career_subdomain_patterns:
+  - "careers."
+  - "career."
+  - "talent."
+  - "talentacquisition."
+  - "recruitment."
+  - "recruiting."
+  - "hrsystem."
+  - "hr."
 
 # Durum sınıflandırma — son mesajın yeni metninde red önce değerlendirilir.
 # Alıntılanmış geçmişi dışla; genel/çelişen kelimeler tek başına karar değildir.
@@ -81,6 +123,26 @@ status_rules:
                   "application confirmed", "reviewing your qualifications"]
     keywords_tr: ["başvurunuz alındı", "başvurunuz için teşekkür", "inceleme aşamasında",
                   "başvurun bize ulaştı"]
+
+# Yineleme ayıklama — aynı olayın birden çok maille gelmesi
+# 2026-09-20 taramasında bulundu: Revolut'un "Product Owner (Technical)" reddi
+# gelen kutusuna ALTI kez düştü (3, 4, 7, 8, 10 Eylül ve öncesi). Aynı şekilde
+# ING iki kez, Vodafone iki kez, Peks Global iki kez aynı maili gönderdi.
+# Ayıklanmazsa red sayısı şişer ve dönüş oranı olduğundan yüksek çıkar.
+dedup:
+  # Aynı olay sayılma koşulu: üçü birden tutuyorsa TEK olaydır.
+  same_event_when:
+    - same_company: true
+    - same_role: true          # rol farklıysa AYRI süreçtir — bunq örneği: Haziran
+                               # "Product Owner - Onboarding" ile Ağustos "Reporting
+                               # Expert" iki ayrı kayıttır, tek kayda çökertilmez
+    - same_status: true        # ikisi de red / ikisi de davet
+  # Yukarıdakiler tutuyorsa hangi tarih kazanır
+  keep: first                  # ilk gelen tarih olayın tarihidir
+  # last_contact yine de en son mesaj tarihine çekilir
+  last_contact_from: latest
+  # Kayıt güncellenirken tekrar maili yeni bir durum değişikliği sayılmaz
+  repeat_does_not_change_stage: true
 
 # Önceliklendirme referansı: ağırlıklar src/veri.py, eşikler src/pipeline.py.
 # Python YAML yüklemez; sayısal değişiklikte kod ve bu belge birlikte güncellenir.

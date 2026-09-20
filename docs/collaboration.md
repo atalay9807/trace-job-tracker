@@ -5,6 +5,15 @@ application does not need two development sessions open to run. The Python
 core works independently of both. Claude agent files do not run by themselves
 under Codex; the same task rules can be read there when needed.
 
+For Codex the visible entry point is the
+[work hub](https://github.com/atalay9807/trace-job-tracker/issues/4), and the
+handover log is [CODEX_CALISMA_ALANI.md](../CODEX_CALISMA_ALANI.md). The
+working branch `codex/calisma-alani` is the development branch that shows the
+user the latest state. New tasks are branched off that branch's current commit
+onto their own task branch; two agents never write into the same checkout.
+`main` and Pages do not stand in for the current development view. Remote
+branches are checked again at the start of the next task.
+
 ## Splitting the work
 
 Start every task from the same current commit, on its own development branch

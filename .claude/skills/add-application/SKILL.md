@@ -40,11 +40,15 @@ Beş değer var, gönderici adresinden çıkar:
 | `ats` | Gönderici `config/rules.yaml` → `ats_senders` listesindeki bir alan adından (workday, lever, ashby, smartrecruiters…) |
 | `linkedin` | Gönderici `linkedin.com` uzantılı, LinkedIn Easy Apply veya kaydedilen ilan akışı |
 | `indeed` | Gönderici `indeed.com` |
-| `aggregator` | Kariyer.net, Yenibiris gibi iş ilanı toplayıcısı üzerinden — ATS değil, LinkedIn değil |
-| `direct` | Şirketin kendi İK'sından doğrudan mail, hiçbir aracı platform yok |
+| `aggregator` | `config/rules.yaml` → `aggregator_senders` (Jobgether, Turing, Proxify, Deel, micro1, Michael Page, Kariyer.net) — ATS değil, LinkedIn değil |
+| `direct` | Şirketin kendi alan adı ya da kariyer alt alan adı (`careers.`, `career.`, `talent.`, `hrsystem.`, `hr.` öneki veya `<sirket>.jobs`) — aracı platform yok |
 
 Emin değilsen ATS sağlayıcı listesine tekrar bak — çoğu "belirsiz" durum
 aslında bilinen bir ATS'in az bilinen bir alan adı olur.
+
+**`careers.<sirket>.com` bir ATS değildir**, şirketin kendi sistemidir → `direct`.
+Bunu ATS saymak kanal kırılımını bozar; 2026-09 analizinde kanal, ileri aşamayı
+yordayan tek güçlü değişken çıktı (direct %55.6 vs ats %4.8, n=90).
 
 ## `track`
 

@@ -141,6 +141,32 @@ handling, a model-response check, and a single-active-request guard. The
 result stays on screen and is not stored. The real provider integration is
 mocked in the DOM tests; that does not count as a real model test.
 
+## The application list and CSV
+
+`basvurulariSec()` is the shared selection behind both the table and the
+browser CSV export. Urgency, match, open/closed process, date, and Turkish
+search conditions are applied together. The selection builds a new array; the
+order of the source `D.applications` is never changed.
+
+Urgency sorting uses the band first and the score within a band: a record the
+core counts as critical because action is required does not drop down the list
+merely because its score is low. Match sorts in both directions; applications
+sort newest first, deadlines nearest first, and companies in Turkish
+alphabetical order. In urgency and deadline sorting, open processes come first
+and unknown values stay at the end of their own group. Ties are broken by
+company and id. A `null` match score is filtered separately from a score of
+zero.
+
+The browser CSV uses a UTF-8 BOM, a comma separator, and CRLF line endings.
+Cells are quoted and inner quotes escaped; formula prefixes in external text
+are neutralized with a single-quote prefix. A numeric zero is preserved and an
+unknown value is left empty. Contact details, notes, and action URLs are not
+exported; the CSV carries summary columns only. The file is created in the
+browser with a `Blob` and the temporary address is revoked after the download;
+this operation sends no data to a server. The browser download behaviour is
+mocked in a DOM test; a real Excel and a real browser download still need
+separate verification.
+
 ## Maintenance
 
 `docs/collaboration.md` defines the verification commands and the handover
@@ -149,5 +175,7 @@ site from source; it does not depend only on changes under `site/`. This
 prevents publishing stale HTML after code or data changed.
 
 The source of truth for typography and color values is the template's CSS.
-Without a visual test, contrast and mobile behaviour do not count as verified;
-`docs/img` is an archive of the first prototype.
+Without a visual test, contrast and mobile behaviour do not count as verified.
+`docs/img` and `site/img` were regenerated from the current template with
+headless Chromium on 2026-09-20; because Google Fonts is blocked by the egress
+policy, the typography appears in a fallback typeface.
