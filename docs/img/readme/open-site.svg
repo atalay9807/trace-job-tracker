@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="56" viewBox="0 0 280 56" role="img" aria-labelledby="title">
+  <title id="title">Explore the site</title>
+  <rect x="1" y="1" width="278" height="54" rx="9" fill="#EEF1FA" stroke="#2340C8" stroke-width="2"/>
+  <text x="23" y="35" fill="#2340C8" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">Explore the site</text>
+  <path d="M243 28h16m-6-6 6 6-6 6" fill="none" stroke="#2340C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="264" viewBox="0 0 1200 264" role="img" aria-labelledby="title desc">
+  <title id="title">Trace — see your applications, choose your next step</title>
+  <desc id="desc">The Trace logo on an indigo field, with the tracking, matching and learning headings.</desc>
+  <rect width="1200" height="264" rx="18" fill="#17245C"/>
+  <path d="M723 0v264" stroke="#384D8A"/>
+  <g fill="none" stroke="#D6E0FF" stroke-width="2.5">
+    <circle cx="65" cy="45" r="14"/><circle cx="78" cy="45" r="14"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="109" y="55" fill="#FFFFFF" font-size="32" font-weight="700">Trace</text>
+    <text x="51" y="130" fill="#FFFFFF" font-size="48" font-weight="700">See your applications.</text>
+    <text x="51" y="186" fill="#FFFFFF" font-size="48" font-weight="700">Choose your next step.</text>
+    <text x="53" y="228" fill="#BED0FF" font-size="18">The control panel for a job search.</text>
+    <rect x="758" y="29" width="408" height="60" rx="9" fill="#233776"/>
+    <rect x="758" y="102" width="408" height="60" rx="9" fill="#233776"/>
+    <rect x="758" y="175" width="408" height="60" rx="9" fill="#233776"/>
+    <g fill="#BED0FF" font-size="15" font-weight="700">
+      <text x="780" y="65">01</text><text x="780" y="138">02</text><text x="780" y="211">03</text>
+    </g>
+    <g fill="#FFFFFF" font-size="21" font-weight="700">
+      <text x="826" y="66">Track your processes</text>
+      <text x="826" y="139">Compare the matches</text>
+      <text x="826" y="212">Find your skill gaps</text>
+    </g>
+  </g>
+</svg>
