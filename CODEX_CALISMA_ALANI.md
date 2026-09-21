@@ -35,7 +35,7 @@ Oturum başında hem `main` hem Claude'un geliştirme dalı
 değişikliği yoktu. Çalışma sırasında PR #3 birleştirilince taban
 `bdf55503cddb74044923fbea04f24f1069e1c009` commit'ine güncellendi; bu ana dalın
 dosya ağacı ilk test edilen tabanla birebir aynıydı. Önceki Codex düzeltme
-raporu [burada](docs/DUZELTME_RAPORU.md).
+raporu [burada](docs/remediation-report-2026-09-18.md).
 
 | İhtiyaç / sorun | Bu turdaki geliştirme |
 |---|---|
@@ -71,7 +71,7 @@ görselleri güncellemedi ve kişisel hesaba/model sağlayıcısına bağlanmad�
 
 ## Claude Code'a devir
 
-1. `AGENTS.md` / `CLAUDE.md` ve [ortak sözleşmeyi](docs/ORTAK_CALISMA.md) oku.
+1. `AGENTS.md` / `CLAUDE.md` ve [ortak sözleşmeyi](docs/collaboration.md) oku.
 2. Çalışma merkezindeki güncel dal ve PR'yi kontrol et; `main`'den başlatılan
    eski bir kopyada Codex düzeltmelerinin bulunduğunu varsayma.
 3. Yeni görev için güncel çalışma commit'inden ayrı dal ve checkout aç.
@@ -81,5 +81,5 @@ görselleri güncellemedi ve kişisel hesaba/model sağlayıcısına bağlanmad�
 
 Önerilen sonraki ürün işi, Gmail gerektirmeyen manuel başvuru girişidir.
 Uygulamaya veri yazmadan önce saklama, hesap izolasyonu ve eşzamanlı güncelleme
-kabul koşulları [canlıya geçiş planına](docs/CANLIYA_GECIS.md) göre belirlenir.
+kabul koşulları [canlıya geçiş planına](docs/production-readiness.md) göre belirlenir.
 Bu listedeki açık işler atanmış veya arka planda çalıştırılan görevler değildir.

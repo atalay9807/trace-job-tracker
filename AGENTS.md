@@ -1,7 +1,7 @@
 # Trace — Codex çalışma kuralları
 
-Önce `docs/ORTAK_CALISMA.md` dosyasını oku. Claude Code aynı sözleşmeyi
-`CLAUDE.md` üzerinden kullanır. Ürün bağlamı için README ve docs/TEKNIK.md'ye bak.
+Önce `docs/collaboration.md` dosyasını oku. Claude Code aynı sözleşmeyi
+`CLAUDE.md` üzerinden kullanır. Ürün bağlamı için README ve docs/technical-contract.md'ye bak.
 
 - Kullanıcıyla, arayüzde ve yeni dokümantasyonda Türkçe kullan.
 - Onaylanmış işi ayrı geliştirme dalında tamamla; aynı dosyalara paralel yazma.
