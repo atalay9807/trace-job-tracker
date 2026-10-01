@@ -1,15 +1,10 @@
+import { guvenliYol } from "@/lib/guvenli-yol";
+
 import GirisFormu from "./giris-formu";
 
 export const metadata = {
   title: "Giriş — Job Tracker",
 };
-
-// Açık yönlendirme koruması: yalnızca kendi sitemizdeki mutlak yollar.
-function guvenliYol(aday: string | string[] | undefined): string {
-  const tek = Array.isArray(aday) ? aday[0] : aday;
-  if (!tek || !tek.startsWith("/") || tek.startsWith("//")) return "/";
-  return tek;
-}
 
 function tekDeger(deger: string | string[] | undefined): string | null {
   const tek = Array.isArray(deger) ? deger[0] : deger;

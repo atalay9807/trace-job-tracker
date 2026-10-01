@@ -1,14 +1,9 @@
 import type { EmailOtpType } from "@supabase/supabase-js";
 import type { NextRequest } from "next/server";
 
+import { guvenliYol } from "@/lib/guvenli-yol";
 import { ilkGirisiIsaretle } from "@/lib/olaylar";
 import { sunucuIstemcisi } from "@/lib/supabase/sunucu";
-
-// Açık yönlendirme koruması: yalnızca kendi sitemizdeki mutlak yollar.
-function guvenliYol(aday: string | null): string {
-  if (!aday || !aday.startsWith("/") || aday.startsWith("//")) return "/";
-  return aday;
-}
 
 /**
  * Göreli Location ile yönlendirir. Mutlak URL kurmuyoruz: route handler
