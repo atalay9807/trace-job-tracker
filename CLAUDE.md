@@ -363,7 +363,7 @@ değiştirirsen skill'i de güncelle, yoksa ikisi ayrışır.
 
 ## Proje ajanları
 
-`.claude/agents/` altında dokuz ajan var. Alt ajanlar skill'lerden farklı
+`.claude/agents/` altında on ajan var. Alt ajanlar skill'lerden farklı
 çalışır: **ayrı bağlamda** başlarlar, işi bitirip rapor dönerler. Bu yüzden
 her biri tek iş yapar — ana oturumun bağlamını doldurmadan kendi işini
 görsün diye.
@@ -379,6 +379,7 @@ görsün diye.
 | `role-advisor-profile` | Yalnızca CV/`profile.json`'a bakıp "bu profil hangi unvanlara başvurabilir" listesi üretir | `applications.json`'ı **açmaz**; piyasa/ilan verisi kullanmaz, şirket önermez |
 | `role-advisor-history` | Yalnızca başvuru sonuçları + `insights.py` + Indeed ilan varlığına bakıp aynı listeyi bağımsız üretir | `profile.json`'ı ve CV'yi **açmaz**; n<4 örneklemden sonuç çıkarmaz, şirket önermez |
 | `growth-strategist` | **Ürünün** büyümesine bakar: kitle, aktivasyon/retention döngüsü, kanal, PLG olabilirlik, ülke ölçeklemesi, birim ekonomi. Her rakamı ÖLÇÜM/KIYAS/VARSAYIM diye etiketler | Gelir, maliyet, pazar büyüklüğü **uydurmaz** — elimizde yok; kurucunun kendi kullanımını kullanıcı davranışı diye sunmaz (n=1); kullanıcının kariyerine karışmaz |
+| `code-verifier` | Yazılım değişikliğini **bağımsız** doğrular: build, lint, typecheck ve testleri çalıştırır; değişikliği faz spec'ine ve bu dosyanın kurallarına (her tabloda RLS, zorunlu olaylar, commit'lenmiş gizli anahtar, migration, mobil düzen, açılmamış faza ait kod) karşı denetler; doğruladığını ve doğrulayamadığını ayrı yazar. Raporu ana oturuma döner, ana oturum `web-live/docs/reviews/` altına **aynen** kaydeder | Kodu düzeltmez, dosya yazmaz, commit/push yapmaz; çalıştırmadığı kontrolü "geçti" saymaz — `UNVERIFIED` yazar |
 
 **İlk ikisi neden ayrı:** bir ilanı hem yorumlayıp hem puanlayan tek ajan,
 ilanı kendi vereceği puana göre okumaya başlıyor. Ayrık tutulunca çözümleyici
@@ -396,6 +397,13 @@ bilinçli `null` olduğunu ayırt etmek yargı ister, kural değildir.
 `career-advisor` ise `insights.py`'nin hesapladığı oranların **ne anlama
 geldiğini** söyler: oranı kod üretir, "tek başvurulu bir track'in %100'ü
 gürültüdür, buna göre karar verme" demek yargıdır.
+
+**`code-verifier` neden ayrı:** bir değişikliği yazan, onu değerlendirmek için en kötü
+konumdaki kişidir — kodu ne demek istediği gibi okur, olduğu gibi değil. Denetçi bu yüzden
+yazmaz, yalnızca çalıştırır ve raporlar. Ana oturum raporu `web-live/docs/reviews/` altına
+**değiştirmeden** kaydeder ve altına kendi cevabını yazar; bir bulguya itiraz edebilir ama
+silemez. `BLOCKER` içeren bir adım bitmiş sayılmaz. Bu, `data-auditor`'ın veri için yaptığını
+kod için yapar.
 
 **`growth-strategist` neden ayrı:** ürünü bir işletme gibi ele alan tek
 yer burası. Elimizde ikinci kullanıcı, gelir ve maliyet verisi olmadığı

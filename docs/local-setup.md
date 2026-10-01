@@ -27,7 +27,7 @@ The moment you run `claude` inside the repository directory, these load
 automatically:
 
 - `CLAUDE.md` — the project instructions
-- `.claude/agents/*.md` — nine agents
+- `.claude/agents/*.md` — ten agents
 - `.claude/skills/*/SKILL.md` — seven skills
 - `src/`, `data/`, `config/`, `docs/` — all of the code and data
 
@@ -85,7 +85,7 @@ claude
 
 1. Clone the repository and run `python3 src/pipeline.py` — is the data layer
    intact?
-2. Open `claude` and confirm that nine agents and seven skills appear in
+2. Open `claude` and confirm that ten agents and seven skills appear in
    `/agents` and the skill list.
 3. Authorize the Gmail, Drive, GitHub, and Indeed connectors.
 4. Run one daily scan by hand and compare the output with the last report from

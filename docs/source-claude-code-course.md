@@ -28,7 +28,7 @@ Routine as the scheduler, and the agent/skill split.
 `pipeline.py`; rule-driven work does not need a visual flow layer), Apify (the
 only external data we want is LinkedIn posting text, which cannot legally be
 scraped), the entire sales stack (Trace is not a sales tool), and the
-20-agent setup (Trace has nine, because an agent is used only where judgement
+20-agent setup (Trace has ten, because an agent is used only where judgement
 is required).
 
 **Treat every figure in it as an unverified claim.** The revenue and client

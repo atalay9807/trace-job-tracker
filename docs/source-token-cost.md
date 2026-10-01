@@ -30,7 +30,7 @@ spend **zero tokens**. The model is involved only where judgement is required.
 The rule written in `CLAUDE.md` — an agent is used only where judgement is
 required — is simultaneously the project's token strategy.
 
-**The one open point.** All nine agents are set to `model: opus`. Two of them
+**The one open point.** All ten agents are set to `model: opus`. Two of them
 are close to mechanical work: `posting-analyzer` (turning posting text into
 structured fields) and `data-auditor` (validating against the schema).
 Those could plausibly run on a smaller model. `career-advisor`,

@@ -88,7 +88,7 @@ implementation and integration, while Codex contributes independent review,
 testing and complementary development. Every change is reviewable through the
 GitHub history and the pull requests.
 
-The repository holds **9 agent roles and 7 skills**. The posting analyzer and
+The repository holds **10 agent roles and 7 skills**. The posting analyzer and
 the matcher have separate jobs; the two role advisors, one looking at the
 profile and one at past outcomes, also draw on separate evidence. Agents
 produce suggestions, a single designated writer stores the record, and the
