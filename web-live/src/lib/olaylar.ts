@@ -1,14 +1,8 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
-import type { Veritabani } from "@/lib/tipler";
+import type { OlayAdi, Veritabani } from "@/lib/tipler";
 
-// Faz 4-5'in ölçümü bu akışa dayanıyor. Ad listesi kapalı tutuluyor ki
-// aynı olay iki farklı yazımla iki ayrı olay gibi görünmesin.
-export type OlayAdi =
-  | "signup"
-  | "cv_uploaded"
-  | "application_created"
-  | "status_changed";
+export type { OlayAdi };
 
 type Istemci = SupabaseClient<Veritabani>;
 
@@ -46,24 +40,21 @@ export async function olayYaz(
 
 /**
  * signup olayını yalnızca bir kez yazar. Giriş her seferinde callback'ten
- * geçtiği için tekrarı burada engellemek gerekiyor.
+ * geçiyor; tekilliği veritabanındaki events_signup_tek indeksi garanti eder,
+ * bu yüzden önce sayıp sonra eklemek yerine doğrudan eklenir.
  */
 export async function ilkGirisiIsaretle(
   istemci: Istemci,
   kullaniciId: string,
 ): Promise<void> {
-  const { count, error } = await istemci
-    .from("events")
-    .select("id", { count: "exact", head: true })
-    .eq("user_id", kullaniciId)
-    .eq("event_name", "signup");
+  const { error } = await istemci.from("events").insert({
+    user_id: kullaniciId,
+    event_name: "signup",
+    properties: {},
+  });
 
-  if (error) {
-    console.error("signup olayı kontrol edilemedi", error.message);
-    return;
-  }
-
-  if ((count ?? 0) === 0) {
-    await olayYaz(istemci, "signup");
+  // 23505: tekillik ihlali — signup daha önce yazılmış, beklenen durum.
+  if (error && error.code !== "23505") {
+    console.error("signup olayı yazılamadı", error.message);
   }
 }

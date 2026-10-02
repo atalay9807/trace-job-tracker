@@ -38,6 +38,15 @@ export const RED_NEDENI_ETIKETLERI: Record<RedNedeni, string> = {
   unknown: "Bilinmiyor",
 };
 
+// Kapalı olay listesi; veritabanındaki events_ad_listesi kısıtıyla aynı.
+// Faz 4-5'in ölçümü bu akışa dayanıyor: aynı olay iki farklı yazımla iki
+// ayrı olay gibi görünmesin.
+export type OlayAdi =
+  | "signup"
+  | "cv_uploaded"
+  | "application_created"
+  | "status_changed";
+
 type Cv = {
   id: string;
   user_id: string;
@@ -62,7 +71,7 @@ type Basvuru = {
 type Olay = {
   id: string;
   user_id: string;
-  event_name: string;
+  event_name: OlayAdi;
   properties: Record<string, unknown>;
   created_at: string;
 };
@@ -91,9 +100,9 @@ export type Veritabani = {
       };
       events: {
         Row: Olay;
+        // created_at'i sunucudaki tetikleyici yazar; istemci veremez.
         Insert: Omit<Olay, "id" | "created_at"> & {
           id?: string;
-          created_at?: string;
         };
         Update: Partial<Olay>;
         Relationships: [];

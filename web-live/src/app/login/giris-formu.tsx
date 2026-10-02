@@ -30,9 +30,15 @@ export default function GirisFormu({ devam, girisHatasi }: Ozellikler) {
       options: { emailRedirectTo: hedef },
     });
 
+    // Ham hata metni İngilizce ve teknik; kullanıcıya sabit Türkçe metin gider.
     if (error) {
+      console.error("giriş bağlantısı gönderilemedi", error.message);
       setDurum("hata");
-      setHata(error.message);
+      setHata(
+        error.status === 429
+          ? "Kısa sürede çok fazla deneme yapıldı. Birkaç dakika bekleyip tekrar dene."
+          : "Bağlantı gönderilemedi. İnternet bağlantını ve adresi kontrol edip tekrar dene.",
+      );
       return;
     }
 
@@ -46,6 +52,10 @@ export default function GirisFormu({ devam, girisHatasi }: Ozellikler) {
         <p className="mt-1 opacity-70">
           {eposta} adresine gelen giriş bağlantısına tıkla. Bağlantı tek
           kullanımlık ve kısa ömürlü.
+        </p>
+        <p className="mt-1 opacity-70">
+          Bağlantı açılmazsa onu, girişi başlattığın bu tarayıcıda açmayı
+          dene.
         </p>
         <button
           type="button"
@@ -90,7 +100,7 @@ export default function GirisFormu({ devam, girisHatasi }: Ozellikler) {
 
       {hata && (
         <p role="alert" className="text-sm text-red-600 dark:text-red-400">
-          Bağlantı gönderilemedi: {hata}
+          {hata}
         </p>
       )}
       {girisHatasi && !hata && (

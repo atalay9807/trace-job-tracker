@@ -1,3 +1,4 @@
+import { girisHatasiMetni } from "@/lib/giris-hatalari";
 import { guvenliYol } from "@/lib/guvenli-yol";
 
 import GirisFormu from "./giris-formu";
@@ -5,11 +6,6 @@ import GirisFormu from "./giris-formu";
 export const metadata = {
   title: "Giriş — Job Tracker",
 };
-
-function tekDeger(deger: string | string[] | undefined): string | null {
-  const tek = Array.isArray(deger) ? deger[0] : deger;
-  return tek ?? null;
-}
 
 export default async function GirisSayfasi({
   searchParams,
@@ -26,7 +22,7 @@ export default async function GirisSayfasi({
 
         <GirisFormu
           devam={guvenliYol(parametreler.devam)}
-          girisHatasi={tekDeger(parametreler.hata)}
+          girisHatasi={girisHatasiMetni(parametreler.hata)}
         />
       </div>
     </main>

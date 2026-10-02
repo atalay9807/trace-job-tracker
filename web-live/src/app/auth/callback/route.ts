@@ -1,6 +1,7 @@
 import type { EmailOtpType } from "@supabase/supabase-js";
 import type { NextRequest } from "next/server";
 
+import type { GirisHataKodu } from "@/lib/giris-hatalari";
 import { guvenliYol } from "@/lib/guvenli-yol";
 import { ilkGirisiIsaretle } from "@/lib/olaylar";
 import { sunucuIstemcisi } from "@/lib/supabase/sunucu";
@@ -14,8 +15,8 @@ function yonlendir(yol: string, durum = 307): Response {
   return new Response(null, { status: durum, headers: { Location: yol } });
 }
 
-function girisegeriDon(mesaj: string): Response {
-  return yonlendir(`/login?hata=${encodeURIComponent(mesaj)}`);
+function girisegeriDon(kod: GirisHataKodu): Response {
+  return yonlendir(`/login?hata=${kod}`);
 }
 
 export async function GET(istek: NextRequest) {
@@ -28,23 +29,24 @@ export async function GET(istek: NextRequest) {
   const istemci = await sunucuIstemcisi();
 
   // Magic link iki biçimde dönebiliyor: PKCE kodu ya da token_hash.
-  let hataMesaji: string | null = null;
-
+  // Supabase'in ham hata metni kullanıcıya gitmez, yalnızca loglanır.
   if (kod) {
     const { error } = await istemci.auth.exchangeCodeForSession(kod);
-    hataMesaji = error?.message ?? null;
+    if (error) {
+      console.error("giriş kodu doğrulanamadı", error.message);
+      return girisegeriDon("baglanti_gecersiz");
+    }
   } else if (tokenHash && tur) {
     const { error } = await istemci.auth.verifyOtp({
       type: tur,
       token_hash: tokenHash,
     });
-    hataMesaji = error?.message ?? null;
+    if (error) {
+      console.error("giriş bağlantısı doğrulanamadı", error.message);
+      return girisegeriDon("baglanti_gecersiz");
+    }
   } else {
-    hataMesaji = "Giriş bağlantısı eksik ya da bozuk. Yeni bir bağlantı iste.";
-  }
-
-  if (hataMesaji) {
-    return girisegeriDon(hataMesaji);
+    return girisegeriDon("baglanti_eksik");
   }
 
   const {
@@ -52,7 +54,7 @@ export async function GET(istek: NextRequest) {
   } = await istemci.auth.getUser();
 
   if (!user) {
-    return girisegeriDon("Oturum açılamadı. Yeni bir bağlantı iste.");
+    return girisegeriDon("oturum_acilamadi");
   }
 
   await ilkGirisiIsaretle(istemci, user.id);
