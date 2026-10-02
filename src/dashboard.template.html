@@ -1488,7 +1488,7 @@ $("gapList").innerHTML = P.gaps.map((g,i) =>
   `<div class="gapitem"><span class="n">${i+1}</span><span>${esc(g)}</span></div>`).join("");
 
 /* ---------- Sana uygun roller ----------
-   İki rol önerici ajanın mutabakatı. Sınıflar rol-hedefleme skill'inde tanımlı;
+   İki rol önerici ajanın mutabakatı. Sınıflar role-targeting skill'inde tanımlı;
    çelişki ortalamayla çözülmez, iki gerekçe yan yana durur. */
 const RT = D.role_targets || { meta:{}, hedefler:[], kacinilacaklar:[] };
 const RT_ETIKET = {

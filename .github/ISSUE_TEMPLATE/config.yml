@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/atalay9807/trace-job-tracker/security/advisories/new
+    about: Report privately. Do not open a public issue for a security problem.
+  - name: Project specification
+    url: https://github.com/atalay9807/trace-job-tracker/blob/main/CLAUDE.md
+    about: Scoring formulas, data schema, and design rules before you file.
+  - name: Roadmap
+    url: https://github.com/atalay9807/trace-job-tracker/blob/main/ROADMAP.md
+    about: What is missing, and in what order it matters.
