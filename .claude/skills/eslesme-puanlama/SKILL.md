@@ -135,8 +135,9 @@ yaparken de aynı dili koru: "bu ilan X bekliyordu, CV'de yok" de,
 
 ## Sık yapılan hatalar
 
-- **Marka değerini rol ailesine yazmak.** Amazon'un Content Acquisition Manager
-  ilanı prestijli olabilir ama rol ailesi 12'dir. Prestij puanı diye bir boyut yok.
+- **Marka değerini rol ailesine yazmak.** Tanınmış bir markanın içerik satın
+  alma ilanı prestijli olabilir ama rol ailesi uzaksa puan düşüktür. Prestij
+  puanı diye bir boyut yok.
 - **Kıdemi yumuşatmak.** "Manager ama belki alırlar" diye 13'ü 20'ye çekmek,
   verinin gösterdiği en pahalı hatayı gizler.
 - **Sektörü rol ailesiyle karıştırmak.** PazarGo'da rol belirsizdir (24) ama
