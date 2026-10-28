@@ -29,3 +29,24 @@ Next.js (App Router), TypeScript, Tailwind, Supabase (Postgres, Auth, Storage), 
 - Veritabanı değişikliklerini migration dosyası olarak yaz.
 - Gizli anahtarlar sadece .env.local içinde durur, repo'ya commit edilmez.
 - Büyük bir değişiklikten önce ne yapacağını kısaca özetle, onayımı bekle.
+
+## Her adımın sonunda: doğrulama ve rapor
+Bu uygulamanın sahibi kod okumuyor. Bu yüzden hiçbir adım, aşağıdaki iki iş
+bitmeden "tamam" sayılmaz.
+
+1. **Doğrulama.** Adım commit'lenmeden önce `code-verifier` ajanı çalıştırılır.
+   Ajanın raporu `web-live/docs/reviews/YYYY-AA-GG-<adım>.md` dosyasına
+   **değiştirilmeden** kaydedilir; ana oturum cevabını altına yazar. Raporda
+   `BLOCKER` varsa adım bitmemiştir — önce o düzeltilir.
+2. **Sahibe rapor.** Sade Türkçeyle, teknik terim kullanılıyorsa açıklanarak:
+   - **Ne yapıldı** — bir iki cümle, dosya listesi değil.
+   - **Neden** — bu adım ürüne ne kazandırıyor.
+   - **Nasıl doğrulandı** — çalıştırılan komutlar ve denetçinin kararı
+     (PASS / PASS WITH NOTES / FAIL).
+   - **Neyi doğrulayamadık** — ve neden. "Test edemedim" demek, test edilmiş
+     gibi davranmaktan iyidir.
+   - **Senden gereken** — varsa, tek bir somut eylem.
+   - **Token** — yerel oturumda adımın başında ve sonunda `/cost` çıktısı;
+     fark bu adımın maliyetidir. Bulut oturumunda bu sayı görünmez, o zaman
+     "ölçülmedi" yazılır, tahmin yazılmaz.
+   - **Sıradaki adım** — tek cümle.

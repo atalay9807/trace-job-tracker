@@ -3,7 +3,7 @@
     "uretim_tarihi": "2026-09-04",
     "profil_surumu": "2026-09 (KeremAydin.CV.pdf)",
     "basvuru_sayisi": 68,
-    "_note": "rol-onerici-profil (yalnızca profile.json) ve rol-onerici-gecmis (yalnızca applications.json + insights.py + Indeed) ajanları birbirinden habersiz çalıştırıldı; mutabakat sınıfları rol-hedefleme skill'ine göre atandı. Indeed sayıları sorgu başına dönen liste uzunluğudur, toplam ilan sayısı veya talep göstergesi değildir."
+    "_note": "role-advisor-profile (yalnızca profile.json) ve role-advisor-history (yalnızca applications.json + insights.py + Indeed) ajanları birbirinden habersiz çalıştırıldı; mutabakat sınıfları role-targeting skill'ine göre atandı. Indeed sayıları sorgu başına dönen liste uzunluğudur, toplam ilan sayısı veya talep göstergesi değildir."
   },
   "hedefler": [
     {

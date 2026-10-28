@@ -1,0 +1,64 @@
+name: Feature request
+description: Propose a change in scope or behaviour
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Read `ROADMAP.md` first. The project has a narrow scope and a
+        deliberate order of work; requests that jump ahead of a blocking item
+        are usually declined.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: |
+        What does not work for you today? Describe the situation, not the
+        solution.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you propose
+      description: What should happen instead, and where in the product.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: question
+    attributes:
+      label: Which user question does this serve
+      description: |
+        Trace answers three questions. A feature that serves none of them is
+        probably out of scope.
+      options:
+        - "What should I do today? (urgency)"
+        - "Where should I spend my energy? (match)"
+        - "What do I need to learn? (skill gaps)"
+        - None of these
+    validations:
+      required: true
+
+  - type: textarea
+    id: measurable
+    attributes:
+      label: What data does this need
+      description: |
+        Trace does not invent what it cannot measure — rejection reasons,
+        impression counts, and real course enrolments are all labelled as
+        unknown or simulated. If your proposal needs data the project does
+        not have, say where that data would come from.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: constraints
+    attributes:
+      label: Constraints you have checked
+      options:
+        - label: This does not require a new runtime dependency for the Python core
+        - label: This does not remove or soften one of the three measurement limits
+        - label: This does not require scraping LinkedIn
