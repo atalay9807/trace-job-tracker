@@ -68,12 +68,12 @@ göndericisini de kapsar.
 | Sınıf | Nereden anlaşılır | `channel` |
 |---|---|---|
 | ATS sağlayıcısı | `ats_senders` listesinde | `ats` |
-| Pazaryeri / ajans | `aggregator_senders` listesinde (Jobgether, Turing, Proxify, Deel, micro1, Michael Page) | `aggregator` |
+| Pazaryeri / ajans | `aggregator_senders` listesinde — iş ilanı pazaryerleri, yetenek havuzları, işe alım ajansları | `aggregator` |
 | Şirketin kendisi | Kendi alan adı ya da kariyer alt alan adı — `careers.`, `career.`, `talent.`, `talentacquisition.`, `recruitment.`, `hrsystem.`, `hr.` öneki, veya `<sirket>.jobs` | `direct` |
 
-`careers.prada.com` bir ATS **değildir** — Prada'nın kendi sistemidir, `direct`
-sayılır. Bunu karıştırmak kanal kırılımını bozar; 2026-09 analizinde kanal,
-ileri aşamayı yordayan tek güçlü değişken çıktı.
+`careers.ornek.com` bir ATS **değildir** — şirketin kendi sistemidir, `direct`
+sayılır. Bunu karıştırmak kanal kırılımını bozar; kanal, sonuçları ayırt etmede
+en çok işe yarayan değişkenlerden biri olduğu için bu ayrım korunmalı.
 
 ## 3. Sınıflandır — ilk eşleşen kazanır
 
@@ -98,10 +98,9 @@ etiket, yanlış bir `stage` değerine ve yanlış hatırlatmaya yol açar.
 
 ## 3.5 Yinelenen maili ayıkla — sınıflandırmadan sonra, yazmadan önce
 
-**Aynı olay birden çok mail olarak gelir.** 2026-09-20 taramasında Revolut'un
-"Product Owner (Technical)" reddi gelen kutusuna **altı kez** düştü; ING,
-Vodafone ve Peks Global de aynı maili iki kez gönderdi. Ayıklanmazsa red sayısı
-şişer ve dönüş oranı olduğundan yüksek çıkar.
+**Aynı olay birden çok mail olarak gelir.** Tek bir red maili aynı gelen
+kutusuna **altı kez** düşebiliyor; bazı şirketler aynı maili ikişer kez gönderiyor.
+Ayıklanmazsa red sayısı şişer ve dönüş oranı olduğundan yüksek çıkar.
 
 Kanonik kural `config/rules.yaml` → `dedup`. Özeti:
 
@@ -114,9 +113,9 @@ Kanonik kural `config/rules.yaml` → `dedup`. Özeti:
 Olayın tarihi **ilk** gelen maildir; `last_contact` yine de **en son** mesaj
 tarihine çekilir. `stage` ikinci mailde tekrar değiştirilmez.
 
-**Rol farklıysa ayrı süreçtir — birleştirme.** Somut örnek: bunq'a Haziran'da
-"Product Owner - Onboarding", Ağustos'ta "Reporting Expert" için başvuruldu.
-Bunlar iki ayrı kayıttır. Şirkete göre eşleştirip tek kayda çökertmek,
+**Rol farklıysa ayrı süreçtir — birleştirme.** Örnek: aynı şirkete Haziran'da
+bir ürün rolü, Ağustos'ta bir raporlama rolü için başvurulmuş olabilir. Bunlar
+iki ayrı kayıttır. Şirkete göre eşleştirip tek kayda çökertmek,
 Haziran'daki ilerlemeyi Ağustos'taki reddin üstüne yazar ve `first_response`
 alanını başvuru tarihinden önceye kaydırır — `python3 src/veri.py` bunu hata
 olarak yakalar.
