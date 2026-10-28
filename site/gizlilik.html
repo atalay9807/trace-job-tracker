@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gizlilik — Trace</title>
+<meta name="description" content="Trace web demosunun hangi veriyi işlediği, hangisini işlemediği ve hangi üçüncü taraflara istek gittiği.">
+<!-- Bu sayfa bilerek web fontu yüklemez: gizlilik metni, anlattığı üçüncü taraf
+     isteğini kendisi yapmasın. Sistem yazı tipleriyle açılır. -->
+<style>
+  :root{
+    --ground:#EEF1FA; --surface:#FFFFFF; --surface-2:#F5F7FD;
+    --ink:#111A33; --ink-2:#454F6B; --ink-3:#5A6480;
+    --line:#DCE2F0; --indigo:#2340C8; --indigo-soft:#E4E8FB;
+    --good:#266953; --warn:#7F5809;
+    --maxw:760px; --r:10px;
+    color-scheme:light;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 16px}
+  header{padding:28px 0 8px}
+  header a{color:var(--ink-2);text-decoration:none;font-size:14px}
+  header a:hover{color:var(--indigo)}
+  h1{font-family:ui-serif,Georgia,serif;font-size:clamp(30px,5vw,40px);line-height:1.15;
+    letter-spacing:-.02em;margin:18px 0 6px}
+  .meta{color:var(--ink-3);font-size:14px;margin:0 0 26px}
+  h2{font-size:19px;line-height:1.3;margin:34px 0 10px}
+  p{margin:0 0 12px}
+  ul{margin:0 0 12px;padding-left:22px}
+  li{margin:0 0 6px}
+  a{color:var(--indigo)}
+  code{font-family:ui-monospace,"SFMono-Regular",Menlo,monospace;font-size:.9em;
+    background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:1px 5px}
+  .ozet{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+    padding:18px 20px;margin:0 0 8px}
+  .ozet ul{margin:0}
+  table{width:100%;border-collapse:collapse;background:var(--surface);
+    border:1px solid var(--line);border-radius:var(--r);overflow:hidden;font-size:15px;margin:0 0 12px}
+  th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+  tr:last-child td{border-bottom:0}
+  th{background:var(--surface-2);font-weight:600;color:var(--ink-2)}
+  .tablo{overflow-x:auto}
+  /* Dar ekranda üç kolon açıklamayı kelime kelime böler; satırlar kart olur. */
+  @media (max-width:560px){
+    thead{display:none}
+    table,tbody,tr,td{display:block;width:100%}
+    tr{padding:12px 14px;border-bottom:1px solid var(--line)}
+    tr:last-child{border-bottom:0}
+    td{border:0;padding:2px 0}
+    td:first-child{font-weight:600}
+  }
+  .etiket{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.04em;
+    text-transform:uppercase;padding:1px 8px;border-radius:999px;white-space:nowrap}
+  .yok{color:var(--good);background:#E3F0EA}
+  .var{color:var(--warn);background:#F6EEDC}
+  footer{border-top:1px solid var(--line);margin-top:44px;padding:22px 0 44px;
+    color:var(--ink-3);font-size:14px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap"><a href="trace.html">← Trace</a></div>
+</header>
+
+<main class="wrap">
+  <h1>Gizlilik</h1>
+  <p class="meta">Son güncelleme: 28 Ekim 2026 · Bu metin, <code>atalay9807.github.io/trace-job-tracker</code> altındaki sayfalar içindir.</p>
+
+  <div class="ozet">
+    <ul>
+      <li><strong>Senden kişisel veri toplamıyoruz.</strong> Hesap, form, çerez ve ziyaretçi analitiği yok.</li>
+      <li><strong>Gördüğün veri gerçek değil.</strong> Kurgusal bir kişiye ait; şirket adları takma addır.</li>
+      <li><strong>Sayfayı açtığında iki tarafa istek gider:</strong> siteyi barındıran GitHub'a ve yazı tiplerini sağlayan Google'a. İkisi de IP adresini görür.</li>
+    </ul>
+  </div>
+
+  <h2>Bu sitede ne var</h2>
+  <p>Trace bir iş başvurusu takip aracının web demosudur. Panodaki başvurular kurgusal bir kişiye (Kerem Aydın) aittir. Gerçek bir iş arama sürecinden üretilmiştir ama şirket adları takma adlarla değiştirilmiş, kişi adları ve iletişim bilgileri çıkarılmıştır.</p>
+  <p>Proje sahibinin gerçek başvuru verisi bu sitede yer almaz. Ayrı ve özel bir depoda tutulur, yayınlanmaz. Gerçek e-postalarda geçen işe alım çalışanlarının adları ve adresleri hiçbir sayfada yer almaz.</p>
+
+  <h2>Ziyaretçiden ne alınıyor</h2>
+  <div class="tablo">
+  <table>
+    <thead><tr><th>Ne</th><th>Durum</th><th>Ayrıntı</th></tr></thead>
+    <tbody>
+      <tr><td>Hesap, giriş, form</td><td><span class="etiket yok">Yok</span></td><td>Sitede kayıt ya da veri gönderilen bir form bulunmaz.</td></tr>
+      <tr><td>CV yükleme</td><td><span class="etiket yok">Kapalı</span></td><td>Web demosunda CV analizi devre dışıdır; dosya seçilemez, hiçbir dosya gönderilmez.</td></tr>
+      <tr><td>Çerez, analitik, takip pikseli</td><td><span class="etiket yok">Yok</span></td><td>Ziyaret sayılmaz, davranış izlenmez.</td></tr>
+      <tr><td>CSV indirme</td><td><span class="etiket yok">Yalnızca tarayıcında</span></td><td>Dosya senin tarayıcında üretilir, bir sunucuya gitmez.</td></tr>
+      <tr><td>Tarayıcı depolaması</td><td><span class="etiket var">Tek kayıt</span></td><td>Tanıtım turunu kapattığında <code>kp_tour</code> adlı tek bir işaret tarayıcına yazılır; tur bir daha kendiliğinden açılmasın diye. Kişisel veri içermez, hiçbir yere gönderilmez. Tarayıcı verisini sildiğinde gider.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>Hangi üçüncü taraflara istek gidiyor</h2>
+  <div class="tablo">
+  <table>
+    <thead><tr><th>Taraf</th><th>Neden</th><th>Gördüğü</th></tr></thead>
+    <tbody>
+      <tr><td>GitHub (GitHub Pages)</td><td>Siteyi barındırır.</td><td>Sayfayı açtığında IP adresin GitHub tarafından güvenlik amacıyla kaydedilir. <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHub Gizlilik Bildirimi</a></td></tr>
+      <tr><td>Google (Google Fonts)</td><td>Pano ve tanıtım sayfası yazı tiplerini Google'dan yükler.</td><td>IP adresin ve tarayıcı bilgisi. <a href="https://developers.google.com/fonts/faq/privacy" rel="noopener">Google Fonts gizlilik SSS</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Her iki şirketin sunucuları yurt dışındadır; bu istekler sırasında IP adresin yurt dışına iletilir. Bu sayfa ise web fontu yüklemez, yalnızca GitHub'a istek yapar.</p>
+
+  <h2>İleride değişecek olan</h2>
+  <p>Trace'in çok kullanıcılı bir sürümü üzerinde çalışılıyor. O sürüm hesap açma ve CV yükleme içerecek, yani kişisel veri işleyecek. Bu sürüm yayına girmeden önce bu metin; hangi verinin hangi amaçla ve hangi hukuki sebeple işlendiği, kimlere aktarıldığı (barındırma ve yapay zekâ model sağlayıcısı dahil) ve ne kadar saklandığı yazılarak güncellenir.</p>
+
+  <h2>Veri sorumlusu ve hakların</h2>
+  <p>Bu sitenin sahibi ve veri sorumlusu <strong>Atalay Denizer</strong>'dir. 6698 sayılı Kişisel Verilerin Korunması Kanunu'nun 11. maddesi kapsamında; kişisel verinin işlenip işlenmediğini öğrenme, işlenmişse bilgi isteme, düzeltilmesini veya silinmesini isteme ve itiraz etme hakların vardır.</p>
+  <p>Bu site senden kişisel veri toplamadığı için tutulan bir kaydın yoktur. GitHub ve Google'ın tuttuğu kayıtlar için ilgili şirketlerin yukarıdaki bildirimleri geçerlidir. Soruların için <a href="https://github.com/atalay9807" rel="noopener">GitHub profili</a> üzerinden ulaşabilirsin.</p>
+</main>
+
+<footer>
+  <div class="wrap">Trace · <a href="trace.html">Tanıtım</a> · <a href="app.html">Uygulama</a></div>
+</footer>
+</body>
+</html>

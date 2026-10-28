@@ -191,6 +191,8 @@ tarayıcı düzenini doğrulamaz.
 - **Yayın sınırı:** Statik HTML veriyi içinde taşır ve kimlik doğrulamaz. Özel veri
   içeren pano herkese açık sunucuya yüklenmez; `--site` yalnızca depo demosunu
   kabul eder. Kişisel başvuru/e-posta aksiyonları kamuya açık HTML'e eklenmez.
+- **Gizlilik:** Web demosu ziyaretçiden veri toplamaz; ayrıntı
+  [`site/gizlilik.html`](site/gizlilik.html) içinde.
 - **CSV:** Görünen sonuçların dışa aktarımıdır; yedekleme veya içe aktarma biçimi
   değildir ve kaynak JSON'u değiştirmez.
 - **Eşleşme:** `match.py` CV metnini analiz etmez; kayıtlı boyutları toplar.

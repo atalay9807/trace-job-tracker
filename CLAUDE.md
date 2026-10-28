@@ -290,10 +290,13 @@ adları taşıyor. Buradaki liste teknik engellerdir; kişisel veri içermez.
 
 **Ayrıca canlıya çıkmadan kapatılması gerekenler:**
 
-- **Gizlilik metni yok.** `site/` altında sıfır. Rakiplerde standart.
+- **Gizlilik metni yalnızca demo için var.** `site/gizlilik.html` (28.10.2026)
+  yayındaki demonun ne işlediğini anlatır: ziyaretçi verisi yok, yalnızca GitHub
+  Pages ve Google Fonts istekleri. Çok kullanıcılı sürüm için metin **yok**.
   KVKK'da VERBİS muafiyeti var ama **aydınlatma yükümlülüğü muafiyete tabi
-  değil**; CV metni model sağlayıcısına gidiyor, bu yurt dışına aktarım.
-  Sunucu kurmadan bugün kapatılabilecek tek madde bu.
+  değil**; CV metni model sağlayıcısına gidecek, bu yurt dışına aktarım. web-live
+  kullanıcı verisi almadan önce metin amaç, hukuki sebep, aktarım ve saklama
+  süresiyle yeniden yazılır. Demo değişirse (yeni dış istek, depolama) metin de değişir.
 - **Test açığı (07.09.2026 notu).** 17.09.2026 düzeltmesinde Python regresyonları,
   ağsız DOM testleri ve CI eklendi. Gerçek model, Gmail ve görsel tarayıcı testleri
   bunların kapsamında değildir.

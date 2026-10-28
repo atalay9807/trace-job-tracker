@@ -10,8 +10,10 @@ Repo'daki diğer klasörlere dokunma, tüm dosyaları bu klasör içinde oluştu
 ## Ana özellikler (fazlar)
 1. Başvuru takibi: statü hattı (saved, applied, interview, offer, rejected), red nedeni
 2. CV-ilan eşleştirme: eşleşme skoru ve eksik skill listesi (Claude API)
-3. Kişisel eğitim sayfası: eksik skill'lere göre kurs önerisi. Red nedeni skill
-   eksikliğiyse ilgili kurs kartı başvuru sayfasında da gösterilir.
+3. Kişisel eğitim sayfası: eksik skill'lere göre kurs önerisi. Kurs kartı başvuru
+   sayfasında yalnızca şirket red gerekçesini bildirmişse "bildirilen gerekçe"
+   olarak gösterilir; eksik yetkinlik ilan–CV karşılaştırmasından çıkarıldıysa
+   kart "ÇIKARIM" etiketi taşır. Kurs önerisi red gerekçesi tahmini üzerine kurulmaz.
 4. Funnel navigasyonu: kullanıcıyı newcomer, activated, engaged, habit
    segmentlerinden geçirecek sayfa akışı ve yönlendirmeler
 5. Ölçüm: event tracking, segment geçiş oranları
