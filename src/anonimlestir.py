@@ -53,21 +53,44 @@ def kimliksizle(s: str) -> str:
     return re.sub(r"-{2,}", "-", s)
 
 
+# Ticari unvan ve ülke ekleri. Metinde şirket çoğu zaman bunlarsız geçer;
+# tablo "Örnek Holding A.Ş." tutarken metin "Örnek Holding" derse tam eşleşme
+# kaçırır. Bu ekler atılarak her ad için kısa bir varyant da üretilir.
+EKLER = (" A.Ş.", " A.S.", " AŞ", " Inc.", " Inc", " Ltd.", " Ltd", " LLC",
+         " GmbH", " Group", " Türkiye", " Turkiye", " Turkey")
+
+
+def varyantlar(gercek: str, takma: str) -> list[tuple[str, str]]:
+    """Ekleri atılmış (gerçek, takma) çiftleri. Kısa kalanlar alınmaz."""
+    cikti = []
+    for ek in EKLER:
+        if gercek.endswith(ek):
+            kisa = gercek[: -len(ek)].strip()
+            if len(kisa) >= 4:
+                kisa_takma = takma[: -len(ek)].strip() if takma.endswith(ek) else takma
+                cikti.append((kisa, kisa_takma))
+    return cikti
+
+
 class Anonimlestirici:
     def __init__(self, esleme: dict):
         self.sirketler: dict = esleme["sirketler"]
         self.profil: dict = esleme["profil"]
+        # Demo kimliği eşleme tablosundan okunur; kod gerçek bir ad ya da
+        # adres taşımaz, çünkü bu dosya açık depoda duruyor.
+        self.demo: dict = esleme.get("_demo", {})
         self.gorulmeyen: set = set()
 
-        # Değiştirme sırası UZUNDAN KISAYA. "Getir Perakende Lojistik A.Ş."
-        # önce gitmezse "Getir" onu parçalar ve geride "Perakende Lojistik
-        # A.Ş." kalır — yani gerçek bilgi sızar.
+        # Değiştirme sırası UZUNDAN KISAYA. "Örnek Holding A.Ş." önce gitmezse
+        # "Örnek" onu parçalar ve geride "Holding A.Ş." kalır — yani gerçek
+        # bilgi sızar.
         birlesik = {**self.sirketler, **self.profil}
-        self.kurallar = sorted(
-            ((k, v) for k, v in birlesik.items() if k and k != "—"),
-            key=lambda kv: -len(kv[0]),
-        )
-        # Doğrulamada aranacak yasaklı diziler: her gerçek ad.
+        cift = {k: v for k, v in birlesik.items() if k and k != "—"}
+        for k, v in list(cift.items()):
+            for kisa, kisa_takma in varyantlar(k, v):
+                cift.setdefault(kisa, kisa_takma)
+        self.kurallar = sorted(cift.items(), key=lambda kv: -len(kv[0]))
+        # Doğrulamada aranacak yasaklı diziler: her gerçek ad ve varyantı.
         self.yasakli = [k for k, _ in self.kurallar if len(k) >= 3]
 
     # ---------- dönüştürme ----------
@@ -81,7 +104,7 @@ class Anonimlestirici:
         return self.sirketler[sirket]
 
     def takma_kisi(self) -> str:
-        return self.profil.get("Atalay Denizer", "—")
+        return self.demo.get("sahip", "—")
 
     def metin(self, s):
         """Serbest metindeki her gerçek adı takma adıyla değiştirir."""
@@ -213,7 +236,7 @@ def main() -> int:
             eski_meta = veri.get("meta") if isinstance(veri.get("meta"), dict) else {}
             veri["meta"] = {
                 "owner": an.takma_kisi(),
-                "email": an.profil.get("atalay.denizer0@gmail.com", "ornek@ornek.example"),
+                "email": an.demo.get("eposta", "ornek@ornek.example"),
                 "schema_version": eski_meta.get("schema_version", 1),
                 # Tarihler veriden türetilir. Devralınan eski bir last_scan,
                 # panoyu verinin gerisinde bir "bugün"le üretir ve sessizlik

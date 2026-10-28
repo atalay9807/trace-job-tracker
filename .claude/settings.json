@@ -1,0 +1,30 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/gercek_veri_kalkani.py\"",
+            "timeout": 30,
+            "statusMessage": "Gerçek veri kalkanı denetliyor..."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/sema_denetimi.py\"",
+            "timeout": 60,
+            "statusMessage": "Veri şeması denetleniyor..."
+          }
+        ]
+      }
+    ]
+  }
+}

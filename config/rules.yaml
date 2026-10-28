@@ -69,7 +69,6 @@ aggregator_senders:
   - proxify.io
   - virtustant.com
   - deel.com
-  - micro1.ai
   - michaelpage.com.tr       # işe alım ajansı
   - indeed.com
 
@@ -125,17 +124,16 @@ status_rules:
                   "başvurun bize ulaştı"]
 
 # Yineleme ayıklama — aynı olayın birden çok maille gelmesi
-# 2026-09-20 taramasında bulundu: Revolut'un "Product Owner (Technical)" reddi
-# gelen kutusuna ALTI kez düştü (3, 4, 7, 8, 10 Eylül ve öncesi). Aynı şekilde
-# ING iki kez, Vodafone iki kez, Peks Global iki kez aynı maili gönderdi.
+# Tek bir red maili aynı gelen kutusuna ALTI kez düşebiliyor; bazı şirketler
+# aynı maili ikişer kez gönderiyor.
 # Ayıklanmazsa red sayısı şişer ve dönüş oranı olduğundan yüksek çıkar.
 dedup:
   # Aynı olay sayılma koşulu: üçü birden tutuyorsa TEK olaydır.
   same_event_when:
     - same_company: true
-    - same_role: true          # rol farklıysa AYRI süreçtir — bunq örneği: Haziran
-                               # "Product Owner - Onboarding" ile Ağustos "Reporting
-                               # Expert" iki ayrı kayıttır, tek kayda çökertilmez
+    - same_role: true          # rol farklıysa AYRI süreçtir: aynı şirkete farklı
+                               # aylarda iki farklı rol için yapılan başvuru iki
+                               # ayrı kayıttır, tek kayda çökertilmez
     - same_status: true        # ikisi de red / ikisi de davet
   # Yukarıdakiler tutuyorsa hangi tarih kazanır
   keep: first                  # ilk gelen tarih olayın tarihidir
