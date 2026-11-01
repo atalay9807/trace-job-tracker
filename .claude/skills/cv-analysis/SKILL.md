@@ -7,7 +7,7 @@ description: "Inference rules for turning a CV into the data/profile.json schema
 
 `data/profile.json`, CV'den türetilmiş profildir ve **eşleşme motorunun
 tek referansıdır** (`src/match.py` onu okur). Buradaki bir değer keyfi
-atanırsa 68 başvurunun tamamının puanı kayar. O yüzden çıkarım kuralları
+atanırsa tüm başvuruların puanı kayar. O yüzden çıkarım kuralları
 yazılı.
 
 ## Şema

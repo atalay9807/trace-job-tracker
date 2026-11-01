@@ -54,7 +54,7 @@ vereceğine kendi karar verir — bu projenin iki eksen kuralının aynısı.
   "meta": {
     "uretim_tarihi": "YYYY-MM-DD",
     "profil_surumu": "profile.json'daki cv_version",
-    "basvuru_sayisi": 68
+    "basvuru_sayisi": 109
   },
   "hedefler": [
     {

@@ -11,7 +11,7 @@ işaretlediğinde, ya da `posting-analyzer` + `matcher` ikilisinin
 Amaç, mevcut kayıtların tutarlı olduğu biçimi bozmadan yenisini eklemek.
 
 Zorunlu alanların şeması CLAUDE.md'de (`Veri katmanı` bölümü); burada onun
-**nasıl doldurulacağı** var — gerçek 68 kayıttan çıkarılmış konvansiyonlar.
+**nasıl doldurulacağı** var — ilk 68 gerçek kayıttan (Eylül 2026) çıkarılmış konvansiyonlar.
 
 ---
 
@@ -86,8 +86,8 @@ Serbest metin, gördüğün biçimlerden biri:
 
 ## `contact`
 
-Yalnızca **doğrudan bir İK kişisiyle yazışma varsa** doldurulur (68 kaydın
-6'sında var — çoğu kayıtta yok, bu normal). Üçüncü kişi kuralı burada da
+Yalnızca **doğrudan bir İK kişisiyle yazışma varsa** doldurulur (01.11.2026: 109 kaydın
+7'sinde var — çoğu kayıtta yok, bu normal). Üçüncü kişi kuralı burada da
 geçerli:
 
 ```
