@@ -114,6 +114,14 @@ def reminders_for(app, today):
             out.append(f"📅 Deadline {left} gün sonra ({app['deadline']}).")
 
     silence = days_between(today, parse_date(app.get("last_contact")))
+    # Deadline'ı olmayan action_required kayıt kritik bantta görünüyor ama
+    # gerekçe satırı üretmiyordu; kullanıcı neden kritik olduğunu göremiyordu.
+    # Bekleyen adım bizde olduğu için "takip maili at" yerine adımı hatırlatır.
+    if app["status"] == "action_required" and not out and silence is not None \
+            and silence >= STALE_DAYS:
+        adim = (app.get("next_step") or "").strip()
+        ek = f": {adim}" if adim and adim != "—" else "."
+        out.append(f"📌 {silence} gündür senden bir adım bekleniyor{ek}")
     if app["status"] not in ("rejected", "action_required") and silence is not None:
         if app.get("stage") == "interviewed" and silence >= 5:
             out.append(f"✉️ Mülakattan {silence} gün geçti — nazik takip maili at.")

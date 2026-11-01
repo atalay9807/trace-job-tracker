@@ -85,7 +85,7 @@ Gerçek mi / yanlış pozitif mi: …
 ```
 
 Sonda kısa bir özet: kaç kayıt tarandı, kaç gerçek bulgu, kaç yanlış
-pozitif elendi. Hiçbir sorun yoksa bunu açıkça yaz — "68/68 kayıt şemaya
+pozitif elendi. Hiçbir sorun yoksa bunu açıkça yaz — "N/N kayıt şemaya
 uygun" demek de bir sonuçtur, sessiz kalma.
 
 ## Yapmayacakların

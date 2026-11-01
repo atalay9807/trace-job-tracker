@@ -50,6 +50,7 @@ Bantlar: 🔴 Kritik (≥100 ya da `action_required` + deadline ≤3 gün) ·
 | Mülakattan 5+ gün, dönüş yok | "✉️ Mülakattan N gün geçti — nazik takip maili at." |
 | 12+ gün sessizlik | "✉️ N gündür sessiz — takip maili zamanı." |
 | 21+ gün sessizlik | "💤 N gündür sessiz — kapanmış olabilir; durumunu kontrol et." |
+| `action_required`, 12+ gün, deadline hatırlatması yok | "📌 N gündür senden bir adım bekleniyor: `next_step`" |
 
 12 ve 21 gün ürün kurallarıdır; ilk yanıt süresinin ölçümünden türetildiği
 iddia edilmez. Geçmişte 10 gün diye sunulan sayı son temas tarihinden

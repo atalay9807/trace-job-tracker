@@ -85,7 +85,7 @@ koda asla sabit veri gömülmez.
 
 | Dosya | İçerik |
 |---|---|
-| `applications.json` | 68 başvuru + `recruiter_outreach` |
+| `applications.json` | Başvurular (01.11.2026: 109) + `recruiter_outreach` |
 | `profile.json` | CV'den türetilmiş profil — eşleşmenin referansı |
 | `skills_catalog.json` | Beceri → kaynak eşlemesi. **Eğitim sayfası ve başvuru detayındaki kurs kartı buradan beslenir**, ikisi asla ayrışmaz |
 | `journey.json` | Yaşam döngüsü aşamaları, sayfa yönlendirmeleri, şablon değişkenleri |
@@ -309,7 +309,7 @@ Birim ekonomi modelinin 7 girdisinden 4'ü bilinmiyor, 3'ü dış kıyas, 0'ı
 ölçüm. Yapısal gerçek: maliyet kullanımla değil **varlıkla** ölçekleniyor —
 tarama her sabah çalışıyor, kullanıcı uygulamayı açsa da açmasa da. Uykuda
 kullanıcı burada tam maliyetli; bu freemium'u yapısal olarak zorlaştırır.
-Maliyeti düşürecek yer ürünün içinde: 63/90 başvuru ATS kanalından geliyor
+Maliyeti düşürecek yer ürünün içinde: 75/109 başvuru ATS kanalından (01.11.2026) geliyor
 ve `config/rules.yaml` zaten deterministik — LLM yalnızca kuralın
 kapatamadığı artığa çağrılmalı.
 
@@ -374,7 +374,7 @@ görsün diye.
 | `matcher` | Çözümleyicinin çıktısını profille karşılaştırıp `match` objesi, segment ve `gap_skills` üretir | `data/` altına yazmaz — objeyi döndürür, kaydı ana oturum yazar |
 | `interview-prep` | Bir başvuru mülakat/değerlendirme aşamasına girdiğinde hazırlık notu üretir: muhtemel sorular, CV'nin zayıf kalacağı noktalar, karşı tarafa sorulacak sorular | Puanlama yapmaz, mülakat sonucu tahmin etmez, `data/` altına yazmaz |
 | `data-auditor` | `data/applications.json`'ı şemaya ve iç tutarlılığa karşı denetler — tanınmayan `stage`, `match` sapması, `links_actions`'ta unutulan `kind`, sızmış üçüncü kişi bilgisi | Hiçbir dosyaya yazmaz/düzeltmez — yalnızca rapor döner; yanlış pozitifi gerçekten ayırt eder, uydurmaz |
-| `career-advisor` | 68 başvurunun tamamı + CV'ye birden bakıp konumlandırma çıkarır: gerçekçi rol/kıdem hedefi, İK ekranında CV'nin nerede elendiği, enerjinin nerede israf olduğu | Tek ilan puanlamaz, mülakat hazırlamaz, kurs önermez; **maaş/piyasa verisi uydurmaz** — elimizde yok |
+| `career-advisor` | Başvuruların tamamı + CV'ye birden bakıp konumlandırma çıkarır: gerçekçi rol/kıdem hedefi, İK ekranında CV'nin nerede elendiği, enerjinin nerede israf olduğu | Tek ilan puanlamaz, mülakat hazırlamaz, kurs önermez; **maaş/piyasa verisi uydurmaz** — elimizde yok |
 | `market-researcher` | Benzer ürünleri ve tasarım desenlerini `WebSearch` ile araştırıp Trace'e çevrilmiş bulgu döndürür; her iddiaya kaynak, tek kaynaklı olana etiket | Tasarımı uygulamaz, dosya değiştirmez; **görmediği arayüz hakkında renk/ölçü iddiası kurmaz** — `WebFetch` egress'te kapalı |
 | `role-advisor-profile` | Yalnızca CV/`profile.json`'a bakıp "bu profil hangi unvanlara başvurabilir" listesi üretir | `applications.json`'ı **açmaz**; piyasa/ilan verisi kullanmaz, şirket önermez |
 | `role-advisor-history` | Yalnızca başvuru sonuçları + `insights.py` + Indeed ilan varlığına bakıp aynı listeyi bağımsız üretir | `profile.json`'ı ve CV'yi **açmaz**; n<4 örneklemden sonuç çıkarmaz, şirket önermez |

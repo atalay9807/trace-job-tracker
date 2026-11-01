@@ -80,7 +80,7 @@ vereceğine kendi karar verir — bu projenin iki eksen kuralının aynısı.
 ## Kurallar
 
 **`ornek_sayisi` n<4 ise geçmiş kanadının gerekçesi "veri yetersiz"
-etiketiyle gösterilir.** 68 başvuru 40 `track`'e dağılmış; tek kayıtlı
+etiketiyle gösterilir.** Başvurular onlarca `track`'e dağılmış (01.11.2026: 109 başvuru, 56 track); tek kayıtlı
 bir track'ten sonuç çıkmaz.
 
 **Şirket ve tekil ilan önerilmez.** Çıktı unvan + sektör düzeyinde kalır.

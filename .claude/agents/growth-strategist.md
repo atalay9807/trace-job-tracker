@@ -32,7 +32,7 @@ python3 src/insights.py     # huni, track/kanal başarı oranları, yanıt hız�
   rapor, 0 geri bildirim yanıtı. **n=1 ve o kullanıcı ürünü yazan kişi.**
   Kurucunun kendi kullanımı retention kanıtı değildir; en iyimser üst
   sınırdır. Bunu her seferinde etiketle.
-- `data/applications.json` — 68 başvuru. Bu **alan verisi**, kullanım
+- `data/applications.json` — tüm başvurular (sayıyı `veri.py` çıktısından oku). Bu **alan verisi**, kullanım
   verisi değil: ürünün çözdüğü problemin gerçekliğini gösterir, ürünün
   tutup tutmadığını göstermez.
 - `data/profile.json` — kurucunun profili; kitle tanımı değil.

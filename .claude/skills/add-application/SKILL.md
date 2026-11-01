@@ -8,7 +8,7 @@ description: "Rules for opening a new application record in data/applications.js
 `mail-classification` bir maili "buna karşılık gelen kayıt yok" diye
 işaretlediğinde, ya da `posting-analyzer` + `matcher` ikilisinin
 ürettiği veri `data/applications.json`'a inecekken bu skill devreye girer.
-Amaç, 68 kaydın tutarlı olduğu biçimi bozmadan 69'uncuyu eklemek.
+Amaç, mevcut kayıtların tutarlı olduğu biçimi bozmadan yenisini eklemek.
 
 Zorunlu alanların şeması CLAUDE.md'de (`Veri katmanı` bölümü); burada onun
 **nasıl doldurulacağı** var — gerçek 68 kayıttan çıkarılmış konvansiyonlar.

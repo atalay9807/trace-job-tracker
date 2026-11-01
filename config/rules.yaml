@@ -177,6 +177,9 @@ reminders:
     message: "Yarın mülakat — şirket/rol hazırlığı yap."
   - trigger: stale
     message: "Takip maili zamanı (12+ gün sessizlik)."
+  - trigger: action_required_pending   # deadline hatırlatması yoksa
+    value: 12
+    message: "Senden bir adım bekleniyor (12+ gün): next_step."
   - trigger: post_interview_silence
     value: 5
     message: "Mülakattan 5+ takvim günü geçti — nazik takip maili at."

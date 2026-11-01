@@ -122,6 +122,18 @@ class HesaplamaTestleri(unittest.TestCase):
             self.assertEqual(pipeline.score(app, date(2026, 9, 17)), 0)
             self.assertEqual(pipeline.band(app, date(2026, 9, 17), 100), "archive")
 
+    def test_bekleyen_adim_deadline_yoksa_hatirlatilir(self):
+        app = basvuru(status="action_required", deadline=None, next_step="Formu tamamla")
+        last = pipeline.parse_date(app["last_contact"])
+        from datetime import timedelta
+        self.assertEqual(pipeline.reminders_for(app, last + timedelta(days=11)), [])
+        self.assertEqual(pipeline.reminders_for(app, last + timedelta(days=12)),
+                         ["📌 12 gündür senden bir adım bekleniyor: Formu tamamla"])
+        gecmis = basvuru(status="action_required", deadline="2026-09-01")
+        hatirlatmalar = pipeline.reminders_for(gecmis, date(2026, 9, 30))
+        self.assertEqual(len(hatirlatmalar), 1)
+        self.assertTrue(hatirlatmalar[0].startswith("⏳"))
+
     def test_bugunku_yanit_iki_raporda_ayni(self):
         apps = pipeline.enrich(belge(basvuru(stage="interviewed", last_contact="2026-09-17")), date(2026, 9, 17))
         self.assertEqual(pipeline.funnel(apps)["response_rate"], 100)
